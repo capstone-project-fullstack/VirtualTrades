@@ -36,8 +36,16 @@ In today's rapidly changing financial landscape, investing in the stock market h
 **Tech Stack**
 
 Front End: React, TypeScript, Tailwind CSS, Redux, Material UI
+
 Back End: NextJS, Prisma, NextAuth, Postgresql
+
 API: 
+
+
+<img width="930" alt="Screenshot 2023-08-09 at 11 47 53 AM" src="https://github.com/capstone-project-fullstack/Virtual-Trades/assets/114107908/60a45a50-7b6e-4077-87c3-d25976d806b2">
+
+
+
 <br></br>
 
 **Data Sources**
