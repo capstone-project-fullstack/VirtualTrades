@@ -10,6 +10,8 @@
   },
   "dependencies": {
     "@clerk/nextjs": "^4.23.2",
+    "@clerk/themes": "^1.7.5",
+    "@material-tailwind/react": "^2.1.0",
     "@prisma/client": "^5.1.1",
     "@types/node": "20.4.9",
     "@types/react": "18.2.20",

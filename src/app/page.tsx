@@ -1,12 +1,7 @@
-"use client";
-
-import { UserButton, useAuth } from "@clerk/nextjs";
+import React from 'react'
 
 export default function Home() {
-  const { userId } = useAuth();
   return (
-    <div>
-      <UserButton afterSignOutUrl="/" />
-    </div>
-  );
+    <div>Home</div>
+  )
 }
