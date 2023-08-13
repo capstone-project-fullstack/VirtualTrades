@@ -1,12 +1,7 @@
 // app/layout.tsx
 import "./globals.css";
-import { Inter } from "next/font/google";
 import { ClerkProvider } from "@clerk/nextjs";
-import { dark } from "@clerk/themes";
-import Navbar from "./components/Navbar";
-// import { ThemeProvider } from "@material-tailwind/react";
-
-const inter = Inter({ subsets: ["latin"] });
+import Navbar from "./components/navbar/Navbar";
 
 export default function RootLayout({
   children,
@@ -16,10 +11,13 @@ export default function RootLayout({
   return (
     <ClerkProvider
       appearance={{
-        baseTheme: dark,
+        variables: {
+          colorPrimary: "blue",
+          colorText: "white",
+          colorBackground: "black",
+        },
       }}
     >
-      {/* <ThemeProvider> */}
       <html lang="en">
         <head>
           <meta
@@ -28,16 +26,13 @@ export default function RootLayout({
           />
           <title>Virtual Trades</title>
         </head>
-        <body
-          className={`${inter.className} text-white w-screen h-screen`}
-        >
-          <header>
+        <body className="text-white">
+          <div className="flex">
             <Navbar />
-          </header>
-          <main>{children}</main>
+            <div className="p-7">{children}</div>
+          </div>
         </body>
       </html>
-      {/* </ThemeProvider> */}
     </ClerkProvider>
   );
 }

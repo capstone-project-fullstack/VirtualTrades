@@ -12,3 +12,9 @@ body {
     #13032a
   );
 }
+
+@layer components {
+  .f-center {
+    @apply flex justify-center items-center;
+  }
+}
