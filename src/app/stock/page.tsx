@@ -1,10 +1,10 @@
 "use client";
 import { Button, Input } from "@material-tailwind/react";
-import { useEffect, useRef, memo, useState } from "react";
+import React, { useEffect, useRef, memo, useState } from "react";
 
-function StockWidget() {
-  const container = useRef();
-  const [symbol, setSymbol] = useState("AAPL|1D");
+const StockWidget: React.FC = () => {
+  const container = useRef<HTMLDivElement | null>(null);
+  const [symbol, setSymbol] = useState<string>("AAPL|1D");
 
   useEffect(() => {
     const script = document.createElement("script");
@@ -49,27 +49,21 @@ function StockWidget() {
         ]
       }`;
 
-    // Clear the previous content of the container
-    container.current.innerHTML = "";
+    if (container.current) container.current.innerHTML = "";
 
-    // Append the new script and its container
     const scriptContainer = document.createElement("div");
     scriptContainer.className = "tradingview-widget-container__widget";
-    if (container.current) {
-      container.current.appendChild(scriptContainer);
-    }
-    // container.current.appendChild(scriptContainer);
+    if (container.current) container.current.appendChild(scriptContainer);
     scriptContainer.appendChild(script);
   }, [symbol]);
 
-  const data = document.getElementById("symbol-delta");
-  console.log(data);
-
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const value = e.target.elements.symbol.value;
+    const value = (
+      e.currentTarget.elements.namedItem("symbol") as HTMLInputElement
+    ).value;
     setSymbol(value);
-    e.target.reset();
+    e.currentTarget.reset();
   };
 
   return (
@@ -93,6 +87,6 @@ function StockWidget() {
       </div>
     </div>
   );
-}
+};
 
 export default memo(StockWidget);
