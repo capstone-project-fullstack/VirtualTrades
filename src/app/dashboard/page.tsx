@@ -1,9 +1,10 @@
 "use client";
+import HeaderText from "../components/HeaderText";
 
 export default function Dashboard() {
   return (
     <div>
-      <h1>Dashboard</h1>
+      <HeaderText text="Dashboard" />
     </div>
   );
 }

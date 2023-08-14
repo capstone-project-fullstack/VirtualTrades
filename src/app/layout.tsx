@@ -24,12 +24,17 @@ export default function RootLayout({
             name="viewport"
             content="width=device-width, initial-scale=1.0"
           />
+          <link
+            rel="icon"
+            type="image/x-icon"
+            href="https://ucarecdn.com/121094a0-3ee2-4674-9ac8-1320f26ac39e/"
+          ></link>
           <title>Virtual Trades</title>
         </head>
-        <body className="text-white">
-          <div className="flex">
+        <body className="text-white bg-gradient">
+          <div>
             <Navbar />
-            <div className="p-7">{children}</div>
+            <main className="ml-20">{children}</main>
           </div>
         </body>
       </html>

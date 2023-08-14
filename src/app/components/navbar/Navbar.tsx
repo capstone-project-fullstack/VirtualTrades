@@ -15,7 +15,7 @@ import {
 } from "@clerk/clerk-react";
 
 export default function Navbar() {
-  const [open, isOpen] = useState(true);
+  const [open, isOpen] = useState(false);
 
   const items = [
     { name: "Dashboard", href: "/dashboard", icon: <MdDashboard /> },
@@ -25,9 +25,9 @@ export default function Navbar() {
 
   return (
     <div
-      className={`bg-dark-purple h-screen p-5 pt-8  relative duration-300 ${
+      className={`bg-dark-purple z-10 h-screen p-5 pt-8 ${
         open ? "w-72" : "w-20"
-      }`}
+      } fixed top-0 left-0 transition-all duration-300`}
     >
       <BsArrowLeftShort
         className={`bg-white text-dark-purple text-3xl rounded-full absolute -right-3 top-9 border border-dark-purple cursor-pointer ${
@@ -47,8 +47,8 @@ export default function Navbar() {
             }`}
           />
           <Img
-            width={200}
-            height={100}
+            width={150}
+            height={75}
             src="https://ucarecdn.com/5af88ec8-4346-4f48-b7ae-cb301df67a28/"
             alt="logo"
             className={`cursor-pointer origin-left duration-300 ${
@@ -75,26 +75,25 @@ export default function Navbar() {
           }`}
         />
       </div>
-      <div className="pt-2">
+      <ul className="pt-2">
         {items.map((item, index) => (
-          <>
+          <li key={index} onClick={() => isOpen(false)}>
             <Link
               href={item.href}
-              key={index}
               className="text-gray-300 text-sm flex items-center gap-x-4 cursor-pointer p-2 hover:bg-light-white rounded-md focus:bg-light-white"
             >
-              <span className="text-2xl block float-left">{item.icon}</span>
-              <span
+              <div className="text-2xl block float-left">{item.icon}</div>
+              <div
                 className={`text-base font-medium flex-1 duration-200 ${
                   !open && "hidden"
                 }`}
               >
                 {item.name}
-              </span>
+              </div>
             </Link>
-          </>
+          </li>
         ))}
-      </div>
+      </ul>
       <div>
         <SignedIn>
           <div className="flex items-center gap-x-4 cursor-pointer p-1">
@@ -105,13 +104,13 @@ export default function Navbar() {
           <SignedOut>
             <div>
               <IoIosLogIn className="text-2xl block float-left" />
-              <span
+              <div
                 className={`text-base font-medium flex-1 duration-200 flex items-center gap-x-4 pl-4 ${
                   !open && "hidden"
                 }`}
               >
                 <SignInButton />
-              </span>
+              </div>
             </div>
           </SignedOut>
         </div>

@@ -5,6 +5,9 @@ import React, { useEffect, useRef, memo, useState } from "react";
 const StockWidget: React.FC = () => {
   const container = useRef<HTMLDivElement | null>(null);
   const [symbol, setSymbol] = useState<string>("AAPL|1D");
+  const [widgetWidth, setWidgetWidth] = useState<number>(
+    window.innerWidth - 100
+  );
 
   useEffect(() => {
     const script = document.createElement("script");
@@ -16,11 +19,10 @@ const StockWidget: React.FC = () => {
       {
         "symbols": [["${symbol}"]],
         "chartOnly": false,
-        "width": 1000,
-        "height": 500,
+        "width": ${widgetWidth},
         "locale": "en",
         "colorTheme": "dark",
-        "autosize": false,
+        "autosize": true,
         "showVolume": false,
         "showMA": false,
         "hideDateRanges": false,
@@ -55,7 +57,17 @@ const StockWidget: React.FC = () => {
     scriptContainer.className = "tradingview-widget-container__widget";
     if (container.current) container.current.appendChild(scriptContainer);
     scriptContainer.appendChild(script);
-  }, [symbol]);
+
+    const handleResize = () => {
+      setWidgetWidth(window.innerWidth - 100);
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, [symbol, widgetWidth]);
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -82,8 +94,10 @@ const StockWidget: React.FC = () => {
           </Button>
         </div>
       </form>
-      <div className="flex justify-center items-center">
-        <div className="tradingview-widget-container" ref={container}></div>
+      <div className="mx-auto">
+        <div className="flex justify-center items-center">
+          <div className="tradingview-widget-container" ref={container}></div>
+        </div>
       </div>
     </div>
   );
