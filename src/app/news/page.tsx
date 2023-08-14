@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import axios from "axios";
-import NewsCard from "../components/NewsCard";
+import NewsCard from "../components/cards/NewsCard";
 import HeaderText from "../components/HeaderText";
 import useSWR from "swr";
 import Loading from "../components/Loading"

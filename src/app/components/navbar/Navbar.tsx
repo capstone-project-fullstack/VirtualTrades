@@ -47,9 +47,9 @@ export default function Navbar() {
             }`}
           />
           <Img
-            width={150}
-            height={75}
-            src="https://ucarecdn.com/5af88ec8-4346-4f48-b7ae-cb301df67a28/"
+            width={190}
+            height={100}
+            src="https://ucarecdn.com/59d6e657-1f99-407d-a719-531899f4823b/"
             alt="logo"
             className={`cursor-pointer origin-left duration-300 ${
               !open && "scale-0"
