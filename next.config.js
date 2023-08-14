@@ -3,7 +3,7 @@ const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
   images: {
-    domains: ["ucarecdn.com", "ww2.kqed.org", "newscenter.baruch.cuny.edu"],
+    domains: ["ucarecdn.com", "ww2.kqed.org", "newscenter.baruch.cuny.edu", "loopnewslive.blob.core.windows.net", "images.barrons.com"],
   },
 };
 

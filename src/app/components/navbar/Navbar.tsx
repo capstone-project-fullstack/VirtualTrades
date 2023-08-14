@@ -15,7 +15,7 @@ import {
 } from "@clerk/clerk-react";
 
 export default function Navbar() {
-  const [open, isOpen] = useState(true);
+  const [open, isOpen] = useState(false);
 
   const items = [
     { name: "Dashboard", href: "/dashboard", icon: <MdDashboard /> },
