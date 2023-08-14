@@ -13,3 +13,8 @@ body {
   );
 }
 
+@layer components {
+  .f-center {
+    @apply flex justify-center items-center;
+  }
+}
