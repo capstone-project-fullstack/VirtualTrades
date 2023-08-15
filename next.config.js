@@ -14,8 +14,12 @@ const nextConfig = {
       "images.barrons.com",
       "netzelfinancial.com",
       "www.nyse.com",
-      "cdn-scripbox-wordpress.scripbox.com"
+      "cdn-scripbox-wordpress.scripbox.com",
     ],
+    unoptimized: true,
+  },
+  experimental: {
+    serverActions: true,
   },
 };
 
