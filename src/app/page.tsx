@@ -299,7 +299,7 @@ export default function Home() {
         <h3 className="my-4 text-3xl leading-tight">
           If you grow real skill, you can grow real money
         </h3>
-        <button onClick={() => router.push("/dashboardç")} className="mx-auto lg:mx-0 hover:underline bg-black text-black-800 font-bold rounded-full my-6 py-4 px-8 shadow-lg">
+        <button onClick={() => router.push("/dashboard")} className="mx-auto lg:mx-0 hover:underline bg-black text-black-800 font-bold rounded-full my-6 py-4 px-8 shadow-lg">
           Get Started!
         </button>
       </section>
