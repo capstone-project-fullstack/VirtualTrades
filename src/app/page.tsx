@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import HorizontalCard from "./components/cards/HorizontCard";
+import HorizontalCard from "./components/cards/HorizontalCard";
 import Img from "next/image";
 import SimpleCard from "./components/cards/SimpleCard";
 

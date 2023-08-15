@@ -6,7 +6,7 @@ import {
     Button,
   } from "@material-tailwind/react";
    
-  export default function SimpleCard( { text1 }) {
+  export default function SimpleCard( { text1 }: { text1: string}) {
     return (
       <Card className="mt-6 w-96">
         <CardBody>
