@@ -12,6 +12,9 @@ const nextConfig = {
       "newscenter.baruch.cuny.edu",
       "loopnewslive.blob.core.windows.net",
       "images.barrons.com",
+      "netzelfinancial.com",
+      "www.nyse.com",
+      "cdn-scripbox-wordpress.scripbox.com"
     ],
   },
 };
