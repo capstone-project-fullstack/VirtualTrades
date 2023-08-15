@@ -152,7 +152,7 @@ export default function Home() {
                   </a>
                   <div>
                     <Img
-                      className="h-60 w-full rounded-lg object-cover object-center"
+                      className="h-96 w-96 rounded-full object-cover object-center"
                       src="https://cdn-scripbox-wordpress.scripbox.com/wp-content/uploads/2021/09/us-stock-market-timings-vector.png"
                       alt="nature image"
                       width={100}
