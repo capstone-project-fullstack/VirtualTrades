@@ -11,17 +11,16 @@ export default function Home() {
 
       <div className="leading-normal tracking-normal text-white gradient">
         <div className="pt-24">
-          <div className="container px-3 mx-auto flex flex-wrap flex-col md:flex-row items-center">
-            <div className="flex flex-col w-full md:w-2/5 justify-center items-start text-center md:text-left">
-              <p className="uppercase tracking-loose w-full">WHERE INVESTMENT BEGINS</p>
+          <div className="container px-6 mx-auto flex flex-wrap flex-col md:flex-row items-center">
+            <div className="flex flex-col w-full md:w-1/2 justify-center items-start text-center md:text-left">
+              <p className="uppercase tracking-loose w-full ax-w-md text-2xl">WHERE INVESTMENT BEGINS</p>
               <h1 className="my-4 text-5xl font-bold leading-tight">Welcome to VirtualTrades</h1>
-              <p className="leading-normal text-2xl mb-8">This is our app Virtual Trades. Welcome to the world of stocks,
-            market and money! Learn while staying safe, and get ready for the
-            real world.</p>
+              <p className="leading-normal text-3xl mb-8">Learn how to interpret key financial indicators, charts and graphs, enabling you to make well-informed decisions in your investment journey.</p>
+              <p className="leading-normal text-2xl mb-8">Ready to dive in? VirtualTrades brings you the thrill of trading stocks without any financial risk. Here, you can buy and sell virtual stocks at real market prices, honing your investment skills in a risk-free environment!</p>
               <button className="mx-auto lg:mx-0 hover:underline bg-white text-gray-800 font-bold rounded-full my-6 py-4 px-8 shadow-lg">Trade</button>
             </div>
-            <div className="w-full md:w-3/5 py-6 text-center">
-              <Img className="w-full md:w-4/5 z-50" src="https://loopnewslive.blob.core.windows.net/liveimage/sites/default/files/2022-05/83603f5df4bb7a5f0afb72cbd50cf88cnew-york-stock-exchange-ap.jpg/" alt="hero img" width={50} height={50}/>
+            <div className="w-full md:w-1/2 py-6 text-center">
+              <Img className="w-full md:w-4/5 z-50" src="https://netzelfinancial.com/wp-content/uploads/2019/04/investment-drawing-Converted.gif" alt="hero img" width={50} height={50}/>
             </div>
           </div>
         </div>
@@ -46,108 +45,104 @@ export default function Home() {
     <section>
       <div className="bg-grey border-b py-8">
         <div className="container max-w-5xl mx-auto m-8">
-          <h1 className="w-full my-2 text-5xl font-bold leading-tight text-center text-white-800">Watchlist</h1>
-        <div className="w-full mb-4">
+          <h1 className="w-full my-2 text-5xl font-bold leading-tight text-center text-white-700">Watchlist</h1>
+          <div className="w-full mb-4">
           <div className="h-1 mx-auto gradient w-64 opacity-25 my-0 py-0 rounded-t"></div>
-        </div>
-        <div className="flex flex-wrap">
-          <div className="w-5/6 sm:w-1/2 p-9">
-            <h3 className="text-3xl text-white-700 font-bold leading-none mb-3">Watch the market move live</h3>
-            {/* <p className="text-gray-600 mb-8">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam at ipsum eu nunc commodo posuere et sit amet ligula.</p>
-            <a className="text-orange-500 underline" href="https://undraw.co/">undraw.co</a></p> */}
-              </div>
-             {/* Other content */}
-
+          </div>
+           <div className="flex flex-wrap justify-center">
             <HorizontalCard
-              img="https://ww2.kqed.org/app/uploads/sites/23/2023/03/teen-first-credit-card-e1679332855781-800x533.jpg"
-              text1="This is the benefit Virtual Trading. Learn more about how and when to buy and sell"
-              text2="Sign up now to receive real-time updates on the market and practice your best trade."
-              text3="Watch trends as they evolve, and learn to invest with us!"
+              img="https://www.nyse.com/publicdocs/images/NYSE_Trading_Floor_New_Branding.jpg"
+              text1="Sign up now to receive real-time updates on the market and practice your best trade. "
+              text2="Curate a personalized watchlist of stocks you're interested in tracking. Monitor their performance, analyze trends, and make informed decisions, all without risking a single cent of real money."
+              text3="Watch trends as they evolve, and learn to invest, risk-free!"
               />
-        </div>
-      </div>
-      </div>
+           </div>
+         </div>
+       </div>
     </section>
 
-
-    <section>
-    <div className="flex flex-wrap flex-col-reverse sm:flex-row">
-          <div className="w-full sm:w-1/2 p-9 mt-0">
-        {/* <Img className="w-full md:w-4/5 z-50" src="https://images.barrons.com/im-733090?width=1280&size=1.33333333" alt="seciton img" width={50} height={50}/> */}
-        <SimpleCard/>
-          </div>
-          <div className="w-full sm:w-1/2 p-9 mt-6">
-            <div className="align-middle">
-              <h3 className="text-3xl text-white-700 font-bold leading-none mb-3">Read the current news in finance</h3>
-              <p className="text-white-600 mb-8">Stay informed on crucial market changes, treds, and leads that can help your wallet grow exponentially.</p>
-              {/* <a className="text-black-500 underline" href="https://undraw.co/">undraw.co</a></p> */}
-          </div>
-        </div>
+    <section className="mb-8 m-8">
+    {/* <div className="bg-grey border-b py-8">
+        <div className="container max-w-5xl mx-auto m-8"> */}
+  <div className="flex flex-wrap flex-col-reverse sm:flex-row ml-20">
+    <div className="w-full sm:w-1/2 p-9 mt-0">
+      <SimpleCard 
+        text1="From Wall Street to international markets, our news coverage spans across the globe, providing you with a comprehensive view of how global events impact the stock market. Whether it's trade tensions, economic data releases, or geopolitical developments, you'll have a clear understanding of how these factors influence stock prices."
+      />
+    </div>
+    <div className="w-full sm:w-1/2 p-9 mt-6">
+      <div className="align-middle">
+        <h3 className="text-4xl text-white-600 font-bold leading-none mb-9">Read Current Financial News</h3>
+        <p className="text-white-700 text-lg mb-8">The news articles are not just headlines, they are valuable learning resources. We curate the latest news articles, expert analyses, and market insights to keep you up to date with the ever-changing landscape.</p>
       </div>
-    </section>
+    </div>
+  </div>
+  {/* </div></div> */}
+</section>
 
 
     <section className="bg-white border-b py-8">
-      <div className="container mx-auto flex flex-wrap pt-4 pb-12">
-        <h1 className="w-full my-2 text-5xl font-bold leading-tight text-center text-white-800">Title</h1>
-        <div className="w-full mb-4">
-          <div className="h-1 mx-auto gradient w-64 opacity-25 my-0 py-0 rounded-t"></div>
+    <div className="container mx-auto flex flex-wrap pt-4 pb-12">
+    <div className="w-full md:w-1/3 p-6 flex flex-col flex-grow flex-shrink">
+      <div className="flex-1 bg-white rounded-t rounded-b-none overflow-hidden shadow">
+        <a href="#" className="flex flex-wrap no-underline hover:no-underline">
+          <p className="w-full text-gray-600 text-xs md:text-sm px-6">GETTING STARTED</p> 
+          <div className="w-full font-bold text-xl text-black px-6">Lorem ipsum dolor sit amet.</div> 
+          <p className="text-black text-base px-6 mb-5"> 
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam at ipsum eu nunc commodo posuere et sit amet ligula.
+          </p>
+        </a>
+      </div>
+      <div className="flex-none mt-auto bg-white rounded-b rounded-t-none overflow-hidden shadow p-6">
+        <div className="flex items-center justify-start">
+          <button className="mx-auto lg:mx-0 hover:underline gradient text-white font-bold rounded-full my-6 py-4 px-8 shadow-lg">Action</button>
         </div>
-
-        <div className="w-full md:w-1/3 p-6 flex flex-col flex-grow flex-shrink">
-          <div className="flex-1 bg-white rounded-t rounded-b-none overflow-hidden shadow">
-            <a href="#" className="flex flex-wrap no-underline hover:no-underline">
-              <p className="w-full text-white-600 text-xs md:text-sm px-6">GETTING STARTED</p>
-              <div className="w-full font-bold text-xl text-white-800 px-6">Lorem ipsum dolor sit amet.</div>
-              <p className="text-white-800 text-base px-6 mb-5">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam at ipsum eu nunc commodo posuere et sit amet ligula.
-              </p>
-            </a>
-          </div>
-          <div className="flex-none mt-auto bg-white rounded-b rounded-t-none overflow-hidden shadow p-6">
-            <div className="flex items-center justify-start">
-              <button className="mx-auto lg:mx-0 hover:underline gradient text-white font-bold rounded-full my-6 py-4 px-8 shadow-lg">Action</button>
-            </div>
-          </div>
-        </div>
-
+      </div>
+    </div>
 
 
         <div className="w-full md:w-1/3 p-6 flex flex-col flex-grow flex-shrink">
-          <div className="flex-1 bg-white rounded-t rounded-b-none overflow-hidden shadow">
-            <a href="#" className="flex flex-wrap no-underline hover:no-underline">
-              <p className="w-full text-white-600 text-xs md:text-sm px-6">GETTING STARTED</p>
-              <div className="w-full font-bold text-xl text-white-800 px-6">Lorem ipsum dolor sit amet.</div>
-              <p className="text-white-800 text-base px-6 mb-5">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam at ipsum eu nunc commodo posuere et sit amet ligula.
-              </p>
-            </a>
-          </div>
-          <div className="flex-none mt-auto bg-white rounded-b rounded-t-none overflow-hidden shadow p-6">
-            <div className="flex items-center justify-center">
-              <button className="mx-auto lg:mx-0 hover:underline gradient text-white font-bold rounded-full my-6 py-4 px-8 shadow-lg">Action</button>
-            </div>
-          </div>
+        <div className="container mx-auto flex flex-wrap pt-4 pb-12">
+    <div className="w-full md:w-1/3 p-6 flex flex-col flex-grow flex-shrink">
+      <div className="flex-1 bg-white rounded-t rounded-b-none overflow-hidden shadow">
+        <a href="#" className="flex flex-wrap no-underline hover:no-underline">
+          <p className="w-full text-gray-600 text-xs md:text-sm px-6">GETTING STARTED</p>
+          <div className="w-full font-bold text-xl text-black px-6">Lorem ipsum dolor sit amet.</div> 
+          <p className="text-black text-base px-6 mb-5"> 
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam at ipsum eu nunc commodo posuere et sit amet ligula.
+          </p>
+        </a>
+      </div>
+      <div className="flex-none mt-auto bg-white rounded-b rounded-t-none overflow-hidden shadow p-6">
+        <div className="flex items-center justify-start">
+          <button className="mx-auto lg:mx-0 hover:underline gradient text-white font-bold rounded-full my-6 py-4 px-8 shadow-lg">Action</button>
         </div>
-
+      </div>
+    </div>
+        </div>
+        </div>
 
 
         <div className="w-full md:w-1/3 p-6 flex flex-col flex-grow flex-shrink">
-          <div className="flex-1 bg-white rounded-t rounded-b-none overflow-hidden shadow">
-            <a href="#" className="flex flex-wrap no-underline hover:no-underline">
-              <p className="w-full text-white-600 text-xs md:text-sm px-6">GETTING STARTED</p>
-              <div className="w-full font-bold text-xl text-white-800 px-6">Lorem ipsum dolor sit amet.</div>
-              <p className="text-white-800 text-base px-6 mb-5">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam at ipsum eu nunc commodo posuere et sit amet ligula.
-              </p>
-            </a>
-          </div>
-          <div className="flex-none mt-auto bg-white rounded-b rounded-t-none overflow-hidden shadow p-6">
-            <div className="flex items-center justify-end">
-              <button className="mx-auto lg:mx-0 hover:underline gradient text-white font-bold rounded-full my-6 py-4 px-8 shadow-lg">Action</button>
-            </div>
-          </div>
+        <div className="container mx-auto flex flex-wrap pt-4 pb-12">
+    <div className="w-full md:w-1/3 p-6 flex flex-col flex-grow flex-shrink">
+      <div className="flex-1 bg-white rounded-t rounded-b-none overflow-hidden shadow">
+        <a href="#" className="flex flex-wrap no-underline hover:no-underline">
+          <p className="w-full text-gray-600 text-xs md:text-sm px-6">GETTING STARTED</p>
+          <div className="w-full font-bold text-xl text-black px-6">Lorem ipsum dolor sit amet.</div> 
+          <p className="text-black text-base px-6 mb-5"> 
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam at ipsum eu nunc commodo posuere et sit amet ligula.
+          </p>
+        </a>
+      </div>
+      <div className="flex-none mt-auto bg-white rounded-b rounded-t-none overflow-hidden shadow p-6">
+        <div className="flex items-center justify-start">
+          <button className="mx-auto lg:mx-0 hover:underline gradient text-white font-bold rounded-full my-6 py-4 px-8 shadow-lg">Action</button>
         </div>
+      </div>
+    </div>
+        </div>
+      </div>
       </div>
     </section>
 
@@ -170,16 +165,12 @@ export default function Home() {
     </svg>
 
     <section className="container mx-auto text-center py-6 mb-12">
-
-      <h1 className="w-full my-2 text-5xl font-bold leading-tight text-center text-white">Call to Action</h1>
+      <h1 className="w-full my-2 text-5xl font-bold leading-tight text-center text-white">VirtualTrades</h1>
       <div className="w-full mb-4">
         <div className="h-1 mx-auto bg-white w-1/6 opacity-25 my-0 py-0 rounded-t"></div>
       </div>
-
-      <h3 className="my-4 text-3xl leading-tight">Main Hero Message to sell yourself!</h3>
-
-      <button className="mx-auto lg:mx-0 hover:underline bg-white text-white-800 font-bold rounded-full my-6 py-4 px-8 shadow-lg">Action!</button>
-
+      <h3 className="my-4 text-3xl leading-tight">If you grow real skill, you can grow real money</h3>
+      <button className="mx-auto lg:mx-0 hover:underline bg-black text-black-800 font-bold rounded-full my-6 py-4 px-8 shadow-lg">Sign Up!</button>
     </section>
 
       {/* <div className="flex items-center h-screen bg-contain">
