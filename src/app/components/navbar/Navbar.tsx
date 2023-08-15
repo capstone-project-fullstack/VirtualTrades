@@ -41,8 +41,6 @@ export default function Navbar() {
     );
   });
 
-  console.log(filteredStocks);
-
   const items = [
     { name: "Dashboard", href: "/dashboard", icon: <MdDashboard /> },
     { name: "News", href: "/news", icon: <BiNews /> },
@@ -53,6 +51,7 @@ export default function Navbar() {
     const input = (e.target as HTMLInputElement).value;
     if (e.key === "Enter" && input.length > 0) {
       router.push(`/stock/${input}`);
+      setSearchStock(""); // Clear the input value
       isOpen(false);
     }
   };
