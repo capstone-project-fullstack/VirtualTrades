@@ -3,8 +3,10 @@ import React from "react";
 import HorizontalCard from "./components/cards/HorizontalCard";
 import Img from "next/image";
 import SimpleCard from "./components/cards/SimpleCard";
+import { useRouter } from "next/navigation";
 
 export default function Home() {
+  const router = useRouter();
   return (
     <div>
       <div className="leading-normal tracking-normal text-white gradient">
@@ -152,7 +154,7 @@ export default function Home() {
                   </a>
                   <div>
                     <Img
-                      className="h-96 w-96 rounded-full object-cover object-center"
+                      className="h-60 w-full rounded-lg object-cover object-center"
                       src="https://cdn-scripbox-wordpress.scripbox.com/wp-content/uploads/2021/09/us-stock-market-timings-vector.png"
                       alt="nature image"
                       width={100}
@@ -297,94 +299,11 @@ export default function Home() {
         <h3 className="my-4 text-3xl leading-tight">
           If you grow real skill, you can grow real money
         </h3>
-        <button className="mx-auto lg:mx-0 hover:underline bg-black text-black-800 font-bold rounded-full my-6 py-4 px-8 shadow-lg">
-          Sign Up!
+        <button onClick={() => router.push("/dashboardç")} className="mx-auto lg:mx-0 hover:underline bg-black text-black-800 font-bold rounded-full my-6 py-4 px-8 shadow-lg">
+          Get Started!
         </button>
       </section>
 
-      {/* <div className="flex items-center h-screen bg-contain">
-        <header className="bg-green-700 text-center flex m-20">
-          <div className="w-500 p-4">
-            <h1 className="text-white text-2xl font-bold">Virtual Trades</h1>
-          </div>
-        </header>
-
-        <div className="flex flex-row items-center bg-contain">
-          <h3 className="mt-8 text-3xl m-10">
-            This is our app Virtual Trades. Welcome to the world of stocks,
-            market and money! Learn while staying safe, and get ready for the
-            real world.
-          </h3>
-          <h5 className="mt-8 text-3xl m-10">WHERE INVESTMENT BEGINS</h5>
-        </div>
-      </div>
-
-      <section className="flex items-center h-screen">
-        <h3>Preview live widgets</h3>
-
-        <div className="flex-1 p-8 border border-gray-100 m-4">
-          Widget 1
-          <h5 className="text-lg font-semibold">Widget 1</h5>
-        </div>
-        <div className="flex-1 p-8 border border-gray-100 m-4">
-          Widget 2
-          <h5 className="text-lg font-semibold">Widget 2</h5>
-        </div>
-        <div className="flex-1 p-8 border border-gray-100 m-4">
-          Widget 3
-          <h5 className="text-lg font-semibold">Widget 3</h5>
-        </div>
-      </section>
-
-      <section className="flex items-center h-screen bg-contain">
-        <HorizontalCard
-          img="https://ww2.kqed.org/app/uploads/sites/23/2023/03/teen-first-credit-card-e1679332855781-800x533.jpg"
-          text1="This is our company Virtual Trading. Learn more about how and when to buy and sell"
-          text2="Sign up now to receive real-time updates on the market and practice your best trade."
-          text3="Watch trends as they evolve, and learn to invest with us!"
-        />
-        <HorizontalCard
-          img="https://newscenter.baruch.cuny.edu/wp-content/uploads/sites/24/2021/05/Summer-2018-Campus-Photo-Shoot.jpg"
-          text1="This is our company Virtual Trading. Learn more about how and when to buy and sell"
-          text2="Sign up now to receive real-time updates on the market and practice your best trade."
-          text3="Watch trends as they evolve, and learn to invest with us!"
-        />
-      </section>
-
-      <div className="pt-24">
-
-		<div className="container px-3 mx-auto flex flex-wrap flex-col md:flex-row items-center">
-
-			<div className="flex flex-col w-full md:w-2/5 justify-center items-start text-center md:text-left">
-				<p className="uppercase tracking-loose w-full">What business are you?</p>
-				<h1 className="my-4 text-5xl font-bold leading-tight">Main Hero Message to sell yourself!</h1>
-				<p className="leading-normal text-2xl mb-8">Sub-hero message, not too long and not too short. Make it just right!</p>
-
-
-
-				<button className="mx-auto lg:mx-0 hover:underline bg-white text-gray-800 font-bold rounded-full my-6 py-4 px-8 shadow-lg">Subscribe</button>
-
-			</div>
-
-			<div className="w-full md:w-3/5 py-6 text-center">
-				<Img className="w-full md:w-4/5 z-50" src="hero.png" />
-			</div>
-
-		</div>
-
-	</div>
-
-      <section className="flex items-center h-screen bg-contain">
-        <h3>Stock Market Page</h3>
-      </section>
-
-      <section className="flex items-center h-screen bg-contain">
-        <h3>Watchlist</h3>
-      </section>
-
-      <section className="flex items-center h-screen bg-contain">
-        <h3>About us</h3>
-      </section> */}
     </div>
   );
 }
