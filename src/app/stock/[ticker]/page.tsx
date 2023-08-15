@@ -1,10 +1,9 @@
 "use client";
-import { Button, Input } from "@material-tailwind/react";
 import React, { useEffect, useRef, memo, useState } from "react";
 
-const StockWidget: React.FC = () => {
+const StockWidget = ({ params }: { params: { ticker: string } }) => {
   const container = useRef<HTMLDivElement | null>(null);
-  const [symbol, setSymbol] = useState<string>("AAPL|1D");
+  const { ticker } = params;
   const [widgetWidth, setWidgetWidth] = useState<number>(
     window.innerWidth - 100
   );
@@ -17,7 +16,7 @@ const StockWidget: React.FC = () => {
     script.async = true;
     script.innerHTML = `
       {
-        "symbols": [["${symbol}"]],
+        "symbols": [["${ticker}"]],
         "chartOnly": false,
         "width": ${widgetWidth},
         "locale": "en",
@@ -67,33 +66,10 @@ const StockWidget: React.FC = () => {
     return () => {
       window.removeEventListener("resize", handleResize);
     };
-  }, [symbol, widgetWidth]);
-
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const value = (
-      e.currentTarget.elements.namedItem("symbol") as HTMLInputElement
-    ).value;
-    setSymbol(value);
-    e.currentTarget.reset();
-  };
+  }, [ticker, widgetWidth]);
 
   return (
     <div>
-      <form onSubmit={handleSubmit}>
-        <div className="flex">
-          <Input
-            crossOrigin="anonymous"
-            type="text"
-            color="white"
-            label="Symbol"
-            name="symbol"
-          />
-          <Button variant="gradient" color="blue" type="submit">
-            Search
-          </Button>
-        </div>
-      </form>
       <div className="mx-auto">
         <div className="flex justify-center items-center">
           <div className="tradingview-widget-container" ref={container}></div>

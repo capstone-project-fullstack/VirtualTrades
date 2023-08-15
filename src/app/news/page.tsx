@@ -5,13 +5,7 @@ import NewsCard from "../components/cards/NewsCard";
 import HeaderText from "../components/HeaderText";
 import useSWR from "swr";
 import Loading from "../components/Loading"
-interface NewsData {
-  id: number;
-  headline: string;
-  summary: string;
-  url: string;
-  image: string;
-}
+import { NewsData } from "../../../typings";
 
 const fetcher = (url: string) => axios.get(url).then((res) => res.data);
 
