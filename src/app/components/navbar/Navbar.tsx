@@ -58,7 +58,7 @@ export default function Navbar() {
 
   return (
     <div
-      className={`bg-dark-purple z-10 h-screen p-5 pt-8 ${
+      className={`z-10 h-screen p-5 pt-8 ${
         open ? "w-72" : "w-20"
       } fixed top-0 left-0 transition-all duration-300`}
     >
