@@ -1,5 +1,6 @@
 "use client";
 import React, { useEffect, useRef, memo, useState } from "react";
+// import TradingViewWidget from "@/app/components/widgets/Widgets";
 
 const StockWidget = ({ params }: { params: { ticker: string } }) => {
   const container = useRef<HTMLDivElement | null>(null);
@@ -75,6 +76,7 @@ const StockWidget = ({ params }: { params: { ticker: string } }) => {
           <div className="tradingview-widget-container" ref={container}></div>
         </div>
       </div>
+      {/* <TradingViewWidget /> */}
     </div>
   );
 };
