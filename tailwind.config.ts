@@ -9,10 +9,10 @@ export default withMT({
   theme: {
     extend: {
       colors: {
-        // "dark-purple": "#081A51",
+        "dark-purple": "#081A51",
         "light-white": "rgba(255,255,255,0.18)",
         "dark-blue": "#16007A",
-        "dark-purple": "#35007A",
+        // "dark-purple": "#35007A",
         "purple": "#35007A",
         "light-purple": "#68007A"
       }
