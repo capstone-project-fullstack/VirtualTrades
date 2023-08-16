@@ -4,10 +4,13 @@ import HorizontalCard from "./components/cards/HorizontalCard";
 import Img from "next/image";
 import SimpleCard from "./components/cards/SimpleCard";
 import { useRouter } from "next/navigation";
-import Svg from './components/images/Svg';
-// import Button from './components/buttons/Button';
+import Svg from "./components/images/Svg";
+import { GradientButtonRounded } from "./components/buttons/Button";
 
 export default function Home() {
+  const handleRoute = (page: string) => {
+    router.push(`/${page}`);
+  };
   const router = useRouter();
   return (
     <div>
@@ -36,9 +39,9 @@ export default function Home() {
                 Trade
               </button>
             </div>
-            <div className="w-full md:w-1/2 py-6 text-center">
+            <div className="w-full md:w-1/2 p-6text-center">
               <Img
-                className="w-full md:w-4/5 z-50"
+                className="w-full z-50 mx-12"
                 src="https://netzelfinancial.com/wp-content/uploads/2019/04/investment-drawing-Converted.gif"
                 alt="hero img"
                 width={50}
@@ -49,9 +52,7 @@ export default function Home() {
         </div>
       </div>
 
-      <Svg/>
-
-      
+      <Svg />
 
       <section>
         <div className="bg-purple py-8">
@@ -73,7 +74,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-      
 
       <div className="relative -mt-12 lg:-mt-24">
         <svg
@@ -112,7 +112,6 @@ export default function Home() {
         </svg>
       </div>
 
-
       <section className="m-20">
         <div className="flex flex-wrap flex-col-reverse sm:flex-row ml-20">
           <div className="w-full sm:w-1/2 p-9 mt-0">
@@ -127,15 +126,17 @@ export default function Home() {
                 The news articles are not just headlines, they are valuable
                 learning resources. We curate the latest news articles, expert
                 analyses, and market insights to keep you up to date with the
-                ever-changing landscape. Whether trade tensions, economic data releases, or geopolitical developments, gain an understanding of how these factors influence stock prices.
+                ever-changing landscape. Whether trade tensions, economic data
+                releases, or geopolitical developments, gain an understanding of
+                how these factors influence stock prices.
               </p>
             </div>
           </div>
         </div>
       </section>
 
-      <Svg/>
-  
+      <Svg />
+
       <section className="bg-purple py-8">
         <div className="container mx-auto flex flex-wrap pt-4 pb-12 mt-15">
           <div className="w-full md:w-1/3 p-6 flex flex-col flex-grow flex-shrink">
@@ -147,16 +148,16 @@ export default function Home() {
                     className="flex flex-wrap no-underline hover:no-underline"
                   >
                     <p className="w-full text-gray-600 text-xs md:text-sm px-6">
-                    PERSONAL DASHBOARD
+                      PERSONAL DASHBOARD
                     </p>
                     <div className="w-full font-bold text-xl text-black px-6">
-                    Track your progress
+                      Track your progress
                     </div>
                     <p className="text-black text-base px-6 mb-5">
-                    Your personalized dashboard offers an instant snapshot of your
-                  investments and stock progress. Track performance, stay
-                  updated with real-time data, and make well-informed decisions
-                  effortlessly.
+                      Your personalized dashboard offers an instant snapshot of
+                      your investments and stock progress. Track performance,
+                      stay updated with real-time data, and make well-informed
+                      decisions effortlessly.
                     </p>
                   </a>
                   <div>
@@ -170,10 +171,12 @@ export default function Home() {
                   </div>
                 </div>
                 <div className="flex-none mt-auto bg-white rounded-b rounded-t-none overflow-hidden shadow p-6">
-                  <div className="flex items-center justify-start">
-                    <button className="mx-auto lg:mx-0 hover:underline gradient text-black font-bold rounded-full my-6 py-4 px-8 shadow-lg">
-                      Action
-                    </button>
+                  <div className="f-center">
+                    <GradientButtonRounded
+                      text="Action"
+                      color="green"
+                      onClick={() => handleRoute("dashboard")}
+                    />
                   </div>
                 </div>
               </div>
@@ -211,10 +214,12 @@ export default function Home() {
                   </div>
                 </div>
                 <div className="flex-none mt-auto bg-white rounded-b rounded-t-none overflow-hidden shadow p-6">
-                  <div className="flex items-center justify-start">
-                    <button className="mx-auto lg:mx-0 hover:underline gradient text-black font-bold rounded-full my-6 py-4 px-8 shadow-lg">
-                      Action
-                    </button>
+                  <div className="f-center">
+                    <GradientButtonRounded
+                      text="Action"
+                      color="green"
+                      onClick={() => handleRoute("dashboard")}
+                    />
                   </div>
                 </div>
               </div>
@@ -253,10 +258,12 @@ export default function Home() {
                   </div>
                 </div>
                 <div className="flex-none mt-auto bg-white rounded-b rounded-t-none overflow-hidden shadow p-6">
-                  <div className="flex items-center justify-start">
-                    <button className="mx-auto lg:mx-0 hover:underline gradient text-black font-bold rounded-full my-6 py-4 px-8 shadow-lg">
-                      Action
-                    </button>
+                  <div className="f-center">
+                    <GradientButtonRounded
+                      text="Action"
+                      color="green"
+                      onClick={() => handleRoute("dashboard")}
+                    />
                   </div>
                 </div>
               </div>
@@ -265,7 +272,6 @@ export default function Home() {
         </div>
       </section>
 
-   
       <div className="relative -mt-12 lg:-mt-24">
         <svg
           viewBox="0 0 1428 174"
@@ -313,11 +319,13 @@ export default function Home() {
         <h3 className="my-4 text-3xl leading-tight">
           If you grow real skill, you can grow real money
         </h3>
-        <button onClick={() => router.push("/dashboard")} className="mx-auto lg:mx-0 hover:underline bg-grey text-black-800 font-bold rounded-full my-6 py-4 px-8 shadow-lg">
+        <button
+          onClick={() => router.push("/dashboard")}
+          className="mx-auto lg:mx-0 hover:underline bg-grey text-black-800 font-bold rounded-full my-6 py-4 px-8 shadow-lg"
+        >
           Get Started!
         </button>
       </section>
-
     </div>
   );
 }
