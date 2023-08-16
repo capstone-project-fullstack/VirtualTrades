@@ -3,7 +3,7 @@
 import React, { useEffect, useRef } from 'react';
 
 export default function TradingViewWidget() {
-  const widgetContainerRef = useRef();
+  const widgetContainerRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     const script = document.createElement('script');
@@ -35,11 +35,15 @@ export default function TradingViewWidget() {
       locale: 'en'
     });
 
-    widgetContainerRef.current.appendChild(script);
+    // widgetContainerRef.current?.appendChild(script);
 
-    return () => {
-      widgetContainerRef.current.innerHTML = '';
-    };
+    // return () => {
+    //   widgetContainerRef.current.innerHTML = '';
+    // };
+
+    if (widgetContainerRef.current) {
+      widgetContainerRef.current.appendChild(script);
+    }
   }, []);
 
   return (
