@@ -6,15 +6,17 @@ import {
   Button,
 } from "@material-tailwind/react";
 import Img from "next/image";
+import { GradientButtonRounded } from "../buttons/Button";
 
 interface HorizontalCardProps {
   img: string,
   text1: string,
   text2: string,
-  text3: string
+  text3: string,
+  onClick: () => void
 }
 
-export default function HorizontalCard({ img, text1, text2, text3 }: HorizontalCardProps) {
+export default function HorizontalCard({ img, text1, text2, text3, onClick }: HorizontalCardProps) {
   return (
     <Card className="w-full max-w-[48rem] flex-row">
       <CardHeader
@@ -41,7 +43,7 @@ export default function HorizontalCard({ img, text1, text2, text3 }: HorizontalC
           {text3}
         </Typography>
         <a href="#" className="inline-block">
-          <Button variant="text" className="flex items-center gap-2">
+          {/* <Button variant="text" className="flex items-center gap-2">
             Learn More
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -57,7 +59,13 @@ export default function HorizontalCard({ img, text1, text2, text3 }: HorizontalC
                 d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"
               />
             </svg>
-          </Button>
+          </Button> */}
+
+          <GradientButtonRounded
+                      text="Watch"
+                      color="green"
+                      onClick={onClick}
+                    />
         </a>
       </CardBody>
     </Card>
