@@ -1,80 +1,76 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
     provider = "prisma-client-js"
 }
 
 datasource db {
     provider = "postgresql"
-    // NOTE: When using mysql or sqlserver, uncomment the @db.Text annotations in model Account below
-    // Further reading:
-    // https://next-auth.js.org/adapters/prisma#create-the-prisma-schema
-    // https://www.prisma.io/docs/reference/api-reference/prisma-schema-reference#string
     url      = env("DATABASE_URL")
 }
 
-model Users {
-    id                      Int              @id @default(autoincrement()) @map(name: "id")
-    email                   String
-    firstname               String
-    lastname                String
-    password                String
+model User {
+    id                      String           @id @map("id")
     initial_amount          Decimal          @default(0)
     cash                    Decimal          @default(0)
     current_portfolio_value Decimal          @default(0)
-    watchlists              Watchlists[]
-    trades                  Trades[]
-    portfolio               Portfolio[]
-    portfolio_value         PortfolioValue[]
+    portfolios              Portfolio[]
+    portfolio_values        PortfolioValue[]
+    trades                  Trade[]
+    watchlists              Watchlist[]
 }
 
-model Watchlists {
-    id       Int    @id @default(autoincrement()) @map(name: "id")
-    user_id  Int
+model Watchlist {
+    id       Int    @id @default(autoincrement())
+    user_id  String
     stock_id Int
-    users    Users  @relation(fields: [user_id], references: [id])
-    stocks   Stocks @relation(fields: [stock_id], references: [id])
+    Stock    Stock  @relation(fields: [stock_id], references: [id], onDelete: Cascade)
+    User     User   @relation(fields: [user_id], references: [id], onDelete: Cascade)
 }
 
-model Stocks {
-    id            Int          @id @default(autoincrement()) @map(name: "id")
-    symbol        String
+model Stock {
+    id            Int         @id @default(autoincrement())
+    symbol        String      @unique
     name          String
     current_price Decimal
-    watchlists    Watchlists[]
-    trades        Trades[]
-    portfolio     Portfolio[]
+    portfolios    Portfolio[]
+    trades        Trade[]
+    watchlists    Watchlist[]
 }
 
-model Trades {
-    id         Int      @id @default(autoincrement()) @map(name: "id")
-    user_id    Int
+model Trade {
+    id         Int       @id @default(autoincrement())
+    user_id    String    @default("")
     stock_id   Int
-    trade_type String
+    trade_type TradeType
     shares     Int
     price      Decimal
-    timestamp  DateTime 
-    users      Users    @relation(fields: [user_id], references: [id])
-    stocks     Stocks   @relation(fields: [stock_id], references: [id])
+    timestamp  DateTime  @default(now())
+    Stock      Stock     @relation(fields: [stock_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+    User       User      @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
 }
 
 model Portfolio {
-    id            Int     @id @default(autoincrement()) @map(name: "id")
-    user_id       Int
+    id            Int     @id @default(autoincrement())
+    user_id       String
     stock_id      Int
     shares        Int
     average_price Decimal
     total_equity  Decimal
     gain          Decimal
-    users         Users   @relation(fields: [user_id], references: [id])
-    stocks        Stocks  @relation(fields: [stock_id], references: [id])
+    Stock         Stock   @relation(fields: [stock_id], references: [id], onDelete: Cascade)
+    User          User    @relation(fields: [user_id], references: [id], onDelete: Cascade)
+
+    @@unique([user_id, stock_id])  
 }
 
 model PortfolioValue {
-    id        Int      @id @default(autoincrement()) @map(name: "id")
-    user_id   Int
+    id        Int      @id @default(autoincrement())
+    user_id   String
     value     Decimal
-    timestamp DateTime 
-    users     Users    @relation(fields: [user_id], references: [id])
+    timestamp DateTime @default(now())
+    User      User     @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+}
+
+enum TradeType {
+    BUY
+    SELL
 }
