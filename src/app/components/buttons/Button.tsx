@@ -4,19 +4,21 @@ import { materialColors } from "../../../../typings";
 
 interface GradientButtonRoundedProps {
   text: string;
-  color: materialColors;
+  color?: materialColors;
   onClick: () => void;
+  className?: string;
 }
 
 export const GradientButtonRounded = ({
   text,
   color,
   onClick,
+  className
 }: GradientButtonRoundedProps) => {
   return (
     <Button
       variant="gradient"
-      className="rounded-full"
+      className={`${className} rounded-full`}
       color={color}
       onClick={onClick}
     >

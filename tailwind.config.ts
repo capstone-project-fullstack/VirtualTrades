@@ -14,7 +14,8 @@ export default withMT({
         "dark-blue": "#16007A",
         "purple": "#35007A",
         "light-purple": "#68007A",
-        "green": "#70E000"
+        "green": "#70E000",
+        "dark-green": "#38B000",
       }
     },
   },

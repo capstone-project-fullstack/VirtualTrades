@@ -66,6 +66,7 @@ export default function Home() {
                 text1="Sign up now to receive real-time updates on the market and practice your best trade. "
                 text2="Curate a personalized watchlist of stocks you're interested in tracking. Monitor their performance, analyze trends, and make informed decisions, all without risking a single cent of real money."
                 text3="Watch trends as they evolve, and learn to invest, risk-free!"
+                onClick={() => handleRoute("watchlists")}
               />
             </div>
           </div>
@@ -171,8 +172,8 @@ export default function Home() {
                   <div className="f-center">
                     <GradientButtonRounded
                       text="Action"
-                      color="pink"
                       onClick={() => handleRoute("dashboard")}
+                      className="bg-none bg-dark-green"
                     />
                   </div>
                 </div>

@@ -1,6 +1,4 @@
 
-
-// TradingViewWidget.jsx
 import React, { useEffect, useRef, memo } from 'react';
 
 export const TradingViewWidget = () => {
