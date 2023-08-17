@@ -15,16 +15,16 @@ export default function Home() {
   return (
     <div>
       <div className="leading-normal tracking-normal text-white gradient">
-        <div className="pt-24">
-          <div className="container px-6 mx-auto flex flex-wrap flex-col md:flex-row items-center">
+        <div className="pt-12">
+          <div className="container px-6 mx-6 flex mb-10 flex-wrap flex-col md:flex-row items-center">
             <div className="flex flex-col w-full md:w-1/2 justify-center items-start text-center md:text-left">
-              <p className="uppercase tracking-loose w-full ax-w-md text-2xl">
-                WHERE INVESTMENT BEGINS
-              </p>
               <h1 className="my-4 text-5xl font-bold leading-tight">
                 Welcome to VirtualTrades
               </h1>
-              <p className="leading-normal text-3xl mb-8">
+              <p className="uppercase tracking-loose w-full ax-w-md text-2xl">
+                WHERE INVESTMENT BEGINS
+              </p>
+              <p className="leading-normal text-3xl mt-4 mb-8">
                 Learn how to interpret key financial indicators, charts and
                 graphs, enabling you to make well-informed decisions in your
                 investment journey.
@@ -35,9 +35,7 @@ export default function Home() {
                 virtual stocks at real market prices, honing your investment
                 skills in a risk-free environment!
               </p>
-              <button className="mx-auto lg:mx-0 hover:underline bg-white text-gray-800 font-bold rounded-full my-6 py-4 px-8 shadow-lg">
-                Trade
-              </button>
+
             </div>
             <div className="w-full md:w-1/2 p-6text-center">
               <Img

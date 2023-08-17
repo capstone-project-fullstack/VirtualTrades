@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect, useRef, memo, useState } from "react";
-// import TradingViewWidget from "@/app/components/widgets/Widgets";
+import SquareWidget from "@/app/components/widgets/SquareWidget";
 
 const StockWidget = ({ params }: { params: { ticker: string } }) => {
   const container = useRef<HTMLDivElement | null>(null);
@@ -13,7 +13,6 @@ const StockWidget = ({ params }: { params: { ticker: string } }) => {
     const script = document.createElement("script");
     script.src =
       "https://s3.tradingview.com/external-embedding/embed-widget-symbol-overview.js";
-    script.type = "text/javascript";
     script.async = true;
     script.innerHTML = `
       {
@@ -76,7 +75,7 @@ const StockWidget = ({ params }: { params: { ticker: string } }) => {
           <div className="tradingview-widget-container" ref={container}></div>
         </div>
       </div>
-      {/* <TradingViewWidget /> */}
+      <SquareWidget />
     </div>
   );
 };

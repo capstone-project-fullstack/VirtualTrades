@@ -35,12 +35,6 @@ export default function TradingViewWidget() {
       locale: 'en'
     });
 
-    // widgetContainerRef.current?.appendChild(script);
-
-    // return () => {
-    //   widgetContainerRef.current.innerHTML = '';
-    // };
-
     if (widgetContainerRef.current) {
       widgetContainerRef.current.appendChild(script);
     }

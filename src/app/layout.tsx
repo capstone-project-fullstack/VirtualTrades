@@ -2,7 +2,7 @@
 import "./globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
 import Navbar from "./components/navbar/Navbar";
-import TradingViewWidget from "./components/widgets/Widgets";
+import TradingViewWidget from "./components/widgets/TopWidget";
 
 export default function RootLayout({
   children,
