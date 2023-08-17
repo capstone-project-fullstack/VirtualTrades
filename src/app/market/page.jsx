@@ -1,12 +1,13 @@
 import React from "react";
 import HeaderText from "../components/HeaderText";
-import TradingViewScreenerWidget from "../components/TradingViewScreenerWidget";
+// import TradingViewScreenerWidget from "../components/TradingViewScreenerWidget";
 
 const Market = () => {
   return (
     <div>
       <HeaderText text="Market" />
-      <TradingViewScreenerWidget />
+      {/* <TradingViewScreenerWidget /> */}
+      
     </div>
   );
 }

@@ -16,30 +16,29 @@ export default function Home() {
     <div>
       <div className="leading-normal tracking-normal text-white gradient">
         <div className="pt-12">
-          <div className="container px-6 mx-6 flex mb-10 flex-wrap flex-col md:flex-row items-center">
+          <div className="container px-8 mx-10 my-8 flex mb-14 flex-wrap flex-col md:flex-row items-center">
             <div className="flex flex-col w-full md:w-1/2 justify-center items-start text-center md:text-left">
               <h1 className="my-4 text-5xl font-bold leading-tight">
-                Welcome to VirtualTrades
+                Welcome to <span className="text-green">VirtualTrades</span>
               </h1>
               <p className="uppercase tracking-loose w-full ax-w-md text-2xl">
                 WHERE INVESTMENT BEGINS
               </p>
               <p className="leading-normal text-3xl mt-4 mb-8">
                 Learn how to interpret key financial indicators, charts and
-                graphs, enabling you to make well-informed decisions in your
+                graphs, enabling you to make informed decisions at the start of your
                 investment journey.
               </p>
               <p className="leading-normal text-2xl mb-8">
                 Ready to dive in? VirtualTrades brings you the thrill of trading
-                stocks without any financial risk. Here, you can buy and sell
-                virtual stocks at real market prices, honing your investment
-                skills in a risk-free environment!
+                stocks without financial risk. Here you can buy and sell
+                virtual stocks at real market prices!
               </p>
 
             </div>
-            <div className="w-full md:w-1/2 p-6text-center">
+            <div className="w-full md:w-1/2 p-5 text-center">
               <Img
-                className="w-full z-50 mx-12"
+                className="w-full z-50 mx-7 rounded-md"
                 src="https://netzelfinancial.com/wp-content/uploads/2019/04/investment-drawing-Converted.gif"
                 alt="hero img"
                 width={50}
@@ -172,7 +171,7 @@ export default function Home() {
                   <div className="f-center">
                     <GradientButtonRounded
                       text="Action"
-                      color="green"
+                      color="pink"
                       onClick={() => handleRoute("dashboard")}
                     />
                   </div>
