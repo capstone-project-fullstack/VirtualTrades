@@ -1,48 +1,102 @@
-"use client"
+"use client";
 
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef } from "react";
 
-export default function TradingViewWidget() {
-  const widgetContainerRef = useRef<HTMLDivElement | null>(null);
+const HeadLine = () => {
+  const container = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
-    const script = document.createElement('script');
-    script.src = 'https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js';
+    const script = document.createElement("script");
+    script.src =
+      "https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js";
     script.async = true;
-
     script.innerHTML = JSON.stringify({
       symbols: [
-        { proName: 'FOREXCOM:SPXUSD', title: 'S&P 500' },
-        { proName: 'FOREXCOM:NSXUSD', title: 'US 100' },
-        { proName: 'BITSTAMP:BTCUSD', title: 'Bitcoin' },
-        { proName: 'BITSTAMP:ETHUSD', title: 'Ethereum' },
-        { description: 'Tesla', proName: 'NASDAQ:TSLA' },
-        { description: 'Microsoft', proName: 'NASDAQ:MSFT' },
-        { description: 'Meta', proName: 'NASDAQ:META' },
-        { description: 'Netflix', proName: 'NASDAQ:NFLX' },
-        { description: 'Google', proName: 'NASDAQ:GOOGL' },
-        { description: 'Upstart Holdings', proName: 'NASDAQ:UPST' },
-        { description: 'Snowflake', proName: 'NYSE:SNOW' },
-        { description: 'Datadog', proName: 'NASDAQ:DDOG' },
-        { description: 'Robinhood', proName: 'NASDAQ:HOOD' },
-        { description: 'Salesforce', proName: 'NYSE:CRM' },
-        { description: 'Roblox', proName: 'NYSE:RBLX' }
+        {
+          proName: "FOREXCOM:SPXUSD",
+          title: "S&P 500",
+        },
+        {
+          proName: "FOREXCOM:NSXUSD",
+          title: "US 100",
+        },
+        {
+          proName: "FX_IDC:EURUSD",
+          title: "EUR to USD",
+        },
+        {
+          proName: "BITSTAMP:BTCUSD",
+          title: "Bitcoin",
+        },
+        {
+          proName: "BITSTAMP:ETHUSD",
+          title: "Ethereum",
+        },
+        {
+          description: "Apple",
+          proName: "NASDAQ:AAPL",
+        },
+        {
+          description: "Gold",
+          proName: "TVC:GOLD",
+        },
+        {
+          description: "Tesla",
+          proName: "NASDAQ:TSLA",
+        },
+        {
+          description: "Amazon",
+          proName: "NASDAQ:AMZN",
+        },
+        {
+          description: "Microsoft",
+          proName: "NASDAQ:MSFT",
+        },
+        {
+          description: "Meta",
+          proName: "NASDAQ:META",
+        },
+        {
+          description: "Netflix",
+          proName: "NASDAQ:NFLX",
+        },
+        {
+          description: "Google",
+          proName: "NASDAQ:GOOGL",
+        },
+        {
+          description: "Walmart",
+          proName: "NYSE:WMT",
+        },
+        {
+          description: "JPMorgan",
+          proName: "NYSE:JPM",
+        },
       ],
       showSymbolLogo: true,
-      colorTheme: 'dark',
+      colorTheme: "dark",
       isTransparent: false,
-      displayMode: 'adaptive',
-      locale: 'en'
+      largeChartUrl: "http://localhost:3000/stock/{symbol}",
+      displayMode: "compact",
+      locale: "en",
     });
 
-    if (widgetContainerRef.current) {
-      widgetContainerRef.current.appendChild(script);
-    }
+    if (container.current) container.current.innerHTML = "";
+
+    const scriptContainer = document.createElement("div");
+    scriptContainer.className = "tradingview-widget-container__widget";
+    if (container.current) container.current.appendChild(scriptContainer);
+    scriptContainer.appendChild(script);
   }, []);
 
   return (
     <div className="tradingview-widget-container">
-      <div className="tradingview-widget-container__widget" ref={widgetContainerRef}></div>
+      <div
+        className="tradingview-widget-container__widget"
+        ref={container}
+      ></div>
     </div>
   );
-}
+};
+
+export default HeadLine;

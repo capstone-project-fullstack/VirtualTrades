@@ -1,19 +1,18 @@
-"use client"
+"use client";
 
 import React from "react";
 import HeaderText from "../components/HeaderText";
-import TradingViewWidget from "../components/widgets/SquareWidget"; 
-
+import SquareWidget from "../components/widgets/SquareWidget";
+import TopWidget from "../components/widgets/TopWidget";
 
 const Market = () => {
   return (
-    <div>
+    <div className="w-full">
+      <TopWidget />
       <HeaderText text="Market" />
-      <TradingViewWidget />
-      
+      <SquareWidget />
     </div>
   );
-}
-
+};
 
 export default Market;

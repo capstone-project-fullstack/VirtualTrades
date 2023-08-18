@@ -2,27 +2,26 @@
 
 import React, { useEffect, useRef } from "react";
 
-interface AnalysisWidgetProps {
+interface CompanyNewsWidgetProps {
   ticker: string;
 }
 
-const AnalysisWidget = ({ ticker }: AnalysisWidgetProps) => {
+const CompanyNewsWidget = ({ ticker }: CompanyNewsWidgetProps) => {
   const container = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     const script = document.createElement("script");
     script.src =
-      "https://s3.tradingview.com/external-embedding/embed-widget-technical-analysis.js";
+      "https://s3.tradingview.com/external-embedding/embed-widget-timeline.js";
     script.async = true;
     script.innerHTML = JSON.stringify({
-      interval: "1M",
-      width: 425,
-      isTransparent: true,
-      height: 450,
       symbol: ticker,
-      showIntervalTabs: true,
-      locale: "en",
       colorTheme: "dark",
+      isTransparent: false,
+      displayMode: "regular",
+      width: "480",
+      height: "830",
+      locale: "en",
     });
 
     if (container.current) container.current.innerHTML = "";
@@ -43,4 +42,4 @@ const AnalysisWidget = ({ ticker }: AnalysisWidgetProps) => {
   );
 };
 
-export default AnalysisWidget;
+export default CompanyNewsWidget;

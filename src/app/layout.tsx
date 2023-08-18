@@ -2,7 +2,6 @@
 import "./globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
 import Navbar from "./components/navbar/Navbar";
-import TradingViewWidget from "./components/widgets/TopWidget";
 import { dark } from "@clerk/themes";
 
 export default function RootLayout({
@@ -30,10 +29,9 @@ export default function RootLayout({
           <title>Virtual Trades</title>
         </head>
         <body className="text-white bg-dark-black">
-          <TradingViewWidget />
           <div>
             <Navbar />
-            <main className="ml-20">{children}</main>
+            <main className="ml-20 h-screen">{children}</main>
           </div>
         </body>
       </html>

@@ -1,10 +1,10 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { BsArrowLeftShort, BsSearch, BsFillBookmarkFill } from "react-icons/bs";
-import { BiNews } from "react-icons/bi";
+import { BsArrowLeftShort, BsSearch } from "react-icons/bs";
+import { BiNews, BiBookmark } from "react-icons/bi";
 import { MdDashboard } from "react-icons/md";
-import { IoIosLogIn } from "react-icons/io";
+import { IoIosLogIn, IoIosHome, IoMdTrendingUp } from "react-icons/io";
 import Img from "next/image";
 import Link from "next/link";
 import {
@@ -42,9 +42,11 @@ export default function Navbar() {
   });
 
   const items = [
+    { name: "Home", href: "/", icon: <IoIosHome /> },
     { name: "Dashboard", href: "/dashboard", icon: <MdDashboard /> },
     { name: "News", href: "/news", icon: <BiNews /> },
-    { name: "Watchlists", href: "/watchlists", icon: <BsFillBookmarkFill /> },
+    { name: "Market", href: "/market", icon: <IoMdTrendingUp /> },
+    { name: "Watchlists", href: "/watchlists", icon: <BiBookmark /> },
   ];
 
   const handleSearchStock = (e: React.KeyboardEvent) => {
