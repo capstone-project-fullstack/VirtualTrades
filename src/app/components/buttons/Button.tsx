@@ -1,6 +1,7 @@
+"use client";
+
 import { Button } from "@material-tailwind/react";
 import { materialColors } from "../../../../typings";
-
 
 interface GradientButtonRoundedProps {
   text: string;
@@ -13,7 +14,7 @@ export const GradientButtonRounded = ({
   text,
   color,
   onClick,
-  className
+  className,
 }: GradientButtonRoundedProps) => {
   return (
     <Button

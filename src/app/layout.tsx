@@ -3,6 +3,7 @@ import "./globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
 import Navbar from "./components/navbar/Navbar";
 import TradingViewWidget from "./components/widgets/TopWidget";
+import { dark } from "@clerk/themes";
 
 export default function RootLayout({
   children,
@@ -12,11 +13,7 @@ export default function RootLayout({
   return (
     <ClerkProvider
       appearance={{
-        variables: {
-          colorPrimary: "blue",
-          colorText: "white",
-          colorBackground: "black",
-        },
+        baseTheme: dark,
       }}
     >
       <html lang="en">
@@ -32,7 +29,7 @@ export default function RootLayout({
           ></link>
           <title>Virtual Trades</title>
         </head>
-        <body className="text-white bg-gradient">
+        <body className="text-white bg-dark-black">
           <TradingViewWidget />
           <div>
             <Navbar />

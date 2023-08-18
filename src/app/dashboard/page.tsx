@@ -1,8 +1,15 @@
-"use client";
+import { currentUser } from "@clerk/nextjs";
 import HeaderText from "../components/HeaderText";
 import CardLineChart from "../components/charts/LineGraph";
+import UserService from "../modals/user";
 
-export default function Dashboard() {
+export default async function Dashboard(): Promise<JSX.Element> {
+  const currUser = await currentUser();
+  if (!currUser) return <div></div>;
+  const { id = "" } = currUser;
+  const userExist = await UserService.findUser(id);
+  if (!userExist) UserService.createUser(id);
+
   return (
     <div className="h-screen">
       <HeaderText text="Dashboard" />
