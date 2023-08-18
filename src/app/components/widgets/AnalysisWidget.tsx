@@ -35,7 +35,6 @@ const AnalysisWidget = ( { ticker }: AnalysisWidgetProps ) => {
 
   return (
     <div className="tradingview-widget-container">
-
       <div className="tradingview-widget-container__widget"  ref={container}>
       </div>
     </div>
