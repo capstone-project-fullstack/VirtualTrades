@@ -18,7 +18,7 @@ export const GradientButtonRounded = ({
   return (
     <Button
       variant="gradient"
-      className={`${className} rounded-full`}
+      className={`${className}`}
       color={color}
       onClick={onClick}
     >
