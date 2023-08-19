@@ -49,14 +49,14 @@ export default function Navbar() {
     { name: "Watchlists", href: "/watchlists", icon: <BiBookmark /> },
   ];
 
-  const handleSearchStock = (e: React.KeyboardEvent) => {
-    const input = (e.target as HTMLInputElement).value;
-    if (e.key === "Enter" && input.length > 0) {
-      router.push(`/stock/${input}`);
-      setSearchStock(""); // Clear the input value
-      isOpen(false);
-    }
-  };
+  // const handleSearchStock = (e: React.KeyboardEvent) => {
+  //   const input = (e.target as HTMLInputElement).value;
+  //   if (e.key === "Enter" && input.length > 0) {
+  //     router.push(`/stock/${input}`);
+  //     setSearchStock(""); // Clear the input value
+  //     isOpen(false);
+  //   }
+  // };
 
   return (
     <div
@@ -109,7 +109,7 @@ export default function Navbar() {
           className={`!w-full text-white bg-transparent outline-none ${
             !open && "hidden"
           }`}
-          onKeyDown={handleSearchStock}
+          // onKeyDown={handleSearchStock}
           value={searchStock}
           onChange={(e) => setSearchStock(e.target.value)}
         />
@@ -120,7 +120,7 @@ export default function Navbar() {
         }`}
       >
         {filteredStocks.length > 0 && searchStock.length > 0 && (
-          <div className="mt-2 bg-black text-white rounded-md p-2">
+          <div className="mt-2 mx-5 bg-black text-white rounded-md p-2">
             <p className="text-xs mb-1">Filtered Suggestions:</p>
             {filteredStocks.map((suggestion) => (
               <div
