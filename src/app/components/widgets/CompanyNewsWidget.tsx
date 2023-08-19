@@ -20,7 +20,7 @@ const CompanyNewsWidget = ({ ticker }: CompanyNewsWidgetProps) => {
       isTransparent: false,
       displayMode: "regular",
       width: "480",
-      height: "830",
+      height: "600",
       locale: "en",
     });
 

@@ -42,7 +42,7 @@ model Trade {
     stock_id   Int
     trade_type TradeType
     shares     Int
-    price      Decimal
+    price      Decimal?   
     timestamp  DateTime  @default(now())
     Stock      Stock     @relation(fields: [stock_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
     User       User      @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: NoAction)

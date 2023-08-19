@@ -6,9 +6,9 @@ import UserService from "../modals/user";
 export default async function Dashboard(): Promise<JSX.Element> {
   const currUser = await currentUser();
   if (!currUser) return <div></div>;
-  const { id = "" } = currUser;
-  const userExist = await UserService.findUser(id);
-  if (!userExist) UserService.createUser(id);
+  const userId = currUser.id;
+  const userExist = await UserService.findUser(userId);
+  if (!userExist) UserService.createUser(userId);
 
   return (
     <div className="h-screen">

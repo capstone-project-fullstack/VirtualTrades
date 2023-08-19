@@ -19,7 +19,7 @@ const CompanyFundamentalData = ({ ticker }: CompanyFundamentalDataProps) => {
       isTransparent: false,
       displayMode: "regular",
       width: 480,
-      height: 830,
+      height: 600,
       symbol: ticker,
       locale: "en",
     });
