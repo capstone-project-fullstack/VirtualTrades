@@ -28,13 +28,13 @@ export default function Home() {
               </p> */}
               <p className="leading-normal text-3xl mt-4 mb-8">
                 Learn to interpret financial indicators, charts and
-                graphs to make more informed decisions at the start of your
+                graphs to make better informed decisions at the start of your
                 investment journey.
               </p>
               <p className="leading-normal text-2xl mb-8">
                 Ready to dive in? Embrace the thrill of trading
                 stocks with no financial risk. Here, you can buy and sell
-                virtual stocks at real market prices every day!
+                virtual stocks at real market prices, every day!
               </p>
 
             </div>
@@ -152,17 +152,17 @@ export default function Home() {
                     href="#"
                     className="flex flex-wrap no-underline hover:no-underline"
                   >
-                    <p className="w-full text-gray-600 text-xs md:text-sm px-6">
+                    {/* <p className="w-full text-gray-600 text-xs md:text-sm px-6">
                       PERSONAL DASHBOARD
-                    </p>
-                    <div className="w-full font-bold text-xl text-black px-6">
-                      Track your progress
+                    </p> */}
+                    <div className="w-full font-bold text-xl text-black px-6 mt-5">
+                    PERSONAL DASHBOARD
                     </div>
                     <p className="text-black text-base px-6 mb-5">
                       Your personalized dashboard offers an instant snapshot of
                       your investments and stock progress. Track performance,
                       stay updated with real-time data, and make well-informed
-                      decisions effortlessly.
+                      decisions, effortlessly!
                     </p>
                   </a>
                   <div>
@@ -189,23 +189,21 @@ export default function Home() {
           </div>
 
           <div className="w-full md:w-1/3 p-6 flex flex-col flex-grow flex-shrink">
-            <div className="container mx-auto flex flex-wrap pt-4 pb-12 mt-15">
+            <div className="container mx-auto flex flex-wrap pt-4 pb-12">
               <div className="w-full md:w-1/3 p-6 flex flex-col flex-grow flex-shrink">
                 <div className="flex-1 bg-white rounded-t rounded-b-none overflow-hidden shadow">
                   <a
                     href="#"
                     className="flex flex-wrap no-underline hover:no-underline"
                   >
-                    <p className="w-full text-gray-600 text-xs md:text-sm px-6">
+                    {/* <p className="w-full text-gray-600 text-xs md:text-sm px-6">
                       BUY AND SELL STOCK
-                    </p>
-                    <div className="w-full font-bold text-xl text-black px-6">
-                      Explore all states
+                    </p> */}
+                    <div className="w-full font-bold text-xl text-black px-6 mt-5">
+                    BUY AND SELL STOCK
                     </div>
                     <p className="text-black text-base px-6 mb-5">
-                      Explore the stock market on an interactive map, and gain
-                      insights into global market trends and real-time stock
-                      movements.
+                      Explore the stock market on an interactive map and buy or sell your stocks in real-time. Visit our virtual individual Stock Analysis page, research the companies, and shop risk-free!
                     </p>
                   </a>
                   <div>
@@ -240,17 +238,17 @@ export default function Home() {
                     href="#"
                     className="flex flex-wrap no-underline hover:no-underline"
                   >
-                    <p className="w-full text-gray-600 text-xs md:text-sm px-6">
+                    {/* <p className="w-full text-gray-600 text-xs md:text-sm px-6">
                       ABOUT US
-                    </p>
-                    <div className="w-full font-bold text-xl text-black px-6">
-                      Learn more
+                    </p> */}
+                    <div className="w-full font-bold text-xl text-black px-6 mt-5">
+                    ABOUT US
                     </div>
                     <p className="text-black text-base px-6 mb-5">
                       Delve into our mission, team, and values and Learn about
                       how ourdedicated to empowering you with the knowledge and
-                      tools can help you confidently navigate the world of
-                      investments.
+                      tools can help you confidently navigate this new world of
+                      investments!
                     </p>
                   </a>
                   <div>
@@ -330,7 +328,7 @@ export default function Home() {
                     <GradientButtonRounded
                       text="Get Started!"
                       onClick={() => handleRoute("market")}
-                      className="bg-none bg-dark-green"
+                      className="bg-none bg-light-green"
                     />
                   </div>
 

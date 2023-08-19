@@ -9,13 +9,10 @@ import {
   import { useRouter } from "next/navigation";
   
   interface SimpleCard {
-    img: string,
     text1: string,
-    text2: string,
-    text3: string,
     onClick: () => void
   }
-  export default function Home({text1}: SimpleCard) {
+  export default function Home({text1} :  SimpleCard) {
     const router = useRouter(); // Move this line here
   
     const handleRoute = (page: string) => {
