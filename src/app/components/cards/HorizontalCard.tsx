@@ -5,9 +5,11 @@ import {
   CardHeader,
   CardBody,
   Typography,
+  // Button,
 } from "@material-tailwind/react";
 import Img from "next/image";
 import { GradientButtonRounded } from "../buttons/Button";
+import { useRouter } from "next/navigation";
 
 interface HorizontalCardProps {
   img: string;
@@ -16,14 +18,14 @@ interface HorizontalCardProps {
   text3: string;
   onClick: () => void;
 }
+export default function Home({ img, text1, text2, text3 }: HorizontalCardProps) {
+  const router = useRouter(); // Move this line here
 
-export default function HorizontalCard({
-  img,
-  text1,
-  text2,
-  text3,
-  onClick,
-}: HorizontalCardProps) {
+  const handleRoute = (page: string) => {
+    router.push(`/${page}`);
+  };
+
+// export default function HorizontalCard({ img, text1, text2, text3, onClick }: HorizontalCardProps) {
   return (
     <Card className="w-full max-w-[48rem] flex-row">
       <CardHeader
@@ -49,9 +51,19 @@ export default function HorizontalCard({
         <Typography color="gray" className="mb-8 font-normal">
           {text3}
         </Typography>
+        <a href="#" className="inline-block">
 
-        <GradientButtonRounded text="Watch" color="green" onClick={onClick} />
+        <div className="f-center">
+                    <GradientButtonRounded
+                      text="Open Market"
+                      onClick={() => handleRoute("market")}
+                      className="bg-none bg-dark-green"
+                    />
+                  </div>
+        </a>
       </CardBody>
     </Card>
   );
 }
+
+
