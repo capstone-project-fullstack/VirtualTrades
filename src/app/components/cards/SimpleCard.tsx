@@ -10,7 +10,6 @@ import {
   
   interface SimpleCard {
     text1: string,
-    onClick: () => void
   }
   export default function Home({text1} :  SimpleCard) {
     const router = useRouter(); // Move this line here
@@ -18,9 +17,7 @@ import {
     const handleRoute = (page: string) => {
       router.push(`/${page}`);
     };
-  // import BlockLevelButton from './components/buttons/BlockLevelButton';
-   
-  // export default function SimpleCard( { text1 }: { text1: string}) {
+
     return (
       <Card className="mt-6 w-96">
         <CardBody>

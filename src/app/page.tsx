@@ -115,7 +115,7 @@ export default function Home() {
       <section className="m-20">
         <div className="flex flex-wrap flex-col-reverse sm:flex-row ml-20">
           <div className="w-full sm:w-1/2 p-9 mt-0">
-            <SimpleCard text1="Stay informed aboutt financial news, explore the latest updates on stocks, trends, and economic developments with our currated news page. " />
+            <SimpleCard text1="Stay informed about financial news, explore the latest updates on stocks, trends, and economic developments with our currated news page. " />
           </div>
           <div className="w-full sm:w-1/2 p-9 mt-6">
             <div className="align-middle">
