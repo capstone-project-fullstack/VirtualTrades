@@ -32,9 +32,9 @@ export default function Home() {
                 investment journey.
               </p>
               <p className="leading-normal text-2xl mb-8">
-                Ready to dive in? Embrace the thrill of trading
+                Ready to dive in? Welcome to the world of trading
                 stocks with no financial risk. Here, you can buy and sell
-                virtual stocks at real market prices, every day!
+                virtual stock at real market prices, every day!
               </p>
             </div>
             <div className="w-full md:w-1/2 p-5 text-center">
@@ -64,9 +64,9 @@ export default function Home() {
             <div className="flex flex-wrap justify-center">
               <HorizontalCard
                 img="https://www.nyse.com/publicdocs/images/NYSE_Trading_Floor_New_Branding.jpg"
-                text1="Sign up now to receive real-time updates on the market and practice your best trade. "
-                text2="Curate a personalized watchlist of stocks you're interested in tracking. Monitor their performance, analyze trends, and make informed decisions, all without risking a single cent of real money."
-                text3="Watch trends as they evolve, and learn to invest, risk-free!"
+                text1="Sign up now to receive real-time overviews"
+                text2="Welcome to our Stock Market, where you can explore real-time trends and insights. An array of interactive graphs showcasing live stock data allows you to track the performance of various stocks and delve into comprehensive analyses."
+                text3="Examine trends and learn to invest with confidence!"
                 onClick={() => handleRoute("watchlists")}
               />
             </div>
@@ -119,15 +119,14 @@ export default function Home() {
           <div className="w-full sm:w-1/2 p-9 mt-6">
             <div className="align-middle">
               <h3 className="text-4xl text-white-600 font-bold leading-none mb-9">
-                Currated Financial News
+                Latest in Financial News
               </h3>
               <p className="text-white-700 text-lg mb-8">
-                The news articles are not just headlines, they are valuable
-                learning resources. We curate the latest news articles, including expert
-                analyses, and market insights to keep you up to date with the
+                News articles are not just headlines, they are valuable
+                learning resources. We curate the latest news, including expert
+                analyses and market insights to keep you up to date with the
                 ever-changing landscape. Whether trade tensions, economic data
-                releases, or geopolitical developments, gain an understanding of
-                how these factors influence stock prices.
+                releases, or geopolitical developments, understand how these factors influence stock prices.
               </p>
             </div>
           </div>
@@ -139,7 +138,7 @@ export default function Home() {
       <section className="bg-purple py-8">
         <div>
             <h1 className="w-full my-2 text-center text-4xl text-white-600 font-bold leading-none">
-              Stock Market
+              What we offer
             </h1>
         </div>
         <div className="container mx-auto flex flex-wrap pb-12">
@@ -160,7 +159,7 @@ export default function Home() {
                     <p className="text-black text-base px-6 mb-5">
                       Your personalized dashboard offers an instant snapshot of
                       your investments and stock progress. Track performance,
-                      stay updated with real-time data, and make well-informed
+                      stay updated with data analyses and make well-informed
                       decisions, effortlessly!
                     </p>
                   </a>
@@ -202,7 +201,7 @@ export default function Home() {
                     BUY AND SELL STOCK
                     </div>
                     <p className="text-black text-base px-6 mb-5">
-                      Explore the stock market on an interactive map and buy or sell your stocks in real-time. Visit our virtual individual Stock Analysis page, research the companies, and shop risk-free!
+                      Explore the stock market on an interactive map and buy or sell your stocks in real-time. Visit our virtual stock analyses page, research a companies performance, and shop stock risk-free!
                     </p>
                   </a>
                   <div>
@@ -241,13 +240,12 @@ export default function Home() {
                       ABOUT US
                     </p> */}
                     <div className="w-full font-bold text-xl text-black px-6 mt-5">
-                    ABOUT US
+                    MORE ABOUT US
                     </div>
                     <p className="text-black text-base px-6 mb-5">
-                      Delve into our mission, team, and values and Learn about
-                      how ourdedicated to empowering you with the knowledge and
-                      tools can help you confidently navigate this new world of
-                      investments!
+                      Delve into our mission, learn about our team, and our values here at Virtual Trades. We are dedicated to armoring you with the
+                      right tools to confidently navigate this new world of
+                      investing.
                     </p>
                   </a>
                   <div>
