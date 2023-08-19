@@ -1,8 +1,8 @@
-import AnalysisWidget from "@/app/components/widgets/AnalysisWidget";
-import CompanyFundamentalData from "@/app/components/widgets/CompanyFundamentalsData";
-import CompanyNewsWidget from "@/app/components/widgets/CompanyNewsWidget";
-import GraphWidget from "@/app/components/widgets/GraphWidget";
-import Stock from "@/app/modals/stock";
+import AnalysisWidget from "../../components/widgets/AnalysisWidget";
+import CompanyFundamentalData from "../../components/widgets/CompanyFundamentalsData";
+import CompanyNewsWidget from "../../components/widgets/CompanyNewsWidget";
+import GraphWidget from "../../components/widgets/GraphWidget";
+import Stock from "../../modals/stock";
 
 interface searchParams {
   search: string;
