@@ -10,7 +10,7 @@
     "comma-dangle": "off",
     "no-plusplus": "off",
     "no-promise-executor-return": "off",
-    "func-style": 2,
+    "func-style": "off",
     "quotes": "off",
     "consistent-return": "off",
     "no-alert": "off",

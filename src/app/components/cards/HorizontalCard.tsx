@@ -1,3 +1,5 @@
+"use client";
+
 import {
   Card,
   CardHeader,
@@ -10,11 +12,11 @@ import { GradientButtonRounded } from "../buttons/Button";
 import { useRouter } from "next/navigation";
 
 interface HorizontalCardProps {
-  img: string,
-  text1: string,
-  text2: string,
-  text3: string,
-  onClick: () => void
+  img: string;
+  text1: string;
+  text2: string;
+  text3: string;
+  onClick: () => void;
 }
 export default function Home({ img, text1, text2, text3 }: HorizontalCardProps) {
   const router = useRouter(); // Move this line here
@@ -63,3 +65,5 @@ export default function Home({ img, text1, text2, text3 }: HorizontalCardProps) 
     </Card>
   );
 }
+
+

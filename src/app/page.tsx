@@ -6,8 +6,7 @@ import SimpleCard from "./components/cards/SimpleCard";
 import { useRouter } from "next/navigation";
 import Svg from "./components/images/Svg";
 import { GradientButtonRounded } from "./components/buttons/Button";
-
-
+import TradingViewWidget from "./components/widgets/TopWidget";
 
 export default function Home() {
   const handleRoute = (page: string) => {
@@ -16,9 +15,10 @@ export default function Home() {
   const router = useRouter();
   return (
     <div>
+      <TradingViewWidget />
       <div className="leading-normal tracking-normal text-white gradient">
         <div className="pt-12">
-          <div className="container px-8 mx-10 my-8 flex mb-14 flex-wrap flex-col md:flex-row items-center">
+          <div className="container px-12 my-8 mb-14 f-center flex-wrap flex-col md:flex-row">
             <div className="flex flex-col w-full md:w-1/2 justify-center items-start text-center md:text-left">
               <h1 className="my-4 text-5xl font-bold leading-tight">
                 Welcome to <span className="text-light-green">VirtualTrades</span>
@@ -36,11 +36,10 @@ export default function Home() {
                 stocks with no financial risk. Here, you can buy and sell
                 virtual stocks at real market prices, every day!
               </p>
-
             </div>
             <div className="w-full md:w-1/2 p-5 text-center">
               <Img
-                className="w-full z-50 mx-7 rounded-md"
+                className="w-full z-50 md:mx-7 rounded-md"
                 src="https://ucarecdn.com/6a9adf89-51b8-47f5-8bf5-81eff950be9a/"
                 alt="hero img"
                 width={50}

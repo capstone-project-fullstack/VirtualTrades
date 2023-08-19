@@ -1,84 +1,42 @@
-"use client";
-import React, { useEffect, useRef, memo, useState } from "react";
-// import SquareWidget from "@/app/components/widgets/SquareWidget";
-import AnalysisWidget from "../../components/widgets/AnalysisWidget";
+import AnalysisWidget from "@/app/components/widgets/AnalysisWidget";
+import CompanyFundamentalData from "@/app/components/widgets/CompanyFundamentalsData";
+import CompanyNewsWidget from "@/app/components/widgets/CompanyNewsWidget";
+import GraphWidget from "@/app/components/widgets/GraphWidget";
 
-const StockWidget = ({ params }: { params: { ticker: string } }) => {
-  const container = useRef<HTMLDivElement | null>(null);
-  const { ticker } = params;
-  const [widgetWidth, setWidgetWidth] = useState<number>(
-    window.innerWidth - 100
-  );
+interface params {
+  ticker: string;
+}
 
-  useEffect(() => {
-    const script = document.createElement("script");
-    script.src =
-      "https://s3.tradingview.com/external-embedding/embed-widget-symbol-overview.js";
-    script.async = true;
-    script.innerHTML = `
-      {
-        "symbols": [["${ticker}"]],
-        "chartOnly": false,
-        "width": ${widgetWidth},
-        "locale": "en",
-        "colorTheme": "dark",
-        "autosize": true,
-        "showVolume": false,
-        "showMA": false,
-        "hideDateRanges": false,
-        "hideMarketStatus": false,
-        "hideSymbolLogo": false,
-        "scalePosition": "right",
-        "scaleMode": "Normal",
-        "fontFamily": "-apple-system, BlinkMacSystemFont, Trebuchet MS, Roboto, Ubuntu, sans-serif",
-        "fontSize": "10",
-        "noTimeScale": false,
-        "valuesTracking": "1",
-        "changeMode": "price-and-percent",
-        "chartType": "area",
-        "maLineColor": "#2962FF",
-        "maLineWidth": 1,
-        "maLength": 9,
-        "lineWidth": 2,
-        "lineType": 0,
-        "dateRanges": [
-          "1d|1",
-          "1m|30",
-          "3m|60",
-          "12m|1D",
-          "60m|1W",
-          "all|1M"
-        ]
-      }`;
+interface searchParams {
+  search: string;
+  tvwidgetsymbol?: string;
+}
 
-    if (container.current) container.current.innerHTML = "";
+const StockPage = ({
+  params,
+  searchParams,
+}: {
+  params: params;
+  searchParams: searchParams;
+}) => {
+  let { ticker } = params;
 
-    const scriptContainer = document.createElement("div");
-    scriptContainer.className = "tradingview-widget-container__widget";
-    if (container.current) container.current.appendChild(scriptContainer);
-    scriptContainer.appendChild(script);
-
-    const handleResize = () => {
-      setWidgetWidth(window.innerWidth - 100);
-    };
-
-    window.addEventListener("resize", handleResize);
-
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, [ticker, widgetWidth]);
+  const { tvwidgetsymbol } = searchParams;
+  if (tvwidgetsymbol) {
+    ticker = tvwidgetsymbol.split(":")[1];
+  }
 
   return (
-    <div>
-      <div className="mx-auto">
-        <div className="flex justify-center items-center m-20">
-          <div className="tradingview-widget-container" ref={container}></div>
-        </div>
-      </div>
+    <div className="w-full">
+      <div className="mx-auto"></div>
+      <GraphWidget ticker={ticker} />
       <AnalysisWidget ticker={ticker} />
+      <div className="flex justify-around">
+        <CompanyNewsWidget ticker={ticker} />
+        <CompanyFundamentalData ticker={ticker} />
+      </div>
     </div>
   );
 };
 
-export default memo(StockWidget);
+export default StockPage;
