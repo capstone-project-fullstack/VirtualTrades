@@ -2,28 +2,33 @@ import AnalysisWidget from "@/app/components/widgets/AnalysisWidget";
 import CompanyFundamentalData from "@/app/components/widgets/CompanyFundamentalsData";
 import CompanyNewsWidget from "@/app/components/widgets/CompanyNewsWidget";
 import GraphWidget from "@/app/components/widgets/GraphWidget";
-
-interface params {
-  ticker: string;
-}
+import Stock from "@/app/modals/stock";
 
 interface searchParams {
   search: string;
   tvwidgetsymbol?: string;
 }
 
-const StockPage = ({
+const StockPage = async ({
   params,
   searchParams,
 }: {
-  params: params;
+  params: { ticker: string };
   searchParams: searchParams;
 }) => {
   let { ticker } = params;
-
   const { tvwidgetsymbol } = searchParams;
-  if (tvwidgetsymbol) {
-    ticker = tvwidgetsymbol.split(":")[1];
+
+  if (tvwidgetsymbol) ticker = tvwidgetsymbol.split(":")[1];
+
+  const findStock = await Stock.findStockIfExist(ticker);
+
+  if (!findStock) {
+    await Stock.createStockIfNotExist(ticker);
+  } else {
+    const currentPrice = await Stock.getCurrentPrice(ticker);
+    console.log("findStock", findStock);
+    console.log("currentPrice", currentPrice);
   }
 
   return (

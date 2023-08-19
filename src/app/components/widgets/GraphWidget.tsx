@@ -1,12 +1,25 @@
 "use client";
+
 import React, { useEffect, useRef, memo, useState } from "react";
 
 function GraphWidget({ ticker }: { ticker: string }) {
   const container = useRef<HTMLDivElement | null>(null);
 
-  const [widgetWidth, setWidgetWidth] = useState<number>(
-    window.innerWidth - 100
-  );
+  const [widgetWidth, setWidgetWidth] = useState<number>(0);
+
+  useEffect(() => {
+    setWidgetWidth(window.innerWidth - 100);
+
+    const handleResize = () => {
+      setWidgetWidth(window.innerWidth - 100);
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
 
   useEffect(() => {
     const script = document.createElement("script");
