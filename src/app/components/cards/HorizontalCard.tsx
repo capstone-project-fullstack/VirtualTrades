@@ -16,12 +16,12 @@ interface HorizontalCardProps {
   text3: string,
   onClick: () => void
 }
+export default function Home({ img, text1, text2, text3 }: HorizontalCardProps) {
+  const router = useRouter(); // Move this line here
 
-export default function Home({ img, text1, text2, text3, onClick }: HorizontalCardProps) {
   const handleRoute = (page: string) => {
     router.push(`/${page}`);
   };
-const router = useRouter();
 
 // export default function HorizontalCard({ img, text1, text2, text3, onClick }: HorizontalCardProps) {
   return (

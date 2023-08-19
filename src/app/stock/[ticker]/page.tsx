@@ -72,7 +72,7 @@ const StockWidget = ({ params }: { params: { ticker: string } }) => {
   return (
     <div>
       <div className="mx-auto">
-        <div className="flex justify-center items-center">
+        <div className="flex justify-center items-center m-20">
           <div className="tradingview-widget-container" ref={container}></div>
         </div>
       </div>

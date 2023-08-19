@@ -3,26 +3,47 @@ import {
     CardBody,
     CardFooter,
     Typography,
-    Button,
+    // Button,
   } from "@material-tailwind/react";
-
+  import { GradientButtonRounded } from "../buttons/Button";
+  import { useRouter } from "next/navigation";
+  
+  interface SimpleCard {
+    img: string,
+    text1: string,
+    text2: string,
+    text3: string,
+    onClick: () => void
+  }
+  export default function Home({text1}: SimpleCard) {
+    const router = useRouter(); // Move this line here
+  
+    const handleRoute = (page: string) => {
+      router.push(`/${page}`);
+    };
   // import BlockLevelButton from './components/buttons/BlockLevelButton';
    
-  export default function SimpleCard( { text1 }: { text1: string}) {
+  // export default function SimpleCard( { text1 }: { text1: string}) {
     return (
       <Card className="mt-6 w-96">
         <CardBody>
           <Typography variant="h5" color="blue-gray" className="mb-2">
-            Read The Nesws
+            Read The News
           </Typography>
-          <Typography>
+          <Typography variant="lead">
             {text1}
           </Typography>
         </CardBody>
         <CardFooter className="pt-0">
-          <Button>Read</Button>
+        <div className="f-center">
+                    <GradientButtonRounded
+                      text="News Feed"
+                      onClick={() => handleRoute("news")}
+                      className="bg-none bg-dark-green"
+                    />
+                  </div>
         </CardFooter>
       </Card>
     );
   }
-
+  // }

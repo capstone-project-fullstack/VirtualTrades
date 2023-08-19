@@ -7,6 +7,8 @@ import { useRouter } from "next/navigation";
 import Svg from "./components/images/Svg";
 import { GradientButtonRounded } from "./components/buttons/Button";
 
+
+
 export default function Home() {
   const handleRoute = (page: string) => {
     router.push(`/${page}`);
@@ -19,7 +21,7 @@ export default function Home() {
           <div className="container px-8 mx-10 my-8 flex mb-14 flex-wrap flex-col md:flex-row items-center">
             <div className="flex flex-col w-full md:w-1/2 justify-center items-start text-center md:text-left">
               <h1 className="my-4 text-5xl font-bold leading-tight">
-                Welcome to <span className="text-green">VirtualTrades</span>
+                Welcome to <span className="text-light-green">VirtualTrades</span>
               </h1>
               {/* <p className="uppercase tracking-loose w-full ax-w-md text-2xl">
                 WHERE INVESTMENT BEGINS
@@ -54,8 +56,8 @@ export default function Home() {
       <section>
         <div className="bg-purple py-8">
           <div className="container max-w-5xl mx-auto m-8 mb-20">
-            <h1 className="w-full my-2 text-5xl font-bold leading-tight text-center text-white-700">
-              Watchlist
+            <h1 className="w-full my-2 text-center text-4xl text-white-600 font-bold leading-none mb-9">
+              Stock Market
             </h1>
             <div className="w-full mb-4">
               <div className="h-1 mx-auto gradient w-64 opacity-25 my-0 py-0 rounded-t"></div>
@@ -113,7 +115,7 @@ export default function Home() {
       <section className="m-20">
         <div className="flex flex-wrap flex-col-reverse sm:flex-row ml-20">
           <div className="w-full sm:w-1/2 p-9 mt-0">
-            <SimpleCard text1="From Wall Street to international markets, our news coverage spans across the globe, providing you with a comprehensive view of how global events impact the stock market." />
+            <SimpleCard text1="Stay informed aboutt financial news, explore the latest updates on stocks, trends, and economic developments with our currated news page. " />
           </div>
           <div className="w-full sm:w-1/2 p-9 mt-6">
             <div className="align-middle">
@@ -122,7 +124,7 @@ export default function Home() {
               </h3>
               <p className="text-white-700 text-lg mb-8">
                 The news articles are not just headlines, they are valuable
-                learning resources. We curate the latest news articles, expert
+                learning resources. We curate the latest news articles, including expert
                 analyses, and market insights to keep you up to date with the
                 ever-changing landscape. Whether trade tensions, economic data
                 releases, or geopolitical developments, gain an understanding of
@@ -136,7 +138,12 @@ export default function Home() {
       <Svg />
 
       <section className="bg-purple py-8">
-        <div className="container mx-auto flex flex-wrap pt-4 pb-12 mt-15">
+        <div>
+            <h1 className="w-full my-2 text-center text-4xl text-white-600 font-bold leading-none">
+              Stock Market
+            </h1>
+        </div>
+        <div className="container mx-auto flex flex-wrap pb-12">
           <div className="w-full md:w-1/3 p-6 flex flex-col flex-grow flex-shrink">
             <div className="container mx-auto flex flex-wrap pt-4 pb-12">
               <div className="w-full md:w-1/3 p-6 flex flex-col flex-grow flex-shrink">
@@ -169,9 +176,9 @@ export default function Home() {
                   </div>
                 </div>
                 <div className="flex-none mt-auto bg-white rounded-b rounded-t-none overflow-hidden shadow p-6">
-                  <div className="f-center">
+                <div className="f-center">
                     <GradientButtonRounded
-                      text="Action"
+                      text="Dashboard"
                       onClick={() => handleRoute("dashboard")}
                       className="bg-none bg-dark-green"
                     />
@@ -182,7 +189,7 @@ export default function Home() {
           </div>
 
           <div className="w-full md:w-1/3 p-6 flex flex-col flex-grow flex-shrink">
-            <div className="container mx-auto flex flex-wrap pt-4 pb-12">
+            <div className="container mx-auto flex flex-wrap pt-4 pb-12 mt-15">
               <div className="w-full md:w-1/3 p-6 flex flex-col flex-grow flex-shrink">
                 <div className="flex-1 bg-white rounded-t rounded-b-none overflow-hidden shadow">
                   <a
@@ -190,13 +197,13 @@ export default function Home() {
                     className="flex flex-wrap no-underline hover:no-underline"
                   >
                     <p className="w-full text-gray-600 text-xs md:text-sm px-6">
-                      GEOGRAPHY
+                      BUY AND SELL STOCK
                     </p>
                     <div className="w-full font-bold text-xl text-black px-6">
                       Explore all states
                     </div>
                     <p className="text-black text-base px-6 mb-5">
-                      Explore the stock market on an interactive map, gain
+                      Explore the stock market on an interactive map, and gain
                       insights into global market trends and real-time stock
                       movements.
                     </p>
@@ -212,11 +219,12 @@ export default function Home() {
                   </div>
                 </div>
                 <div className="flex-none mt-auto bg-white rounded-b rounded-t-none overflow-hidden shadow p-6">
-                  <div className="f-center">
+
+                <div className="f-center">
                     <GradientButtonRounded
-                      text="Action"
-                      color="green"
-                      onClick={() => handleRoute("dashboard")}
+                      text="Explore"
+                      onClick={() => handleRoute("landing")}
+                      className="bg-none bg-dark-green"
                     />
                   </div>
                 </div>
@@ -256,11 +264,11 @@ export default function Home() {
                   </div>
                 </div>
                 <div className="flex-none mt-auto bg-white rounded-b rounded-t-none overflow-hidden shadow p-6">
-                  <div className="f-center">
+                <div className="f-center">
                     <GradientButtonRounded
-                      text="Action"
-                      color="green"
-                      onClick={() => handleRoute("dashboard")}
+                      text="About Us"
+                      onClick={() => handleRoute("landing")}
+                      className="bg-none bg-dark-green"
                     />
                   </div>
                 </div>
@@ -308,21 +316,24 @@ export default function Home() {
       </div>
 
       <section className="container mx-auto text-center py-6 m-12">
-        <h1 className="w-full my-2 text-5xl font-bold leading-tight text-center text-white">
+        <h1 className="w-full my-2 text-5xl font-bold leading-tight text-center text-white mt-5 mb-5">
           VirtualTrades
         </h1>
         <div className="w-full mb-4">
-          <div className="h-1 mx-auto bg-white w-1/6 opacity-25 my-0 py-0 rounded-t"></div>
+          <div className="h-1 mx-auto bg-white w-1/6 opacity-25 my-0 py-0 rounded-t mt-5 mb-5"></div>
         </div>
-        <h3 className="my-4 text-3xl leading-tight">
-          If you grow real skill, you can grow real money
+        <h3 className="my-4 text-3xl leading-tight mt-5 mb-5">
+          If you grow real skill, you can grow real money.
         </h3>
-        <button
-          onClick={() => router.push("/dashboard")}
-          className="mx-auto lg:mx-0 hover:underline bg-grey text-black-800 font-bold rounded-full my-6 py-4 px-8 shadow-lg"
-        >
-          Get Started!
-        </button>
+
+        <div className="f-center mt-10 mb-5">
+                    <GradientButtonRounded
+                      text="Get Started!"
+                      onClick={() => handleRoute("market")}
+                      className="bg-none bg-dark-green"
+                    />
+                  </div>
+
       </section>
     </div>
   );

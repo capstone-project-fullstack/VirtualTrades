@@ -10,16 +10,15 @@ const Market = () => {
   return (
     <div>
       <HeaderText text="Market" />
-
-      <div className="flex flex-col items-center justify-center space-y-4">
-        <div>
+      <div className="flex flex-wrap justify-center gap-4">
+        <div className="mt-10">
           <TradingViewWidget />
         </div>
-        <div>
+        <div  className="bg-light-green mt-10">
           <CurrencyWidget />
         </div>
-        <div>
-          <ScreenerWidget  height={200} width={200}/>
+        <div  className="bg-blue-green mt-10">
+          <ScreenerWidget width={1100} height={523} />
         </div>
       </div>
     </div>

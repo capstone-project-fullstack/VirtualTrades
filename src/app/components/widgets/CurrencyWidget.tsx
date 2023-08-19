@@ -34,7 +34,7 @@ interface CurrencyWidgetProps {
   }, [ticker]);
 
   return (
-    <div className="tradingview-widget-container">
+    <div className="tradingview-widget-container light-green">
       <div className="tradingview-widget-container__widget" ref={container}></div>
       <div className="tradingview-widget-copyright">
         <a href="https://www.tradingview.com/" rel="noopener nofollow" target="_blank">
