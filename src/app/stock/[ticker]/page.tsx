@@ -33,14 +33,21 @@ const StockPage = async ({
     if (!createdStock) return <div>No Stock Found</div>;
     else stock = createdStock;
   }
+
+  const isSellable = await TradeStocks.isSellable(userId, stock.id);
+  const shareOwned = isSellable.length ? isSellable[0].shares : 0;
   const currentPrice = await Stock.getCurrentPrice(ticker);
+
+  const formattedPrice = currentPrice.toLocaleString("en-US", {
+    style: "currency",
+    currency: "USD",
+  });
 
   const buyStock = async (data: FormData) => {
     "use server";
     const shares = data.get("shares")?.valueOf();
     if (!shares || !stock || !stock.id) return;
-    // await TradeStocks.buyStock(userId, stock.id, Number(shares));
-    return StockPage({ params, searchParams });
+    await TradeStocks.buyStock(userId, stock.id, Number(shares));
   };
 
   const sellStock = async (data: FormData) => {
@@ -52,7 +59,7 @@ const StockPage = async ({
   };
 
   return (
-    <div className="w-full" >
+    <div className="w-full">
       <div className="mx-auto"></div>
       <div>
         <GraphWidget ticker={ticker} />
@@ -62,30 +69,32 @@ const StockPage = async ({
           <AnalysisWidget ticker={ticker} />
         </div>
         <form action={buyStock}>
-          <div>Price: {currentPrice}</div>
+          <div>Price: {formattedPrice}</div>
           <input
-            className="text-black"
+            className="text-black w-20"
             type="number"
             name="shares"
             placeholder="shares"
+            min={0}
             required
           />
           <button type="submit">Buy</button>
         </form>
         <form action={sellStock}>
-          <div>Price: {currentPrice}</div>
+          <div>Price: {formattedPrice}</div>
           <input
-            className="text-black"
+            className="text-black w-20"
             type="number"
             name="shares"
             placeholder="shares"
             required
+            min={1}
+            max={shareOwned}
           />
           <button type="submit">Sell</button>
         </form>
       </div>
       <div className="flex">
-        
         <CompanyNewsWidget ticker={ticker} />
         <CompanyFundamentalData ticker={ticker} />
       </div>

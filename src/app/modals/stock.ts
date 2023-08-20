@@ -31,7 +31,7 @@ class Stock {
       .catch((err) => console.log(err));
 
     if (await this.findStockIfExist(symbol)) {
-      await this.updateCurrentPrice(symbol, res.c);
+      await this.updateCurrentPrice(symbol, c);
     }
     return c;
   }
