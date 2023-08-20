@@ -26,21 +26,20 @@ const StockPage = async ({
 
   if (tvwidgetsymbol) ticker = tvwidgetsymbol.split(":")[1];
 
-  const findStock = await Stock.findStockIfExist(ticker);
+  let stock = await Stock.findStockIfExist(ticker);
 
-  if (!findStock) {
+  if (!stock) {
     const createdStock = await Stock.createStockIfNotExist(ticker);
     if (!createdStock) return <div>No Stock Found</div>;
+    else stock = createdStock;
   }
   const currentPrice = await Stock.getCurrentPrice(ticker);
-  console.log("findStock", findStock);
-  console.log("currentPrice", currentPrice);
 
   const tradeStock = async (data: FormData) => {
     "use server";
     const shares = data.get("shares")?.valueOf();
-    if (!shares) return;
-    await TradeStocks.buyStock(userId, findStock.id, Number(shares));
+    if (!shares || !stock || !stock.id) return;
+    await TradeStocks.buyStock(userId, stock.id, Number(shares));
   };
 
   return (
