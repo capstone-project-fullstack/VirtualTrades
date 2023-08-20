@@ -35,15 +35,24 @@ const StockPage = async ({
   }
   const currentPrice = await Stock.getCurrentPrice(ticker);
 
-  const tradeStock = async (data: FormData) => {
+  const buyStock = async (data: FormData) => {
     "use server";
     const shares = data.get("shares")?.valueOf();
     if (!shares || !stock || !stock.id) return;
-    await TradeStocks.buyStock(userId, stock.id, Number(shares));
+    // await TradeStocks.buyStock(userId, stock.id, Number(shares));
+    return StockPage({ params, searchParams });
+  };
+
+  const sellStock = async (data: FormData) => {
+    "use server";
+    const shares = data.get("shares")?.valueOf();
+    if (!shares || !stock || !stock.id) return;
+    await TradeStocks.sellStock(userId, stock.id, Number(shares));
+    data.delete("shares");
   };
 
   return (
-    <div className="w-full">
+    <div className="w-full" >
       <div className="mx-auto"></div>
       <div>
         <GraphWidget ticker={ticker} />
@@ -52,7 +61,7 @@ const StockPage = async ({
         <div>
           <AnalysisWidget ticker={ticker} />
         </div>
-        <form action={tradeStock}>
+        <form action={buyStock}>
           <div>Price: {currentPrice}</div>
           <input
             className="text-black"
@@ -63,8 +72,20 @@ const StockPage = async ({
           />
           <button type="submit">Buy</button>
         </form>
+        <form action={sellStock}>
+          <div>Price: {currentPrice}</div>
+          <input
+            className="text-black"
+            type="number"
+            name="shares"
+            placeholder="shares"
+            required
+          />
+          <button type="submit">Sell</button>
+        </form>
       </div>
       <div className="flex">
+        
         <CompanyNewsWidget ticker={ticker} />
         <CompanyFundamentalData ticker={ticker} />
       </div>

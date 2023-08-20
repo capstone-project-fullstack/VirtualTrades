@@ -32,13 +32,8 @@ export default function Navbar() {
       .catch((err) => console.log(err));
   }, [searchStock]);
 
-  // console.log(suggestions);
   const filteredStocks = suggestions.filter((suggestion) => {
-    return (
-      suggestion.exchange === "NASDAQ" ||
-      suggestion.exchange === "NYSE" ||
-      suggestion.exchange === "AMEX"
-    );
+    return suggestion.exchange === "NASDAQ" || suggestion.exchange === "NYSE";
   });
 
   const items = [
