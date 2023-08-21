@@ -12,6 +12,17 @@ class TradeStocks {
     });
   }
 
+  static async isSellable(userId: string, stockId: number) {
+    const data = await prisma.portfolio.findMany({
+      where: {
+        user_id: userId,
+        stock_id: stockId,
+      },
+    });
+
+    return data;
+  }
+
   static async sellStock(userId: string, stockId: number, shares: number) {
     return await prisma.trade.create({
       data: {

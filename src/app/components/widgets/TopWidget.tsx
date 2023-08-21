@@ -76,7 +76,7 @@ const HeadLine = () => {
       showSymbolLogo: true,
       colorTheme: "dark",
       isTransparent: false,
-      largeChartUrl: "http://localhost:3000/stock/{symbol}",
+      largeChartUrl: `${window.location.href}/stock/{symbol}`,
       displayMode: "compact",
       locale: "en",
     });

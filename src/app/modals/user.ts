@@ -4,6 +4,7 @@ import { User } from "../../../typings";
 class UserService {
   static async findUser(userId: string): Promise<User | null> {
     if (!userId) return null;
+    
     const user = await prisma.user.findUnique({
       where: {
         id: userId,
