@@ -5,6 +5,8 @@ import GraphWidget from "../../components/widgets/GraphWidget";
 import Stock from "../../modals/stock";
 import TradeStocks from "@/app/modals/tradeStocks";
 import { currentUser } from "@clerk/nextjs";
+import Portfolio from "@/app/modals/portfolio";
+import TradeForm from "./TradeForm";
 
 interface searchParams {
   search: string;
@@ -28,6 +30,9 @@ const StockPage = async ({
 
   let stock = await Stock.findStockIfExist(ticker);
 
+  let buyingPower = await Portfolio.getBuyingPower(userId);
+
+
   if (!stock) {
     const createdStock = await Stock.createStockIfNotExist(ticker);
     if (!createdStock) return <div>No Stock Found</div>;
@@ -38,24 +43,19 @@ const StockPage = async ({
   const shareOwned = isSellable.length ? isSellable[0].shares : 0;
   const currentPrice = await Stock.getCurrentPrice(ticker);
 
-  const formattedPrice = currentPrice.toLocaleString("en-US", {
-    style: "currency",
-    currency: "USD",
-  });
-
   const buyStock = async (data: FormData) => {
     "use server";
-    const shares = data.get("shares")?.valueOf();
+    const shares = data.get("sharesToBuy")?.valueOf();
     if (!shares || !stock || !stock.id) return;
     await TradeStocks.buyStock(userId, stock.id, Number(shares));
+    
   };
 
   const sellStock = async (data: FormData) => {
     "use server";
-    const shares = data.get("shares")?.valueOf();
+    const shares = data.get("sharesToSell")?.valueOf();
     if (!shares || !stock || !stock.id) return;
     await TradeStocks.sellStock(userId, stock.id, Number(shares));
-    data.delete("shares");
   };
 
   return (
@@ -68,31 +68,13 @@ const StockPage = async ({
         <div>
           <AnalysisWidget ticker={ticker} />
         </div>
-        <form action={buyStock}>
-          <div>Price: {formattedPrice}</div>
-          <input
-            className="text-black w-20"
-            type="number"
-            name="shares"
-            placeholder="shares"
-            min={0}
-            required
-          />
-          <button type="submit">Buy</button>
-        </form>
-        <form action={sellStock}>
-          <div>Price: {formattedPrice}</div>
-          <input
-            className="text-black w-20"
-            type="number"
-            name="shares"
-            placeholder="shares"
-            required
-            min={1}
-            max={shareOwned}
-          />
-          <button type="submit">Sell</button>
-        </form>
+        <TradeForm
+          sharesOwned={shareOwned}
+          price={currentPrice}
+          buyStock={buyStock}
+          sellStock={sellStock}
+          buyingPower={buyingPower}
+        />
       </div>
       <div className="flex">
         <CompanyNewsWidget ticker={ticker} />

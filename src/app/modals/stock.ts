@@ -33,7 +33,7 @@ class Stock {
     if (await this.findStockIfExist(symbol)) {
       await this.updateCurrentPrice(symbol, c);
     }
-    return c;
+    return Number(c.toFixed(2));
   }
 
   static async createStockIfNotExist(symbol: string) {
