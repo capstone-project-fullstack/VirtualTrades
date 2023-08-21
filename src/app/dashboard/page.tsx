@@ -1,7 +1,7 @@
-import { currentUser } from "@clerk/nextjs";
-import HeaderText from "../components/HeaderText";
-import CardLineChart from "../components/charts/LineGraph";
-import UserService from "../modals/user";
+import { currentUser } from '@clerk/nextjs';
+import HeaderText from '../components/HeaderText';
+import CardLineChart from '../components/charts/LineGraph';
+import UserService from '../modals/user';
 
 export default async function Dashboard(): Promise<JSX.Element> {
   const currUser = await currentUser();

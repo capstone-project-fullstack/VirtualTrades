@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-'use client'
+'use client';
 
 import {
   Card,
@@ -13,17 +13,17 @@ import {
   TabsBody,
   Tab,
   TabPanel,
-} from '@material-tailwind/react'
-import axios from 'axios'
+} from '@material-tailwind/react';
+import axios from 'axios';
 
-import { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react';
 
 interface TradeFormProps {
-  price: number
-  sharesOwned: number
-  buyingPower: number
-  userId: string
-  stockId: number
+  price: number;
+  sharesOwned: number;
+  buyingPower: number;
+  userId: string;
+  stockId: number;
 }
 
 export default function TradeForm({
@@ -33,53 +33,53 @@ export default function TradeForm({
   userId,
   stockId,
 }: TradeFormProps) {
-  const [type, setType] = useState('buy')
-  const [buyShares, setBuyShares] = useState(0)
-  const [sellShares, setSellShares] = useState(0)
-  const [shares, setShares] = useState(sharesOwned)
-  const [cash, setCash] = useState(buyingPower)
+  const [type, setType] = useState('buy');
+  const [buyShares, setBuyShares] = useState(0);
+  const [sellShares, setSellShares] = useState(0);
+  const [shares, setShares] = useState(sharesOwned);
+  const [cash, setCash] = useState(buyingPower);
   const formatPrice = (price: number) => {
     return price.toLocaleString('en-US', {
       style: 'currency',
       currency: 'USD',
-    })
-  }
+    });
+  };
 
   useEffect(() => {
     if (shares <= 0) {
-      setType('buy')
+      setType('buy');
     }
-  }, [shares])
+  }, [shares]);
 
   const buyStock = async (e: any) => {
-    e.preventDefault()
-    const sharesToBuy = Number(e.target.elements.sharesToBuy.value)
+    e.preventDefault();
+    const sharesToBuy = Number(e.target.elements.sharesToBuy.value);
     const res = await axios.post(`/api/buyStock`, {
       shares: sharesToBuy,
       stockId,
       userId,
-    })
+    });
 
     if (res.status === 200) {
-      setCash(cash - sharesToBuy * price)
-      setShares(shares + sharesToBuy)
-      setBuyShares(0)
+      setCash(cash - sharesToBuy * price);
+      setShares(shares + sharesToBuy);
+      setBuyShares(0);
     }
-  }
+  };
 
   async function sellStock(e: any) {
-    e.preventDefault()
-    const sharesToSell = Number(e.target.elements.sharesToSell.value)
+    e.preventDefault();
+    const sharesToSell = Number(e.target.elements.sharesToSell.value);
     const res = await axios.post(`/api/sellStock`, {
       shares: sharesToSell,
       stockId,
       userId,
-    })
+    });
 
     if (res.status === 200) {
-      setCash(cash + sharesToSell * price)
-      setShares(shares - sharesToSell)
-      setSellShares(0)
+      setCash(cash + sharesToSell * price);
+      setShares(shares - sharesToSell);
+      setSellShares(0);
     }
   }
 
@@ -228,5 +228,5 @@ export default function TradeForm({
         </Tabs>
       </CardBody>
     </Card>
-  )
+  );
 }

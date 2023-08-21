@@ -1,7 +1,7 @@
-"use client";
+'use client';
 
-import { Button } from "@material-tailwind/react";
-import { materialColors } from "../../../../typings";
+import { Button } from '@material-tailwind/react';
+import { materialColors } from '../../../../typings';
 
 interface GradientButtonRoundedProps {
   text: string;

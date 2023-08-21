@@ -1,9 +1,8 @@
-import Stock from "../../modals/stock";
-import TradeStocks from "@/app/modals/tradeStocks";
-import { currentUser } from "@clerk/nextjs";
-import Portfolio from "../../modals/portfolio";
-import TradeFormComponent from "./TradeFormComponent";
-
+import Stock from '../../modals/stock';
+import TradeStocks from '@/app/modals/tradeStocks';
+import { currentUser } from '@clerk/nextjs';
+import Portfolio from '../../modals/portfolio';
+import TradeFormComponent from './TradeFormComponent';
 
 const TradeForm = async ({ ticker }: { ticker: string }) => {
   const currUser = await currentUser();
@@ -23,7 +22,6 @@ const TradeForm = async ({ ticker }: { ticker: string }) => {
   const isSellable = await TradeStocks.isSellable(userId, stock.id);
   const shareOwned = isSellable.length ? isSellable[0].shares : 0;
   const currentPrice = await Stock.getCurrentPrice(ticker);
-
 
   return (
     <div className="w-full">

@@ -1,4 +1,4 @@
-import prisma from "../../../lib/prisma";
+import prisma from '../../../lib/prisma';
 
 class TradeStocks {
   static async buyStock(userId: string, stockId: number, shares: number) {
@@ -6,7 +6,7 @@ class TradeStocks {
       data: {
         user_id: userId,
         stock_id: stockId,
-        trade_type: "BUY",
+        trade_type: 'BUY',
         shares,
       },
     });
@@ -28,7 +28,7 @@ class TradeStocks {
       data: {
         user_id: userId,
         stock_id: stockId,
-        trade_type: "SELL",
+        trade_type: 'SELL',
         shares,
       },
     });

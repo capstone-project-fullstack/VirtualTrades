@@ -1,5 +1,5 @@
-import React from "react";
-import HeaderText from "../components/HeaderText";
+import React from 'react';
+import HeaderText from '../components/HeaderText';
 
 export default function Watchlists() {
   return (

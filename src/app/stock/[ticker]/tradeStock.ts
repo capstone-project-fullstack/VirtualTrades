@@ -1,8 +1,8 @@
 // tradeActions.ts
-"use server";
+'use server';
 
-import TradeStocks from "@/app/modals/tradeStocks";
-import { revalidatePath } from "next/cache";
+import TradeStocks from '@/app/modals/tradeStocks';
+import { revalidatePath } from 'next/cache';
 
 export const buyStock = async (
   userId: string,
@@ -10,7 +10,7 @@ export const buyStock = async (
   shares: number
 ) => {
   await TradeStocks.buyStock(userId, stockId, shares);
-  revalidatePath("/");
+  revalidatePath('/');
 };
 
 export const sellStock = async (
@@ -19,5 +19,5 @@ export const sellStock = async (
   shares: number
 ) => {
   await TradeStocks.sellStock(userId, stockId, shares);
-  revalidatePath("/");
+  revalidatePath('/');
 };

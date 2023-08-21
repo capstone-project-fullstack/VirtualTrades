@@ -1,6 +1,6 @@
-"use client";
+'use client';
 
-import React, { useEffect, useRef, memo, useState } from "react";
+import React, { useEffect, useRef, memo, useState } from 'react';
 
 function GraphWidget({ ticker }: { ticker: string }) {
   const container = useRef<HTMLDivElement | null>(null);
@@ -14,17 +14,17 @@ function GraphWidget({ ticker }: { ticker: string }) {
       setWidgetWidth(window.innerWidth - 100);
     };
 
-    window.addEventListener("resize", handleResize);
+    window.addEventListener('resize', handleResize);
 
     return () => {
-      window.removeEventListener("resize", handleResize);
+      window.removeEventListener('resize', handleResize);
     };
   }, []);
 
   useEffect(() => {
-    const script = document.createElement("script");
+    const script = document.createElement('script');
     script.src =
-      "https://s3.tradingview.com/external-embedding/embed-widget-symbol-overview.js";
+      'https://s3.tradingview.com/external-embedding/embed-widget-symbol-overview.js';
     script.async = true;
     script.innerHTML = `
       {
@@ -62,10 +62,10 @@ function GraphWidget({ ticker }: { ticker: string }) {
         ]
       }`;
 
-    if (container.current) container.current.innerHTML = "";
+    if (container.current) container.current.innerHTML = '';
 
-    const scriptContainer = document.createElement("div");
-    scriptContainer.className = "tradingview-widget-container__widget";
+    const scriptContainer = document.createElement('div');
+    scriptContainer.className = 'tradingview-widget-container__widget';
     if (container.current) container.current.appendChild(scriptContainer);
     scriptContainer.appendChild(script);
 
@@ -73,10 +73,10 @@ function GraphWidget({ ticker }: { ticker: string }) {
       setWidgetWidth(window.innerWidth - 100);
     };
 
-    window.addEventListener("resize", handleResize);
+    window.addEventListener('resize', handleResize);
 
     return () => {
-      window.removeEventListener("resize", handleResize);
+      window.removeEventListener('resize', handleResize);
     };
   }, [ticker, widgetWidth]);
 

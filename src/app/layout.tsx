@@ -1,7 +1,7 @@
-import "./globals.css";
-import { ClerkProvider } from "@clerk/nextjs";
-import Navbar from "./components/navbar/Navbar";
-import { dark } from "@clerk/themes";
+import './globals.css';
+import { ClerkProvider } from '@clerk/nextjs';
+import Navbar from './components/navbar/Navbar';
+import { dark } from '@clerk/themes';
 
 export default function RootLayout({
   children,

@@ -1,5 +1,5 @@
-import prisma from "../../../lib/prisma";
-import axios from "axios";
+import prisma from '../../../lib/prisma';
+import axios from 'axios';
 
 class Stock {
   static async findStockIfExist(symbol: string) {

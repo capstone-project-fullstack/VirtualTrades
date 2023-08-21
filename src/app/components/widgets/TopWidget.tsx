@@ -1,90 +1,90 @@
-"use client";
+'use client';
 
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef } from 'react';
 
 const HeadLine = () => {
   const container = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
-    const script = document.createElement("script");
+    const script = document.createElement('script');
     script.src =
-      "https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js";
+      'https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js';
     script.async = true;
     script.innerHTML = JSON.stringify({
       symbols: [
         {
-          proName: "FOREXCOM:SPXUSD",
-          title: "S&P 500",
+          proName: 'FOREXCOM:SPXUSD',
+          title: 'S&P 500',
         },
         {
-          proName: "FOREXCOM:NSXUSD",
-          title: "US 100",
+          proName: 'FOREXCOM:NSXUSD',
+          title: 'US 100',
         },
         {
-          proName: "FX_IDC:EURUSD",
-          title: "EUR to USD",
+          proName: 'FX_IDC:EURUSD',
+          title: 'EUR to USD',
         },
         {
-          proName: "BITSTAMP:BTCUSD",
-          title: "Bitcoin",
+          proName: 'BITSTAMP:BTCUSD',
+          title: 'Bitcoin',
         },
         {
-          proName: "BITSTAMP:ETHUSD",
-          title: "Ethereum",
+          proName: 'BITSTAMP:ETHUSD',
+          title: 'Ethereum',
         },
         {
-          description: "Apple",
-          proName: "NASDAQ:AAPL",
+          description: 'Apple',
+          proName: 'NASDAQ:AAPL',
         },
         {
-          description: "Gold",
-          proName: "TVC:GOLD",
+          description: 'Gold',
+          proName: 'TVC:GOLD',
         },
         {
-          description: "Tesla",
-          proName: "NASDAQ:TSLA",
+          description: 'Tesla',
+          proName: 'NASDAQ:TSLA',
         },
         {
-          description: "Amazon",
-          proName: "NASDAQ:AMZN",
+          description: 'Amazon',
+          proName: 'NASDAQ:AMZN',
         },
         {
-          description: "Microsoft",
-          proName: "NASDAQ:MSFT",
+          description: 'Microsoft',
+          proName: 'NASDAQ:MSFT',
         },
         {
-          description: "Meta",
-          proName: "NASDAQ:META",
+          description: 'Meta',
+          proName: 'NASDAQ:META',
         },
         {
-          description: "Netflix",
-          proName: "NASDAQ:NFLX",
+          description: 'Netflix',
+          proName: 'NASDAQ:NFLX',
         },
         {
-          description: "Google",
-          proName: "NASDAQ:GOOGL",
+          description: 'Google',
+          proName: 'NASDAQ:GOOGL',
         },
         {
-          description: "Walmart",
-          proName: "NYSE:WMT",
+          description: 'Walmart',
+          proName: 'NYSE:WMT',
         },
         {
-          description: "JPMorgan",
-          proName: "NYSE:JPM",
+          description: 'JPMorgan',
+          proName: 'NYSE:JPM',
         },
       ],
       showSymbolLogo: true,
-      colorTheme: "dark",
+      colorTheme: 'dark',
       isTransparent: false,
       largeChartUrl: `${window.location.href}/stock/{symbol}`,
-      displayMode: "compact",
-      locale: "en",
+      displayMode: 'compact',
+      locale: 'en',
     });
 
-    if (container.current) container.current.innerHTML = "";
+    if (container.current) container.current.innerHTML = '';
 
-    const scriptContainer = document.createElement("div");
-    scriptContainer.className = "tradingview-widget-container__widget";
+    const scriptContainer = document.createElement('div');
+    scriptContainer.className = 'tradingview-widget-container__widget';
     if (container.current) container.current.appendChild(scriptContainer);
     scriptContainer.appendChild(script);
   }, []);

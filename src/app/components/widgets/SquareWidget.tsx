@@ -1,24 +1,24 @@
-"use client";
+'use client';
 
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef } from 'react';
 
 const HeadLine = () => {
   const container = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
-    const script = document.createElement("script");
+    const script = document.createElement('script');
     script.src =
-      "https://s3.tradingview.com/external-embedding/embed-widget-stock-heatmap.js";
+      'https://s3.tradingview.com/external-embedding/embed-widget-stock-heatmap.js';
     script.async = true;
     script.innerHTML = JSON.stringify({
       exchanges: [],
-      dataSource: "SPX500",
-      grouping: "sector",
-      blockSize: "market_cap_basic",
-      blockColor: "change",
-      locale: "en",
-      symbolUrl: "http://localhost:3000/stock/{symbol}",
-      colorTheme: "dark",
+      dataSource: 'SPX500',
+      grouping: 'sector',
+      blockSize: 'market_cap_basic',
+      blockColor: 'change',
+      locale: 'en',
+      symbolUrl: 'http://localhost:3000/stock/{symbol}',
+      colorTheme: 'dark',
       hasTopBar: false,
       isDataSetEnabled: false,
       isZoomEnabled: true,
@@ -27,10 +27,10 @@ const HeadLine = () => {
       height: 500,
     });
 
-    if (container.current) container.current.innerHTML = "";
+    if (container.current) container.current.innerHTML = '';
 
-    const scriptContainer = document.createElement("div");
-    scriptContainer.className = "tradingview-widget-container__widget";
+    const scriptContainer = document.createElement('div');
+    scriptContainer.className = 'tradingview-widget-container__widget';
     if (container.current) container.current.appendChild(scriptContainer);
     scriptContainer.appendChild(script);
   }, []);

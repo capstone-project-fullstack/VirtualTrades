@@ -1,26 +1,25 @@
 // "use client";
 
-import React from "react";
-import NewsCard from "../components/cards/NewsCard";
-import HeaderText from "../components/HeaderText";
-import Loading from "../components/Loading";
-import { NewsData } from "../../../typings";
-import axios from "axios";
+import React from 'react';
+import NewsCard from '../components/cards/NewsCard';
+import HeaderText from '../components/HeaderText';
+import Loading from '../components/Loading';
+import { NewsData } from '../../../typings';
+import axios from 'axios';
 
 const getNews = async (): Promise<NewsData[]> => {
-  "use server";
+  'use server';
   const res = await axios.get(
     `https://finnhub.io/api/v1/news?category=general&token=${process.env.FINNHUB_API_KEY}`
   );
   if (!res.data) return [];
   return res.data;
-}
+};
 
 const NewsPage: React.FC = async () => {
-
   const allNews = await getNews();
 
-  if (!allNews) return <Loading />
+  if (!allNews) return <Loading />;
 
   return (
     <div>
