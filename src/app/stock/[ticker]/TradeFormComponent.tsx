@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-"use client";
+'use client'
 
 import {
   Card,
@@ -13,17 +13,17 @@ import {
   TabsBody,
   Tab,
   TabPanel,
-} from "@material-tailwind/react";
-import axios from "axios";
+} from '@material-tailwind/react'
+import axios from 'axios'
 
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react'
 
 interface TradeFormProps {
-  price: number;
-  sharesOwned: number;
-  buyingPower: number;
-  userId: string;
-  stockId: number;
+  price: number
+  sharesOwned: number
+  buyingPower: number
+  userId: string
+  stockId: number
 }
 
 export default function TradeForm({
@@ -33,54 +33,55 @@ export default function TradeForm({
   userId,
   stockId,
 }: TradeFormProps) {
-  const [type, setType] = useState("buy");
-  const [buyShares, setBuyShares] = useState(0);
-  const [sellShares, setSellShares] = useState(0);
-  const [shares, setShares] = useState(sharesOwned);
-  const [cash, setCash] = useState(buyingPower);
+  const [type, setType] = useState('buy')
+  const [buyShares, setBuyShares] = useState(0)
+  const [sellShares, setSellShares] = useState(0)
+  const [shares, setShares] = useState(sharesOwned)
+  const [cash, setCash] = useState(buyingPower)
   const formatPrice = (price: number) => {
-    return price.toLocaleString("en-US", {
-      style: "currency",
-      currency: "USD",
-    });
-  };
+    return price.toLocaleString('en-US', {
+      style: 'currency',
+      currency: 'USD',
+    })
+  }
 
   useEffect(() => {
     if (shares <= 0) {
-      setType("buy");
+      setType('buy')
     }
-  }, [shares]);
+  }, [shares])
 
   const buyStock = async (e: any) => {
-    e.preventDefault();
-    const shares = Number(e.target.elements.sharesToBuy.value);
+    e.preventDefault()
+    const sharesToBuy = Number(e.target.elements.sharesToBuy.value)
     const res = await axios.post(`/api/buyStock`, {
-      shares,
+      shares: sharesToBuy,
       stockId,
       userId,
-    });
-    if (res.status === 200) {
-      setCash(cash - shares * price);
-      setShares(shares + buyShares);
-      setBuyShares(0);
-    }
-  };
+    })
 
-  const sellStock = async (e: any) => {
-    e.preventDefault();
-    const shares = Number(e.target.elements.sharesToSell.value);
+    if (res.status === 200) {
+      setCash(cash - sharesToBuy * price)
+      setShares(shares + sharesToBuy)
+      setBuyShares(0)
+    }
+  }
+
+  async function sellStock(e: any) {
+    e.preventDefault()
+    const sharesToSell = Number(e.target.elements.sharesToSell.value)
     const res = await axios.post(`/api/sellStock`, {
-      shares,
+      shares: sharesToSell,
       stockId,
       userId,
-    });
+    })
 
     if (res.status === 200) {
-      setCash(cash + shares * price);
-      setShares(shares - sellShares);
-      setSellShares(0);
+      setCash(cash + sharesToSell * price)
+      setShares(shares - sharesToSell)
+      setSellShares(0)
     }
-  };
+  }
 
   return (
     <Card className="w-full max-w-[24rem]">
@@ -97,12 +98,12 @@ export default function TradeForm({
       <CardBody>
         <Tabs value={type} className="overflow-visible">
           <TabsHeader className="relative z-0 ">
-            <Tab value="buy" onClick={() => setType("buy")}>
+            <Tab value="buy" onClick={() => setType('buy')}>
               Buy
             </Tab>
             <Tab
               value="sell"
-              onClick={() => setType("sell")}
+              onClick={() => setType('sell')}
               disabled={shares <= 0}
             >
               Sell
@@ -112,13 +113,13 @@ export default function TradeForm({
             className="!overflow-x-hidden !overflow-y-visible"
             animate={{
               initial: {
-                x: type === "buy" ? 400 : -400,
+                x: type === 'buy' ? 400 : -400,
               },
               mount: {
                 x: 0,
               },
               unmount: {
-                x: type === "buy" ? 400 : -400,
+                x: type === 'buy' ? 400 : -400,
               },
             }}
           >
@@ -128,7 +129,7 @@ export default function TradeForm({
                   <Input
                     label="Number of Shares"
                     type="number"
-                    containerProps={{ className: "min-w-[72px]" }}
+                    containerProps={{ className: 'min-w-[72px]' }}
                     crossOrigin="anonymous"
                     name="sharesToBuy"
                     onChange={(e) => setBuyShares(Number(e.target.value))}
@@ -151,15 +152,15 @@ export default function TradeForm({
                     Quantity: <span className="float-right">{buyShares}</span>
                   </div>
                   <div className="border-b border-black">
-                    Buying Power:{" "}
+                    Buying Power:{' '}
                     <span className="float-right">{formatPrice(cash)}</span>
                   </div>
                   <div className="border-b border-black">
-                    Cost per Share:{" "}
+                    Cost per Share:{' '}
                     <span className="float-right">{formatPrice(price)}</span>
                   </div>
                   <div className="border-b border-black">
-                    Total:{" "}
+                    Total:{' '}
                     <span className="float-right">
                       {formatPrice(price * buyShares)}
                     </span>
@@ -176,7 +177,7 @@ export default function TradeForm({
                   <Input
                     label="Number of Shares"
                     type="number"
-                    containerProps={{ className: "min-w-[72px]" }}
+                    containerProps={{ className: 'min-w-[72px]' }}
                     crossOrigin="anonymous"
                     name="sharesToSell"
                     onChange={(e) => setSellShares(Number(e.target.value))}
@@ -202,15 +203,15 @@ export default function TradeForm({
                     Shares Owned: <span className="float-right">{shares}</span>
                   </div>
                   <div className="border-b border-black">
-                    Buying Power:{" "}
+                    Buying Power:{' '}
                     <span className="float-right">{formatPrice(cash)}</span>
                   </div>
                   <div className="border-b border-black">
-                    Cost per Share:{" "}
+                    Cost per Share:{' '}
                     <span className="float-right">{formatPrice(price)}</span>
                   </div>
                   <div className="border-b border-black">
-                    Total:{" "}
+                    Total:{' '}
                     <span className="float-right">
                       {formatPrice(price * sellShares)}
                     </span>
@@ -218,7 +219,7 @@ export default function TradeForm({
 
                   <div className="my-4 flex items-center gap-4"></div>
                 </div>
-                <Button type="submit" size="lg">
+                <Button type="submit" size="lg" disabled={shares <= 0}>
                   Sell
                 </Button>
               </form>
@@ -227,5 +228,5 @@ export default function TradeForm({
         </Tabs>
       </CardBody>
     </Card>
-  );
+  )
 }

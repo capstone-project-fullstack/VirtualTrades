@@ -1,5 +1,10 @@
 {
-  "extends": "next/core-web-vitals",
+  "extends": [
+    "next/core-web-vitals",
+    "plugin:@typescript-eslint/recommended",
+    "airbnb-base",
+    "plugin:react-hooks/recommended"
+  ],
   "rules": {
     "import/no-extraneous-dependencies": "off",
     "import/no-unresolved": "off",
@@ -16,8 +21,15 @@
     "no-alert": "off",
     "camelcase": "off",
     "no-unused-expressions": ["error", { "allowTernary": true }],
-    "no-unused-vars": ["error", { "argsIgnorePattern": "_|(knex)", "destructuredArrayIgnorePattern": "^_" }],
-    "no-mixed-operators": "off"
+    "no-unused-vars": [
+      "error",
+      {
+        "argsIgnorePattern": "_|(knex)",
+        "destructuredArrayIgnorePattern": "^_"
+      }
+    ],
+    "no-mixed-operators": "off",
+    "prefer-const": "error",
+    "prettier": true
   }
-
 }
