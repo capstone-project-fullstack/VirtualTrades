@@ -3,7 +3,7 @@ import TradeStocks from "@/app/modals/tradeStocks";
 import { currentUser } from "@clerk/nextjs";
 import Portfolio from "../../modals/portfolio";
 import TradeFormComponent from "./TradeFormComponent";
-import { revalidatePath } from "next/cache";
+
 
 const TradeForm = async ({ ticker }: { ticker: string }) => {
   const currUser = await currentUser();
@@ -24,29 +24,14 @@ const TradeForm = async ({ ticker }: { ticker: string }) => {
   const shareOwned = isSellable.length ? isSellable[0].shares : 0;
   const currentPrice = await Stock.getCurrentPrice(ticker);
 
-  const buyStock = async (data: FormData) => {
-    "use server";
-    const shares = data.get("sharesToBuy")?.valueOf();
-    if (!shares || !stock || !stock.id) return;
-    await TradeStocks.buyStock(userId, stock.id, Number(shares));
-    revalidatePath("/");
-  };
-
-  const sellStock = async (data: FormData) => {
-    "use server";
-    const shares = data.get("sharesToSell")?.valueOf();
-    if (!shares || !stock || !stock.id) return;
-    await TradeStocks.sellStock(userId, stock.id, Number(shares));
-    revalidatePath("/");
-  };
 
   return (
     <div className="w-full">
       <TradeFormComponent
         sharesOwned={shareOwned}
         price={currentPrice}
-        buyStock={buyStock}
-        sellStock={sellStock}
+        userId={userId}
+        stockId={stock.id}
         buyingPower={buyingPower}
       />
     </div>

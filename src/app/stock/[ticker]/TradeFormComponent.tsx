@@ -14,28 +14,30 @@ import {
   Tab,
   TabPanel,
 } from "@material-tailwind/react";
+import axios from "axios";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 interface TradeFormProps {
   price: number;
   sharesOwned: number;
-  buyStock: (data: FormData) => void;
-  sellStock: (data: FormData) => void;
   buyingPower: number;
+  userId: string;
+  stockId: number;
 }
 
 export default function TradeForm({
   price,
   sharesOwned,
-  buyStock,
-  sellStock,
   buyingPower,
+  userId,
+  stockId,
 }: TradeFormProps) {
   const [type, setType] = useState("buy");
   const [buyShares, setBuyShares] = useState(0);
   const [sellShares, setSellShares] = useState(0);
-
+  const [shares, setShares] = useState(sharesOwned);
+  const [cash, setCash] = useState(buyingPower);
   const formatPrice = (price: number) => {
     return price.toLocaleString("en-US", {
       style: "currency",
@@ -43,6 +45,42 @@ export default function TradeForm({
     });
   };
 
+  useEffect(() => {
+    if (shares <= 0) {
+      setType("buy");
+    }
+  }, [shares]);
+
+  const buyStock = async (e: any) => {
+    e.preventDefault();
+    const shares = Number(e.target.elements.sharesToBuy.value);
+    const res = await axios.post(`/api/buyStock`, {
+      shares,
+      stockId,
+      userId,
+    });
+    if (res.status === 200) {
+      setCash(cash - shares * price);
+      setShares(shares + buyShares);
+      setBuyShares(0);
+    }
+  };
+
+  const sellStock = async (e: any) => {
+    e.preventDefault();
+    const shares = Number(e.target.elements.sharesToSell.value);
+    const res = await axios.post(`/api/sellStock`, {
+      shares,
+      stockId,
+      userId,
+    });
+
+    if (res.status === 200) {
+      setCash(cash + shares * price);
+      setShares(shares - sellShares);
+      setSellShares(0);
+    }
+  };
 
   return (
     <Card className="w-full max-w-[24rem]">
@@ -65,7 +103,7 @@ export default function TradeForm({
             <Tab
               value="sell"
               onClick={() => setType("sell")}
-              disabled={sharesOwned <= 0}
+              disabled={shares <= 0}
             >
               Sell
             </Tab>
@@ -85,11 +123,7 @@ export default function TradeForm({
             }}
           >
             <TabPanel value="buy" className="p-0">
-              <form
-                action={buyStock}
-
-                className="mt-6 flex flex-col gap-4"
-              >
+              <form onSubmit={buyStock} className="mt-6 flex flex-col gap-4">
                 <div>
                   <Input
                     label="Number of Shares"
@@ -100,7 +134,7 @@ export default function TradeForm({
                     onChange={(e) => setBuyShares(Number(e.target.value))}
                     value={buyShares}
                     min={1}
-                    max={Math.floor(buyingPower / price)}
+                    max={Math.floor(cash / price)}
                     required
                   />
                 </div>
@@ -118,9 +152,7 @@ export default function TradeForm({
                   </div>
                   <div className="border-b border-black">
                     Buying Power:{" "}
-                    <span className="float-right">
-                      {formatPrice(buyingPower)}
-                    </span>
+                    <span className="float-right">{formatPrice(cash)}</span>
                   </div>
                   <div className="border-b border-black">
                     Cost per Share:{" "}
@@ -139,7 +171,7 @@ export default function TradeForm({
               </form>
             </TabPanel>
             <TabPanel value="sell" className="p-0">
-              <form action={sellStock} className="mt-6 flex flex-col gap-4">
+              <form onSubmit={sellStock} className="mt-6 flex flex-col gap-4">
                 <div>
                   <Input
                     label="Number of Shares"
@@ -150,7 +182,7 @@ export default function TradeForm({
                     onChange={(e) => setSellShares(Number(e.target.value))}
                     min={1}
                     value={sellShares}
-                    max={sharesOwned}
+                    max={shares}
                     required
                   />
                 </div>
@@ -167,14 +199,11 @@ export default function TradeForm({
                     Quantity: <span className="float-right">{sellShares}</span>
                   </div>
                   <div className="border-b border-black">
-                    Shares Owned:{" "}
-                    <span className="float-right">{sharesOwned}</span>
+                    Shares Owned: <span className="float-right">{shares}</span>
                   </div>
                   <div className="border-b border-black">
                     Buying Power:{" "}
-                    <span className="float-right">
-                      {formatPrice(buyingPower)}
-                    </span>
+                    <span className="float-right">{formatPrice(cash)}</span>
                   </div>
                   <div className="border-b border-black">
                     Cost per Share:{" "}
