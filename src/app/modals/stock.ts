@@ -30,10 +30,12 @@ class Stock {
       .then((res) => res.data)
       .catch((err) => console.log(err));
 
+    const price = Number(c.toFixed(2));
+
     if (await this.findStockIfExist(symbol)) {
-      await this.updateCurrentPrice(symbol, c);
+      await this.updateCurrentPrice(symbol, price);
     }
-    return Number(c.toFixed(2));
+    return price;
   }
 
   static async createStockIfNotExist(symbol: string) {

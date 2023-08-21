@@ -86,6 +86,7 @@
 // };
 
 // export default StockPage;
+// 'use client';
 
 import AnalysisWidget from '../../components/widgets/AnalysisWidget';
 import CompanyFundamentalData from '../../components/widgets/CompanyFundamentalsData';

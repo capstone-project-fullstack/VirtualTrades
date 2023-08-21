@@ -26,6 +26,7 @@ const TradeForm = async ({ ticker }: { ticker: string }) => {
   return (
     <div className="w-full">
       <TradeFormComponent
+        ticker={ticker}
         sharesOwned={shareOwned}
         price={currentPrice}
         userId={userId}

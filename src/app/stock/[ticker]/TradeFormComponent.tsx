@@ -24,6 +24,7 @@ interface TradeFormProps {
   buyingPower: number;
   userId: string;
   stockId: number;
+  ticker: string;
 }
 
 export default function TradeForm({
@@ -32,24 +33,56 @@ export default function TradeForm({
   buyingPower,
   userId,
   stockId,
+  ticker,
 }: TradeFormProps) {
   const [type, setType] = useState('buy');
   const [buyShares, setBuyShares] = useState(0);
   const [sellShares, setSellShares] = useState(0);
   const [shares, setShares] = useState(sharesOwned);
   const [cash, setCash] = useState(buyingPower);
-  const formatPrice = (price: number) => {
-    return price.toLocaleString('en-US', {
-      style: 'currency',
-      currency: 'USD',
-    });
-  };
+  const [latestPrice, setLatestPrice] = useState(price);
 
   useEffect(() => {
     if (shares <= 0) {
       setType('buy');
     }
   }, [shares]);
+
+  useEffect(() => {
+    const socket = new WebSocket(
+      `wss://ws.finnhub.io?token=cjhubehr01qonds7gfn0cjhubehr01qonds7gfng`
+    );
+
+    // Connection opened -> Subscribe
+    socket.addEventListener('open', () => {
+      socket.send(JSON.stringify({ type: 'subscribe', symbol: ticker }));
+    });
+
+    // Inside the message event listener:
+    socket.addEventListener('message', (e) => {
+      if (e.data) {
+        try {
+          const data = JSON.parse(e.data);
+          if (data.type === 'trade') {
+            const trades = data.data;
+            if (trades.length > 0) {
+              const lastTrade = trades[trades.length - 1];
+              const lastPrice = Number(lastTrade.p.toFixed(2));
+              setLatestPrice(lastPrice);
+              axios
+                .patch(`/api/updateStockPrice`, {
+                  ticker,
+                  price: lastPrice,
+                })
+                .catch((err) => console.log(err));
+            }
+          }
+        } catch (error) {
+          console.error('Error parsing JSON data:', error);
+        }
+      }
+    });
+  }, [ticker]);
 
   const buyStock = async (e: any) => {
     e.preventDefault();
@@ -61,7 +94,7 @@ export default function TradeForm({
     });
 
     if (res.status === 200) {
-      setCash(cash - sharesToBuy * price);
+      setCash(cash - sharesToBuy * latestPrice);
       setShares(shares + sharesToBuy);
       setBuyShares(0);
     }
@@ -77,11 +110,18 @@ export default function TradeForm({
     });
 
     if (res.status === 200) {
-      setCash(cash + sharesToSell * price);
+      setCash(cash + sharesToSell * latestPrice);
       setShares(shares - sharesToSell);
       setSellShares(0);
     }
   }
+
+  const formatPrice = (price: number) => {
+    return price.toLocaleString('en-US', {
+      style: 'currency',
+      currency: 'USD',
+    });
+  };
 
   return (
     <Card className="w-full max-w-[24rem]">
@@ -135,7 +175,7 @@ export default function TradeForm({
                     onChange={(e) => setBuyShares(Number(e.target.value))}
                     value={buyShares}
                     min={1}
-                    max={Math.floor(cash / price)}
+                    max={Math.floor(cash / latestPrice)}
                     required
                   />
                 </div>
@@ -157,12 +197,14 @@ export default function TradeForm({
                   </div>
                   <div className="border-b border-black">
                     Cost per Share:{' '}
-                    <span className="float-right">{formatPrice(price)}</span>
+                    <span className="float-right">
+                      {formatPrice(latestPrice)}
+                    </span>
                   </div>
                   <div className="border-b border-black">
                     Total:{' '}
                     <span className="float-right">
-                      {formatPrice(price * buyShares)}
+                      {formatPrice(latestPrice * buyShares)}
                     </span>
                   </div>
                 </div>
@@ -213,7 +255,7 @@ export default function TradeForm({
                   <div className="border-b border-black">
                     Total:{' '}
                     <span className="float-right">
-                      {formatPrice(price * sellShares)}
+                      {formatPrice(latestPrice * sellShares)}
                     </span>
                   </div>
 
