@@ -135,7 +135,7 @@ export default function Navbar() {
           <li key={index} onClick={() => isOpen(false)}>
             <Link
               href={item.href}
-              className="text-gray-300 text-sm flex items-center gap-x-4 cursor-pointer px-[5px] py-1  hover:bg-light-white rounded-md focus:bg-light-white"
+              className="text-gray-300 text-sm flex items-center gap-x-4 cursor-pointer px-[5px] py-1 my-2 hover:bg-light-white rounded-md focus:bg-light-white"
             >
               {!open ? (
                 <Tooltip
@@ -161,7 +161,7 @@ export default function Navbar() {
       </ul>
       <div>
         <SignedIn>
-          <div className="flex items-center gap-x-4 cursor-pointer p-1">
+          <div className="flex items-center gap-x-4 cursor-pointer p-1 my-2">
             <UserButton afterSignOutUrl="/" />
             <div
               className={`text-base font-medium flex-1 duration-200 ${
@@ -173,7 +173,7 @@ export default function Navbar() {
           </div>
         </SignedIn>
         <SignedOut>
-          <div className="text-gray-300 text-sm flex items-center gap-x-4 cursor-pointer p-2 hover:bg-light-white rounded-md focus:bg-light-white">
+          <div className="text-gray-300 text-sm flex items-center gap-x-4 cursor-pointer p-2 hover:bg-light-white rounded-md focus:bg-light-white my-2">
             <div>
               <IoIosLogIn
                 className="text-2xl block float-left"

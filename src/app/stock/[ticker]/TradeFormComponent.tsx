@@ -1,6 +1,7 @@
 /* eslint-disable no-unused-vars */
 'use client';
 
+import { NotificationDialog } from '@/app/components/NotificationDialog';
 import {
   Card,
   CardHeader,
@@ -13,7 +14,9 @@ import {
   TabsBody,
   Tab,
   TabPanel,
+  Spinner,
 } from '@material-tailwind/react';
+
 import axios from 'axios';
 
 import { useEffect, useState } from 'react';
@@ -41,6 +44,13 @@ export default function TradeForm({
   const [shares, setShares] = useState(sharesOwned);
   const [cash, setCash] = useState(buyingPower);
   const [latestPrice, setLatestPrice] = useState(price);
+  const [loading, setLoading] = useState(false);
+  const [dialogContent, setDialogContent] = useState({
+    open: false,
+    title: '',
+    subTitle: '',
+    message: '',
+  });
 
   useEffect(() => {
     if (shares <= 0) {
@@ -48,44 +58,87 @@ export default function TradeForm({
     }
   }, [shares]);
 
-  useEffect(() => {
-    const socket = new WebSocket(
-      `wss://ws.finnhub.io?token=cjhubehr01qonds7gfn0cjhubehr01qonds7gfng`
-    );
+  // useEffect(() => {
+  //   const socket = new WebSocket(
+  //     `wss://ws.finnhub.io?token=cjhubehr01qonds7gfn0cjhubehr01qonds7gfng`
+  //   );
 
-    // Connection opened -> Subscribe
-    socket.addEventListener('open', () => {
-      socket.send(JSON.stringify({ type: 'subscribe', symbol: ticker }));
-    });
+  //   // Connection opened -> Subscribe
+  //   socket.addEventListener('open', () => {
+  //     socket.send(JSON.stringify({ type: 'subscribe', symbol: ticker }));
+  //   });
 
-    // Inside the message event listener:
-    socket.addEventListener('message', (e) => {
-      if (e.data) {
-        try {
-          const data = JSON.parse(e.data);
-          if (data.type === 'trade') {
-            const trades = data.data;
-            if (trades.length > 0) {
-              const lastTrade = trades[trades.length - 1];
-              const lastPrice = Number(lastTrade.p.toFixed(2));
-              setLatestPrice(lastPrice);
-              axios
-                .patch(`/api/updateStockPrice`, {
-                  ticker,
-                  price: lastPrice,
-                })
-                .catch((err) => console.log(err));
-            }
-          }
-        } catch (error) {
-          console.error('Error parsing JSON data:', error);
-        }
-      }
-    });
-  }, [ticker]);
+  //   // Inside the message event listener:
+  //   const interval = setInterval(() => {
+  //     socket.addEventListener('message', (e) => {
+  //       if (e.data) {
+  //         try {
+  //           const data = JSON.parse(e.data);
+  //           if (data.type === 'trade') {
+  //             const trades = data.data;
+  //             if (trades.length > 0) {
+  //               const lastTrade = trades[trades.length - 1];
+  //               const lastPrice = Number(lastTrade.p.toFixed(2));
+  //               setLatestPrice(lastPrice);
+  //               axios
+  //                 .patch(`/api/updateStockPrice`, {
+  //                   ticker,
+  //                   price: lastPrice,
+  //                 })
+  //                 .catch((err) => console.log(err));
+  //             }
+  //           }
+  //         } catch (error) {
+  //           console.error('Error parsing JSON data:', error);
+  //         }
+  //       }
+  //     });
+  //   }, 10000);
+
+  //   return () => {
+  //     clearInterval(interval);
+  //   };
+  // }, [ticker]);
+
+  // useEffect(() => {
+  //   const socket = new WebSocket(
+  //     `wss://ws.finnhub.io?token=cjhubehr01qonds7gfn0cjhubehr01qonds7gfng`
+  //   );
+
+  //   // Connection opened -> Subscribe
+  //   socket.addEventListener('open', () => {
+  //     socket.send(JSON.stringify({ type: 'subscribe', symbol: ticker }));
+  //   });
+
+  //   // Inside the message event listener:
+  //   socket.addEventListener('message', (e) => {
+  //     if (e.data) {
+  //       try {
+  //         const data = JSON.parse(e.data);
+  //         if (data.type === 'trade') {
+  //           const trades = data.data;
+  //           if (trades.length > 0) {
+  //             const lastTrade = trades[trades.length - 1];
+  //             const lastPrice = Number(lastTrade.p.toFixed(2));
+  //             setLatestPrice(lastPrice);
+  //             axios
+  //               .patch(`/api/updateStockPrice`, {
+  //                 ticker,
+  //                 price: lastPrice,
+  //               })
+  //               .catch((err) => console.log(err));
+  //           }
+  //         }
+  //       } catch (error) {
+  //         console.error('Error parsing JSON data:', error);
+  //       }
+  //     }
+  //   });
+  // }, [ticker]);
 
   const buyStock = async (e: any) => {
     e.preventDefault();
+    setLoading(() => true);
     const sharesToBuy = Number(e.target.elements.sharesToBuy.value);
     const res = await axios.post(`/api/buyStock`, {
       shares: sharesToBuy,
@@ -97,12 +150,30 @@ export default function TradeForm({
       setCash(cash - sharesToBuy * latestPrice);
       setShares(shares + sharesToBuy);
       setBuyShares(0);
+      setDialogContent({
+        open: true,
+        title: 'Success',
+        subTitle: 'Stock bought successfully',
+        message: `You bought ${sharesToBuy} shares of ${ticker} for ${formatPrice(
+          sharesToBuy * latestPrice
+        )} at the price of ${formatPrice(latestPrice)}`,
+      });
+      setLoading(() => false);
+    } else {
+      setDialogContent({
+        open: true,
+        title: 'Error',
+        subTitle: 'Stock Purchase failed',
+        message: 'Error buying stock',
+      });
+      setLoading(() => false);
     }
   };
 
   async function sellStock(e: any) {
     e.preventDefault();
     const sharesToSell = Number(e.target.elements.sharesToSell.value);
+    setLoading(() => true);
     const res = await axios.post(`/api/sellStock`, {
       shares: sharesToSell,
       stockId,
@@ -113,6 +184,23 @@ export default function TradeForm({
       setCash(cash + sharesToSell * latestPrice);
       setShares(shares - sharesToSell);
       setSellShares(0);
+      setDialogContent({
+        open: true,
+        title: 'Success',
+        subTitle: 'Stock sold successfully',
+        message: `You sold ${sharesToSell} shares of ${ticker} for ${formatPrice(
+          sharesToSell * latestPrice
+        )} at the price of ${formatPrice(latestPrice)}`,
+      });
+      setLoading(() => false);
+    } else {
+      setDialogContent({
+        open: true,
+        title: 'Error',
+        subTitle: 'Stock sold failed',
+        message: 'Error selling stock',
+      });
+      setLoading(() => false);
     }
   }
 
@@ -125,6 +213,10 @@ export default function TradeForm({
 
   return (
     <Card className="w-full max-w-[24rem]">
+      <NotificationDialog
+        dialogContent={dialogContent}
+        setDialogContent={setDialogContent}
+      />
       <CardHeader
         color="gray"
         floated={false}
@@ -192,6 +284,9 @@ export default function TradeForm({
                     Quantity: <span className="float-right">{buyShares}</span>
                   </div>
                   <div className="border-b border-black">
+                    Shares Owned: <span className="float-right">{shares}</span>
+                  </div>
+                  <div className="border-b border-black">
                     Buying Power:{' '}
                     <span className="float-right">{formatPrice(cash)}</span>
                   </div>
@@ -208,8 +303,13 @@ export default function TradeForm({
                     </span>
                   </div>
                 </div>
-                <Button type="submit" size="lg">
-                  Buy
+                <Button
+                  type="submit"
+                  className="f-center"
+                  size="lg"
+                  disabled={loading}
+                >
+                  {loading ? <Spinner /> : 'Buy'}
                 </Button>
               </form>
             </TabPanel>
@@ -258,11 +358,16 @@ export default function TradeForm({
                       {formatPrice(latestPrice * sellShares)}
                     </span>
                   </div>
-
-                  <div className="my-4 flex items-center gap-4"></div>
+                  {/* 
+                  <div className="my-4 flex items-center gap-4"></div> */}
                 </div>
-                <Button type="submit" size="lg" disabled={shares <= 0}>
-                  Sell
+                <Button
+                  className="f-center"
+                  type="submit"
+                  size="lg"
+                  disabled={shares <= 0 || loading}
+                >
+                  {loading ? <Spinner /> : 'Sell'}
                 </Button>
               </form>
             </TabPanel>
