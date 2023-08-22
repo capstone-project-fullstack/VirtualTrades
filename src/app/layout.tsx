@@ -33,9 +33,9 @@ export default function RootLayout({
         </head>
         <body className="text-white bg-dark-black">
           <div>
-            <Navbar />
+            <Navbar/>
             {/* <FooterWithLogo /> */}
-            <main className="ml-20 h-screen">{children}</main>
+            <main className="ml-16 h-screen">{children}</main>
             <FooterWithLogo />
           </div>
         </body>
