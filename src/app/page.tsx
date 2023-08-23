@@ -156,10 +156,10 @@ export default function Home() {
                       PERSONAL DASHBOARD
                     </p> */}
                     <div className="w-full font-bold text-xl text-black px-6 mt-5">
-                      PERSONAL DASHBOARD
+                      PERSONAL PORTFOLIO
                     </div>
                     <p className="text-black text-base px-6 mb-5">
-                      Your personalized dashboard offers an instant snapshot of
+                      Your personalized portfolio offers an instant snapshot of
                       your investments and stock progress. Track performance,
                       stay updated with data analyses and make well-informed
                       decisions, effortlessly!
@@ -178,8 +178,8 @@ export default function Home() {
                 <div className="flex-none mt-auto bg-white rounded-b rounded-t-none overflow-hidden shadow p-6">
                   <div className="f-center">
                     <GradientButtonRounded
-                      text="Dashboard"
-                      onClick={() => handleRoute('dashboard')}
+                      text="Portfolio"
+                      onClick={() => handleRoute('portfolio')}
                       className="bg-none bg-dark-green"
                     />
                   </div>

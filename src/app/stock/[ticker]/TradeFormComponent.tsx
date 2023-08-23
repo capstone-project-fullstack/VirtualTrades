@@ -59,17 +59,17 @@ export default function TradeForm({
   }, [shares]);
 
   // useEffect(() => {
-  //   const socket = new WebSocket(
-  //     `wss://ws.finnhub.io?token=cjhubehr01qonds7gfn0cjhubehr01qonds7gfng`
-  //   );
+  //   let socket: WebSocket | null = null;
 
-  //   // Connection opened -> Subscribe
-  //   socket.addEventListener('open', () => {
-  //     socket.send(JSON.stringify({ type: 'subscribe', symbol: ticker }));
-  //   });
+  //   const connectSocket = () => {
+  //     socket = new WebSocket(
+  //       `wss://ws.finnhub.io?token=cjhubehr01qonds7gfn0cjhubehr01qonds7gfng`
+  //     );
 
-  //   // Inside the message event listener:
-  //   const interval = setInterval(() => {
+  //     socket.addEventListener('open', () => {
+  //       socket!.send(JSON.stringify({ type: 'subscribe', symbol: ticker }));
+  //     });
+
   //     socket.addEventListener('message', (e) => {
   //       if (e.data) {
   //         try {
@@ -80,12 +80,6 @@ export default function TradeForm({
   //               const lastTrade = trades[trades.length - 1];
   //               const lastPrice = Number(lastTrade.p.toFixed(2));
   //               setLatestPrice(lastPrice);
-  //               axios
-  //                 .patch(`/api/updateStockPrice`, {
-  //                   ticker,
-  //                   price: lastPrice,
-  //                 })
-  //                 .catch((err) => console.log(err));
   //             }
   //           }
   //         } catch (error) {
@@ -93,80 +87,119 @@ export default function TradeForm({
   //         }
   //       }
   //     });
-  //   }, 10000);
+  //   };
+
+  //   const unsubscribeAndReconnect = () => {
+  //     if (socket && socket.readyState === WebSocket.OPEN) {
+  //       socket.send(JSON.stringify({ type: 'unsubscribe', symbol: ticker }));
+  //       socket.close();
+  //     }
+  //     connectSocket();
+  //   };
+
+  //   connectSocket(); // Initial connection
+
+  //   const interval = setInterval(unsubscribeAndReconnect, 3000);
 
   //   return () => {
   //     clearInterval(interval);
-  //   };
-  // }, [ticker]);
-
-  // useEffect(() => {
-  //   const socket = new WebSocket(
-  //     `wss://ws.finnhub.io?token=cjhubehr01qonds7gfn0cjhubehr01qonds7gfng`
-  //   );
-
-  //   // Connection opened -> Subscribe
-  //   socket.addEventListener('open', () => {
-  //     socket.send(JSON.stringify({ type: 'subscribe', symbol: ticker }));
-  //   });
-
-  //   // Inside the message event listener:
-  //   socket.addEventListener('message', (e) => {
-  //     if (e.data) {
-  //       try {
-  //         const data = JSON.parse(e.data);
-  //         if (data.type === 'trade') {
-  //           const trades = data.data;
-  //           if (trades.length > 0) {
-  //             const lastTrade = trades[trades.length - 1];
-  //             const lastPrice = Number(lastTrade.p.toFixed(2));
-  //             setLatestPrice(lastPrice);
-  //             axios
-  //               .patch(`/api/updateStockPrice`, {
-  //                 ticker,
-  //                 price: lastPrice,
-  //               })
-  //               .catch((err) => console.log(err));
-  //           }
-  //         }
-  //       } catch (error) {
-  //         console.error('Error parsing JSON data:', error);
-  //       }
+  //     if (socket && socket.readyState === WebSocket.OPEN) {
+  //       socket.send(JSON.stringify({ type: 'unsubscribe', symbol: ticker }));
+  //       socket.close();
   //     }
-  //   });
-  // }, [ticker]);
+  //   };
+  // }, [ticker, latestPrice]);
+
+  useEffect(() => {
+    const socket = new WebSocket(
+      `wss://ws.finnhub.io?token=cjhubehr01qonds7gfn0cjhubehr01qonds7gfng`
+    );
+
+    // Connection opened -> Subscribe
+    socket.addEventListener('open', () => {
+      socket.send(JSON.stringify({ type: 'subscribe', symbol: ticker }));
+    });
+
+    // Inside the message event listener:
+    socket.addEventListener('message', (e) => {
+      if (e.data) {
+        try {
+          const data = JSON.parse(e.data);
+          if (data.type === 'trade') {
+            const trades = data.data;
+            if (trades.length > 0) {
+              const lastTrade = trades[trades.length - 1];
+              const lastPrice = Number(lastTrade.p.toFixed(2));
+              setLatestPrice(lastPrice);
+              axios
+                .patch(`/api/updateStockPrice`, {
+                  ticker,
+                  price: lastPrice,
+                })
+                .catch((err) => console.log(err));
+            }
+          }
+        } catch (error) {
+          console.error('Error parsing JSON data:', error);
+        }
+      }
+    });
+  }, [ticker]);
 
   const buyStock = async (e: any) => {
     e.preventDefault();
-    setLoading(() => true);
+    setLoading(true);
     const sharesToBuy = Number(e.target.elements.sharesToBuy.value);
-    const res = await axios.post(`/api/buyStock`, {
-      shares: sharesToBuy,
-      stockId,
-      userId,
-    });
 
-    if (res.status === 200) {
-      setCash(cash - sharesToBuy * latestPrice);
-      setShares(shares + sharesToBuy);
-      setBuyShares(0);
-      setDialogContent({
-        open: true,
-        title: 'Success',
-        subTitle: 'Stock bought successfully',
-        message: `You bought ${sharesToBuy} shares of ${ticker} for ${formatPrice(
-          sharesToBuy * latestPrice
-        )} at the price of ${formatPrice(latestPrice)}`,
+    try {
+      const res = await axios.post(`/api/buyStock`, {
+        shares: sharesToBuy,
+        stockId,
+        userId,
       });
-      setLoading(() => false);
-    } else {
-      setDialogContent({
-        open: true,
-        title: 'Error',
-        subTitle: 'Stock Purchase failed',
-        message: 'Error buying stock',
-      });
-      setLoading(() => false);
+      console.log(res);
+
+      if (res.status === 200) {
+        setCash(cash - sharesToBuy * latestPrice);
+        setShares(shares + sharesToBuy);
+        setBuyShares(0);
+        setDialogContent({
+          open: true,
+          title: 'Success',
+          subTitle: 'Stock bought successfully',
+          message: `You bought ${sharesToBuy} shares of ${ticker} for ${formatPrice(
+            sharesToBuy * latestPrice
+          )} at the price of ${formatPrice(Number(res.data.price))}`,
+        });
+      } else {
+        setDialogContent({
+          open: true,
+          title: 'Error',
+          subTitle: 'Stock Purchase failed',
+          message: 'Error buying stock',
+        });
+      }
+    } catch (error: any) {
+      console.error('Error buying stock:', error);
+
+      // Handle more specific error messages based on the server response
+      if (error.response && error.response.status === 500) {
+        setDialogContent({
+          open: true,
+          title: 'Error',
+          subTitle: 'Stock Purchase failed',
+          message: 'Insufficient funds to buy the stock',
+        });
+      } else {
+        setDialogContent({
+          open: true,
+          title: 'Error',
+          subTitle: 'Stock Purchase failed',
+          message: 'An unexpected error occurred',
+        });
+      }
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -178,7 +211,7 @@ export default function TradeForm({
       shares: sharesToSell,
       stockId,
       userId,
-    });
+    })
 
     if (res.status === 200) {
       setCash(cash + sharesToSell * latestPrice);
@@ -190,7 +223,7 @@ export default function TradeForm({
         subTitle: 'Stock sold successfully',
         message: `You sold ${sharesToSell} shares of ${ticker} for ${formatPrice(
           sharesToSell * latestPrice
-        )} at the price of ${formatPrice(latestPrice)}`,
+        )} at the price of ${formatPrice(Number(res.data.price))}`,
       });
       setLoading(() => false);
     } else {
