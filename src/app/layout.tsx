@@ -30,7 +30,7 @@ export default function RootLayout({
           ></link>
           <title>Virtual Trades</title>
         </head>
-        <body className="text-white bg-dark-black">
+        <body className="text-white bg-dark-black ">
           <div>
             <Navbar />
             {/* <FooterWithLogo /> */}

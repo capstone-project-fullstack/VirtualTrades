@@ -41,7 +41,7 @@ export default function Navbar() {
 
   const items = [
     { name: 'Home', href: '/', icon: <IoIosHome /> },
-    { name: 'Dashboard', href: '/dashboard', icon: <MdDashboard /> },
+    { name: 'Portfolio', href: '/portfolio', icon: <MdDashboard /> },
     { name: 'News', href: '/news', icon: <BiNews /> },
     { name: 'Market', href: '/market', icon: <IoMdTrendingUp /> },
     { name: 'Watchlists', href: '/watchlists', icon: <BiBookmark /> },
@@ -82,19 +82,19 @@ export default function Navbar() {
         </Link>
       </div>
       <div
-        className={`flex items-center rounded-md bg-light-white mt-6 py-2 ${
+        className={`flex items-center rounded-md bg-light-white mt-6 py-1  ${
           !open ? 'px-2.5' : 'px-4'
         }`}
       >
         <BsSearch
-          className={`text-white text-lg block float-left cursor-pointer ${
+          className={`text-white ${!open ? 'text-3xl' : 'text-2xl'} block float-left cursor-pointer ${
             open && 'mr-2'
           } `}
           onClick={() => isOpen(true)}
         />
         <input
           type="search"
-          placeholder="Search for stocks"
+          placeholder="Search Stocks"
           className={`!w-full text-white bg-transparent outline-none ${
             !open && 'hidden'
           }`}
@@ -130,18 +130,18 @@ export default function Navbar() {
           </div>
         )}
       </div>
-      <ul className="pt-2">
+      <ul className="pt-1">
         {items.map((item, index) => (
           <li key={index} onClick={() => isOpen(false)}>
             <Link
               href={item.href}
-              className="text-gray-300 text-sm flex items-center gap-x-4 cursor-pointer px-[5px] py-1  hover:bg-light-white rounded-md focus:bg-light-white"
+              className="text-gray-300 text-sm flex items-center gap-x-4 cursor-pointer px-[5px] py-1 my-2 hover:bg-light-white rounded-md focus:bg-light-white"
             >
               {!open ? (
                 <Tooltip
                   content={item.name}
                   placement="right-end"
-                  className="ml-2 mt-1 bg-white text-black"
+                  className="ml-2  bg-white text-black"
                 >
                   <div className="text-3xl block float-left">{item.icon}</div>
                 </Tooltip>
@@ -161,7 +161,7 @@ export default function Navbar() {
       </ul>
       <div>
         <SignedIn>
-          <div className="flex items-center gap-x-4 cursor-pointer p-1">
+          <div className="flex items-center gap-x-4 cursor-pointer p-1 my-2">
             <UserButton afterSignOutUrl="/" />
             <div
               className={`text-base font-medium flex-1 duration-200 ${
@@ -173,7 +173,7 @@ export default function Navbar() {
           </div>
         </SignedIn>
         <SignedOut>
-          <div className="text-gray-300 text-sm flex items-center gap-x-4 cursor-pointer p-2 hover:bg-light-white rounded-md focus:bg-light-white">
+          <div className="text-gray-300 text-sm flex items-center gap-x-4 cursor-pointer p-2 hover:bg-light-white rounded-md focus:bg-light-white my-2">
             <div>
               <IoIosLogIn
                 className="text-2xl block float-left"

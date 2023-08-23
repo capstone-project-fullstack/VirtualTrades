@@ -3,11 +3,14 @@ import TradeStocks from '@/app/modals/tradeStocks';
 import { currentUser } from '@clerk/nextjs';
 import Portfolio from '../../modals/portfolio';
 import TradeFormComponent from './TradeFormComponent';
+import UserService from '@/app/modals/user';
 
 const TradeForm = async ({ ticker }: { ticker: string }) => {
   const currUser = await currentUser();
   if (!currUser) return <div></div>;
   const userId = currUser.id;
+  const userExist = await UserService.findUser(userId);
+  if (!userExist) UserService.createUser(userId);
 
   let stock = await Stock.findStockIfExist(ticker);
 

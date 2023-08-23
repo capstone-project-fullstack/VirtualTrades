@@ -13,6 +13,7 @@ const Market = () => {
     <div className="w-full">
       <TopWidget />
       <HeaderText text="Market" />
+      <button>Submit</button>
       <div className="flex flex-col justify-center items-center gap-3">
         <div>
           <TextareaVariants text={'this is the description of this graph'} />
