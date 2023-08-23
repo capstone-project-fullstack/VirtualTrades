@@ -1,12 +1,12 @@
-"use client";
-import React from "react";
-import HorizontalCard from "./components/cards/HorizontalCard";
-import Img from "next/image";
-import SimpleCard from "./components/cards/SimpleCard";
-import { useRouter } from "next/navigation";
-import Svg from "./components/images/Svg";
-import { GradientButtonRounded } from "./components/buttons/Button";
-import TradingViewWidget from "./components/widgets/TopWidget";
+'use client';
+import React from 'react';
+import HorizontalCard from './components/cards/HorizontalCard';
+import Img from 'next/image';
+import SimpleCard from './components/cards/SimpleCard';
+import { useRouter } from 'next/navigation';
+import Svg from './components/images/Svg';
+import { GradientButtonRounded } from './components/buttons/Button';
+import TradingViewWidget from './components/widgets/TopWidget';
 
 export default function Home() {
   const handleRoute = (page: string) => {
@@ -21,20 +21,21 @@ export default function Home() {
           <div className="container px-12 my-8 mb-14 f-center flex-wrap flex-col md:flex-row">
             <div className="flex flex-col w-full md:w-1/2 justify-center items-start text-center md:text-left">
               <h1 className="my-4 text-5xl font-bold leading-tight">
-                Welcome to <span className="text-light-green">VirtualTrades</span>
+                Welcome to{' '}
+                <span className="text-light-green">VirtualTrades</span>
               </h1>
               {/* <p className="uppercase tracking-loose w-full ax-w-md text-2xl">
                 WHERE INVESTMENT BEGINS
               </p> */}
               <p className="leading-normal text-3xl mt-4 mb-8">
-                Learn to interpret financial indicators, charts and
-                graphs to make better informed decisions at the start of your
-                investment journey.
+                Learn to interpret financial indicators, charts and graphs to
+                make better informed decisions at the start of your investment
+                journey.
               </p>
               <p className="leading-normal text-2xl mb-8">
-                Ready to dive in? Welcome to the world of trading
-                stocks with no financial risk. Here, you can buy and sell
-                virtual stock at real market prices, every day!
+                Ready to dive in? Welcome to the world of trading stocks with no
+                financial risk. Here, you can buy and sell virtual stock at real
+                market prices, every day!
               </p>
             </div>
             <div className="w-full md:w-1/2 p-5 text-center">
@@ -67,7 +68,7 @@ export default function Home() {
                 text1="Sign up now to receive real-time overviews"
                 text2="Welcome to our Stock Market, where you can explore real-time trends and insights. An array of interactive graphs showcasing live stock data allows you to track the performance of various stocks and delve into comprehensive analyses."
                 text3="Examine trends and learn to invest with confidence!"
-                onClick={() => handleRoute("watchlists")}
+                onClick={() => handleRoute('watchlists')}
               />
             </div>
           </div>
@@ -122,11 +123,12 @@ export default function Home() {
                 Latest in Financial News
               </h3>
               <p className="text-white-700 text-lg mb-8">
-                News articles are not just headlines, they are valuable
-                learning resources. We curate the latest news, including expert
-                analyses and market insights to keep you up to date with the
+                News articles are not just headlines, they are valuable learning
+                resources. We curate the latest news, including expert analyses
+                and market insights to keep you up to date with the
                 ever-changing landscape. Whether trade tensions, economic data
-                releases, or geopolitical developments, understand how these factors influence stock prices.
+                releases, or geopolitical developments, understand how these
+                factors influence stock prices.
               </p>
             </div>
           </div>
@@ -137,9 +139,9 @@ export default function Home() {
 
       <section className="bg-purple py-8">
         <div>
-            <h1 className="w-full my-2 text-center text-4xl text-white-600 font-bold leading-none">
-              What we offer
-            </h1>
+          <h1 className="w-full my-2 text-center text-4xl text-white-600 font-bold leading-none">
+            What we offer
+          </h1>
         </div>
         <div className="container mx-auto flex flex-wrap pb-12">
           <div className="w-full md:w-1/3 p-6 flex flex-col flex-grow flex-shrink">
@@ -154,7 +156,7 @@ export default function Home() {
                       PERSONAL DASHBOARD
                     </p> */}
                     <div className="w-full font-bold text-xl text-black px-6 mt-5">
-                    PERSONAL DASHBOARD
+                      PERSONAL DASHBOARD
                     </div>
                     <p className="text-black text-base px-6 mb-5">
                       Your personalized dashboard offers an instant snapshot of
@@ -174,10 +176,10 @@ export default function Home() {
                   </div>
                 </div>
                 <div className="flex-none mt-auto bg-white rounded-b rounded-t-none overflow-hidden shadow p-6">
-                <div className="f-center">
+                  <div className="f-center">
                     <GradientButtonRounded
                       text="Dashboard"
-                      onClick={() => handleRoute("dashboard")}
+                      onClick={() => handleRoute('dashboard')}
                       className="bg-none bg-dark-green"
                     />
                   </div>
@@ -198,10 +200,13 @@ export default function Home() {
                       BUY AND SELL STOCK
                     </p> */}
                     <div className="w-full font-bold text-xl text-black px-6 mt-5">
-                    BUY AND SELL STOCK
+                      BUY AND SELL STOCK
                     </div>
                     <p className="text-black text-base px-6 mb-5">
-                      Explore the stock market on an interactive map and buy or sell your stocks in real-time. Visit our virtual stock analyses page, research a companies performance, and shop stock risk-free!
+                      Explore the stock market on an interactive map and buy or
+                      sell your stocks in real-time. Visit our virtual stock
+                      analyses page, research a companies performance, and shop
+                      stock risk-free!
                     </p>
                   </a>
                   <div>
@@ -215,11 +220,10 @@ export default function Home() {
                   </div>
                 </div>
                 <div className="flex-none mt-auto bg-white rounded-b rounded-t-none overflow-hidden shadow p-6">
-
-                <div className="f-center">
+                  <div className="f-center">
                     <GradientButtonRounded
                       text="Explore"
-                      onClick={() => handleRoute("landing")}
+                      onClick={() => handleRoute('landing')}
                       className="bg-none bg-dark-green"
                     />
                   </div>
@@ -240,12 +244,13 @@ export default function Home() {
                       ABOUT US
                     </p> */}
                     <div className="w-full font-bold text-xl text-black px-6 mt-5">
-                    MORE ABOUT US
+                      MORE ABOUT US
                     </div>
                     <p className="text-black text-base px-6 mb-5">
-                      Delve into our mission, learn about our team, and our values here at Virtual Trades. We are dedicated to armoring you with the
-                      right tools to confidently navigate this new world of
-                      investing.
+                      Delve into our mission, learn about our team, and our
+                      values here at Virtual Trades. We are dedicated to
+                      armoring you with the right tools to confidently navigate
+                      this new world of investing.
                     </p>
                   </a>
                   <div>
@@ -259,10 +264,10 @@ export default function Home() {
                   </div>
                 </div>
                 <div className="flex-none mt-auto bg-white rounded-b rounded-t-none overflow-hidden shadow p-6">
-                <div className="f-center">
+                  <div className="f-center">
                     <GradientButtonRounded
                       text="About Us"
-                      onClick={() => handleRoute("landing")}
+                      onClick={() => handleRoute('landing')}
                       className="bg-none bg-dark-green"
                     />
                   </div>
@@ -322,13 +327,12 @@ export default function Home() {
         </h3>
 
         <div className="f-center mt-10 mb-5">
-                    <GradientButtonRounded
-                      text="Get Started!"
-                      onClick={() => handleRoute("market")}
-                      className="bg-none bg-light-green"
-                    />
-                  </div>
-
+          <GradientButtonRounded
+            text="Get Started!"
+            onClick={() => handleRoute('market')}
+            className="bg-none bg-light-green"
+          />
+        </div>
       </section>
     </div>
   );

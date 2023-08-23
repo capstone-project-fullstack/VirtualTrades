@@ -1,7 +1,6 @@
-import { SignUp } from "@clerk/nextjs";
+import { SignUp } from '@clerk/nextjs';
 // import { prisma } from "../../../lib/prisma";
 // import { auth } from '@clerk/nextjs';
-
 
 // async function createUser(userId: string) {
 //   // return prisma

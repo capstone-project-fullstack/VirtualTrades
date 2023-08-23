@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-"use client";
+'use client';
 
 import {
   Card,
@@ -13,10 +13,10 @@ import {
   TabsBody,
   Tab,
   TabPanel,
-} from "@material-tailwind/react";
-import axios from "axios";
+} from '@material-tailwind/react';
+import axios from 'axios';
 
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
 
 interface TradeFormProps {
   price: number;
@@ -24,6 +24,7 @@ interface TradeFormProps {
   buyingPower: number;
   userId: string;
   stockId: number;
+  ticker: string;
 }
 
 export default function TradeForm({
@@ -32,54 +33,94 @@ export default function TradeForm({
   buyingPower,
   userId,
   stockId,
+  ticker,
 }: TradeFormProps) {
-  const [type, setType] = useState("buy");
+  const [type, setType] = useState('buy');
   const [buyShares, setBuyShares] = useState(0);
   const [sellShares, setSellShares] = useState(0);
   const [shares, setShares] = useState(sharesOwned);
   const [cash, setCash] = useState(buyingPower);
-  const formatPrice = (price: number) => {
-    return price.toLocaleString("en-US", {
-      style: "currency",
-      currency: "USD",
-    });
-  };
+  const [latestPrice, setLatestPrice] = useState(price);
 
   useEffect(() => {
     if (shares <= 0) {
-      setType("buy");
+      setType('buy');
     }
   }, [shares]);
 
+  useEffect(() => {
+    const socket = new WebSocket(
+      `wss://ws.finnhub.io?token=cjhubehr01qonds7gfn0cjhubehr01qonds7gfng`
+    );
+
+    // Connection opened -> Subscribe
+    socket.addEventListener('open', () => {
+      socket.send(JSON.stringify({ type: 'subscribe', symbol: ticker }));
+    });
+
+    // Inside the message event listener:
+    socket.addEventListener('message', (e) => {
+      if (e.data) {
+        try {
+          const data = JSON.parse(e.data);
+          if (data.type === 'trade') {
+            const trades = data.data;
+            if (trades.length > 0) {
+              const lastTrade = trades[trades.length - 1];
+              const lastPrice = Number(lastTrade.p.toFixed(2));
+              setLatestPrice(lastPrice);
+              axios
+                .patch(`/api/updateStockPrice`, {
+                  ticker,
+                  price: lastPrice,
+                })
+                .catch((err) => console.log(err));
+            }
+          }
+        } catch (error) {
+          console.error('Error parsing JSON data:', error);
+        }
+      }
+    });
+  }, [ticker]);
+
   const buyStock = async (e: any) => {
     e.preventDefault();
-    const shares = Number(e.target.elements.sharesToBuy.value);
+    const sharesToBuy = Number(e.target.elements.sharesToBuy.value);
     const res = await axios.post(`/api/buyStock`, {
-      shares,
+      shares: sharesToBuy,
       stockId,
       userId,
     });
+
     if (res.status === 200) {
-      setCash(cash - shares * price);
-      setShares(shares + buyShares);
+      setCash(cash - sharesToBuy * latestPrice);
+      setShares(shares + sharesToBuy);
       setBuyShares(0);
     }
   };
 
-  const sellStock = async (e: any) => {
+  async function sellStock(e: any) {
     e.preventDefault();
-    const shares = Number(e.target.elements.sharesToSell.value);
+    const sharesToSell = Number(e.target.elements.sharesToSell.value);
     const res = await axios.post(`/api/sellStock`, {
-      shares,
+      shares: sharesToSell,
       stockId,
       userId,
     });
 
     if (res.status === 200) {
-      setCash(cash + shares * price);
-      setShares(shares - sellShares);
+      setCash(cash + sharesToSell * latestPrice);
+      setShares(shares - sharesToSell);
       setSellShares(0);
     }
+  }
+
+  const formatPrice = (price: number) => {
+    return price.toLocaleString('en-US', {
+      style: 'currency',
+      currency: 'USD',
+    });
   };
 
   return (
@@ -97,12 +138,12 @@ export default function TradeForm({
       <CardBody>
         <Tabs value={type} className="overflow-visible">
           <TabsHeader className="relative z-0 ">
-            <Tab value="buy" onClick={() => setType("buy")}>
+            <Tab value="buy" onClick={() => setType('buy')}>
               Buy
             </Tab>
             <Tab
               value="sell"
-              onClick={() => setType("sell")}
+              onClick={() => setType('sell')}
               disabled={shares <= 0}
             >
               Sell
@@ -112,13 +153,13 @@ export default function TradeForm({
             className="!overflow-x-hidden !overflow-y-visible"
             animate={{
               initial: {
-                x: type === "buy" ? 400 : -400,
+                x: type === 'buy' ? 400 : -400,
               },
               mount: {
                 x: 0,
               },
               unmount: {
-                x: type === "buy" ? 400 : -400,
+                x: type === 'buy' ? 400 : -400,
               },
             }}
           >
@@ -128,13 +169,13 @@ export default function TradeForm({
                   <Input
                     label="Number of Shares"
                     type="number"
-                    containerProps={{ className: "min-w-[72px]" }}
+                    containerProps={{ className: 'min-w-[72px]' }}
                     crossOrigin="anonymous"
                     name="sharesToBuy"
                     onChange={(e) => setBuyShares(Number(e.target.value))}
                     value={buyShares}
                     min={1}
-                    max={Math.floor(cash / price)}
+                    max={Math.floor(cash / latestPrice)}
                     required
                   />
                 </div>
@@ -151,17 +192,19 @@ export default function TradeForm({
                     Quantity: <span className="float-right">{buyShares}</span>
                   </div>
                   <div className="border-b border-black">
-                    Buying Power:{" "}
+                    Buying Power:{' '}
                     <span className="float-right">{formatPrice(cash)}</span>
                   </div>
                   <div className="border-b border-black">
-                    Cost per Share:{" "}
-                    <span className="float-right">{formatPrice(price)}</span>
+                    Cost per Share:{' '}
+                    <span className="float-right">
+                      {formatPrice(latestPrice)}
+                    </span>
                   </div>
                   <div className="border-b border-black">
-                    Total:{" "}
+                    Total:{' '}
                     <span className="float-right">
-                      {formatPrice(price * buyShares)}
+                      {formatPrice(latestPrice * buyShares)}
                     </span>
                   </div>
                 </div>
@@ -176,7 +219,7 @@ export default function TradeForm({
                   <Input
                     label="Number of Shares"
                     type="number"
-                    containerProps={{ className: "min-w-[72px]" }}
+                    containerProps={{ className: 'min-w-[72px]' }}
                     crossOrigin="anonymous"
                     name="sharesToSell"
                     onChange={(e) => setSellShares(Number(e.target.value))}
@@ -202,23 +245,23 @@ export default function TradeForm({
                     Shares Owned: <span className="float-right">{shares}</span>
                   </div>
                   <div className="border-b border-black">
-                    Buying Power:{" "}
+                    Buying Power:{' '}
                     <span className="float-right">{formatPrice(cash)}</span>
                   </div>
                   <div className="border-b border-black">
-                    Cost per Share:{" "}
+                    Cost per Share:{' '}
                     <span className="float-right">{formatPrice(price)}</span>
                   </div>
                   <div className="border-b border-black">
-                    Total:{" "}
+                    Total:{' '}
                     <span className="float-right">
-                      {formatPrice(price * sellShares)}
+                      {formatPrice(latestPrice * sellShares)}
                     </span>
                   </div>
 
                   <div className="my-4 flex items-center gap-4"></div>
                 </div>
-                <Button type="submit" size="lg">
+                <Button type="submit" size="lg" disabled={shares <= 0}>
                   Sell
                 </Button>
               </form>

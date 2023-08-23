@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import {
   Card,
@@ -12,13 +12,12 @@ import {
   TabsBody,
   Tab,
   TabPanel,
-} from "@material-tailwind/react";
+} from '@material-tailwind/react';
 
-import { useState } from "react";
+import { useState } from 'react';
 
 export default function TradeForm() {
-
-  const [type, setType] = useState("buy");
+  const [type, setType] = useState('buy');
 
   return (
     <Card className="w-full max-w-[24rem]">
@@ -35,10 +34,10 @@ export default function TradeForm() {
       <CardBody>
         <Tabs value={type} className="overflow-visible">
           <TabsHeader className="relative z-0 ">
-            <Tab value="buy" onClick={() => setType("buy")}>
+            <Tab value="buy" onClick={() => setType('buy')}>
               Buy
             </Tab>
-            <Tab value="sell" onClick={() => setType("sell")} disabled>
+            <Tab value="sell" onClick={() => setType('sell')} disabled>
               Sell
             </Tab>
           </TabsHeader>
@@ -46,13 +45,13 @@ export default function TradeForm() {
             className="!overflow-x-hidden !overflow-y-visible"
             animate={{
               initial: {
-                x: type === "buy" ? 400 : -400,
+                x: type === 'buy' ? 400 : -400,
               },
               mount: {
                 x: 0,
               },
               unmount: {
-                x: type === "buy" ? 400 : -400,
+                x: type === 'buy' ? 400 : -400,
               },
             }}
           >
@@ -62,9 +61,8 @@ export default function TradeForm() {
                   <Input
                     label="Number of Shares"
                     type="number"
-                    containerProps={{ className: "min-w-[72px]" }}
+                    containerProps={{ className: 'min-w-[72px]' }}
                     crossOrigin="anonymous"
-
                   />
                 </div>
 
@@ -100,7 +98,7 @@ export default function TradeForm() {
                   <Input
                     label="Number of Shares"
                     type="number"
-                    containerProps={{ className: "min-w-[72px]" }}
+                    containerProps={{ className: 'min-w-[72px]' }}
                     crossOrigin="anonymous"
                   />
                 </div>
@@ -137,4 +135,3 @@ export default function TradeForm() {
     </Card>
   );
 }
-

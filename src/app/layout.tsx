@@ -1,11 +1,10 @@
 // app/layout.tsx
 
-import "./globals.css";
-import { ClerkProvider } from "@clerk/nextjs";
-import Navbar from "./components/navbar/Navbar";
-import { dark } from "@clerk/themes";
-import FooterWithLogo from "./components/footer/FooterWithLogo";
-
+import './globals.css';
+import { ClerkProvider } from '@clerk/nextjs';
+import Navbar from './components/navbar/Navbar';
+import { dark } from '@clerk/themes';
+import FooterWithLogo from './components/footer/FooterWithLogo';
 
 export default function RootLayout({
   children,
@@ -33,7 +32,7 @@ export default function RootLayout({
         </head>
         <body className="text-white bg-dark-black">
           <div>
-            <Navbar/>
+            <Navbar />
             {/* <FooterWithLogo /> */}
             <main className="ml-16 h-screen">{children}</main>
             <FooterWithLogo />

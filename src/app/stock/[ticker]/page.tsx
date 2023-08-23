@@ -86,12 +86,13 @@
 // };
 
 // export default StockPage;
+// 'use client';
 
-import AnalysisWidget from "../../components/widgets/AnalysisWidget";
-import CompanyFundamentalData from "../../components/widgets/CompanyFundamentalsData";
-import CompanyNewsWidget from "../../components/widgets/CompanyNewsWidget";
-import GraphWidget from "../../components/widgets/GraphWidget";
-import TradeForm from "./TradeForm";
+import AnalysisWidget from '../../components/widgets/AnalysisWidget';
+import CompanyFundamentalData from '../../components/widgets/CompanyFundamentalsData';
+import CompanyNewsWidget from '../../components/widgets/CompanyNewsWidget';
+import GraphWidget from '../../components/widgets/GraphWidget';
+import TradeForm from './TradeForm';
 
 interface searchParams {
   search: string;
@@ -108,7 +109,7 @@ const StockPage = ({
   let { ticker } = params;
   const { tvwidgetsymbol } = searchParams;
 
-  if (tvwidgetsymbol) ticker = tvwidgetsymbol.split(":")[1];
+  if (tvwidgetsymbol) ticker = tvwidgetsymbol.split(':')[1];
 
   return (
     <div className="w-full">

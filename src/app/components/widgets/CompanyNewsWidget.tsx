@@ -1,6 +1,6 @@
-"use client";
+'use client';
 
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef } from 'react';
 
 interface CompanyNewsWidgetProps {
   ticker: string;
@@ -10,24 +10,24 @@ const CompanyNewsWidget = ({ ticker }: CompanyNewsWidgetProps) => {
   const container = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
-    const script = document.createElement("script");
+    const script = document.createElement('script');
     script.src =
-      "https://s3.tradingview.com/external-embedding/embed-widget-timeline.js";
+      'https://s3.tradingview.com/external-embedding/embed-widget-timeline.js';
     script.async = true;
     script.innerHTML = JSON.stringify({
       symbol: ticker,
-      colorTheme: "dark",
+      colorTheme: 'dark',
       isTransparent: false,
-      displayMode: "regular",
-      width: "480",
-      height: "600",
-      locale: "en",
+      displayMode: 'regular',
+      width: '480',
+      height: '600',
+      locale: 'en',
     });
 
-    if (container.current) container.current.innerHTML = "";
+    if (container.current) container.current.innerHTML = '';
 
-    const scriptContainer = document.createElement("div");
-    scriptContainer.className = "tradingview-widget-container__widget";
+    const scriptContainer = document.createElement('div');
+    scriptContainer.className = 'tradingview-widget-container__widget';
     if (container.current) container.current.appendChild(scriptContainer);
     scriptContainer.appendChild(script);
   }, [ticker]);
