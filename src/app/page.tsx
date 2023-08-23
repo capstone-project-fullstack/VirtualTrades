@@ -152,9 +152,6 @@ export default function Home() {
                     href="#"
                     className="flex flex-wrap no-underline hover:no-underline"
                   >
-                    {/* <p className="w-full text-gray-600 text-xs md:text-sm px-6">
-                      PERSONAL DASHBOARD
-                    </p> */}
                     <div className="w-full font-bold text-xl text-black px-6 mt-5">
                       PERSONAL PORTFOLIO
                     </div>

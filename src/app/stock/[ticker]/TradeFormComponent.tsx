@@ -17,6 +17,8 @@ import {
   Spinner,
 } from '@material-tailwind/react';
 
+import { GradientButtonRounded } from '@/app/components/buttons/Button';
+
 import axios from 'axios';
 
 import { useEffect, useState } from 'react';
@@ -245,7 +247,7 @@ export default function TradeForm({
   };
 
   return (
-    <Card className="w-full max-w-[24rem]">
+    <Card className="w-full max-w-[22rem] bg-purple">
       <NotificationDialog
         dialogContent={dialogContent}
         setDialogContent={setDialogContent}
@@ -254,16 +256,21 @@ export default function TradeForm({
         color="gray"
         floated={false}
         shadow={false}
-        className="m-0 grid place-items-center rounded-b-none py-3 px-4 text-center"
+        className="m-0 grid place-items-center rounded-b-none py-3 px-4 text-center color-white"
       >
-        <Typography variant="h4" color="white">
+        <Typography variant="h4" color="light-green">
           Trade Stock
         </Typography>
       </CardHeader>
-      <CardBody>
+      <CardBody className='bg-orange'>
         <Tabs value={type} className="overflow-visible">
-          <TabsHeader className="relative z-0 ">
-            <Tab value="buy" onClick={() => setType('buy')}>
+          <TabsHeader 
+
+          className="relative z-0 ">
+            <Tab 
+      
+            
+            value="buy" onClick={() => setType('buy')}>
               Buy
             </Tab>
             <Tab
@@ -344,6 +351,15 @@ export default function TradeForm({
                 >
                   {loading ? <Spinner /> : 'Buy'}
                 </Button>
+{/* 
+                <GradientButtonRounded                 
+                  type="submit"
+                  className="f-center"
+                  size="lg"
+                  disabled={loading}
+                >
+                  {loading ? <Spinner /> : 'Buy'}
+                </GradientButtonRounded> */}
               </form>
             </TabPanel>
             <TabPanel value="sell" className="p-0">
