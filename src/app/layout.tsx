@@ -1,5 +1,3 @@
-// app/layout.tsx
-
 import './globals.css';
 import { ClerkProvider } from '@clerk/nextjs';
 import Navbar from './components/navbar/Navbar';
@@ -30,13 +28,12 @@ export default function RootLayout({
           ></link>
           <title>Virtual Trades</title>
         </head>
-        <body className="text-white bg-dark-black ">
-          <div>
+        <body className="flex flex-col min-h-screen text-white bg-dark-black">
+          <div className="flex-grow">
             <Navbar />
-            {/* <FooterWithLogo /> */}
-            <main className="ml-16 h-screen">{children}</main>
-            <FooterWithLogo />
+            <main className="ml-16">{children}</main>
           </div>
+          <FooterWithLogo />
         </body>
       </html>
     </ClerkProvider>
