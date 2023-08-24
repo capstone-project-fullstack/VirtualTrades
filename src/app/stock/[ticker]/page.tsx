@@ -24,15 +24,19 @@ const StockPage = ({
 
   return (
     <div className="w-full flex flex-wrap">
-      <div className="h-[200px] m-5 w-full">
+      <div className="h-[200px] w-full m-5">
         <TradingViewWidget ticker={ticker} />
       </div>
+
       <div className="w-full xl:w-1/2">
-        <div className="h-[800px] m-5 max-w-[900px]">
+        <div className="h-[600px] m-5 w-[900px]">
           <GraphWidget ticker={ticker} />
-        </div>ƒ
+        </div>
+        <div className="w-full xl:w-1/2 px-4 m-5">
+        <TradeForm ticker={ticker} />
+      </div>
         <div className="flex flex-wrap">
-          <div className="w-full xl:w-1/2 px-4">
+          <div className="w-full xl:w-1/2 px-4 m-10">
             <AnalysisWidget ticker={ticker} />
           </div>
           <div className="w-full xl:w-1/2 px-4 m-10">
@@ -42,9 +46,6 @@ const StockPage = ({
             <CompanyFundamentalData ticker={ticker} />
           </div>
         </div>
-      </div>
-      <div className="w-full xl:w-1/2 px-4">
-        <TradeForm ticker={ticker} />
       </div>
     </div>
   );
