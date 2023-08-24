@@ -15,6 +15,9 @@ import {
   TabsBody,
   TabPanel,
 } from '@material-tailwind/react';
+import { addFunds, withdrawFunds } from '../redux/features/fundManagementSlice';
+import { useAppDispatch, useAppSelector } from '../redux/hooks';
+import axios from 'axios';
 
 interface FundsManagementForm {
   open: boolean;
@@ -27,10 +30,43 @@ export default function FundsManagementForm({
 }: FundsManagementForm) {
   const handleOpen = () => setOpen((cur) => !cur);
   const [type, setType] = useState('add');
+  const dispatch = useAppDispatch();
+
+  const addFundsHandler = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const funds = Number(e.currentTarget.addAmount.value);
+    axios
+      .patch('/api/manageFunds?type=add', { amount: funds })
+      .then(() => {
+        dispatch(addFunds(funds));
+        setOpen(false);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    e.currentTarget.reset();
+  };
+
+  const withdrawFundsHandler = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const funds = Number(e.currentTarget.withdrawAmount.value);
+    axios
+      .patch('/api/manageFunds?type=withdraw', { amount: funds })
+      .then(() => {
+        dispatch(withdrawFunds(funds));
+        setOpen(false);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    e.currentTarget.reset();
+  };
 
   return (
     <>
-      <Button variant="gradient" color='blue' onClick={handleOpen}>Add Cash</Button>
+      <Button variant="gradient" color="blue" onClick={handleOpen}>
+        Add Cash
+      </Button>
       <Dialog
         size="xs"
         open={open}
@@ -72,7 +108,10 @@ export default function FundsManagementForm({
                 }}
               >
                 <TabPanel value="add" className="p-0">
-                  <form className="mt-6 flex flex-col gap-4">
+                  <form
+                    onSubmit={addFundsHandler}
+                    className="mt-6 flex flex-col gap-4"
+                  >
                     <div>
                       <Input
                         label="Add Amount"
@@ -91,7 +130,10 @@ export default function FundsManagementForm({
                   </form>
                 </TabPanel>
                 <TabPanel value="withdraw" className="p-0">
-                  <form className="mt-6 flex flex-col gap-4">
+                  <form
+                    onSubmit={withdrawFundsHandler}
+                    className="mt-6 flex flex-col gap-4"
+                  >
                     <div>
                       <Input
                         label="Withdraw Amount"

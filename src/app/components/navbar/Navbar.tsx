@@ -87,9 +87,9 @@ export default function Navbar() {
         }`}
       >
         <BsSearch
-          className={`text-white ${!open ? 'text-3xl' : 'text-2xl'} block float-left cursor-pointer ${
-            open && 'mr-2'
-          } `}
+          className={`text-white ${
+            !open ? 'text-3xl' : 'text-2xl'
+          } block float-left cursor-pointer ${open && 'mr-2'} `}
           onClick={() => isOpen(true)}
         />
         <input

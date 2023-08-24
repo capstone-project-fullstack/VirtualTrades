@@ -113,7 +113,7 @@ export default function PositionTable() {
               {TABLE_HEAD.map((head, index) => (
                 <th
                   align="center"
-                  key={head}
+                  key={index}
                   className="cursor-pointer border-y text-center  p-2 transition-colors border-cell"
                 >
                   <Typography
@@ -138,7 +138,7 @@ export default function PositionTable() {
                   'py-2 border-b border-blue-gray-50 text-center border-cell';
 
                 return (
-                  <tr key={name}>
+                  <tr key={index}>
                     <td className={classes}>
                       <div className="flex items-center gap-3">
                         <Avatar src={img} alt={name} size="sm" />

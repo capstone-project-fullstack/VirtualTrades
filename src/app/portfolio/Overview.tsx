@@ -4,6 +4,7 @@ import React, { useEffect } from 'react';
 import Chart from 'chart.js';
 import { formatPrice } from '../utils/utils';
 import { useAppDispatch, useAppSelector } from '../redux/hooks';
+import { setInitialValues } from '../redux/features/fundManagementSlice';
 
 interface OverviewProps {
   initialValues: {
@@ -20,6 +21,12 @@ declare global {
 }
 
 export default function Overview({ initialValues }: OverviewProps) {
+  const dispatch = useAppDispatch();
+  const funds = useAppSelector((state) => state.fundManagement.values);
+
+  useEffect(() => {
+    dispatch(setInitialValues(initialValues));
+  }, []);
 
   useEffect(() => {
     const config = {
@@ -120,8 +127,9 @@ export default function Overview({ initialValues }: OverviewProps) {
     window.myLine = new Chart(ctx, config as any);
   }, []);
 
-  const difference =
-    initialValues.current_portfolio_value - initialValues.initial_amount;
+  const difference = funds.current_portfolio_value - funds.initial_amount;
+
+  console.log(difference);
 
   return (
     <>
@@ -131,14 +139,15 @@ export default function Overview({ initialValues }: OverviewProps) {
             <div className="relative w-full max-w-full flex-grow flex-1">
               <div className="w-fit">
                 <div className="text-white text-5xl font-semibold">
-                  {formatPrice(initialValues.current_portfolio_value)}
+                  {formatPrice(funds.current_portfolio_value)}
                 </div>
                 <div className="text-green-500 text-xl text-end">
                   <span className="pr-2">{formatPrice(difference)}</span>
                   <span className="text-white">
-                    {`(${(
-                      difference / initialValues.current_portfolio_value
-                    ).toFixed(2)}%)`}
+                    {`(${
+                      ((difference / funds.initial_amount) * 100).toFixed(2) ||
+                      0
+                    }%)`}
                   </span>
                 </div>
               </div>

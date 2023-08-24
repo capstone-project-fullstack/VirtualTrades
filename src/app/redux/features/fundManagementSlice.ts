@@ -31,20 +31,31 @@ export const fundManagement = createSlice({
       state.values = action.payload;
     },
 
-    addFund: (state, action: PayloadAction<number>) => {
-      state.values.initial_amount += action.payload;
-      state.values.cash += action.payload;
-      state.values.current_portfolio_value += action.payload;
+    addFunds: (state, action: PayloadAction<number>) => {
+      return {
+        ...state,
+        values: {
+          ...state.values,
+          initial_amount: state.values.initial_amount + action.payload,
+          cash: state.values.cash + action.payload,
+          current_portfolio_value: state.values.current_portfolio_value + action.payload,
+        },
+      };
     },
 
-    withdrawFund: (state, action: PayloadAction<number>) => {
-      state.values.initial_amount -= action.payload;
-      state.values.cash -= action.payload;
-      state.values.current_portfolio_value -= action.payload;
+    withdrawFunds: (state, action: PayloadAction<number>) => {
+      return {
+        ...state,
+        values: {
+          ...state.values,
+          initial_amount: state.values.initial_amount - action.payload,
+          cash: state.values.cash - action.payload,
+          current_portfolio_value: state.values.current_portfolio_value - action.payload,
+        },
+      };
     },
   },
 });
 
-export const { setInitialValues, addFund, withdrawFund } =
-  fundManagement.actions;
+export const { setInitialValues, addFunds, withdrawFunds } = fundManagement.actions;
 export default fundManagement.reducer;

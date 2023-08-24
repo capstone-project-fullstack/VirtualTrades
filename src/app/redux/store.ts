@@ -3,7 +3,7 @@ import fundManagementReducer from './features/fundManagementSlice';
 
 export const store = configureStore({
   reducer: {
-    fundManagementReducer,
+    fundManagement: fundManagementReducer,
   },
   devTools: process.env.NODE_ENV !== 'production',
 });

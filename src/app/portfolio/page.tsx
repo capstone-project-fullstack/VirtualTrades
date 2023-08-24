@@ -19,9 +19,7 @@ export default async function Portfolio() {
     cash: user?.cash || 0,
     current_portfolio_value: user?.current_portfolio_value || 0,
   };
-
-
-  store.dispatch(setInitialValues(initialValues));
+  // store.dispatch(setInitialValues(initialValues));
 
   return (
     <div className="h-screen">
@@ -31,7 +29,7 @@ export default async function Portfolio() {
           <Overview initialValues={initialValues} />
         </div>
         <div className="w-full xl:w-4/12 px-4">
-          <Funds user={user} />
+          <Funds/>
         </div>
       </div>
       <div className="flex flex-wrap mt-4">
