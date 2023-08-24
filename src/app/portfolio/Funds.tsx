@@ -13,7 +13,7 @@ import { useAppDispatch, useAppSelector } from '../redux/hooks';
 // }
 export default function Funds() {
   const [open, setOpen] = useState(false);
-  const funds = useAppSelector((state) => state.fundManagement.values);  
+  const funds = useAppSelector((state) => state.fundManagement.values);
 
   return (
     <div className="h-28">
