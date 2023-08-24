@@ -213,7 +213,7 @@ export default function TradeForm({
       shares: sharesToSell,
       stockId,
       userId,
-    })
+    });
 
     if (res.status === 200) {
       setCash(cash + sharesToSell * latestPrice);
@@ -247,7 +247,7 @@ export default function TradeForm({
   };
 
   return (
-    <Card className="w-full max-w-[22rem] bg-purple">
+    <Card className="min-w-[50px] max-w-[400px] bg-purple text-white">
       <NotificationDialog
         dialogContent={dialogContent}
         setDialogContent={setDialogContent}
@@ -256,21 +256,14 @@ export default function TradeForm({
         color="gray"
         floated={false}
         shadow={false}
-        className="m-0 grid place-items-center rounded-b-none py-3 px-4 text-center color-white"
+        className="m-0 grid place-items-center rounded-b-none py-3 px-4 text-center text-white font-bold"
       >
-        <Typography variant="h4" color="light-green">
-          Trade Stock
-        </Typography>
+        <Typography variant="h5">Trade Stock</Typography>
       </CardHeader>
-      <CardBody className='bg-orange'>
+      <CardBody className="bg-orange text-white">
         <Tabs value={type} className="overflow-visible">
-          <TabsHeader 
-
-          className="relative z-0 ">
-            <Tab 
-      
-            
-            value="buy" onClick={() => setType('buy')}>
+          <TabsHeader className="relative z-0 ">
+            <Tab value="buy" onClick={() => setType('buy')}>
               Buy
             </Tab>
             <Tab
@@ -298,8 +291,10 @@ export default function TradeForm({
             <TabPanel value="buy" className="p-0">
               <form onSubmit={buyStock} className="mt-6 flex flex-col gap-4">
                 <div>
-                  <Input
+                  <Input 
+                    className='text-white'
                     label="Number of Shares"
+                    color="white"
                     type="number"
                     containerProps={{ className: 'min-w-[72px]' }}
                     crossOrigin="anonymous"
@@ -315,28 +310,26 @@ export default function TradeForm({
                 <div className="my-2">
                   <Typography
                     variant="h5"
-                    color="blue-gray"
-                    className="mb-2 font-medium"
-                  >
-                    Details
+                    color="white"
+                    className="mb-2 font-medium">Details
                   </Typography>
-                  <div className="border-y border-black">
+                  <div className="border-y border-black text-white">
                     Quantity: <span className="float-right">{buyShares}</span>
                   </div>
-                  <div className="border-b border-black">
+                  <div className="border-b border-black text-white">
                     Shares Owned: <span className="float-right">{shares}</span>
                   </div>
-                  <div className="border-b border-black">
+                  <div className="border-b border-black text-white">
                     Buying Power:{' '}
                     <span className="float-right">{formatPrice(cash)}</span>
                   </div>
-                  <div className="border-b border-black">
+                  <div className="border-b border-black text-white">
                     Cost per Share:{' '}
                     <span className="float-right">
                       {formatPrice(latestPrice)}
                     </span>
                   </div>
-                  <div className="border-b border-black">
+                  <div className="border-b border-black text-white">
                     Total:{' '}
                     <span className="float-right">
                       {formatPrice(latestPrice * buyShares)}
@@ -345,13 +338,15 @@ export default function TradeForm({
                 </div>
                 <Button
                   type="submit"
-                  className="f-center"
+                  className="f-center w-50% text-white"
                   size="lg"
+                  color="green"
                   disabled={loading}
+                  variant="gradient"
                 >
                   {loading ? <Spinner /> : 'Buy'}
                 </Button>
-{/* 
+                {/* 
                 <GradientButtonRounded                 
                   type="submit"
                   className="f-center"
@@ -363,7 +358,7 @@ export default function TradeForm({
               </form>
             </TabPanel>
             <TabPanel value="sell" className="p-0">
-              <form onSubmit={sellStock} className="mt-6 flex flex-col gap-4">
+              <form onSubmit={sellStock} className="mt-6 flex flex-col gap-4 text-white">
                 <div>
                   <Input
                     label="Number of Shares"
@@ -382,7 +377,7 @@ export default function TradeForm({
                 <div className="my-2">
                   <Typography
                     variant="h5"
-                    color="blue-gray"
+                    color="white"
                     className="mb-2 font-medium"
                   >
                     Details
@@ -390,18 +385,18 @@ export default function TradeForm({
                   <div className="border-y border-black">
                     Quantity: <span className="float-right">{sellShares}</span>
                   </div>
-                  <div className="border-b border-black">
-                    Shares Owned: <span className="float-right">{shares}</span>
+                  <div className="border-b border-black text-white">
+                    Shares Owned: <span className="float-right text-white">{shares}</span>
                   </div>
-                  <div className="border-b border-black">
+                  <div className="border-b border-black text-white">
                     Buying Power:{' '}
                     <span className="float-right">{formatPrice(cash)}</span>
                   </div>
-                  <div className="border-b border-black">
+                  <div className="border-b border-black text-white">
                     Cost per Share:{' '}
                     <span className="float-right">{formatPrice(price)}</span>
                   </div>
-                  <div className="border-b border-black">
+                  <div className="border-b border-black text-white">
                     Total:{' '}
                     <span className="float-right">
                       {formatPrice(latestPrice * sellShares)}

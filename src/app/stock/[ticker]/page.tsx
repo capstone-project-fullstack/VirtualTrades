@@ -4,6 +4,8 @@ import CompanyNewsWidget from '../../components/widgets/CompanyNewsWidget';
 import GraphWidget from '../../components/widgets/GraphWidget';
 import TradeForm from './TradeForm';
 import TradingViewWidget from '../../components/widgets/TradingViewWidget';
+// import { CarouselDefault } from '@/app/components/carousel/Carousel';
+import TabsDefault from '@/app/components/tabs/Tabs';
 
 interface searchParams {
   search: string;
@@ -24,20 +26,27 @@ const StockPage = ({
 
   return (
     <div className="w-full">
-      <div className="h-[200px] w-full m-5 mb-0">
+      <div className="w-full m-5 mb-0">
         <TradingViewWidget ticker={ticker} />
       </div>
 
       <div className="w-full">
-
-        <div className='w-full flex flex-row justify-center'>
-          <div className="h-[600px] m-5 w-[1500px]">
+        <div className="flex flex-col lg:flex-row">
+          <div className="min-h-[500px] flex-auto lg:max-w-[75%] m-5">
             <GraphWidget ticker={ticker} />
           </div>
-          <div className="w-full xl:w-1/2 px-4 m-5 justify-center">
+          <div className="lg:min-w-[25%] m-5 mt-7">
             <TradeForm ticker={ticker} />
           </div>
         </div>
+
+        <div>
+          <TabsDefault />
+        </div>
+
+        {/* <div>
+        <CarouselDefault/>
+      </div> */}
 
         <div className="flex flex-row justify-center">
           <div className="w-full xl:w-1/2 px-4 m-10">

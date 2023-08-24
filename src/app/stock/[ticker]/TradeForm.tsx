@@ -27,7 +27,7 @@ const TradeForm = async ({ ticker }: { ticker: string }) => {
   const currentPrice = await Stock.getCurrentPrice(ticker);
 
   return (
-    <div className="w-full">
+    <div>
       <TradeFormComponent
         ticker={ticker}
         sharesOwned={shareOwned}
