@@ -3,6 +3,9 @@ import CompanyFundamentalData from '../../components/widgets/CompanyFundamentals
 import CompanyNewsWidget from '../../components/widgets/CompanyNewsWidget';
 import GraphWidget from '../../components/widgets/GraphWidget';
 import TradeForm from './TradeForm';
+import TradingViewWidget from '../../components/widgets/TradingViewWidget';
+// import { CarouselDefault } from '@/app/components/carousel/Carousel';
+import TabsDefault from '@/app/components/tabs/Tabs';
 
 interface searchParams {
   search: string;
@@ -22,25 +25,22 @@ const StockPage = ({
   if (tvwidgetsymbol) ticker = tvwidgetsymbol.split(':')[1];
 
   return (
-    <div className="w-full">
-      <div className="mx-auto"></div>
-      <div className="h-[500px]">
-        <GraphWidget ticker={ticker} />
+    <div className="w-full px-3">
+      <div className="w-full mt-3 ">
+        <TradingViewWidget ticker={ticker} />
       </div>
-      <div className="flex flex-wrap">
-        <div className="w-full xl:w-1/2 px-4">
-          <AnalysisWidget ticker={ticker} />
+
+      <div className="w-full">
+        <div className="flex flex-col lg:flex-row">
+          <div className="min-h-[500px] flex-auto lg:max-w-[75%] mt-3 mr-3">
+            <GraphWidget ticker={ticker} />
+          </div>
+          <div className="lg:min-w-[25%] mt-3">
+            <TradeForm ticker={ticker} />
+          </div>
         </div>
-        <div className="w-full xl:w-1/2 px-4">
-          <TradeForm ticker={ticker} />
-        </div>
-      </div>
-      <div className="flex flex-wrap">
-        <div className="w-full xl:w-1/2 px-4">
-          <CompanyNewsWidget ticker={ticker} />
-        </div>
-        <div className="w-full xl:w-1/2 px-4">
-          <CompanyFundamentalData ticker={ticker} />
+        <div className='f-center'>
+          <TabsDefault ticker={ticker} />
         </div>
       </div>
     </div>
