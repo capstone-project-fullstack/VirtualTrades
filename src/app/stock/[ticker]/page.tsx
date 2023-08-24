@@ -25,21 +25,21 @@ const StockPage = ({
   if (tvwidgetsymbol) ticker = tvwidgetsymbol.split(':')[1];
 
   return (
-    <div className="w-full">
-      <div className="w-full m-5 mb-0">
+    <div className="w-full px-3">
+      <div className="w-full mt-3 ">
         <TradingViewWidget ticker={ticker} />
       </div>
 
       <div className="w-full">
         <div className="flex flex-col lg:flex-row">
-          <div className="min-h-[500px] flex-auto lg:max-w-[75%] m-5">
+          <div className="min-h-[500px] flex-auto lg:max-w-[75%] mt-3 mr-3">
             <GraphWidget ticker={ticker} />
           </div>
-          <div className="lg:min-w-[25%] m-5 mt-7">
+          <div className="lg:min-w-[25%] mt-3">
             <TradeForm ticker={ticker} />
           </div>
         </div>
-        <div>
+        <div className='f-center'>
           <TabsDefault ticker={ticker} />
         </div>
       </div>

@@ -60,58 +60,6 @@ export default function TradeForm({
     }
   }, [shares]);
 
-  // useEffect(() => {
-  //   let socket: WebSocket | null = null;
-
-  //   const connectSocket = () => {
-  //     socket = new WebSocket(
-  //       `wss://ws.finnhub.io?token=cjhubehr01qonds7gfn0cjhubehr01qonds7gfng`
-  //     );
-
-  //     socket.addEventListener('open', () => {
-  //       socket!.send(JSON.stringify({ type: 'subscribe', symbol: ticker }));
-  //     });
-
-  //     socket.addEventListener('message', (e) => {
-  //       if (e.data) {
-  //         try {
-  //           const data = JSON.parse(e.data);
-  //           if (data.type === 'trade') {
-  //             const trades = data.data;
-  //             if (trades.length > 0) {
-  //               const lastTrade = trades[trades.length - 1];
-  //               const lastPrice = Number(lastTrade.p.toFixed(2));
-  //               setLatestPrice(lastPrice);
-  //             }
-  //           }
-  //         } catch (error) {
-  //           console.error('Error parsing JSON data:', error);
-  //         }
-  //       }
-  //     });
-  //   };
-
-  //   const unsubscribeAndReconnect = () => {
-  //     if (socket && socket.readyState === WebSocket.OPEN) {
-  //       socket.send(JSON.stringify({ type: 'unsubscribe', symbol: ticker }));
-  //       socket.close();
-  //     }
-  //     connectSocket();
-  //   };
-
-  //   connectSocket(); // Initial connection
-
-  //   const interval = setInterval(unsubscribeAndReconnect, 3000);
-
-  //   return () => {
-  //     clearInterval(interval);
-  //     if (socket && socket.readyState === WebSocket.OPEN) {
-  //       socket.send(JSON.stringify({ type: 'unsubscribe', symbol: ticker }));
-  //       socket.close();
-  //     }
-  //   };
-  // }, [ticker, latestPrice]);
-
   useEffect(() => {
     const socket = new WebSocket(
       `wss://ws.finnhub.io?token=cjhubehr01qonds7gfn0cjhubehr01qonds7gfng`
@@ -247,7 +195,7 @@ export default function TradeForm({
   };
 
   return (
-    <Card className="min-w-[50px] max-w-[400px] bg-purple text-white">
+    <Card className="min-w-[50px] max-w-[400px] bg-dark-black border border-gray-800 text-white min-h-[500px]">
       <NotificationDialog
         dialogContent={dialogContent}
         setDialogContent={setDialogContent}
@@ -256,7 +204,7 @@ export default function TradeForm({
         color="gray"
         floated={false}
         shadow={false}
-        className="m-0 grid place-items-center rounded-b-none py-3 px-4 text-center text-white font-bold"
+        className="m-0 grid place-items-center rounded-b-none py-1.5 px-4 text-center text-white font-bold"
       >
         <Typography variant="h5">Trade Stock</Typography>
       </CardHeader>
