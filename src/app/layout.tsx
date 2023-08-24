@@ -3,6 +3,7 @@ import { ClerkProvider } from '@clerk/nextjs';
 import Navbar from './components/navbar/Navbar';
 import { dark } from '@clerk/themes';
 import FooterWithLogo from './components/footer/FooterWithLogo';
+import { Providers } from './redux/provider';
 
 export default function RootLayout({
   children,
@@ -31,7 +32,9 @@ export default function RootLayout({
         <body className="flex flex-col min-h-screen text-white bg-dark-black">
           <div className="flex-grow">
             <Navbar />
-            <main className="ml-16">{children}</main>
+            <main className="ml-16">
+              <Providers>{children}</Providers>
+            </main>
           </div>
           <FooterWithLogo />
         </body>

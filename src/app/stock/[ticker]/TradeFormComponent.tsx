@@ -18,7 +18,7 @@ import {
 } from '@material-tailwind/react';
 
 import axios from 'axios';
-
+import { formatPrice } from '../../utils/utils';
 import { useEffect, useState } from 'react';
 
 interface TradeFormProps {
@@ -236,13 +236,6 @@ export default function TradeForm({
       setLoading(() => false);
     }
   }
-
-  const formatPrice = (price: number) => {
-    return price.toLocaleString('en-US', {
-      style: 'currency',
-      currency: 'USD',
-    });
-  };
 
   return (
     <Card className="w-full max-w-[24rem]">

@@ -2,8 +2,25 @@
 
 import React, { useEffect } from 'react';
 import Chart from 'chart.js';
+import { formatPrice } from '../utils/utils';
+import { useAppDispatch, useAppSelector } from '../redux/hooks';
 
-export default function CardLineChart() {
+interface OverviewProps {
+  initialValues: {
+    initial_amount: number;
+    cash: number;
+    current_portfolio_value: number;
+  };
+}
+
+declare global {
+  interface Window {
+    myLine: Chart;
+  }
+}
+
+export default function Overview({ initialValues }: OverviewProps) {
+
   useEffect(() => {
     const config = {
       type: 'line',
@@ -98,9 +115,14 @@ export default function CardLineChart() {
         },
       },
     };
-    var ctx = document.getElementById('line-chart')?.getContext('2d');
-    window.myLine = new Chart(ctx, config);
+    var canvas = document.getElementById('line-chart') as HTMLCanvasElement;
+    var ctx = canvas.getContext('2d') as CanvasRenderingContext2D;
+    window.myLine = new Chart(ctx, config as any);
   }, []);
+
+  const difference =
+    initialValues.current_portfolio_value - initialValues.initial_amount;
+
   return (
     <>
       <div className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded bg-blueGray-700">
@@ -108,10 +130,16 @@ export default function CardLineChart() {
           <div className="flex flex-wrap items-center">
             <div className="relative w-full max-w-full flex-grow flex-1">
               <div className="w-fit">
-                <div className="text-white text-5xl font-semibold">$10,500</div>
+                <div className="text-white text-5xl font-semibold">
+                  {formatPrice(initialValues.current_portfolio_value)}
+                </div>
                 <div className="text-green-500 text-xl text-end">
-                  <span className='pr-1'>$500</span>
-                  {`(5.00%)`}
+                  <span className="pr-2">{formatPrice(difference)}</span>
+                  <span className="text-white">
+                    {`(${(
+                      difference / initialValues.current_portfolio_value
+                    ).toFixed(2)}%)`}
+                  </span>
                 </div>
               </div>
             </div>
