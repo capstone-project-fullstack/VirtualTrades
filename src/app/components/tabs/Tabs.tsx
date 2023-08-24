@@ -13,35 +13,35 @@ import CompanyNewsWidget from "../widgets/CompanyNewsWidget";
 import CompanyFundamentalData from "../widgets/CompanyFundamentalsData";
    
 
-export default function TabsDefault() {
+export default function TabsDefault({ ticker}: {ticker: string}) {
     const data = [
       {
         label: "Stock Analysis",
-        value: "react",
-        desc: <AnalysisWidget ticker="true"/>,
+        value: "analysis",
+        desc: <AnalysisWidget ticker={ticker}/>,
       },
       {
-        label: "Fundamental Data",
-        value: "react",
-        desc: <CompanyFundamentalData ticker="true"/>,
+        label: "Company Data",
+        value: "companyData",
+        desc: <CompanyFundamentalData ticker={ticker}/>,
       },
       {
         label: "Company News",
-        value: "react",
-        desc: <CompanyNewsWidget ticker="true"/>,
+        value: "companyNews",
+        desc: <CompanyNewsWidget ticker={ticker}/>,
       }
     ];
    
     return (
-      <Tabs className="flex flex-row" value="react">
-        <TabsHeader>
+      <Tabs className="flex flex-col w-[80%] mb-10" value="analysis" align="center">
+        <TabsHeader className="w-full align-center justify-center m-5">
           {data.map(({ label, value }) => (
             <Tab key={value} value={value}>
               {label}
             </Tab>
           ))}
         </TabsHeader>
-        <TabsBody>
+        <TabsBody className="justify-center">
           {data.map(({ value, desc }) => (
             <TabPanel key={value} value={value}>
               {desc}

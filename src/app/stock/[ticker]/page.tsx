@@ -39,26 +39,8 @@ const StockPage = ({
             <TradeForm ticker={ticker} />
           </div>
         </div>
-
         <div>
-          <TabsDefault />
-        </div>
-
-        {/* <div>
-        <CarouselDefault/>
-      </div> */}
-
-        <div className="flex flex-row justify-center">
-          <div className="w-full xl:w-1/2 px-4 m-10">
-            <AnalysisWidget ticker={ticker} />
-          </div>
-          <br></br>
-          <div className="w-full xl:w-1/2 px-4 m-10">
-            <CompanyNewsWidget ticker={ticker} />
-          </div>
-          <div className="w-full xl:w-1/2 px-4 m-10">
-            <CompanyFundamentalData ticker={ticker} />
-          </div>
+          <TabsDefault ticker={ticker} />
         </div>
       </div>
     </div>

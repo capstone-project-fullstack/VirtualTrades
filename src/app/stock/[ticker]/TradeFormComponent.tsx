@@ -341,8 +341,8 @@ export default function TradeForm({
                   className="f-center w-50% text-white"
                   size="lg"
                   color="green"
-                  disabled={loading}
                   variant="gradient"
+                  disabled={loading}
                 >
                   {loading ? <Spinner /> : 'Buy'}
                 </Button>
@@ -409,8 +409,9 @@ export default function TradeForm({
                   className="f-center"
                   type="submit"
                   size="lg"
-                  disabled={shares <= 0 || loading}
-                >
+                  color="blue"
+                  variant="gradient"
+                  disabled={shares <= 0 || loading}>
                   {loading ? <Spinner /> : 'Sell'}
                 </Button>
               </form>
