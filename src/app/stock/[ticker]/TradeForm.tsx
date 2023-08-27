@@ -1,7 +1,6 @@
 import Stock from '../../modals/stock';
 import TradeStocks from '@/app/modals/tradeStocks';
 import { currentUser } from '@clerk/nextjs';
-import Portfolio from '../../modals/portfolioData.ts';
 import TradeFormComponent from './TradeFormComponent';
 import UserService from '@/app/modals/user';
 import prisma from '../../../../lib/prisma';

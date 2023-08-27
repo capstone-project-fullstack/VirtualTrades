@@ -58,6 +58,7 @@ class Stock {
   static async createStockIfNotExist(symbol: string) {
     const price = await this.getCurrentPrice(symbol);
     const name = await this.getStockName(symbol);
+    const iconUrl = await this.getStockIcon(symbol);
 
     if (!name) return null;
     return await prisma.stock.create({
@@ -65,6 +66,7 @@ class Stock {
         symbol: symbol.toUpperCase(),
         name,
         current_price: price,
+        icon_url: iconUrl,
       },
     });
   }

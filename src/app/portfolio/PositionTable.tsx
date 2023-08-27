@@ -12,73 +12,44 @@ import {
   Avatar,
   Typography,
 } from '@material-tailwind/react';
+import axios from 'axios';
+import { useEffect, useState } from 'react';
+import { formatPrice } from '../utils/utils';
 
 const TABLE_HEAD = [
   'Ticker',
   'Stock Price',
+  'Shares',
   'Average Price',
+  'Total Equity',
   'Gain',
-  'Performance',
 ];
 
-const TABLE_ROWS = [
-  {
-    img: 'https://static2.finnhub.io/file/publicdatany/finnhubimage/stock_logo/AAPL.svg',
-    ticker: 'AAPL',
-    name: 'Apple Inc.',
-    price: '1',
-    averagePrice: '2',
-    gain: '3',
-    performance: '4',
-  },
-  {
-    img: 'https://static2.finnhub.io/file/publicdatany/finnhubimage/stock_logo/AAPL.svg',
-    ticker: 'AAPL',
-    name: 'Apple Inc.',
-    price: '1',
-    averagePrice: '2',
-    gain: '3',
-    performance: '4',
-  },
-  {
-    img: 'https://static2.finnhub.io/file/publicdatany/finnhubimage/stock_logo/AAPL.svg',
-    ticker: 'AAPL',
-    name: 'Apple Inc.',
-    price: '1',
-    averagePrice: '2',
-    gain: '3',
-    performance: '4',
-  },
-  {
-    img: 'https://static2.finnhub.io/file/publicdatany/finnhubimage/stock_logo/AAPL.svg',
-    ticker: 'AAPL',
-    name: 'Apple Inc.',
-    price: '1',
-    averagePrice: '2',
-    gain: '3',
-    performance: '4',
-  },
-  {
-    img: 'https://static2.finnhub.io/file/publicdatany/finnhubimage/stock_logo/AAPL.svg',
-    ticker: 'AAPL',
-    name: 'Apple Inc.',
-    price: '1',
-    averagePrice: '2',
-    gain: '3',
-    performance: '4',
-  },
-  {
-    img: 'https://static2.finnhub.io/file/publicdatany/finnhubimage/stock_logo/AAPL.svg',
-    ticker: 'AAPL',
-    name: 'Apple Inc.',
-    price: '1',
-    averagePrice: '2',
-    gain: '3',
-    performance: '4',
-  },
-];
+interface PortfolioData {
+  shares: number;
+  average_price: number;
+  total_equity: number;
+  gain: number;
+  Stock: {
+    symbol: string;
+    name: string;
+    icon_url: string;
+    current_price: number;
+  };
+}
 
 export default function PositionTable() {
+  const [tableRows, setTableRows] = useState<PortfolioData[]>([]);
+
+  useEffect(() => {
+    axios
+      .get('/api/positions')
+      .then((res) => {
+        setTableRows(res.data);
+      })
+      .catch((err) => console.log(err));
+  }, []);
+
   return (
     <Card className=" w-full bg-dark-black border overflow-auto border-white rounded">
       <CardHeader
@@ -129,85 +100,96 @@ export default function PositionTable() {
             </tr>
           </thead>
           <tbody>
-            {TABLE_ROWS.map(
-              (
-                { img, ticker, name, price, averagePrice, gain, performance },
-                index
-              ) => {
-                const classes =
-                  'py-2 border-b border-blue-gray-50 text-center border-cell';
+            {tableRows.map((row, index) => {
+              const classes =
+                'py-2 border-b border-blue-gray-50 text-center border-cell';
 
-                return (
-                  <tr key={index}>
-                    <td className={classes}>
-                      <div className="flex items-center gap-3">
-                        <Avatar src={img} alt={name} size="sm" />
-                        <div className="flex flex-col">
-                          <Typography
-                            variant="small"
-                            color="white"
-                            className="font-normal"
-                          >
-                            {ticker}
-                          </Typography>
-                          <Typography
-                            variant="small"
-                            color="white"
-                            className="font-normal opacity-70"
-                          >
-                            {name}
-                          </Typography>
-                        </div>
-                      </div>
-                    </td>
-                    <td align="center" className={classes}>
+              return (
+                <tr key={index}>
+                  <td className={classes}>
+                    <div className="flex items-center gap-3">
+                      <Avatar
+                        src={row.Stock.icon_url}
+                        alt={row.Stock.name}
+                        size="sm"
+                        className="ml-2"
+                      />
                       <div className="flex flex-col">
                         <Typography
                           variant="small"
                           color="white"
                           className="font-normal"
                         >
-                          {price}
+                          {row.Stock.symbol}
                         </Typography>
-                      </div>
-                    </td>
-                    <td align="center" className={classes}>
-                      <div className="flex flex-col">
                         <Typography
                           variant="small"
                           color="white"
-                          className="font-normal"
+                          className="font-normal opacity-70"
                         >
-                          {averagePrice}
+                          {row.Stock.name}
                         </Typography>
                       </div>
-                    </td>
-                    <td align="center" className={classes}>
-                      <div className="flex flex-col">
-                        <Typography
-                          variant="small"
-                          color="white"
-                          className="font-normal"
-                        >
-                          {gain}
-                        </Typography>
-                      </div>
-                    </td>
-                    <td align="center" className={classes}>
-                      <div className="flex flex-col">
-                        <Typography
-                          variant="small"
-                          color="white"
-                          className="font-normal"
-                        >
-                          {performance}
-                        </Typography>
-                      </div>
-                    </td>
-                  </tr>
-                );
-              }
-            )}
+                    </div>
+                  </td>
+                  <td align="center" className={classes}>
+                    <div className="flex flex-col">
+                      <Typography
+                        variant="small"
+                        color="white"
+                        className="font-normal"
+                      >
+                        ${formatPrice(row.Stock.current_price)}
+                      </Typography>
+                    </div>
+                  </td>
+                  <td align="center" className={classes}>
+                    <div className="flex flex-col">
+                      <Typography
+                        variant="small"
+                        color="white"
+                        className="font-normal"
+                      >
+                        {row.shares}
+                      </Typography>
+                    </div>
+                  </td>
+                  <td align="center" className={classes}>
+                    <div className="flex flex-col">
+                      <Typography
+                        variant="small"
+                        color="white"
+                        className="font-normal"
+                      >
+                        ${formatPrice(row.average_price)}
+                      </Typography>
+                    </div>
+                  </td>
+                  <td align="center" className={classes}>
+                    <div className="flex flex-col">
+                      <Typography
+                        variant="small"
+                        color="white"
+                        className="font-normal"
+                      >
+                        ${formatPrice(row.total_equity)}
+                      </Typography>
+                    </div>
+                  </td>
+                  <td align="center" className={classes}>
+                    <div className="flex flex-col">
+                      <Typography
+                        variant="small"
+                        color="white"
+                        className="font-normal"
+                      >
+                        ${formatPrice(row.gain)}
+                      </Typography>
+                    </div>
+                  </td>
+                </tr>
+              );
+            })}
           </tbody>
         </table>
       </CardBody>

@@ -1,5 +1,5 @@
 {
-  "name": "my-app",
+  "name": "virtual-trades",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -13,7 +13,7 @@
     "@clerk/themes": "^1.7.5",
     "@heroicons/react": "^2.0.18",
     "@material-tailwind/react": "^2.1.0",
-    "@prisma/client": "^5.1.1",
+    "@prisma/client": "^5.2.0",
     "@reduxjs/toolkit": "^1.9.5",
     "@types/node": "20.4.9",
     "@types/react": "18.2.20",
@@ -40,6 +40,6 @@
   "devDependencies": {
     "@types/chart.js": "^2.9.37",
     "prettier-plugin-tailwindcss": "^0.5.3",
-    "prisma": "^5.1.1"
+    "prisma": "^5.2.0"
   }
 }

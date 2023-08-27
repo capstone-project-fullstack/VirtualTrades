@@ -129,7 +129,6 @@ export default function Overview({ initialValues }: OverviewProps) {
 
   const difference = funds.current_portfolio_value - funds.initial_amount;
   const percentage = (difference / funds.initial_amount) * 100;
-  console.log(percentage)
   const actualPercentage = !!percentage ? percentage : 0;
 
   return (

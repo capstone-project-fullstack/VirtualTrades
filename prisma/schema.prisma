@@ -30,6 +30,7 @@ model Stock {
     id            Int         @id @default(autoincrement())
     symbol        String      @unique
     name          String
+    icon_url      String
     current_price Decimal
     portfolios    Portfolio[]
     trades        Trade[]
