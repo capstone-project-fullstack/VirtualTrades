@@ -22,6 +22,23 @@ class Stock {
     return company ? company.instrument_name : null;
   }
 
+  static async getStockIcon(symbol: string) {
+    return axios
+      .get(
+        `https://finnhub.io/api/v1/stock/profile2?symbol=${symbol}&token=${process.env.FINNHUB_API_KEY}`
+      )
+      .then((res) => res.data.logo)
+      .catch((err) => console.log(err));
+  }
+
+  static async getStockById(id: number) {
+    const data = await prisma.stock.findUnique({
+      where: {
+        id: id,
+      },
+    });
+  }
+
   static async getCurrentPrice(symbol: string) {
     const { c } = await axios
       .get(
@@ -65,3 +82,8 @@ class Stock {
 }
 
 export default Stock;
+
+// (async() => {
+//   const stock = await Stock.getStockIcon('AAPL');
+//   console.log(stock);
+// })();

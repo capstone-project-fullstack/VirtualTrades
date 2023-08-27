@@ -128,8 +128,9 @@ export default function Overview({ initialValues }: OverviewProps) {
   }, []);
 
   const difference = funds.current_portfolio_value - funds.initial_amount;
-
-  console.log(difference);
+  const percentage = (difference / funds.initial_amount) * 100;
+  console.log(percentage)
+  const actualPercentage = !!percentage ? percentage : 0;
 
   return (
     <>
@@ -142,12 +143,19 @@ export default function Overview({ initialValues }: OverviewProps) {
                   {formatPrice(funds.current_portfolio_value)}
                 </div>
                 <div className="text-green-500 text-xl text-end">
-                  <span className="pr-2">{formatPrice(difference)}</span>
-                  <span className="text-white">
-                    {`(${
-                      ((difference / funds.initial_amount) * 100).toFixed(2) ||
-                      0
-                    }%)`}
+                  <span
+                    className={`pr-2 ${
+                      difference < 0 ? 'text-red-500' : 'text-green-500'
+                    }`}
+                  >
+                    {formatPrice(difference)}
+                  </span>
+                  <span
+                    className={`${
+                      actualPercentage >= 0 ? 'text-green-500' : 'text-red-500'
+                    }`}
+                  >
+                    {`(${actualPercentage.toFixed(2)}%)`}
                   </span>
                 </div>
               </div>

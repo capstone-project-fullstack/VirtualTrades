@@ -1,9 +1,10 @@
 import Stock from '../../modals/stock';
 import TradeStocks from '@/app/modals/tradeStocks';
 import { currentUser } from '@clerk/nextjs';
-import Portfolio from '../../modals/portfolio';
+import Portfolio from '../../modals/portfolioData.ts';
 import TradeFormComponent from './TradeFormComponent';
 import UserService from '@/app/modals/user';
+import prisma from '../../../../lib/prisma';
 
 const TradeForm = async ({ ticker }: { ticker: string }) => {
   const currUser = await currentUser();
@@ -14,7 +15,8 @@ const TradeForm = async ({ ticker }: { ticker: string }) => {
 
   let stock = await Stock.findStockIfExist(ticker);
 
-  let buyingPower = await Portfolio.getBuyingPower(userId);
+  const userData = await prisma.user.findUnique({ where: { id: userId } });
+  const buyingPower = Number(userData?.cash.toFixed(2));
 
   if (!stock) {
     const createdStock = await Stock.createStockIfNotExist(ticker);
