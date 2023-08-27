@@ -40,6 +40,7 @@ interface PortfolioData {
 
 export default function PositionTable() {
   const [tableRows, setTableRows] = useState<PortfolioData[]>([]);
+  const [searchStock, setSearchStock] = useState<string>('');
 
   useEffect(() => {
     axios
@@ -49,6 +50,13 @@ export default function PositionTable() {
       })
       .catch((err) => console.log(err));
   }, []);
+
+  const filterStock = tableRows.filter((row) => {
+    return (
+      row.Stock.symbol.toLowerCase().includes(searchStock.toLowerCase()) ||
+      row.Stock.name.toLowerCase().includes(searchStock.toLowerCase())
+    );
+  });
 
   return (
     <Card className=" w-full bg-dark-black border overflow-auto border-white rounded">
@@ -72,6 +80,12 @@ export default function PositionTable() {
               color="white"
               icon={<MagnifyingGlassIcon className="h-5 w-5" />}
               crossOrigin={'anonymous'}
+              value={searchStock}
+              onChange={(e) => {
+                const { value } = e.currentTarget;
+                if (value) setSearchStock(value);
+                else setSearchStock('');
+              }}
             />
           </div>
         </div>
@@ -100,7 +114,7 @@ export default function PositionTable() {
             </tr>
           </thead>
           <tbody>
-            {tableRows.map((row, index) => {
+            {filterStock.map((row, index) => {
               const classes =
                 'py-2 border-b border-blue-gray-50 text-center border-cell';
 
