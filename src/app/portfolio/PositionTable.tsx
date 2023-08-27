@@ -16,15 +16,6 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { formatPrice } from '../utils/utils';
 
-const TABLE_HEAD = [
-  'Ticker',
-  'Stock Price',
-  'Shares',
-  'Average Price',
-  'Total Equity',
-  'Gain',
-];
-
 interface PortfolioData {
   shares: number;
   average_price: number;
@@ -57,6 +48,55 @@ export default function PositionTable() {
       row.Stock.name.toLowerCase().includes(searchStock.toLowerCase())
     );
   });
+
+  const symbolSort = () => {
+    filterStock.sort((a: PortfolioData, b: PortfolioData) => {
+      if (a.Stock.symbol < b.Stock.symbol) return -1;
+      if (a.Stock.symbol > b.Stock.symbol) return 1;
+      return 0;
+    });
+    setTableRows([...filterStock]);
+  };
+
+  const priceSort = () => {
+    filterStock.sort(
+      (a: PortfolioData, b: PortfolioData) =>
+        a.Stock.current_price - b.Stock.current_price
+    );
+    setTableRows([...filterStock]);
+  };
+
+  const gainSort = () => {
+    filterStock.sort((a: PortfolioData, b: PortfolioData) => a.gain - b.gain);
+    setTableRows([...filterStock]);
+  };
+  const averagePriceSort = () => {
+    filterStock.sort(
+      (a: PortfolioData, b: PortfolioData) => a.average_price - b.average_price
+    );
+    setTableRows([...filterStock]);
+  };
+  const totalEquitySort = () => {
+    filterStock.sort(
+      (a: PortfolioData, b: PortfolioData) => a.total_equity - b.total_equity
+    );
+    setTableRows([...filterStock]);
+  };
+  const sharesSort = () => {
+    filterStock.sort(
+      (a: PortfolioData, b: PortfolioData) => a.shares - b.shares
+    );
+    setTableRows([...filterStock]);
+  };
+
+  const tableHead = [
+    { header: 'Symbol', sort: () => symbolSort() },
+    { header: 'Stock Price', sort: priceSort },
+    { header: 'Shares', sort: sharesSort },
+    { header: 'Average Price', sort: averagePriceSort },
+    { header: 'Total Equity', sort: totalEquitySort },
+    { header: 'Gain', sort: gainSort },
+  ];
 
   return (
     <Card className=" w-full bg-dark-black border overflow-auto border-white rounded">
@@ -95,7 +135,7 @@ export default function PositionTable() {
         <table className="w-full min-w-max table-auto text-center  ">
           <thead>
             <tr>
-              {TABLE_HEAD.map((head, index) => (
+              {tableHead.map((head, index) => (
                 <th
                   align="center"
                   key={index}
@@ -105,8 +145,9 @@ export default function PositionTable() {
                     variant="h6"
                     color="white"
                     className="flex items-center justify-center gap-2 font-normal leading-none opacity-70"
+                    onClick={() => head.sort()}
                   >
-                    {head}
+                    {head.header}
                     <ChevronUpDownIcon strokeWidth={2} className="h-4 w-4" />
                   </Typography>
                 </th>
