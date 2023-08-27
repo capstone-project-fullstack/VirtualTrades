@@ -8,8 +8,14 @@ interface TradingViewWidgetProps {
   ticker: string;
 }
 
+declare global {
+  interface Window {
+    TradingView: any;
+  }
+}
+
 const TradingViewWidget: React.FC<TradingViewWidgetProps> = ({ ticker }) => {
-  const onLoadScriptRef = useRef<() => void | null>();
+  const onLoadScriptRef = useRef<(() => void) | null>();
 
   useEffect(() => {
     onLoadScriptRef.current = createWidget;
@@ -22,7 +28,10 @@ const TradingViewWidget: React.FC<TradingViewWidgetProps> = ({ ticker }) => {
         script.type = 'text/javascript';
 
         // Explicitly type the event handler
-        script.onload = resolve as unknown as (this: GlobalEventHandlers, ev: Event) => any;
+        script.onload = resolve as unknown as (
+          this: GlobalEventHandlers,
+          ev: Event
+        ) => any;
 
         document.head.appendChild(script);
       });
@@ -37,7 +46,10 @@ const TradingViewWidget: React.FC<TradingViewWidgetProps> = ({ ticker }) => {
     };
 
     function createWidget() {
-      if (document.getElementById('tradingview_fc9a6') && 'TradingView' in window) {
+      if (
+        document.getElementById('tradingview_fc9a6') &&
+        'TradingView' in window
+      ) {
         new window.TradingView.widget({
           autosize: true,
           symbol: ticker,
@@ -65,7 +77,6 @@ const TradingViewWidget: React.FC<TradingViewWidgetProps> = ({ ticker }) => {
 };
 
 export default TradingViewWidget;
-
 
 // 'use client';
 
