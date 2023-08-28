@@ -49,53 +49,35 @@ export default function PositionTable() {
     );
   });
 
-  const symbolSort = () => {
-    filterStock.sort((a: PortfolioData, b: PortfolioData) => {
-      if (a.Stock.symbol < b.Stock.symbol) return -1;
-      if (a.Stock.symbol > b.Stock.symbol) return 1;
-      return 0;
+  const customSort = (sortBy: string) => {
+    filterStock.sort((a, b) => {
+      if (sortBy === 'symbol') {
+        return a.Stock.symbol.localeCompare(b.Stock.symbol);
+      } else if (sortBy === 'price') {
+        return a.Stock.current_price - b.Stock.current_price;
+      } else if (sortBy === 'gain') {
+        return a.gain - b.gain;
+      } else if (sortBy === 'averagePrice') {
+        return a.average_price - b.average_price;
+      } else if (sortBy === 'totalEquity') {
+        return a.total_equity - b.total_equity;
+      } else if (sortBy === 'shares') {
+        return a.shares - b.shares;
+      } else {
+        return 0;
+      }
     });
-    setTableRows([...filterStock]);
-  };
 
-  const priceSort = () => {
-    filterStock.sort(
-      (a: PortfolioData, b: PortfolioData) =>
-        a.Stock.current_price - b.Stock.current_price
-    );
-    setTableRows([...filterStock]);
-  };
-
-  const gainSort = () => {
-    filterStock.sort((a: PortfolioData, b: PortfolioData) => a.gain - b.gain);
-    setTableRows([...filterStock]);
-  };
-  const averagePriceSort = () => {
-    filterStock.sort(
-      (a: PortfolioData, b: PortfolioData) => a.average_price - b.average_price
-    );
-    setTableRows([...filterStock]);
-  };
-  const totalEquitySort = () => {
-    filterStock.sort(
-      (a: PortfolioData, b: PortfolioData) => a.total_equity - b.total_equity
-    );
-    setTableRows([...filterStock]);
-  };
-  const sharesSort = () => {
-    filterStock.sort(
-      (a: PortfolioData, b: PortfolioData) => a.shares - b.shares
-    );
     setTableRows([...filterStock]);
   };
 
   const tableHead = [
-    { header: 'Symbol', sort: () => symbolSort() },
-    { header: 'Stock Price', sort: priceSort },
-    { header: 'Shares', sort: sharesSort },
-    { header: 'Average Price', sort: averagePriceSort },
-    { header: 'Total Equity', sort: totalEquitySort },
-    { header: 'Gain', sort: gainSort },
+    { header: 'Symbol', sortKey: 'symbol' },
+    { header: 'Stock Price', sortKey: 'price' },
+    { header: 'Shares', sortKey: 'shares' },
+    { header: 'Average Price', sortKey: 'averagePrice' },
+    { header: 'Total Equity', sortKey: 'totalEquity' },
+    { header: 'Gain', sortKey: 'gain' },
   ];
 
   return (
@@ -145,7 +127,7 @@ export default function PositionTable() {
                     variant="h6"
                     color="white"
                     className="flex items-center justify-center gap-2 font-normal leading-none opacity-70"
-                    onClick={() => head.sort()}
+                    onClick={() => customSort(head.sortKey)}
                   >
                     {head.header}
                     <ChevronUpDownIcon strokeWidth={2} className="h-4 w-4" />
@@ -158,14 +140,14 @@ export default function PositionTable() {
             {filterStock.map((row, index) => {
               const classes =
                 'py-2 border-b border-blue-gray-50 text-center border-cell';
-
+              const { Stock: { icon_url, current_price, name, symbol }, gain, shares, average_price, total_equity } = row;
               return (
                 <tr key={index}>
                   <td className={classes}>
                     <div className="flex items-center gap-3">
                       <Avatar
-                        src={row.Stock.icon_url}
-                        alt={row.Stock.name}
+                        src={icon_url}
+                        alt={name}
                         size="sm"
                         className="ml-2"
                       />
@@ -175,14 +157,14 @@ export default function PositionTable() {
                           color="white"
                           className="font-normal"
                         >
-                          {row.Stock.symbol}
+                          {symbol}
                         </Typography>
                         <Typography
                           variant="small"
                           color="white"
                           className="font-normal opacity-70"
                         >
-                          {row.Stock.name}
+                          {name}
                         </Typography>
                       </div>
                     </div>
@@ -194,7 +176,7 @@ export default function PositionTable() {
                         color="white"
                         className="font-normal"
                       >
-                        ${formatPrice(row.Stock.current_price)}
+                        {formatPrice(Number(current_price))}
                       </Typography>
                     </div>
                   </td>
@@ -205,7 +187,7 @@ export default function PositionTable() {
                         color="white"
                         className="font-normal"
                       >
-                        {row.shares}
+                        {shares}
                       </Typography>
                     </div>
                   </td>
@@ -216,7 +198,7 @@ export default function PositionTable() {
                         color="white"
                         className="font-normal"
                       >
-                        ${formatPrice(row.average_price)}
+                        {formatPrice(Number(average_price))}
                       </Typography>
                     </div>
                   </td>
@@ -227,7 +209,7 @@ export default function PositionTable() {
                         color="white"
                         className="font-normal"
                       >
-                        ${formatPrice(row.total_equity)}
+                        {formatPrice(Number(total_equity))}
                       </Typography>
                     </div>
                   </td>
@@ -238,7 +220,7 @@ export default function PositionTable() {
                         color="white"
                         className="font-normal"
                       >
-                        ${formatPrice(row.gain)}
+                        {formatPrice(Number(gain))}
                       </Typography>
                     </div>
                   </td>
