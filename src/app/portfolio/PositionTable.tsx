@@ -16,6 +16,8 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { formatPrice, customSort } from '../utils/utils';
 import { useRouter } from 'next/navigation';
+import { useAppDispatch, useAppSelector } from '../redux/hooks';
+import { updateCurrentPortfolioValue } from '../redux/features/fundManagementSlice';
 
 interface PortfolioData {
   shares: number;
@@ -35,21 +37,97 @@ export default function PositionTable() {
   const [searchStock, setSearchStock] = useState<string>('');
   const [sortOrder, setSortOrder] = useState<'asc' | 'desc' | ''>('');
 
+  const cash = useAppSelector(
+    (state) => state.fundManagement.values.cash
+  )
+
   const router = useRouter();
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
     axios
       .get('/api/positions')
       .then((res) => {
-        console.log(res.data);
+        // console.log(res.data);
         setTableRows(res.data);
       })
       .catch((err) => console.log(err));
   }, []);
 
-  // useEffect(() => {
+  useEffect(() => {
+    const socket = new WebSocket(
+      `wss://ws.finnhub.io?token=cjhua7pr01qonds7geo0cjhua7pr01qonds7geog`
+    );
+    // console.log(tableRows);
 
-  // })
+    socket.addEventListener('open', () => {
+      tableRows.forEach((row) => {
+        socket.send(
+          JSON.stringify({ type: 'subscribe', symbol: row.Stock.symbol })
+        );
+      });
+    });
+
+    // Inside the message event listener:
+    socket.addEventListener('message', (e) => {
+      if (e.data) {
+        try {
+          const data = JSON.parse(e.data);
+          const trades = data.data;
+          if (trades && trades.length > 0) {
+            setTableRows((prevRows) => {
+              const updatedRows = prevRows.map((row) => {
+                const matchingTrade = trades.find(
+                  (trade: any) => trade.s === row.Stock.symbol
+                );
+                if (matchingTrade) {
+                  const updatedStock = {
+                    ...row.Stock,
+                    current_price: matchingTrade.p,
+                  };
+
+                  const updatedRow = {
+                    ...row,
+                    Stock: updatedStock,
+                    total_equity: updatedStock.current_price * row.shares,
+                    gain:
+                      (updatedStock.current_price - row.average_price) *
+                      row.shares,
+                  };
+
+                  // Make the axios patch request here to update the backend
+                  axios
+                    .patch(`/api/updateStockPrice`, {
+                      ticker: matchingTrade.s,
+                      price: matchingTrade.p,
+                    })
+                    .catch((err) => console.log(err));
+
+                  return updatedRow;
+                }
+                return row;
+              });
+
+              // Calculate the new current_portfolio_value
+              const newPortfolioValue = updatedRows.reduce(
+                (sum, r) => sum + r.total_equity,
+                0
+              );
+
+              // Dispatch the action to update the current_portfolio_value
+              dispatch(updateCurrentPortfolioValue(newPortfolioValue + cash));
+
+              return updatedRows;
+            });
+          }
+        } catch (error) {
+          console.error('Error parsing JSON data:', error);
+        }
+      }
+    });
+  }, [tableRows]);
+
+  // console.log(tableRows)
 
   const filterStock = tableRows.filter((row) => {
     return (

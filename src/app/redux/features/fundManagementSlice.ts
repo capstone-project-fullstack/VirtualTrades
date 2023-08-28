@@ -54,8 +54,18 @@ export const fundManagement = createSlice({
         },
       };
     },
+
+    updateCurrentPortfolioValue: (state, action: PayloadAction<number>) => {
+      return {
+        ...state,
+        values: {
+          ...state.values,
+          current_portfolio_value: action.payload,
+        },
+      };
+    }
   },
 });
 
-export const { setInitialValues, addFunds, withdrawFunds } = fundManagement.actions;
+export const { setInitialValues, addFunds, withdrawFunds, updateCurrentPortfolioValue } = fundManagement.actions;
 export default fundManagement.reducer;

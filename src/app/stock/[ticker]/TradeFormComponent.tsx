@@ -62,7 +62,7 @@ export default function TradeForm({
 
   useEffect(() => {
     const socket = new WebSocket(
-      `wss://ws.finnhub.io?token=cjhubehr01qonds7gfn0cjhubehr01qonds7gfng`
+      `wss://ws.finnhub.io?token=cjarmapr01qji1gtsko0cjarmapr01qji1gtskog`
     );
 
     // Connection opened -> Subscribe
