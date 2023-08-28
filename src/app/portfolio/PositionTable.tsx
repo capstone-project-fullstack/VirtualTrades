@@ -15,6 +15,7 @@ import {
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { formatPrice, customSort } from '../utils/utils';
+import { useRouter } from 'next/navigation';
 
 interface PortfolioData {
   shares: number;
@@ -32,16 +33,23 @@ interface PortfolioData {
 export default function PositionTable() {
   const [tableRows, setTableRows] = useState<PortfolioData[]>([]);
   const [searchStock, setSearchStock] = useState<string>('');
-  const [sortOrder, setSortOrder] = useState<'asc' | 'desc' | "">("");
+  const [sortOrder, setSortOrder] = useState<'asc' | 'desc' | ''>('');
+
+  const router = useRouter();
 
   useEffect(() => {
     axios
       .get('/api/positions')
       .then((res) => {
+        console.log(res.data);
         setTableRows(res.data);
       })
       .catch((err) => console.log(err));
   }, []);
+
+  // useEffect(() => {
+
+  // })
 
   const filterStock = tableRows.filter((row) => {
     return (
@@ -49,7 +57,6 @@ export default function PositionTable() {
       row.Stock.name.toLowerCase().includes(searchStock.toLowerCase())
     );
   });
-
 
   const tableHead = [
     { header: 'Symbol', sortKey: 'symbol' },
@@ -113,7 +120,12 @@ export default function PositionTable() {
                       } else {
                         setSortOrder('desc');
                       }
-                      customSort(head.sortKey, tableRows, setTableRows, sortOrder);
+                      customSort(
+                        head.sortKey,
+                        tableRows,
+                        setTableRows,
+                        sortOrder
+                      );
                     }}
                   >
                     {head.header}
@@ -137,7 +149,10 @@ export default function PositionTable() {
               return (
                 <tr key={index}>
                   <td className={classes}>
-                    <div className="flex items-center gap-3">
+                    <div
+                      className="flex items-center gap-3 cursor-pointer"
+                      onClick={() => router.push(`/stock/${symbol}`)}
+                    >
                       <Avatar
                         src={icon_url}
                         alt={name}
