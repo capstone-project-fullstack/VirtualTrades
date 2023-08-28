@@ -293,15 +293,7 @@ export default function TradeForm({
                 >
                   {loading ? <Spinner /> : 'Buy'}
                 </Button>
-                {/* 
-                <GradientButtonRounded                 
-                  type="submit"
-                  className="f-center"
-                  size="lg"
-                  disabled={loading}
-                >
-                  {loading ? <Spinner /> : 'Buy'}
-                </GradientButtonRounded> */}
+
               </form>
             </TabPanel>
             <TabPanel value="sell" className="p-0">

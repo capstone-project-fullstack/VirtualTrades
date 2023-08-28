@@ -37,9 +37,9 @@ export default function TabsDefault({ ticker }: { ticker: string }) {
       value="analysis"
       align="center"
     >
-      <TabsHeader className="w-full align-center justify-center m-5 bg-blue-500">
+      <TabsHeader className="w-full align-center justify-center mt-3 bg-custom1">
         {data.map(({ label, value }) => (
-          <Tab key={value} value={value} className="bg-yellow-500">
+          <Tab key={value} value={value}>
             {label}
           </Tab>
         ))}
