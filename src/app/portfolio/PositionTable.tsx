@@ -110,9 +110,11 @@ export default function PositionTable() {
 
               // Calculate the new current_portfolio_value
               const newPortfolioValue = updatedRows.reduce(
-                (sum, r) => sum + r.total_equity,
+                (sum, r) => sum + Number(r.total_equity),
                 0
               );
+
+              // console.log(newPortfolioValue);
 
               // Dispatch the action to update the current_portfolio_value
               dispatch(updateCurrentPortfolioValue(newPortfolioValue + cash));
