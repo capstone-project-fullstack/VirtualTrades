@@ -32,7 +32,7 @@ export default function Home({
 
   // export default function HorizontalCard({ img, text1, text2, text3, onClick }: HorizontalCardProps) {
   return (
-    <Card className="w-full max-w-[48rem] flex-row">
+    <Card className="w-full max-w-[48rem] flex-row bg-black">
       <CardHeader
         shadow={false}
         floated={false}
@@ -47,13 +47,13 @@ export default function Home({
         />
       </CardHeader>
       <CardBody>
-        <Typography variant="h6" color="gray" className="mb-4 uppercase">
+        <Typography variant="h6" color="white" className="mb-4 uppercase">
           {text1}
         </Typography>
-        <Typography variant="h4" color="blue-gray" className="mb-2">
+        <Typography variant="h4" color="white" className="mb-2">
           {text2}
         </Typography>
-        <Typography color="gray" className="mb-8 font-normal">
+        <Typography color="white" className="mb-8 font-normal">
           {text3}
         </Typography>
         <a href="#" className="inline-block">
