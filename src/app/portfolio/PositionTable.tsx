@@ -32,6 +32,7 @@ interface PortfolioData {
 export default function PositionTable() {
   const [tableRows, setTableRows] = useState<PortfolioData[]>([]);
   const [searchStock, setSearchStock] = useState<string>('');
+  const [sortOrder, setSortOrder] = useState<'asc' | 'desc' | null>(null);
 
   useEffect(() => {
     axios
@@ -50,22 +51,24 @@ export default function PositionTable() {
   });
 
   const customSort = (sortBy: string) => {
+    const isAscending = sortOrder === 'asc';
     filterStock.sort((a, b) => {
+      let comparison = 0;
       if (sortBy === 'symbol') {
-        return a.Stock.symbol.localeCompare(b.Stock.symbol);
+        comparison = a.Stock.symbol.localeCompare(b.Stock.symbol);
       } else if (sortBy === 'price') {
-        return a.Stock.current_price - b.Stock.current_price;
+        comparison = a.Stock.current_price - b.Stock.current_price;
       } else if (sortBy === 'gain') {
-        return a.gain - b.gain;
+        comparison = a.gain - b.gain;
       } else if (sortBy === 'averagePrice') {
-        return a.average_price - b.average_price;
+        comparison = a.average_price - b.average_price;
       } else if (sortBy === 'totalEquity') {
-        return a.total_equity - b.total_equity;
+        comparison = a.total_equity - b.total_equity;
       } else if (sortBy === 'shares') {
-        return a.shares - b.shares;
-      } else {
-        return 0;
+        comparison = a.shares - b.shares;
       }
+
+      return isAscending ? comparison : -comparison; // Reverse the comparison if descending
     });
 
     setTableRows([...filterStock]);
@@ -127,7 +130,14 @@ export default function PositionTable() {
                     variant="h6"
                     color="white"
                     className="flex items-center justify-center gap-2 font-normal leading-none opacity-70"
-                    onClick={() => customSort(head.sortKey)}
+                    onClick={() => {
+                      if (sortOrder === null || sortOrder === 'desc') {
+                        setSortOrder('asc');
+                      } else {
+                        setSortOrder('desc');
+                      }
+                      customSort(head.sortKey);
+                    }}
                   >
                     {head.header}
                     <ChevronUpDownIcon strokeWidth={2} className="h-4 w-4" />
@@ -140,7 +150,13 @@ export default function PositionTable() {
             {filterStock.map((row, index) => {
               const classes =
                 'py-2 border-b border-blue-gray-50 text-center border-cell';
-              const { Stock: { icon_url, current_price, name, symbol }, gain, shares, average_price, total_equity } = row;
+              const {
+                Stock: { icon_url, current_price, name, symbol },
+                gain,
+                shares,
+                average_price,
+                total_equity,
+              } = row;
               return (
                 <tr key={index}>
                   <td className={classes}>
