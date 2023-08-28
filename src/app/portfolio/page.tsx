@@ -4,8 +4,6 @@ import UserService from '../modals/user';
 import Funds from './Funds';
 import PositionTable from './PositionTable';
 import Overview from './Overview';
-import { setInitialValues } from '../redux/features/fundManagementSlice';
-import { store } from '../redux/store';
 
 export default async function Portfolio() {
   const currUser = await currentUser();
@@ -19,7 +17,6 @@ export default async function Portfolio() {
     cash: user?.cash || 0,
     current_portfolio_value: user?.current_portfolio_value || 0,
   };
-  // store.dispatch(setInitialValues(initialValues));
 
   return (
     <div className="h-screen">
