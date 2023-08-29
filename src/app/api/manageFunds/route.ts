@@ -9,8 +9,6 @@ export const PATCH = async (req: NextRequest) => {
     const reqBody = await req.json();
     const { amount } = reqBody;
     const type = req.nextUrl.searchParams.get('type');
-
-    console.log(type)
     const prev = await prisma.user.findUnique({
       where: {
         id: userId,

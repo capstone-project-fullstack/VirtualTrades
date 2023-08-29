@@ -19,11 +19,13 @@ model User {
 }
 
 model Watchlist {
-    id       Int    @id @default(autoincrement())
-    user_id  String
-    stock_id Int
-    Stock    Stock  @relation(fields: [stock_id], references: [id], onDelete: Cascade)
-    User     User   @relation(fields: [user_id], references: [id], onDelete: Cascade)
+  id       Int    @id @default(autoincrement())
+  user_id  String
+  stock_id Int
+  Stock    Stock  @relation(fields: [stock_id], references: [id], onDelete: Cascade)
+  User     User   @relation(fields: [user_id], references: [id], onDelete: Cascade)
+
+  @@unique([user_id, stock_id])  
 }
 
 model Stock {

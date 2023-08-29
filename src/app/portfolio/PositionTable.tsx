@@ -26,7 +26,6 @@ export default function PositionTable() {
 
   const cash = useAppSelector((state) => state.fundManagement.values.cash);
 
-  const router = useRouter();
   const dispatch = useAppDispatch();
 
   useEffect(() => {

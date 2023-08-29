@@ -2,7 +2,7 @@ import GraphWidget from '../../components/widgets/GraphWidget';
 import TradeForm from './TradeForm';
 import TradingViewWidget from '../../components/widgets/TradingViewWidget';
 import TabsDefault from '@/app/components/tabs/Tabs';
-import WatchlistButton from './WatchlistButton';
+import WatchlistsButton from './WatchlistButton';
 
 interface searchParams {
   search: string;
@@ -24,7 +24,7 @@ const StockPage = ({
   return (
     <div className="w-full px-3">
       <div className="absolute top-3 right-3">
-        <WatchlistButton ticker={ticker} />
+        <WatchlistsButton ticker={ticker} />
       </div>
       <div className="w-full mt-3 ">
         <TradingViewWidget ticker={ticker} />
