@@ -62,7 +62,7 @@ export default function TradeForm({
 
   useEffect(() => {
     const socket = new WebSocket(
-      `wss://ws.finnhub.io?token=cjhubehr01qonds7gfn0cjhubehr01qonds7gfng`
+      `wss://ws.finnhub.io?token=cjarmapr01qji1gtsko0cjarmapr01qji1gtskog`
     );
 
     // Connection opened -> Subscribe
@@ -188,29 +188,33 @@ export default function TradeForm({
   }
 
   return (
-    <Card className="min-w-[50px] max-w-[400px] bg-dark-black border border-gray-800 text-white min-h-[500px]">
+    <Card className="min-w-[50px] max-w-[400px] bg-dark-black border border-gray-800 text-white min-h-[500px] mx-auto">
       <NotificationDialog
         dialogContent={dialogContent}
         setDialogContent={setDialogContent}
       />
       <CardHeader
-        color="gray"
         floated={false}
         shadow={false}
-        className="m-0 grid place-items-center rounded-b-none py-1.5 px-4 text-center text-white font-bold"
+        className="m-0 grid place-items-center rounded-b-none py-1.5 px-4 text-center text-white font-bold bg-custom1"
       >
         <Typography variant="h5">Trade Stock</Typography>
       </CardHeader>
-      <CardBody className="bg-orange text-white">
+      <CardBody className="text-white">
         <Tabs value={type} className="overflow-visible">
-          <TabsHeader className="relative z-0 ">
-            <Tab value="buy" onClick={() => setType('buy')}>
+          <TabsHeader className="relative z-0 bg-custom1 ">
+            <Tab
+              value="buy"
+              className={`${type === 'sell' ? 'text-white' : ''}`}
+              onClick={() => setType('buy')}
+            >
               Buy
             </Tab>
             <Tab
               value="sell"
               onClick={() => setType('sell')}
               disabled={shares <= 0}
+              className={`${type === 'buy' ? 'text-white' : ''}`}
             >
               Sell
             </Tab>
@@ -232,8 +236,8 @@ export default function TradeForm({
             <TabPanel value="buy" className="p-0">
               <form onSubmit={buyStock} className="mt-6 flex flex-col gap-4">
                 <div>
-                  <Input 
-                    className='text-white'
+                  <Input
+                    className="text-white"
                     label="Number of Shares"
                     color="white"
                     type="number"
@@ -252,7 +256,9 @@ export default function TradeForm({
                   <Typography
                     variant="h5"
                     color="white"
-                    className="mb-2 font-medium">Details
+                    className="mb-2 font-medium"
+                  >
+                    Details
                   </Typography>
                   <div className="border-y border-black text-white">
                     Quantity: <span className="float-right">{buyShares}</span>
@@ -287,23 +293,19 @@ export default function TradeForm({
                 >
                   {loading ? <Spinner /> : 'Buy'}
                 </Button>
-                {/* 
-                <GradientButtonRounded                 
-                  type="submit"
-                  className="f-center"
-                  size="lg"
-                  disabled={loading}
-                >
-                  {loading ? <Spinner /> : 'Buy'}
-                </GradientButtonRounded> */}
+
               </form>
             </TabPanel>
             <TabPanel value="sell" className="p-0">
-              <form onSubmit={sellStock} className="mt-6 flex flex-col gap-4 text-white">
+              <form
+                onSubmit={sellStock}
+                className="mt-6 flex flex-col gap-4 text-white"
+              >
                 <div>
                   <Input
                     label="Number of Shares"
                     type="number"
+                    color="white"
                     containerProps={{ className: 'min-w-[72px]' }}
                     crossOrigin="anonymous"
                     name="sharesToSell"
@@ -327,7 +329,8 @@ export default function TradeForm({
                     Quantity: <span className="float-right">{sellShares}</span>
                   </div>
                   <div className="border-b border-black text-white">
-                    Shares Owned: <span className="float-right text-white">{shares}</span>
+                    Shares Owned:{' '}
+                    <span className="float-right text-white">{shares}</span>
                   </div>
                   <div className="border-b border-black text-white">
                     Buying Power:{' '}
@@ -350,9 +353,10 @@ export default function TradeForm({
                   className="f-center"
                   type="submit"
                   size="lg"
-                  color="blue"
+                  color="red"
                   variant="gradient"
-                  disabled={shares <= 0 || loading}>
+                  disabled={shares <= 0 || loading}
+                >
                   {loading ? <Spinner /> : 'Sell'}
                 </Button>
               </form>

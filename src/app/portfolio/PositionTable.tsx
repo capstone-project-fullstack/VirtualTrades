@@ -14,7 +14,10 @@ import {
 } from '@material-tailwind/react';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import { formatPrice } from '../utils/utils';
+import { formatPrice, customSort } from '../utils/utils';
+import { useRouter } from 'next/navigation';
+import { useAppDispatch, useAppSelector } from '../redux/hooks';
+import { updateCurrentPortfolioValue } from '../redux/features/fundManagementSlice';
 
 interface PortfolioData {
   shares: number;
@@ -32,15 +35,101 @@ interface PortfolioData {
 export default function PositionTable() {
   const [tableRows, setTableRows] = useState<PortfolioData[]>([]);
   const [searchStock, setSearchStock] = useState<string>('');
+  const [sortOrder, setSortOrder] = useState<'asc' | 'desc' | ''>('');
+
+  const cash = useAppSelector(
+    (state) => state.fundManagement.values.cash
+  )
+
+  const router = useRouter();
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
     axios
       .get('/api/positions')
       .then((res) => {
+        // console.log(res.data);
         setTableRows(res.data);
       })
       .catch((err) => console.log(err));
   }, []);
+
+  useEffect(() => {
+    const socket = new WebSocket(
+      `wss://ws.finnhub.io?token=cjhua7pr01qonds7geo0cjhua7pr01qonds7geog`
+    );
+    // console.log(tableRows);
+
+    socket.addEventListener('open', () => {
+      tableRows.forEach((row) => {
+        socket.send(
+          JSON.stringify({ type: 'subscribe', symbol: row.Stock.symbol })
+        );
+      });
+    });
+
+    // Inside the message event listener:
+    socket.addEventListener('message', (e) => {
+      if (e.data) {
+        try {
+          const data = JSON.parse(e.data);
+          const trades = data.data;
+          if (trades && trades.length > 0) {
+            setTableRows((prevRows) => {
+              const updatedRows = prevRows.map((row) => {
+                const matchingTrade = trades.find(
+                  (trade: any) => trade.s === row.Stock.symbol
+                );
+                if (matchingTrade) {
+                  const updatedStock = {
+                    ...row.Stock,
+                    current_price: matchingTrade.p,
+                  };
+
+                  const updatedRow = {
+                    ...row,
+                    Stock: updatedStock,
+                    total_equity: updatedStock.current_price * row.shares,
+                    gain:
+                      (updatedStock.current_price - row.average_price) *
+                      row.shares,
+                  };
+
+                  // Make the axios patch request here to update the backend
+                  axios
+                    .patch(`/api/updateStockPrice`, {
+                      ticker: matchingTrade.s,
+                      price: matchingTrade.p,
+                    })
+                    .catch((err) => console.log(err));
+
+                  return updatedRow;
+                }
+                return row;
+              });
+
+              // Calculate the new current_portfolio_value
+              const newPortfolioValue = updatedRows.reduce(
+                (sum, r) => sum + Number(r.total_equity),
+                0
+              );
+
+              // console.log(newPortfolioValue);
+
+              // Dispatch the action to update the current_portfolio_value
+              dispatch(updateCurrentPortfolioValue(newPortfolioValue + cash));
+
+              return updatedRows;
+            });
+          }
+        } catch (error) {
+          console.error('Error parsing JSON data:', error);
+        }
+      }
+    });
+  }, [tableRows]);
+
+  // console.log(tableRows)
 
   const filterStock = tableRows.filter((row) => {
     return (
@@ -49,53 +138,13 @@ export default function PositionTable() {
     );
   });
 
-  const symbolSort = () => {
-    filterStock.sort((a: PortfolioData, b: PortfolioData) => {
-      if (a.Stock.symbol < b.Stock.symbol) return -1;
-      if (a.Stock.symbol > b.Stock.symbol) return 1;
-      return 0;
-    });
-    setTableRows([...filterStock]);
-  };
-
-  const priceSort = () => {
-    filterStock.sort(
-      (a: PortfolioData, b: PortfolioData) =>
-        a.Stock.current_price - b.Stock.current_price
-    );
-    setTableRows([...filterStock]);
-  };
-
-  const gainSort = () => {
-    filterStock.sort((a: PortfolioData, b: PortfolioData) => a.gain - b.gain);
-    setTableRows([...filterStock]);
-  };
-  const averagePriceSort = () => {
-    filterStock.sort(
-      (a: PortfolioData, b: PortfolioData) => a.average_price - b.average_price
-    );
-    setTableRows([...filterStock]);
-  };
-  const totalEquitySort = () => {
-    filterStock.sort(
-      (a: PortfolioData, b: PortfolioData) => a.total_equity - b.total_equity
-    );
-    setTableRows([...filterStock]);
-  };
-  const sharesSort = () => {
-    filterStock.sort(
-      (a: PortfolioData, b: PortfolioData) => a.shares - b.shares
-    );
-    setTableRows([...filterStock]);
-  };
-
   const tableHead = [
-    { header: 'Symbol', sort: () => symbolSort() },
-    { header: 'Stock Price', sort: priceSort },
-    { header: 'Shares', sort: sharesSort },
-    { header: 'Average Price', sort: averagePriceSort },
-    { header: 'Total Equity', sort: totalEquitySort },
-    { header: 'Gain', sort: gainSort },
+    { header: 'Symbol', sortKey: 'symbol' },
+    { header: 'Stock Price', sortKey: 'price' },
+    { header: 'Shares', sortKey: 'shares' },
+    { header: 'Average Price', sortKey: 'averagePrice' },
+    { header: 'Total Equity', sortKey: 'totalEquity' },
+    { header: 'Gain', sortKey: 'gain' },
   ];
 
   return (
@@ -145,7 +194,19 @@ export default function PositionTable() {
                     variant="h6"
                     color="white"
                     className="flex items-center justify-center gap-2 font-normal leading-none opacity-70"
-                    onClick={() => head.sort()}
+                    onClick={() => {
+                      if (sortOrder === null || sortOrder === 'desc') {
+                        setSortOrder('asc');
+                      } else {
+                        setSortOrder('desc');
+                      }
+                      customSort(
+                        head.sortKey,
+                        tableRows,
+                        setTableRows,
+                        sortOrder
+                      );
+                    }}
                   >
                     {head.header}
                     <ChevronUpDownIcon strokeWidth={2} className="h-4 w-4" />
@@ -158,14 +219,23 @@ export default function PositionTable() {
             {filterStock.map((row, index) => {
               const classes =
                 'py-2 border-b border-blue-gray-50 text-center border-cell';
-
+              const {
+                Stock: { icon_url, current_price, name, symbol },
+                gain,
+                shares,
+                average_price,
+                total_equity,
+              } = row;
               return (
                 <tr key={index}>
                   <td className={classes}>
-                    <div className="flex items-center gap-3">
+                    <div
+                      className="flex items-center gap-3 cursor-pointer"
+                      onClick={() => router.push(`/stock/${symbol}`)}
+                    >
                       <Avatar
-                        src={row.Stock.icon_url}
-                        alt={row.Stock.name}
+                        src={icon_url}
+                        alt={name}
                         size="sm"
                         className="ml-2"
                       />
@@ -175,14 +245,14 @@ export default function PositionTable() {
                           color="white"
                           className="font-normal"
                         >
-                          {row.Stock.symbol}
+                          {symbol}
                         </Typography>
                         <Typography
                           variant="small"
                           color="white"
                           className="font-normal opacity-70"
                         >
-                          {row.Stock.name}
+                          {name}
                         </Typography>
                       </div>
                     </div>
@@ -194,7 +264,7 @@ export default function PositionTable() {
                         color="white"
                         className="font-normal"
                       >
-                        ${formatPrice(row.Stock.current_price)}
+                        {formatPrice(Number(current_price))}
                       </Typography>
                     </div>
                   </td>
@@ -205,7 +275,7 @@ export default function PositionTable() {
                         color="white"
                         className="font-normal"
                       >
-                        {row.shares}
+                        {shares}
                       </Typography>
                     </div>
                   </td>
@@ -216,7 +286,7 @@ export default function PositionTable() {
                         color="white"
                         className="font-normal"
                       >
-                        ${formatPrice(row.average_price)}
+                        {formatPrice(Number(average_price))}
                       </Typography>
                     </div>
                   </td>
@@ -227,7 +297,7 @@ export default function PositionTable() {
                         color="white"
                         className="font-normal"
                       >
-                        ${formatPrice(row.total_equity)}
+                        {formatPrice(Number(total_equity))}
                       </Typography>
                     </div>
                   </td>
@@ -238,7 +308,7 @@ export default function PositionTable() {
                         color="white"
                         className="font-normal"
                       >
-                        ${formatPrice(row.gain)}
+                        {formatPrice(Number(gain))}
                       </Typography>
                     </div>
                   </td>
