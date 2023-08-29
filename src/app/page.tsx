@@ -24,9 +24,6 @@ export default function Home() {
                 Welcome to{' '}
                 <span className="text-light-green">VirtualTrades</span>
               </h1>
-              {/* <p className="uppercase tracking-loose w-full ax-w-md text-2xl">
-                WHERE INVESTMENT BEGINS
-              </p> */}
               <p className="leading-normal text-3xl mt-4 mb-8">
                 Learn to interpret financial indicators, charts and graphs to
                 make better informed decisions at the start of your investment
@@ -54,7 +51,7 @@ export default function Home() {
       <Svg />
 
       <section>
-        <div className="bg-purple py-8">
+        <div className="bg-light-purple py-8">
           <div className="container max-w-5xl mx-auto m-8 mb-20">
             <h1 className="w-full my-2 text-center text-4xl text-white-600 font-bold leading-none mb-9">
               Stock Market
@@ -137,7 +134,7 @@ export default function Home() {
 
       <Svg />
 
-      <section className="bg-purple py-8">
+      <section className="bg-light-purple py-8">
         <div>
           <h1 className="w-full my-2 text-center text-4xl text-white-600 font-bold leading-none">
             Explore
@@ -146,16 +143,16 @@ export default function Home() {
         <div className="container mx-auto flex flex-wrap pb-12">
           <div className="w-full md:w-1/3 p-6 flex flex-col flex-grow flex-shrink">
             <div className="container mx-auto flex flex-wrap pt-4 pb-12 max-h-[500px]">
-              <div className="w-full md:w-1/3 flex flex-col flex-grow flex-shrink border border-dark-green">
-                <div className="flex-1 bg-dark-black rounded-t rounded-b-none overflow-hidden shadow">
+              <div className="w-full md:w-1/3 flex flex-col flex-grow flex-shrink">
+                <div className="flex-1 bg-dark-black overflow-hidden shadow">
                   <a
                     href="#"
                     className="flex flex-wrap no-underline hover:no-underline"
                   >
-                    <div className="w-full font-bold text-xl text-white px-6 mt-5">
+                    <div className="w-full font-bold text-xl text-white px-6 mt-5 text-center">
                       YOUR STOCK PORTFOLIO
                     </div>
-                    <p className="text-white text-base px-6 mb-5">
+                    <p className="text-white text-base px-6 mb-5 text-center">
                       Your personalized portfolio offers an instant snapshot of
                       your investments and stock progress. Track performance,
                       stay updated with data analyses and make well-informed
@@ -185,10 +182,10 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="w-full md:w-1/3 p-6 flex flex-col flex-grow flex-shrink">
+          <div className="w-full md:w-1/3 p-6 flex flex-col flex-grow flex-shrink ">
             <div className="container mx-auto flex flex-wrap pt-4 pb-12 max-h-[500px]">
-              <div className="w-full md:w-1/3 flex flex-col flex-grow flex-shrink border border-dark-green">
-                <div className="flex-1 bg-dark-black rounded-t rounded-b-none overflow-hidden shadow">
+              <div className="w-full md:w-1/3 flex flex-col flex-grow flex-shrink">
+                <div className="flex-1 bg-dark-black  overflow-hidden shadow">
                   <a
                     href="#"
                     className="flex flex-wrap no-underline hover:no-underline"
@@ -196,10 +193,10 @@ export default function Home() {
                     {/* <p className="w-full text-gray-600 text-xs md:text-sm px-6">
                       BUY AND SELL STOCK
                     </p> */}
-                    <div className="w-full font-bold text-xl text-white px-6 mt-5">
+                    <div className="w-full font-bold text-xl text-white px-6 mt-5 text-center">
                       TRADING STOCK
                     </div>
-                    <p className="text-white text-base px-6 mb-5">
+                    <p className="text-white text-base px-6 mb-5 text-center">
                       Explore the stock market on an interactive map and buy or
                       sell your stocks in real-time. Visit our virtual stock
                       analyses page, research a companies performance, and shop
@@ -229,23 +226,21 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="w-full md:w-1/3 p-6 flex flex-col flex-grow flex-shrink">
+          <div className="w-full md:w-1/3 p-6 flex flex-col flex-grow flex-shrink rounded-lg">
             <div className="container mx-auto flex flex-wrap pt-4 pb-12 max-h-[500px]">
-              <div className="w-full md:w-1/3 flex flex-col flex-grow flex-shrink border border-dark-green">
-                <div className="flex-1 bg-dark-black rounded-t rounded-b-none overflow-hidden shadow">
+              <div className="w-full md:w-1/3 flex flex-col flex-grow flex-shrink">
+                <div className="flex-1 bg-dark-black overflow-hidden shadow">
                   <a
                     href="#"
                     className="flex flex-wrap no-underline hover:no-underline"
                   >
-                    {/* <p className="w-full text-gray-600 text-xs md:text-sm px-6">
-                      ABOUT US
-                    </p> */}
-                    <div className="w-full font-bold text-xl text-white px-6 mt-5">
+    
+                    <div className="w-full font-bold text-xl text-white px-6 mt-5 text-center">
                       MORE ABOUT US
                     </div>
-                    <p className="text-white text-base px-6 mb-5">
-                      Delve into our mission, learn about our team, and our
-                      values here at Virtual Trades. We are dedicated to
+                    <p className="text-white text-base px-6 mb-5 text-center">
+                      Delve into our mission, learn more about our team, and what our
+                      values are here at Virtual Trades. We are dedicated to
                       armoring you with the right tools to confidently navigate
                       this new world of investing.
                     </p>
