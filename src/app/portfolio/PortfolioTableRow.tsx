@@ -1,14 +1,13 @@
 import { Avatar, Typography } from '@material-tailwind/react';
 import { formatPrice } from '../utils/utils';
-import { useRouter } from 'next/navigation';
 import { PortfolioData } from '../../../typings';
+import Link from 'next/link';
 
 interface PositionTableRowProps {
   row: PortfolioData;
 }
 
 function PositionTableRow({ row }: PositionTableRowProps) {
-  const router = useRouter();
   const {
     Stock: { icon_url, current_price, name, symbol },
     gain,
@@ -21,24 +20,23 @@ function PositionTableRow({ row }: PositionTableRowProps) {
   return (
     <tr>
       <td className={classes}>
-        <div
-          className="flex items-center gap-3 cursor-pointer"
-          onClick={() => router.push(`/stock/${symbol}`)}
-        >
-          <Avatar src={icon_url} alt={name} size="sm" className="ml-2" />
-          <div className="flex flex-col">
-            <Typography variant="small" color="white" className="font-normal">
-              {symbol}
-            </Typography>
-            <Typography
-              variant="small"
-              color="white"
-              className="font-normal opacity-70"
-            >
-              {name}
-            </Typography>
+        <Link href={`/stock/${symbol}`}>
+          <div className="flex items-center gap-3 cursor-pointer">
+            <Avatar src={icon_url} alt={name} size="sm" className="ml-2" />
+            <div className="flex flex-col">
+              <Typography variant="small" color="white" className="font-normal">
+                {symbol}
+              </Typography>
+              <Typography
+                variant="small"
+                color="white"
+                className="font-normal opacity-70"
+              >
+                {name}
+              </Typography>
+            </div>
           </div>
-        </div>
+        </Link>
       </td>
       <td align="center" className={classes}>
         <div className="flex flex-col">

@@ -106,7 +106,7 @@ export default function PositionTable() {
         }
       }
     });
-  }, [tableRows]);
+  }, [tableRows, ]);
 
   const filterStock = tableRows.filter((row) => {
     return (

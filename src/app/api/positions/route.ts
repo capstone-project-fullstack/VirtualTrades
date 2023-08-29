@@ -14,6 +14,21 @@ export const GET = async () => {
 
     const userId = currUser?.id;
 
+    const userStocks = await prisma.portfolio.findMany({
+      where: { user_id: userId },
+      select: {
+        Stock: {
+          select: {
+            symbol: true,
+          },
+        },
+      },
+    });
+
+    userStocks.forEach(async (stock) => {
+      await Stock.getCurrentPrice(stock.Stock.symbol);
+    })
+
     const portfolioData = await prisma.portfolio.findMany({
       where: { user_id: userId },
       select: {
@@ -25,8 +40,8 @@ export const GET = async () => {
           select: {
             symbol: true,
             name: true,
-            icon_url: true,
             current_price: true,
+            icon_url: true,
           },
         },
       },
