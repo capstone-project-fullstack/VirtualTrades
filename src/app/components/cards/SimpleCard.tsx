@@ -22,9 +22,9 @@ export default function Home({ text1 }: SimpleCard) {
 
   return (
     <Card className="mt-6 w-96">
-      <CardBody>
+      <CardBody className='text-center'>
         <Typography variant="h5" color="blue-gray" className="mb-2">
-          Read The News
+          CURRATED NEWS FEED
         </Typography>
         <Typography variant="lead">{text1}</Typography>
       </CardBody>
@@ -33,7 +33,7 @@ export default function Home({ text1 }: SimpleCard) {
           <GradientButtonRounded
             text="News Feed"
             onClick={() => handleRoute('news')}
-            className="bg-none bg-dark-green"
+            className="bg-none bg-light-green"
           />
         </div>
       </CardFooter>

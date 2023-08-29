@@ -53,9 +53,9 @@ export default function Home() {
       <section>
         <div className="bg-light-purple py-8">
           <div className="container max-w-5xl mx-auto m-8 mb-20">
-            <h1 className="w-full my-2 text-center text-4xl text-white-600 font-bold leading-none mb-9">
+            {/* <h1 className="w-full my-2 text-center text-4xl text-white-600 font-bold leading-none mb-9">
               Stock Market
-            </h1>
+            </h1> */}
             <div className="w-full mb-4">
               <div className="h-1 mx-auto gradient w-64 opacity-25 my-0 py-0 rounded-t"></div>
             </div>
@@ -112,19 +112,18 @@ export default function Home() {
       <section className="m-20">
         <div className="flex flex-wrap flex-col-reverse sm:flex-row ml-20">
           <div className="w-full sm:w-1/2 p-9 mt-0">
-            <SimpleCard text1="Stay informed about financial news, explore the latest updates on stocks, trends, and economic developments with our currated news page. " />
+            <SimpleCard text1="Stay informed on financial news, explore the latest updates on stocks, trends, and economic developments with our currated news page. " />
           </div>
           <div className="w-full sm:w-1/2 p-9 mt-6">
             <div className="align-middle">
               <h3 className="text-4xl text-white-600 font-bold leading-none mb-9">
-                Latest in Financial News
+                Latest in Finance
               </h3>
-              <p className="text-white-700 text-lg mb-8">
+              <p className="text-white-700 text-lg">
                 News articles are not just headlines, they are valuable learning
                 resources. We curate the latest news, including expert analyses
                 and market insights to keep you up to date with the
-                ever-changing landscape. Whether trade tensions, economic data
-                releases, or geopolitical developments, understand how these
+                ever-changing landscape. Understand how these
                 factors influence stock prices.
               </p>
             </div>
@@ -135,54 +134,14 @@ export default function Home() {
       <Svg />
 
       <section className="bg-light-purple py-8">
-        <div>
+        {/* <div>
           <h1 className="w-full my-2 text-center text-4xl text-white-600 font-bold leading-none">
             Explore
           </h1>
-        </div>
-        <div className="container mx-auto flex flex-wrap pb-12">
-          <div className="w-full md:w-1/3 p-6 flex flex-col flex-grow flex-shrink">
-            <div className="container mx-auto flex flex-wrap pt-4 pb-12 max-h-[500px]">
-              <div className="w-full md:w-1/3 flex flex-col flex-grow flex-shrink">
-                <div className="flex-1 bg-dark-black overflow-hidden shadow">
-                  <a
-                    href="#"
-                    className="flex flex-wrap no-underline hover:no-underline"
-                  >
-                    <div className="w-full font-bold text-xl text-white px-6 mt-5 text-center">
-                      YOUR STOCK PORTFOLIO
-                    </div>
-                    <p className="text-white text-base px-6 mb-5 text-center">
-                      Your personalized portfolio offers an instant snapshot of
-                      your investments and stock progress. Track performance,
-                      stay updated with data analyses and make well-informed
-                      decisions, effortlessly!
-                    </p>
-                  </a>
-                  <div>
-                    <Img
-                      className="h-full w-full rounded-lg object-cover object-center"
-                      src="https://cdn-scripbox-wordpress.scripbox.com/wp-content/uploads/2021/09/us-stock-market-timings-vector.png"
-                      alt="nature image"
-                      width={100}
-                      height={100}
-                    />
-                  </div>
-                </div>
-                <div className="flex-none mt-auto bg-dark-black rounded-b rounded-t-none overflow-hidden shadow p-6">
-                  <div className="f-center">
-                    <GradientButtonRounded
-                      text="Portfolio"
-                      onClick={() => handleRoute('portfolio')}
-                      className="bg-none bg-dark-green"
-                    />
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+        </div> */}
+        <div className="container mx-auto flex flex-wrap pb-12 m-5">
 
-          <div className="w-full md:w-1/3 p-6 flex flex-col flex-grow flex-shrink ">
+        <div className="w-full md:w-1/3 p-6 flex flex-col flex-grow flex-shrink ">
             <div className="container mx-auto flex flex-wrap pt-4 pb-12 max-h-[500px]">
               <div className="w-full md:w-1/3 flex flex-col flex-grow flex-shrink">
                 <div className="flex-1 bg-dark-black  overflow-hidden shadow">
@@ -197,9 +156,8 @@ export default function Home() {
                       TRADING STOCK
                     </div>
                     <p className="text-white text-base px-6 mb-5 text-center">
-                      Explore the stock market on an interactive map and buy or
-                      sell your stocks in real-time. Visit our virtual stock
-                      analyses page, research a companies performance, and shop
+                      Explore the stock market on an interactive map and trade stocks in real-time. Visit our virtual stock
+                      analyses page, as well as our market page, to research a companies performance, and shop
                       stock risk-free!
                     </p>
                   </a>
@@ -216,15 +174,58 @@ export default function Home() {
                 <div className="flex-none mt-auto bg-dark-black rounded-b rounded-t-none overflow-hidden shadow p-6">
                   <div className="f-center">
                     <GradientButtonRounded
-                      text="Explore"
+                      text="Trade"
                       onClick={() => handleRoute('landing')}
-                      className="bg-none bg-dark-green"
+                      className="bg-none bg-light-green"
                     />
                   </div>
                 </div>
               </div>
             </div>
           </div>
+
+          <div className="w-full md:w-1/3 p-6 flex flex-col flex-grow flex-shrink">
+            <div className="container mx-auto flex flex-wrap pt-4 pb-12 max-h-[500px]">
+              <div className="w-full md:w-1/3 flex flex-col flex-grow flex-shrink">
+                <div className="flex-1 bg-dark-black overflow-hidden shadow">
+                  <a
+                    href="#"
+                    className="flex flex-wrap no-underline hover:no-underline"
+                  >
+                    <div className="w-full font-bold text-xl text-white px-6 mt-5 text-center">
+                      YOUR STOCK PORTFOLIO
+                    </div>
+                    <p className="text-white text-base px-6 mb-5 text-center">
+                      Your personalized portfolio offers an instant snapshot of
+                      your investments and stock progress. Track performance,
+                      stay updated with data analyses and make well-informed
+                      decisions, effortlessly.
+                    </p>
+                  </a>
+                  <div>
+                    <Img
+                      className="h-full w-full rounded-lg object-cover object-center"
+                      src="https://cdn-scripbox-wordpress.scripbox.com/wp-content/uploads/2021/09/us-stock-market-timings-vector.png"
+                      alt="nature image"
+                      width={100}
+                      height={100}
+                    />
+                  </div>
+                </div>
+                <div className="flex-none mt-auto bg-dark-black rounded-b rounded-t-none overflow-hidden shadow p-6">
+                  <div className="f-center">
+                    <GradientButtonRounded
+                      text="Explore"
+                      onClick={() => handleRoute('portfolio')}
+                      className="bg-none bg-light-green"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
 
           <div className="w-full md:w-1/3 p-6 flex flex-col flex-grow flex-shrink rounded-lg">
             <div className="container mx-auto flex flex-wrap pt-4 pb-12 max-h-[500px]">
@@ -242,7 +243,7 @@ export default function Home() {
                       Delve into our mission, learn more about our team, and what our
                       values are here at Virtual Trades. We are dedicated to
                       armoring you with the right tools to confidently navigate
-                      this new world of investing.
+                      this new world of investing!
                     </p>
                   </a>
                   <div>
@@ -258,9 +259,9 @@ export default function Home() {
                 <div className="flex-none mt-auto bg-dark-black rounded-b rounded-t-none overflow-hidden shadow p-6">
                   <div className="f-center">
                     <GradientButtonRounded
-                      text="About Us"
+                      text="Read More"
                       onClick={() => handleRoute('landing')}
-                      className="bg-none bg-dark-green"
+                      className="bg-none bg-light-green"
                     />
                   </div>
                 </div>
@@ -320,7 +321,7 @@ export default function Home() {
 
         <div className="f-center mt-10 mb-5">
           <GradientButtonRounded
-            text="Get Started!"
+            text="Get Started"
             onClick={() => handleRoute('market')}
             className="bg-none bg-light-green"
           />

@@ -63,7 +63,7 @@ export default function Home({
                 <GradientButtonRounded
                   text="Open Market"
                   onClick={() => handleRoute('market')}
-                  className="bg-none bg-dark-green"
+                  className="bg-none bg-light-green"
                 />
               </div>
             </a>

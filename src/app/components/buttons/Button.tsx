@@ -19,7 +19,7 @@ export const GradientButtonRounded = ({
   return (
     <Button
       variant="gradient"
-      className={`${className}`}
+      className={`${className} hover:bg-opacity-90`}
       color={color}
       onClick={onClick}
     >
