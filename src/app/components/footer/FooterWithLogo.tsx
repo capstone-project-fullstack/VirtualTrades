@@ -16,7 +16,7 @@ export default function FooterWithLogo() {
                 color="blue-gray"
                 className="font-normal transition-colors hover:text-blue-500 focus:text-blue-500 text-white"
               >
-                About Us
+                Portfolio
               </Typography>
             </li>
             <li>
@@ -26,7 +26,7 @@ export default function FooterWithLogo() {
                 color="blue-gray"
                 className="font-normal transition-colors text-white hover:text-blue-500 focus:text-blue-500"
               >
-                License
+                Stock Market
               </Typography>
             </li>
             <li>
@@ -36,7 +36,7 @@ export default function FooterWithLogo() {
                 color="blue-gray"
                 className="font-normal transition-colors text-white hover:text-blue-500 focus:text-blue-500"
               >
-                Contribute
+                Watchlist
               </Typography>
             </li>
             <li>
@@ -46,7 +46,7 @@ export default function FooterWithLogo() {
                 color="blue-gray"
                 className="font-normal transition-colors text-white hover:text-blue-500 focus:text-blue-500"
               >
-                Contact Us
+                News
               </Typography>
             </li>
           </ul>
@@ -56,7 +56,7 @@ export default function FooterWithLogo() {
           color="blue-gray"
           className="text-center text-white font-normal"
         >
-          &copy; 2023 Material Tailwind
+          &copy; 2023 VirtualTrades
         </Typography>
       </footer>
     </>
