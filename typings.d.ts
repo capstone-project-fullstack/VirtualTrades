@@ -77,3 +77,16 @@ export interface User {
   cash: number;
   current_portfolio_value: number;
 }
+
+export interface PortfolioData {
+  shares: number;
+  average_price: number;
+  total_equity: number;
+  gain: number;
+  Stock: {
+    symbol: string;
+    name: string;
+    icon_url: string;
+    current_price: number;
+  };
+}
