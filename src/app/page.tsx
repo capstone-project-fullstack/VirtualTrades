@@ -145,9 +145,9 @@ export default function Home() {
         </div>
         <div className="container mx-auto flex flex-wrap pb-12">
           <div className="w-full md:w-1/3 p-6 flex flex-col flex-grow flex-shrink">
-            <div className="container mx-auto flex flex-wrap pt-4 pb-12 max-h-[400px]">
-              <div className="w-full md:w-1/3 p-6 flex flex-col flex-grow flex-shrink">
-                <div className="flex-1 bg-black rounded-t rounded-b-none overflow-hidden shadow">
+            <div className="container mx-auto flex flex-wrap pt-4 pb-12 max-h-[500px]">
+              <div className="w-full md:w-1/3 flex flex-col flex-grow flex-shrink border border-dark-green">
+                <div className="flex-1 bg-dark-black rounded-t rounded-b-none overflow-hidden shadow">
                   <a
                     href="#"
                     className="flex flex-wrap no-underline hover:no-underline"
@@ -172,7 +172,7 @@ export default function Home() {
                     />
                   </div>
                 </div>
-                <div className="flex-none mt-auto bg-black rounded-b rounded-t-none overflow-hidden shadow p-6">
+                <div className="flex-none mt-auto bg-dark-black rounded-b rounded-t-none overflow-hidden shadow p-6">
                   <div className="f-center">
                     <GradientButtonRounded
                       text="Portfolio"
@@ -186,9 +186,9 @@ export default function Home() {
           </div>
 
           <div className="w-full md:w-1/3 p-6 flex flex-col flex-grow flex-shrink">
-            <div className="container mx-auto flex flex-wrap pt-4 pb-12">
-              <div className="w-full md:w-1/3 p-6 flex flex-col flex-grow flex-shrink ">
-                <div className="flex-1 bg-black rounded-t rounded-b-none overflow-hidden shadow">
+            <div className="container mx-auto flex flex-wrap pt-4 pb-12 max-h-[500px]">
+              <div className="w-full md:w-1/3 flex flex-col flex-grow flex-shrink border border-dark-green">
+                <div className="flex-1 bg-dark-black rounded-t rounded-b-none overflow-hidden shadow">
                   <a
                     href="#"
                     className="flex flex-wrap no-underline hover:no-underline"
@@ -216,7 +216,7 @@ export default function Home() {
                     />
                   </div>
                 </div>
-                <div className="flex-none mt-auto bg-black rounded-b rounded-t-none overflow-hidden shadow p-6">
+                <div className="flex-none mt-auto bg-dark-black rounded-b rounded-t-none overflow-hidden shadow p-6">
                   <div className="f-center">
                     <GradientButtonRounded
                       text="Explore"
@@ -230,9 +230,9 @@ export default function Home() {
           </div>
 
           <div className="w-full md:w-1/3 p-6 flex flex-col flex-grow flex-shrink">
-            <div className="container mx-auto flex flex-wrap pt-4 pb-12">
-              <div className="w-full md:w-1/3 p-6 flex flex-col flex-grow flex-shrink">
-                <div className="flex-1 bg-black rounded-t rounded-b-none overflow-hidden shadow">
+            <div className="container mx-auto flex flex-wrap pt-4 pb-12 max-h-[500px]">
+              <div className="w-full md:w-1/3 flex flex-col flex-grow flex-shrink border border-dark-green">
+                <div className="flex-1 bg-dark-black rounded-t rounded-b-none overflow-hidden shadow">
                   <a
                     href="#"
                     className="flex flex-wrap no-underline hover:no-underline"
@@ -260,7 +260,7 @@ export default function Home() {
                     />
                   </div>
                 </div>
-                <div className="flex-none mt-auto bg-black rounded-b rounded-t-none overflow-hidden shadow p-6">
+                <div className="flex-none mt-auto bg-dark-black rounded-b rounded-t-none overflow-hidden shadow p-6">
                   <div className="f-center">
                     <GradientButtonRounded
                       text="About Us"
