@@ -21,15 +21,15 @@ export default function Home({ text1 }: SimpleCard) {
   };
 
   return (
-    <Card className="mt-6 w-96">
-      <CardBody className='text-center'>
-        <Typography variant="h5" color="blue-gray" className="mb-2">
+    <Card className="mb-4 w-96 bg-white h-80">
+      <CardBody className='text-center mt-2'>
+        <Typography variant="h5" color="blue-gray" className="mb-5">
           CURRATED NEWS FEED
         </Typography>
         <Typography variant="lead">{text1}</Typography>
       </CardBody>
       <CardFooter className="pt-0">
-        <div className="f-center">
+        <div className="f-center mt-4">
           <GradientButtonRounded
             text="News Feed"
             onClick={() => handleRoute('news')}

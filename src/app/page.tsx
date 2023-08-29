@@ -111,15 +111,15 @@ export default function Home() {
 
       <section className="m-20">
         <div className="flex flex-wrap flex-col-reverse sm:flex-row ml-20">
-          <div className="w-full sm:w-1/2 p-9 mt-0">
+          <div className="w-full sm:w-1/2 p-9">
             <SimpleCard text1="Stay informed on financial news, explore the latest updates on stocks, trends, and economic developments with our currated news page. " />
           </div>
-          <div className="w-full sm:w-1/2 p-9 mt-6">
+          <div className="w-full sm:w-1/2 p-9 mt-9">
             <div className="align-middle">
               <h3 className="text-4xl text-white-600 font-bold leading-none mb-9">
                 Latest in Finance
               </h3>
-              <p className="text-white-700 text-lg">
+              <p className="text-white-900 text-lg">
                 News articles are not just headlines, they are valuable learning
                 resources. We curate the latest news, including expert analyses
                 and market insights to keep you up to date with the
@@ -152,7 +152,7 @@ export default function Home() {
                     {/* <p className="w-full text-gray-600 text-xs md:text-sm px-6">
                       BUY AND SELL STOCK
                     </p> */}
-                    <div className="w-full font-bold text-xl text-white px-6 mt-5 text-center">
+                    <div className="w-full font-bold text-xl text-white px-6 mt-7 text-center">
                       TRADING STOCK
                     </div>
                     <p className="text-white text-base px-6 mb-5 text-center">
@@ -192,7 +192,7 @@ export default function Home() {
                     href="#"
                     className="flex flex-wrap no-underline hover:no-underline"
                   >
-                    <div className="w-full font-bold text-xl text-white px-6 mt-5 text-center">
+                    <div className="w-full font-bold text-xl text-white px-6 mt-7 text-center">
                       YOUR STOCK PORTFOLIO
                     </div>
                     <p className="text-white text-base px-6 mb-5 text-center">
@@ -227,7 +227,7 @@ export default function Home() {
 
 
 
-          <div className="w-full md:w-1/3 p-6 flex flex-col flex-grow flex-shrink rounded-lg">
+          <div className="w-full md:w-1/3 p-6 flex flex-col flex-grow flex-shrink">
             <div className="container mx-auto flex flex-wrap pt-4 pb-12 max-h-[500px]">
               <div className="w-full md:w-1/3 flex flex-col flex-grow flex-shrink">
                 <div className="flex-1 bg-dark-black overflow-hidden shadow">
@@ -236,7 +236,7 @@ export default function Home() {
                     className="flex flex-wrap no-underline hover:no-underline"
                   >
     
-                    <div className="w-full font-bold text-xl text-white px-6 mt-5 text-center">
+                    <div className="w-full font-bold text-xl text-white px-6 mt-7 text-center">
                       MORE ABOUT US
                     </div>
                     <p className="text-white text-base px-6 mb-5 text-center">
