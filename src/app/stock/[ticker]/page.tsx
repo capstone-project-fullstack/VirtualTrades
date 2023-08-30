@@ -1,6 +1,6 @@
 import GraphWidget from '../../components/widgets/GraphWidget';
 import TradeForm from './TradeForm';
-import TradingViewWidget from '../../components/widgets/TradingViewWidget';
+import StockHeader from '../../components/widgets/StockHeader';
 import CompanyDataTabs from '@/app/components/tabs/CompanyDataTabs';
 import WatchlistsButton from './WatchlistButton';
 
@@ -27,7 +27,7 @@ const StockPage = ({
         <WatchlistsButton ticker={ticker} />
       </div>
       <div className="w-full mt-3 ">
-        <TradingViewWidget ticker={ticker} />
+        <StockHeader ticker={ticker} />
       </div>
 
       <div className="w-full">

@@ -2,13 +2,13 @@
 
 import React, { useEffect } from 'react';
 
-interface TradingViewWidgetProps {
+interface StockHeaderProps {
   ticker: string;
 }
 
-const TradingViewWidget: React.FC<TradingViewWidgetProps> = ({
+const StockHeader: React.FC<StockHeaderProps> = ({
   ticker,
-}: TradingViewWidgetProps) => {
+}: StockHeaderProps) => {
   useEffect(() => {
     const script = document.createElement('script');
     script.src =
@@ -20,7 +20,7 @@ const TradingViewWidget: React.FC<TradingViewWidgetProps> = ({
       locale: 'en',
       colorTheme: 'dark',
       isTransparent: false,
-      largeChartUrl: `${window.location.origin}/stock/{symbol}`,
+      largeChartUrl: `${window.location.origin}/stock/${ticker}`,
     });
     document
       .querySelector('.tradingview-widget-container__widget')
@@ -40,4 +40,4 @@ const TradingViewWidget: React.FC<TradingViewWidgetProps> = ({
   );
 };
 
-export default TradingViewWidget;
+export default StockHeader;
