@@ -33,8 +33,8 @@ export default function WatchlistsButton({ ticker }: WatchlistsButtonProps) {
         color="indigo"
         onClick={editWatchlists}
       >
-        {watchlist ? <BsFillBookmarkFill /> : <BsBookmark />}
-        {watchlist ? 'Remove from' : 'Add to'} Watchlists
+        {watchlist ? <BsFillBookmarkFill className="text-xl"/> : <BsBookmark className="text-xl"/>}
+        {/* {watchlist ? 'Remove from' : 'Add to'} Watchlists */}
       </Button>
     </div>
   );

@@ -1,7 +1,7 @@
 import GraphWidget from '../../components/widgets/GraphWidget';
 import TradeForm from './TradeForm';
 import TradingViewWidget from '../../components/widgets/TradingViewWidget';
-import TabsDefault from '@/app/components/tabs/Tabs';
+import CompanyDataTabs from '@/app/components/tabs/CompanyDataTabs';
 import WatchlistsButton from './WatchlistButton';
 
 interface searchParams {
@@ -40,7 +40,7 @@ const StockPage = ({
           </div>
         </div>
         <div className="f-center">
-          <TabsDefault ticker={ticker} />
+          <CompanyDataTabs ticker={ticker} />
         </div>
       </div>
     </div>
