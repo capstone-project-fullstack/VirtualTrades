@@ -1,6 +1,6 @@
 'use client';
 
-import { Button } from '@material-tailwind/react';
+import { Button, Tooltip } from '@material-tailwind/react';
 import axios from 'axios';
 import { useState, useEffect } from 'react';
 import { BsBookmark, BsFillBookmarkFill } from 'react-icons/bs';
@@ -27,15 +27,24 @@ export default function WatchlistsButton({ ticker }: WatchlistsButtonProps) {
 
   return (
     <div className="flex items-center gap-4">
-      <Button
-        className="flex items-center gap-3"
-        variant="gradient"
-        color="indigo"
-        onClick={editWatchlists}
+      <Tooltip
+        content={watchlist ? 'Remove from Watchlists' : 'Add to Watchlists'}
+        placement="left"
+        className="bg-indigo-500"
       >
-        {watchlist ? <BsFillBookmarkFill className="text-xl"/> : <BsBookmark className="text-xl"/>}
-        {/* {watchlist ? 'Remove from' : 'Add to'} Watchlists */}
-      </Button>
+        <Button
+          className="flex items-center gap-3"
+          variant="gradient"
+          color="indigo"
+          onClick={editWatchlists}
+        >
+          {watchlist ? (
+            <BsFillBookmarkFill className="text-xl" />
+          ) : (
+            <BsBookmark className="text-xl" />
+          )}
+        </Button>
+      </Tooltip>
     </div>
   );
 }
