@@ -12,7 +12,7 @@ import AnalysisWidget from '../widgets/AnalysisWidget';
 import CompanyNewsWidget from '../widgets/CompanyNewsWidget';
 import CompanyFundamentalData from '../widgets/CompanyFundamentalsData';
 
-export default function TabsDefault({ ticker }: { ticker: string }) {
+export default function CompanyDataTabs({ ticker }: { ticker: string }) {
   const data = [
     {
       label: 'Stock Analysis',

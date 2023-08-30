@@ -27,7 +27,7 @@ export const GET = async () => {
 
     userStocks.forEach(async (stock) => {
       await Stock.getCurrentPrice(stock.Stock.symbol);
-    })
+    });
 
     const portfolioData = await prisma.portfolio.findMany({
       where: { user_id: userId },

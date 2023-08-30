@@ -143,8 +143,8 @@ export default function Home() {
 
         <div className="w-full md:w-1/3 p-6 flex flex-col flex-grow flex-shrink ">
             <div className="container mx-auto flex flex-wrap pt-4 pb-12 max-h-[500px]">
-              <div className="w-full md:w-1/3 flex flex-col flex-grow flex-shrink">
-                <div className="flex-1 bg-dark-black  overflow-hidden shadow">
+              <div className="w-full md:w-1/3 flex flex-col flex-grow flex-shrink ">
+                <div className="flex-1 bg-dark-black overflow-hidden shadow">
                   <a
                     href="#"
                     className="flex flex-wrap no-underline hover:no-underline"

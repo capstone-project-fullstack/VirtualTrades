@@ -16,21 +16,21 @@ function PositionTableRow({ row }: PositionTableRowProps) {
     total_equity,
   } = row;
 
-  const classes = 'py-2 border-b border-blue-gray-50 text-center border-cell';
+  const classes = 'py-2 text-center border-cell';
   return (
     <tr>
-      <td className={classes}>
+      <td className="py-2 text-center border-cell">
         <Link href={`/stock/${symbol}`}>
           <div className="flex items-center gap-3 cursor-pointer">
             <Avatar src={icon_url} alt={name} size="sm" className="ml-2" />
             <div className="flex flex-col">
-              <Typography variant="small" color="white" className="font-normal">
+              <Typography variant="small" color="white" className="font-normal text-left">
                 {symbol}
               </Typography>
               <Typography
                 variant="small"
                 color="white"
-                className="font-normal opacity-70"
+                className="font-normal opacity-70 text-left"
               >
                 {name}
               </Typography>
