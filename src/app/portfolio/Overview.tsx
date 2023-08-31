@@ -1,7 +1,28 @@
 'use client';
 
-import React, { useEffect } from 'react';
-import Chart from 'chart.js';
+import React, { useEffect, useState } from 'react';
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend,
+} from 'chart.js';
+import { Line } from 'react-chartjs-2';
+
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend
+);
+import axios from 'axios';
 import { formatPrice } from '../utils/utils';
 import { useAppDispatch, useAppSelector } from '../redux/hooks';
 import { setInitialValues } from '../redux/features/fundManagementSlice';
@@ -14,6 +35,13 @@ interface OverviewProps {
   };
 }
 
+interface ChartData {
+  id: number;
+  userId: string;
+  timestamp: string;
+  value: string;
+}
+
 declare global {
   interface Window {
     myLine: Chart;
@@ -21,6 +49,7 @@ declare global {
 }
 
 export default function Overview({ initialValues }: OverviewProps) {
+  const [chartData, setChartData] = useState<ChartData[]>([]);
   const dispatch = useAppDispatch();
   const funds = useAppSelector((state) => state.fundManagement.values);
 
@@ -29,103 +58,96 @@ export default function Overview({ initialValues }: OverviewProps) {
   }, []);
 
   useEffect(() => {
-    const config = {
-      type: 'line',
-      data: {
-        labels: [
-          'January',
-          'February',
-          'March',
-          'April',
-          'May',
-          'June',
-          'July',
-        ],
-        datasets: [
-          {
-            label: new Date().getFullYear(),
-            backgroundColor: '#4c51bf',
-            borderColor: '#4c51bf',
-            data: [65, 78, 66, 44, 56, 67, 75],
-            fill: false,
-          },
-        ],
+    axios
+      .get('/api/getPortfolioValues')
+      .then((res) => {
+        setChartData(res.data);
+      })
+      .catch((err) => console.log(err));
+  }, []);
+
+  const options = {
+    maintainAspectRatio: false,
+    responsive: true,
+    title: {
+      display: false,
+      text: 'Portfolio',
+      fontColor: 'white',
+    },
+    legend: {
+      labels: {
+        fontColor: 'white',
       },
-      options: {
-        maintainAspectRatio: false,
-        responsive: true,
-        title: {
-          display: false,
-          text: 'Portfolio',
-          fontColor: 'white',
-        },
-        legend: {
-          labels: {
+      align: 'end',
+      position: 'bottom',
+    },
+    tooltips: {
+      mode: 'index',
+      intersect: false,
+    },
+    hover: {
+      mode: 'nearest',
+      intersect: true,
+    },
+    scales: {
+      xAxes: [
+        {
+          ticks: {
+            fontColor: 'rgba(255,255,255,.7)',
+          },
+          display: true,
+          scaleLabel: {
+            display: false,
+            labelString: 'Month',
             fontColor: 'white',
           },
-          align: 'end',
-          position: 'bottom',
+          gridLines: {
+            display: false,
+            borderDash: [2],
+            borderDashOffset: [2],
+            color: 'rgba(33, 37, 41, 0.3)',
+            zeroLineColor: 'rgba(0, 0, 0, 0)',
+            zeroLineBorderDash: [2],
+            zeroLineBorderDashOffset: [2],
+          },
         },
-        tooltips: {
-          mode: 'index',
-          intersect: false,
+      ],
+      yAxes: [
+        {
+          ticks: {
+            fontColor: 'rgba(255,255,255,.7)',
+          },
+          display: true,
+          scaleLabel: {
+            display: false,
+            labelString: 'Value',
+            fontColor: 'white',
+          },
+          gridLines: {
+            borderDash: [3],
+            borderDashOffset: [3],
+            drawBorder: false,
+            color: 'rgba(255, 255, 255, 0.15)',
+            zeroLineColor: 'rgba(33, 37, 41, 0)',
+            zeroLineBorderDash: [2],
+            zeroLineBorderDashOffset: [2],
+          },
         },
-        hover: {
-          mode: 'nearest',
-          intersect: true,
-        },
-        scales: {
-          xAxes: [
-            {
-              ticks: {
-                fontColor: 'rgba(255,255,255,.7)',
-              },
-              display: true,
-              scaleLabel: {
-                display: false,
-                labelString: 'Month',
-                fontColor: 'white',
-              },
-              gridLines: {
-                display: false,
-                borderDash: [2],
-                borderDashOffset: [2],
-                color: 'rgba(33, 37, 41, 0.3)',
-                zeroLineColor: 'rgba(0, 0, 0, 0)',
-                zeroLineBorderDash: [2],
-                zeroLineBorderDashOffset: [2],
-              },
-            },
-          ],
-          yAxes: [
-            {
-              ticks: {
-                fontColor: 'rgba(255,255,255,.7)',
-              },
-              display: true,
-              scaleLabel: {
-                display: false,
-                labelString: 'Value',
-                fontColor: 'white',
-              },
-              gridLines: {
-                borderDash: [3],
-                borderDashOffset: [3],
-                drawBorder: false,
-                color: 'rgba(255, 255, 255, 0.15)',
-                zeroLineColor: 'rgba(33, 37, 41, 0)',
-                zeroLineBorderDash: [2],
-                zeroLineBorderDashOffset: [2],
-              },
-            },
-          ],
-        },
+      ],
+    },
+  };
+
+  const data = {
+    labels: chartData.map((chartData) => chartData.timestamp),
+    datasets: [
+      {
+        label: new Date().getFullYear(),
+        data: chartData.map((chartData) => Number(chartData.value)),
+        backgroundColor: '#4c51bf',
+        borderColor: '#4c51bf',
       },
-    };
-    var canvas = document.getElementById('line-chart') as HTMLCanvasElement;
-    var ctx = canvas.getContext('2d') as CanvasRenderingContext2D;
-    window.myLine = new Chart(ctx, config as any);
-  }, []);
+    ],
+  };
 
   const difference = funds.current_portfolio_value - funds.initial_amount;
   const percentage = (difference / funds.initial_amount) * 100;
@@ -164,7 +186,7 @@ export default function Overview({ initialValues }: OverviewProps) {
         <div className="p-4 flex-auto">
           {/* Chart */}
           <div className="relative h-[350px]">
-            <canvas id="line-chart"></canvas>
+            <Line options={options} data={data} />
           </div>
         </div>
       </div>

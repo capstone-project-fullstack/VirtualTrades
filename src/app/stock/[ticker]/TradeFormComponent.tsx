@@ -188,7 +188,7 @@ export default function TradeForm({
   }
 
   return (
-    <Card className="min-w-[50px] max-w-[400px] bg-dark-black border border-gray-800 text-white min-h-[500px] mx-auto">
+    <Card className="min-w-[50px] max-w-[400px] bg-dark-black border border-gray-800 text-white min-h-[500px] mx-auto rounded-none">
       <NotificationDialog
         dialogContent={dialogContent}
         setDialogContent={setDialogContent}
