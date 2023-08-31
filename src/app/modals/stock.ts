@@ -39,18 +39,21 @@ class Stock {
     });
   }
 
-  static async getCurrentPrice(symbol: string) {
-    const { c } = await axios
+  static async getCurrentPrice(symbol: string, data?: string) {
+    const res = await axios
       .get(
         `https://finnhub.io/api/v1/quote?symbol=${symbol}&token=${process.env.FINNHUB_API_KEY}`
       )
       .then((res) => res.data)
       .catch((err) => console.log(err));
 
-    const price = Number(c.toFixed(2));
+    const price = Number(res.c.toFixed(2));
 
     if (await this.findStockIfExist(symbol)) {
       await this.updateCurrentPrice(symbol, price);
+    }
+    if (data === 'everything') {
+      return res;
     }
     return price;
   }
@@ -80,6 +83,21 @@ class Stock {
         current_price: price,
       },
     });
+  }
+
+  static async additionalCompanyData(symbol: string) {
+    const res = await axios
+      .get(
+        `https://finnhub.io/api/v1/stock/metric?symbol=${symbol}&metric=all&token=${process.env.FINNHUB_API_KEY}`
+      )
+      .then((res) => res.data)
+      .catch((err) => console.log(err));
+    return {
+      week52High: res.metric['52WeekHigh'],
+      week52Low: res.metric['52WeekLow'],
+      marketCap: res.metric['marketCapitalization'],
+      peAnnual: res.metric.peAnnual,
+    };
   }
 }
 
