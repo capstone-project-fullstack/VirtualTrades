@@ -63,6 +63,9 @@ class UserService {
         Stock: {
           select: {
             symbol: true,
+            name: true,
+            current_price: true,
+            icon_url: true,
           },
         },
       },
