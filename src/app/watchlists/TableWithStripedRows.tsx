@@ -84,7 +84,7 @@ export default function TableWithStripedRows() {
               ) => (
                 <tr key={index} className="text-center text-white">
                   <td className="p-2 border-cell">
-                    <Avatar src={icon} alt={name} size="sm" className="ml-2" />
+                    <Avatar src={icon} alt={name} size="sm" />
                   </td>
                   <td className="p-2 border-cell">
                     <Typography
@@ -95,7 +95,7 @@ export default function TableWithStripedRows() {
                       {symbol}
                     </Typography>
                   </td>
-                  <td className="py-2 border-cell">
+                  <td className="py-2 border-cell max-w-[100px]">
                     <Typography
                       variant="small"
                       color="white"
