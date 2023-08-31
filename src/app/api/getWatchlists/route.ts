@@ -1,4 +1,3 @@
-import prisma from '../../../../lib/prisma';
 import Stock from '@/app/modals/stock';
 import UserService from '@/app/modals/user';
 import { currentUser } from '@clerk/nextjs';
@@ -15,7 +14,7 @@ export const GET = async () => {
     }
     const userId = currUser?.id;
 
-    const userStocks = await UserService.userStocksInPortfolio(userId);
+    const userStocks = await UserService.userStocksInWatchlist(userId);
 
     const stockData = await Promise.all(
       userStocks.map(async (stock) =>
