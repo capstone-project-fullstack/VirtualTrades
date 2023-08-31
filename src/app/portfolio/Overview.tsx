@@ -35,7 +35,7 @@ interface OverviewProps {
   };
 }
 
-interface ChartData {
+interface PortfolioChartData {
   id: number;
   userId: string;
   timestamp: string;
@@ -49,7 +49,7 @@ declare global {
 }
 
 export default function Overview({ initialValues }: OverviewProps) {
-  const [chartData, setChartData] = useState<ChartData[]>([]);
+  const [chartData, setChartData] = useState<PortfolioChartData[]>([]);
   const dispatch = useAppDispatch();
   const funds = useAppSelector((state) => state.fundManagement.values);
 
@@ -66,7 +66,7 @@ export default function Overview({ initialValues }: OverviewProps) {
       .catch((err) => console.log(err));
   }, []);
 
-  const options = {
+  const options: any = {
     maintainAspectRatio: false,
     responsive: true,
     title: {
@@ -137,7 +137,7 @@ export default function Overview({ initialValues }: OverviewProps) {
     },
   };
 
-  const data = {
+  const data: any = {
     labels: chartData.map((chartData) => chartData.timestamp),
     datasets: [
       {
