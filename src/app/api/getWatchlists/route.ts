@@ -2,6 +2,7 @@ import prisma from '../../../../lib/prisma';
 import Stock from '@/app/modals/stock';
 import UserService from '@/app/modals/user';
 import { currentUser } from '@clerk/nextjs';
+import { WatchlistData } from '../../../../typings';
 
 export const GET = async () => {
   try {
@@ -28,7 +29,7 @@ export const GET = async () => {
       )
     );
 
-    const res = stockData.map((data, index) => {
+    const res: WatchlistData[] = stockData.map((data, index) => {
       return {
         low: data.l,
         open: data.o,

@@ -90,3 +90,19 @@ export interface PortfolioData {
     current_price: number;
   };
 }
+
+export interface WatchlistData {
+  low: number;
+  open: number;
+  high: number;
+  price: number;
+  change: number;
+  changePercent: number;  
+  prevClose: number;
+  name: string;
+  symbol: string;
+  icon: string;
+  marketCap: number;
+  low52: number;
+  high52: number;
+}
