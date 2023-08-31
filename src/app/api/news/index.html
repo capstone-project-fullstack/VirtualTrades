@@ -1,0 +1,15 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+          fetch("https://finnhub.io/api/v1/stock/metric?symbol=AAPL&metric=all&token=cjarmapr01qji1gtsko0cjarmapr01qji1gtskog")
+      .then(res => res.json())
+      .then(data => console.log(data));
+    </script>
+  </body>
+</html>
