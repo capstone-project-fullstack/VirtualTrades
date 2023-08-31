@@ -39,6 +39,35 @@ class UserService {
       current_portfolio_value: Number(current_portfolio_value),
     };
   }
+
+  static async userStocksInPortfolio(userId: string) {
+    return await prisma.portfolio.findMany({
+      where: { user_id: userId },
+      select: {
+        Stock: {
+          select: {
+            symbol: true,
+            name: true,
+            current_price: true,
+            icon_url: true,
+          },
+        },
+      },
+    });
+  }
+
+  static async userStocksInWatchlist(userId: string) {
+    return await prisma.watchlist.findMany({
+      where: { user_id: userId },
+      select: {
+        Stock: {
+          select: {
+            symbol: true,
+          },
+        },
+      },
+    });
+  }
 }
 
 export default UserService;

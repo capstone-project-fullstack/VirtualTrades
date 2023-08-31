@@ -1,4 +1,5 @@
 import Stock from '../../modals/stock';
+import UserService from '../../modals/user';
 import prisma from '../../../../lib/prisma';
 import { currentUser } from '@clerk/nextjs';
 
@@ -14,16 +15,7 @@ export const GET = async () => {
 
     const userId = currUser?.id;
 
-    const userStocks = await prisma.portfolio.findMany({
-      where: { user_id: userId },
-      select: {
-        Stock: {
-          select: {
-            symbol: true,
-          },
-        },
-      },
-    });
+    const userStocks = await UserService.userStocksInPortfolio(userId);
 
     userStocks.forEach(async (stock) => {
       await Stock.getCurrentPrice(stock.Stock.symbol);
