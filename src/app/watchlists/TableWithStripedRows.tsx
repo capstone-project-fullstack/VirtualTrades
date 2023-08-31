@@ -1,34 +1,54 @@
-"use client";
+'use client';
 
-import { Card, Typography } from "@material-tailwind/react";
- 
-const TABLE_HEAD = ["Symbol", "Name", "Price", "% Change", "Prev Close", "Open", "High", "Low", "Volume"];
- 
-const TABLE_ROWS = [
-  {
-    symbol: "AAPL",
-    name: "Apple",
-    price: "$1,000",
-    change: "+$100",
-    prevClose: "$900",
-    open: "$1,100",
-    high: "$1,200",
-    low: "$900",
-    volume: "100",
-  }
+import { Avatar, Card, Typography } from '@material-tailwind/react';
+import { WatchlistData } from '../../../typings';
+import { useEffect, useState } from 'react';
+import axios from 'axios';
+import { Spinner } from '@material-tailwind/react';
+
+const TABLE_HEAD = [
+  'Icon',
+  'Symbol',
+  'Name',
+  'Price',
+  'Change',
+  'Change %',
+  'Prev Close',
+  'Open',
+  'High',
+  'Low',
+  'Market Cap',
+  'High52',
+  'Low52',
 ];
- 
+
 export default function TableWithStripedRows() {
+  const [tableRows, setTableRows] = useState<WatchlistData[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    axios
+      .get('api/getWatchlists')
+      .then((res) => {
+        setTableRows(res.data);
+        setLoading(false);
+      })
+      .catch((err) => console.log(err));
+  }, []);
+
   return (
-    <Card className="h-full w-full overflow-scroll">
-      <table className="w-full min-w-max table-auto text-left">
+    <Card className="h-full w-full text-white overflow-auto bg-black">
+      <table className="w-full min-w-max text-center">
         <thead>
           <tr>
             {TABLE_HEAD.map((head) => (
-              <th key={head} className="border-b border-blue-gray-100 bg-blue-gray-50 p-4">
+              <th
+                key={head}
+                className="py-4 text-center bg-dark-gray-100 border-cell"
+              >
                 <Typography
                   variant="small"
-                  color="blue-gray"
+                  color="white"
                   className="font-normal leading-none opacity-70"
                 >
                   {head}
@@ -38,56 +58,146 @@ export default function TableWithStripedRows() {
           </tr>
         </thead>
         <tbody>
-          {TABLE_ROWS.map(({ symbol, name, price, change, prevClose, open, high, low, volume }, index) => (
-            <tr key={name} className="even:bg-blue-gray-50/50">
-              <td className="p-4">
-                <Typography variant="small" color="blue-gray" className="font-normal">
-                  {symbol}
-                </Typography>
-              </td>
-              <td className="p-4">
-                <Typography variant="small" color="blue-gray" className="font-normal">
-                  {name}
-                </Typography>
-              </td>
-              <td className="p-4">
-                <Typography variant="small" color="blue-gray" className="font-normal">
-                  {price}
-                </Typography>
-              </td>
-              <td className="p-4">
-                <Typography variant="small" color="blue-gray" className="font-normal">
-                  {change}
-                </Typography>
-              </td>
-              <td className="p-4">
-                <Typography variant="small" color="blue-gray" className="font-normal">
-                  {prevClose}
-                </Typography>
-              </td>
-              <td className="p-4">
-                <Typography variant="small" color="blue-gray" className="font-normal">
-                  {open}
-                </Typography>
-              </td>
-              <td className="p-4">
-                <Typography variant="small" color="blue-gray" className="font-normal">
-                  {high}
-                </Typography>
-              </td>
-              <td className="p-4">
-                <Typography variant="small" color="blue-gray" className="font-normal">
-                  {low}
-                </Typography>
-              </td>
-              <td className="p-4">
-                <Typography variant="small" color="blue-gray" className="font-normal">
-                  {volume}
-                </Typography>
-              </td>
-
-            </tr>
-          ))}
+          {loading ? (
+            <div className="fixed top-1/2 left-1/2">
+              <Spinner />
+            </div>
+          ) : (
+            tableRows.map(
+              (
+                {
+                  icon,
+                  symbol,
+                  name,
+                  price,
+                  change,
+                  changePercent,
+                  prevClose,
+                  open,
+                  high,
+                  low,
+                  marketCap,
+                  high52,
+                  low52,
+                },
+                index
+              ) => (
+                <tr key={index} className="text-center text-white">
+                  <td className="p-2 border-cell">
+                    <Avatar src={icon} alt={name} size="sm" className="ml-2" />
+                  </td>
+                  <td className="p-2 border-cell">
+                    <Typography
+                      variant="small"
+                      color="white"
+                      className="font-normal"
+                    >
+                      {symbol}
+                    </Typography>
+                  </td>
+                  <td className="py-2 border-cell">
+                    <Typography
+                      variant="small"
+                      color="white"
+                      className="font-normal"
+                    >
+                      {name}
+                    </Typography>
+                  </td>
+                  <td className="p-2 border-cell">
+                    <Typography
+                      variant="small"
+                      color="white"
+                      className="font-normal"
+                    >
+                      {price}
+                    </Typography>
+                  </td>
+                  <td className="p-2 border-cell">
+                    <Typography
+                      variant="small"
+                      color="white"
+                      className="font-normal"
+                    >
+                      {change}
+                    </Typography>
+                  </td>
+                  <td className="p-2 border-cell">
+                    <Typography
+                      variant="small"
+                      color="white"
+                      className="font-normal"
+                    >
+                      {changePercent}
+                    </Typography>
+                  </td>
+                  <td className="p-2 border-cell">
+                    <Typography
+                      variant="small"
+                      color="white"
+                      className="font-normal"
+                    >
+                      {prevClose}
+                    </Typography>
+                  </td>
+                  <td className="p-2 border-cell">
+                    <Typography
+                      variant="small"
+                      color="white"
+                      className="font-normal"
+                    >
+                      {open}
+                    </Typography>
+                  </td>
+                  <td className="p-2 border-cell">
+                    <Typography
+                      variant="small"
+                      color="white"
+                      className="font-normal"
+                    >
+                      {high}
+                    </Typography>
+                  </td>
+                  <td className="p-2 border-cell">
+                    <Typography
+                      variant="small"
+                      color="white"
+                      className="font-normal"
+                    >
+                      {low}
+                    </Typography>
+                  </td>
+                  <td className="p-2 border-cell">
+                    <Typography
+                      variant="small"
+                      color="white"
+                      className="font-normal"
+                    >
+                      {marketCap}
+                    </Typography>
+                  </td>
+                  <td className="p-2 border-cell">
+                    <Typography
+                      variant="small"
+                      color="white"
+                      className="font-normal"
+                    >
+                      {high52}
+                    </Typography>
+                  </td>
+                  <td className="p-2 border-cell">
+                    <Typography
+                      variant="small"
+                      color="white"
+                      className="font-normal"
+                    >
+                      {low52}
+                    </Typography>
+                  </td>
+                </tr>
+              )
+            )
+          )}
         </tbody>
       </table>
     </Card>

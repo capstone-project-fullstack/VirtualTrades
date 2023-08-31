@@ -9,10 +9,12 @@ import { GradientButtonRounded } from './components/buttons/Button';
 import TradingViewWidget from './components/widgets/TopWidget';
 
 export default function Home() {
+  const router = useRouter();
+  
   const handleRoute = (page: string) => {
     router.push(`/${page}`);
   };
-  const router = useRouter();
+
   return (
     <div>
       <TradingViewWidget />
@@ -53,9 +55,6 @@ export default function Home() {
       <section>
         <div className="bg-light-purple py-8">
           <div className="container max-w-5xl mx-auto m-8 mb-20">
-            {/* <h1 className="w-full my-2 text-center text-4xl text-white-600 font-bold leading-none mb-9">
-              Stock Market
-            </h1> */}
             <div className="w-full mb-4">
               <div className="h-1 mx-auto gradient w-64 opacity-25 my-0 py-0 rounded-t"></div>
             </div>
@@ -134,11 +133,6 @@ export default function Home() {
       <Svg />
 
       <section className="bg-light-purple py-8">
-        {/* <div>
-          <h1 className="w-full my-2 text-center text-4xl text-white-600 font-bold leading-none">
-            Explore
-          </h1>
-        </div> */}
         <div className="container mx-auto flex flex-wrap pb-12 m-5">
 
         <div className="w-full md:w-1/3 p-6 flex flex-col flex-grow flex-shrink ">
@@ -149,9 +143,6 @@ export default function Home() {
                     href="#"
                     className="flex flex-wrap no-underline hover:no-underline"
                   >
-                    {/* <p className="w-full text-gray-600 text-xs md:text-sm px-6">
-                      BUY AND SELL STOCK
-                    </p> */}
                     <div className="w-full font-bold text-xl text-white px-6 mt-7 text-center">
                       TRADING STOCK
                     </div>
@@ -175,7 +166,7 @@ export default function Home() {
                   <div className="f-center">
                     <GradientButtonRounded
                       text="Trade"
-                      onClick={() => handleRoute('landing')}
+                      onClick={() => handleRoute('market')}
                       className="bg-none bg-light-green"
                     />
                   </div>

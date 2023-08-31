@@ -49,6 +49,15 @@ export default function PositionTable() {
       });
     });
 
+    // useEffect(() => {
+    //   axios
+    //     .get('/api/getWatchlists')
+    //     .then((res) => {
+    //       setTableRows(res.data);
+    //     })
+    //     .catch((err) => console.log(err));
+    // }, []);
+
     // Inside the message event listener:
     socket.addEventListener('message', (e) => {
       if (e.data) {
