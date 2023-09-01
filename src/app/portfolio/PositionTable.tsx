@@ -10,7 +10,6 @@ import {
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { customSort } from '../utils/utils';
-import { useRouter } from 'next/navigation';
 import { useAppDispatch, useAppSelector } from '../redux/hooks';
 import { updateCurrentPortfolioValue } from '../redux/features/fundManagementSlice';
 import PositionTableHeader from './PortfolioTableHeader';

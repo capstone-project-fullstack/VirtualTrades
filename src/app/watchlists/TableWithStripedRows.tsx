@@ -5,6 +5,8 @@ import { WatchlistData } from '../../../typings';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Spinner } from '@material-tailwind/react';
+import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 
 const TABLE_HEAD = [
   'Icon',
@@ -23,6 +25,7 @@ const TABLE_HEAD = [
 ];
 
 export default function TableWithStripedRows() {
+  const router = useRouter();
   const [tableRows, setTableRows] = useState<WatchlistData[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -82,10 +85,15 @@ export default function TableWithStripedRows() {
                 },
                 index
               ) => (
-                <tr key={index} className="text-center text-white">
+                <tr
+                  key={index}
+                  className="text-center text-white cursor-pointer"
+                  onClick={() => router.push(`/stock/${symbol}`)}
+                >
                   <td className="p-2 border-cell">
-                    <Avatar src={icon} alt={name} size="sm" className="ml-2" />
+                    <Avatar src={icon} alt={name} size="sm" />
                   </td>
+
                   <td className="p-2 border-cell">
                     <Typography
                       variant="small"
@@ -95,7 +103,7 @@ export default function TableWithStripedRows() {
                       {symbol}
                     </Typography>
                   </td>
-                  <td className="py-2 border-cell">
+                  <td className="py-2 border-cell max-w-[100px]">
                     <Typography
                       variant="small"
                       color="white"
