@@ -4,6 +4,7 @@ import UserService from '../modals/user';
 import Funds from './Funds';
 import PositionTable from './PositionTable';
 import Overview from './Overview';
+import TradeHistory from './TradeHistory';
 
 export default async function Portfolio() {
   const currUser = await currentUser();
@@ -19,7 +20,7 @@ export default async function Portfolio() {
   };
 
   return (
-    <div className="h-screen">
+    <div className="min-h-screen">
       <HeaderText text="Portfolio" />
       <div className="flex flex-wrap">
         <div className="w-full xl:w-8/12 mb-12 xl:mb-0 px-4">
@@ -33,7 +34,9 @@ export default async function Portfolio() {
         <div className="w-full xl:w-8/12 mb-12 xl:mb-0 px-4 bg-dark-black">
           <PositionTable />
         </div>
-        <div className="w-full xl:w-4/12 px-4"></div>
+        <div className="w-full xl:w-4/12 px-4">
+          <TradeHistory />
+        </div>
       </div>
     </div>
   );

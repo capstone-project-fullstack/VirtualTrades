@@ -24,7 +24,11 @@ function PositionTableRow({ row }: PositionTableRowProps) {
           <div className="flex items-center gap-3 cursor-pointer">
             <Avatar src={icon_url} alt={name} size="sm" className="ml-2" />
             <div className="flex flex-col">
-              <Typography variant="small" color="white" className="font-normal text-left">
+              <Typography
+                variant="small"
+                color="white"
+                className="font-normal text-left"
+              >
                 {symbol}
               </Typography>
               <Typography
@@ -39,39 +43,29 @@ function PositionTableRow({ row }: PositionTableRowProps) {
         </Link>
       </td>
       <td align="center" className={classes}>
-        <div className="flex flex-col">
-          <Typography variant="small" color="white" className="font-normal">
-            {formatPrice(Number(current_price))}
-          </Typography>
-        </div>
+        <Typography variant="small" color="white" className="font-normal">
+          {formatPrice(Number(current_price))}
+        </Typography>
       </td>
       <td align="center" className={classes}>
-        <div className="flex flex-col">
-          <Typography variant="small" color="white" className="font-normal">
-            {shares}
-          </Typography>
-        </div>
+        <Typography variant="small" color="white" className="font-normal">
+          {shares}
+        </Typography>
       </td>
       <td align="center" className={classes}>
-        <div className="flex flex-col">
-          <Typography variant="small" color="white" className="font-normal">
-            {formatPrice(Number(average_price))}
-          </Typography>
-        </div>
+        <Typography variant="small" color="white" className="font-normal">
+          {formatPrice(Number(average_price))}
+        </Typography>
       </td>
       <td align="center" className={classes}>
-        <div className="flex flex-col">
-          <Typography variant="small" color="white" className="font-normal">
-            {formatPrice(Number(total_equity))}
-          </Typography>
-        </div>
+        <Typography variant="small" color="white" className="font-normal">
+          {formatPrice(Number(total_equity))}
+        </Typography>
       </td>
       <td align="center" className={classes}>
-        <div className="flex flex-col">
-          <Typography variant="small" color="white" className="font-normal">
-            {formatPrice(Number(gain))}
-          </Typography>
-        </div>
+        <Typography variant="small" color="white" className="font-normal">
+          {formatPrice(Number(gain))}
+        </Typography>
       </td>
     </tr>
   );

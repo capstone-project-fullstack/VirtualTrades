@@ -1,8 +1,6 @@
 'use client';
 
-import {
-  ChevronUpDownIcon,
-} from '@heroicons/react/24/outline';
+import { ChevronUpDownIcon } from '@heroicons/react/24/outline';
 import {
   Card,
   CardHeader,
@@ -105,7 +103,7 @@ export default function PositionTable() {
         }
       }
     });
-  }, [tableRows, ]);
+  }, [tableRows]);
 
   const filterStock = tableRows.filter((row) => {
     return (
@@ -124,7 +122,7 @@ export default function PositionTable() {
   ];
 
   return (
-    <Card className="w-full bg-dark-black border overflow-auto border-white rounded">
+    <Card className="w-full max-h-[600px] bg-dark-black border overflow-auto no-scrollbar border-custom3">
       <CardHeader
         floated={false}
         shadow={false}
@@ -135,7 +133,7 @@ export default function PositionTable() {
           setSearchStock={setSearchStock}
         />
       </CardHeader>
-      <CardBody className="overflow-auto px-0">
+      <CardBody className="overflow-auto no-scrollbar px-0">
         <table className="w-full min-w-max table-auto text-center">
           <thead>
             <tr>
@@ -143,12 +141,12 @@ export default function PositionTable() {
                 <th
                   align="center"
                   key={index}
-                  className="cursor-pointer border-y text-center p-2 transition-colors border-cell max-w-[165px]"
+                  className="cursor-pointer border-y text-center py-4 transition-colors border-cell max-w-[165px]"
                 >
                   <Typography
                     variant="h6"
                     color="white"
-                    className="flex items-center justify-center gap-2 font-normal leading-none opacity-70"
+                    className="flex items-center justify-center gap-2 font-normal leading-none"
                     onClick={() => {
                       if (sortOrder === null || sortOrder === 'desc') {
                         setSortOrder('asc');

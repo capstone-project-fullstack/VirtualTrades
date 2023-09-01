@@ -32,3 +32,24 @@ export const customSort = (
 
   setState([...array]);
 };
+
+export const parseTimestamp = (timestamp: Date) => {
+  const dateObj = new Date(timestamp);
+
+  const month = (dateObj.getMonth() + 1).toString().padStart(2, '0');
+  const day = dateObj.getDate().toString().padStart(2, '0');
+  const year = dateObj.getFullYear().toString().slice(-2);
+
+  const hours = dateObj.getHours();
+  const ampm = hours >= 12 ? 'PM' : 'AM';
+  const formattedHours = (hours % 12 || 12).toString().padStart(2, '0');
+  const minutes = dateObj.getMinutes().toString().padStart(2, '0');
+
+  const formattedDate = `${month}/${day}/${year}`;
+  const formattedTime = `${formattedHours}:${minutes} ${ampm}`;
+
+  return {
+    date: formattedDate,
+    time: formattedTime,
+  };
+};

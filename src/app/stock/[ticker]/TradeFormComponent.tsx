@@ -188,7 +188,7 @@ export default function TradeForm({
   }
 
   return (
-    <Card className="min-w-[50px] max-w-[400px] bg-dark-black border border-gray-800 text-white min-h-[500px] mx-auto rounded-none">
+    <Card className="min-w-[50px] max-w-[400px] bg-dark-black border border-custom3 text-white min-h-[500px] mx-auto rounded-none">
       <NotificationDialog
         dialogContent={dialogContent}
         setDialogContent={setDialogContent}
@@ -196,7 +196,7 @@ export default function TradeForm({
       <CardHeader
         floated={false}
         shadow={false}
-        className="m-0 grid place-items-center rounded-b-none py-1.5 px-4 text-center text-white font-bold bg-custom1"
+        className="m-0 grid place-items-center rounded-none py-[5px] border-b-[4px] border-custom4 px-4 text-center text-white font-bold bg-custom2"
       >
         <Typography variant="h5">Trade Stock</Typography>
       </CardHeader>
@@ -241,7 +241,7 @@ export default function TradeForm({
                     label="Number of Shares"
                     color="white"
                     type="number"
-                    containerProps={{ className: 'min-w-[72px]' }}
+                    containerProps={{ className: 'min-w-[72px]', }}
                     crossOrigin="anonymous"
                     name="sharesToBuy"
                     onChange={(e) => setBuyShares(Number(e.target.value))}
@@ -293,7 +293,6 @@ export default function TradeForm({
                 >
                   {loading ? <Spinner /> : 'Buy'}
                 </Button>
-
               </form>
             </TabPanel>
             <TabPanel value="sell" className="p-0">

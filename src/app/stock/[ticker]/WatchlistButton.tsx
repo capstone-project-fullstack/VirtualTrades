@@ -10,7 +10,7 @@ interface WatchlistsButtonProps {
 }
 
 export default function WatchlistsButton({ ticker }: WatchlistsButtonProps) {
-  const [watchlist, setWatchlist] = useState(true);
+  const [watchlist, setWatchlist] = useState(false);
 
   useEffect(() => {
     axios.get(`/api/editWatchlists?stock=${ticker}`).then((res) => {

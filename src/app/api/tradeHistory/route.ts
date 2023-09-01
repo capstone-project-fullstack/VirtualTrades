@@ -1,5 +1,7 @@
 import { currentUser } from '@clerk/nextjs';
 import prisma from '../../../../lib/prisma';
+import { parseTimestamp } from '@/app/utils/utils';
+import { TradeHistory } from '../../../../typings';
 
 export const GET = async () => {
   try {
@@ -13,7 +15,7 @@ export const GET = async () => {
 
     const userId = currUser.id;
 
-    const res = await prisma.trade.findMany({
+    const data = await prisma.trade.findMany({
       where: {
         user_id: userId,
       },
@@ -30,6 +32,17 @@ export const GET = async () => {
           },
         },
       },
+    });
+
+    const res: TradeHistory[] = data.map((row) => {
+      return {
+        time: parseTimestamp(row.timestamp).time,
+        date: parseTimestamp(row.timestamp).date,
+        symbol: row.Stock.symbol,
+        price: row.price,
+        type: row.trade_type,
+        shares: row.shares,
+      };
     });
 
     return new Response(JSON.stringify(res), { status: 200 });

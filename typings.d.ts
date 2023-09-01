@@ -1,39 +1,4 @@
-export interface NewsCardProps {
-  imgLink: string;
-  headline: string;
-  summary: string;
-  newsLink: string;
-}
-
-export interface NewsData {
-  id: number;
-  headline: string;
-  summary: string;
-  url: string;
-  image: string;
-}
-
-export type materialColors =
-  | 'white'
-  | 'blue-gray'
-  | 'gray'
-  | 'brown'
-  | 'deep-orange'
-  | 'orange'
-  | 'amber'
-  | 'yellow'
-  | 'lime'
-  | 'light-green'
-  | 'green'
-  | 'teal'
-  | 'cyan'
-  | 'light-blue'
-  | 'blue'
-  | 'indigo'
-  | 'deep-purple'
-  | 'purple'
-  | 'pink'
-  | 'red';
+import TradeHistory from '@/app/portfolio/TradeHistory';
 
 export interface NewsCardProps {
   imgLink: string;
@@ -71,6 +36,22 @@ export type materialColors =
   | 'purple'
   | 'pink'
   | 'red';
+
+export interface NewsCardProps {
+  imgLink: string;
+  headline: string;
+  summary: string;
+  newsLink: string;
+}
+
+export interface NewsData {
+  id: number;
+  headline: string;
+  summary: string;
+  url: string;
+  image: string;
+}
+
 export interface User {
   id: string;
   initial_amount: number;
@@ -97,7 +78,7 @@ export interface WatchlistData {
   high: number;
   price: number;
   change: number;
-  changePercent: number;  
+  changePercent: number;
   prevClose: number;
   name: string;
   symbol: string;
@@ -105,4 +86,13 @@ export interface WatchlistData {
   marketCap: number;
   low52: number;
   high52: number;
+}
+
+export interface TradeHistory {
+  date: string;
+  time: string;
+  symbol: string;
+  price: Decimal | null;
+  type: string;
+  shares: number;
 }
