@@ -53,3 +53,14 @@ export const parseTimestamp = (timestamp: Date) => {
     time: formattedTime,
   };
 };
+
+export const convertMarketCap = (marketCap: number) => {
+  const multiplyByMillion = marketCap * 1_000_000;
+  if (multiplyByMillion > 100_0000_000) {
+    return `${(multiplyByMillion / 1_000_000_000).toFixed(2)}B`;
+  } else if (multiplyByMillion > 1000_000) {
+    return `${(multiplyByMillion / 1_000_000).toFixed(2)}M`;
+  } else {
+    return `${multiplyByMillion}`;
+  }
+}

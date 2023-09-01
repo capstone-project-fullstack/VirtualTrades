@@ -113,10 +113,10 @@ export default function PositionTable() {
 
   const tableHead = [
     { header: 'Symbol', sortKey: 'symbol' },
-    { header: 'Stock Price', sortKey: 'price' },
+    { header: 'Price', sortKey: 'price' },
     { header: 'Shares', sortKey: 'shares' },
-    { header: 'Average Price', sortKey: 'averagePrice' },
-    { header: 'Total Equity', sortKey: 'totalEquity' },
+    { header: 'AVG Price', sortKey: 'averagePrice' },
+    { header: 'Equity', sortKey: 'totalEquity' },
     { header: 'Gain', sortKey: 'gain' },
   ];
 

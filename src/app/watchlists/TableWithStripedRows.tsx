@@ -5,13 +5,13 @@ import { WatchlistData } from '../../../typings';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Spinner } from '@material-tailwind/react';
-import Link from 'next/link';
 import { useRouter } from 'next/navigation';
+import { formatPrice,  convertMarketCap } from '../utils/utils';
 
 const TABLE_HEAD = [
   'Icon',
-  'Symbol',
   'Name',
+  'Symbol',
   'Price',
   'Change',
   'Change %',
@@ -39,8 +39,10 @@ export default function TableWithStripedRows() {
       .catch((err) => console.log(err));
   }, []);
 
+
+
   return (
-    <Card className="h-full w-full text-white overflow-auto bg-black">
+    <Card className="h-full w-full text-white overflow-auto no-scrollbar bg-black">
       <table className="w-full min-w-max text-center">
         <thead>
           <tr>
@@ -87,23 +89,16 @@ export default function TableWithStripedRows() {
               ) => (
                 <tr
                   key={index}
-                  className="text-center text-white cursor-pointer"
+                  className={`text-center ${change > 0 ? 'text-green-500' : 'text-red-500'} cursor-pointer`}
                   onClick={() => router.push(`/stock/${symbol}`)}
                 >
                   <td className="p-2 border-cell">
                     <Avatar src={icon} alt={name} size="sm" />
                   </td>
-
-                  <td className="p-2 border-cell">
-                    <Typography
-                      variant="small"
-                      color="white"
-                      className="font-normal"
-                    >
-                      {symbol}
-                    </Typography>
-                  </td>
-                  <td className="py-2 border-cell max-w-[100px]">
+                  <td
+                    align="left"
+                    className="py-2 pl-2 border-cell max-w-[100px]"
+                  >
                     <Typography
                       variant="small"
                       color="white"
@@ -118,88 +113,87 @@ export default function TableWithStripedRows() {
                       color="white"
                       className="font-normal"
                     >
-                      {price}
+                      {symbol}
                     </Typography>
                   </td>
                   <td className="p-2 border-cell">
                     <Typography
                       variant="small"
-                      color="white"
                       className="font-normal"
                     >
-                      {change}
+                      {formatPrice(price)}
                     </Typography>
                   </td>
                   <td className="p-2 border-cell">
                     <Typography
                       variant="small"
-                      color="white"
                       className="font-normal"
                     >
-                      {changePercent}
+                      {formatPrice(change)}
                     </Typography>
                   </td>
                   <td className="p-2 border-cell">
                     <Typography
                       variant="small"
-                      color="white"
                       className="font-normal"
                     >
-                      {prevClose}
+                      {changePercent}%
                     </Typography>
                   </td>
                   <td className="p-2 border-cell">
                     <Typography
                       variant="small"
-                      color="white"
                       className="font-normal"
                     >
-                      {open}
+                      {formatPrice(prevClose)}
                     </Typography>
                   </td>
                   <td className="p-2 border-cell">
                     <Typography
                       variant="small"
-                      color="white"
                       className="font-normal"
                     >
-                      {high}
+                      {formatPrice(open)}
                     </Typography>
                   </td>
                   <td className="p-2 border-cell">
                     <Typography
                       variant="small"
-                      color="white"
                       className="font-normal"
                     >
-                      {low}
+                      {formatPrice(high)}
                     </Typography>
                   </td>
                   <td className="p-2 border-cell">
                     <Typography
                       variant="small"
-                      color="white"
                       className="font-normal"
                     >
-                      {marketCap}
+                      {formatPrice(low)}
                     </Typography>
                   </td>
                   <td className="p-2 border-cell">
                     <Typography
                       variant="small"
-                      color="white"
                       className="font-normal"
                     >
-                      {high52}
+                      {convertMarketCap(marketCap)}
                     </Typography>
                   </td>
                   <td className="p-2 border-cell">
                     <Typography
                       variant="small"
-                      color="white"
                       className="font-normal"
                     >
-                      {low52}
+                      {formatPrice(high52)}
+                    </Typography>
+                  </td>
+                  <td className="p-2 border-cell">
+                    <Typography
+                      variant="small"
+                      className="font-normal"
+                    >
+                      {formatPrice(low52)}
                     </Typography>
                   </td>
                 </tr>

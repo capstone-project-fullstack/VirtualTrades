@@ -43,7 +43,7 @@ export default function TradeHistory() {
         <tbody>
           {tableRows.map(({ date, time, symbol, price, type, shares }, index) => {
             return (
-              <tr key={index}>
+              <tr key={index} className={`${type === 'BUY' ? 'bg-green-500' : 'bg-red-500'}`}>
                 <td align="center" className="p-2 border-cell">
                   <div>
                     <Typography

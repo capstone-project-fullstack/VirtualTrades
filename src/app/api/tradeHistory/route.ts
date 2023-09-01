@@ -32,12 +32,16 @@ export const GET = async () => {
           },
         },
       },
+      orderBy: {
+        timestamp: 'desc',
+      },
     });
 
     const res: TradeHistory[] = data.map((row) => {
+      const { time, date } = parseTimestamp(row.timestamp);
       return {
-        time: parseTimestamp(row.timestamp).time,
-        date: parseTimestamp(row.timestamp).date,
+        time,
+        date,
         symbol: row.Stock.symbol,
         price: row.price,
         type: row.trade_type,

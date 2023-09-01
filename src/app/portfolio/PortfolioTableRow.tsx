@@ -16,9 +16,8 @@ function PositionTableRow({ row }: PositionTableRowProps) {
     total_equity,
   } = row;
 
-  const classes = 'py-2 text-center border-cell';
   return (
-    <tr>
+    <tr className={`${gain > 0 ? "text-green-500" : "text-red-500"}`}>
       <td className="py-2 text-center border-cell max-w-[165px]">
         <Link href={`/stock/${symbol}`}>
           <div className="flex items-center gap-3 cursor-pointer">
@@ -42,28 +41,28 @@ function PositionTableRow({ row }: PositionTableRowProps) {
           </div>
         </Link>
       </td>
-      <td align="center" className={classes}>
-        <Typography variant="small" color="white" className="font-normal">
+      <td align="center" className="py-2 border-cell">
+        <Typography variant="small" className="font-normal">
           {formatPrice(Number(current_price))}
         </Typography>
       </td>
-      <td align="center" className={classes}>
-        <Typography variant="small" color="white" className="font-normal">
+      <td align="center" className="py-2 border-cell">
+        <Typography variant="small" className="font-normal">
           {shares}
         </Typography>
       </td>
-      <td align="center" className={classes}>
-        <Typography variant="small" color="white" className="font-normal">
+      <td align="center" className="py-2 border-cell">
+        <Typography variant="small" className="font-normal">
           {formatPrice(Number(average_price))}
         </Typography>
       </td>
-      <td align="center" className={classes}>
-        <Typography variant="small" color="white" className="font-normal">
+      <td align="center" className="py-2 border-cell">
+        <Typography variant="small" className="font-normal">
           {formatPrice(Number(total_equity))}
         </Typography>
       </td>
-      <td align="center" className={classes}>
-        <Typography variant="small" color="white" className="font-normal">
+      <td align="center" className="py-2 border-cell">
+        <Typography variant="small" className="font-normal">
           {formatPrice(Number(gain))}
         </Typography>
       </td>
