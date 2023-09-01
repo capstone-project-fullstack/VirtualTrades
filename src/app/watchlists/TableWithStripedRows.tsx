@@ -6,7 +6,7 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Spinner } from '@material-tailwind/react';
 import { useRouter } from 'next/navigation';
-import { formatPrice,  convertMarketCap } from '../utils/utils';
+import { formatPrice, convertMarketCap } from '../utils/utils';
 
 const TABLE_HEAD = [
   'Icon',
@@ -39,7 +39,67 @@ export default function TableWithStripedRows() {
       .catch((err) => console.log(err));
   }, []);
 
+  useEffect(() => {
+    const socket = new WebSocket(
+      `wss://ws.finnhub.io?token=cjhubehr01qonds7gfn0cjhubehr01qonds7gfng`
+    );
+    socket.addEventListener('open', () => {
+      tableRows.forEach((row) => {
+        socket.send(JSON.stringify({ type: 'subscribe', symbol: row.symbol }));
+      });
+    });
 
+    // Inside the message event listener:
+    socket.addEventListener('message', (e) => {
+      if (e.data) {
+        try {
+          const data = JSON.parse(e.data);
+          const trades = data.data;
+          if (trades && trades.length > 0) {
+            setTableRows((prevRows) => {
+              const updatedRows = prevRows.map((row) => {
+                const matchingTrade = trades.find(
+                  (trade: any) => trade.s === row.symbol
+                );
+                if (matchingTrade) {
+                  const updatedStock = {
+                    ...row,
+                    price: matchingTrade.p,
+                  };
+
+                  const updatedRow = {
+                    ...row,
+                    price: matchingTrade.p,
+                    change: matchingTrade.p - row.prevClose,
+                    changePercent: Number(
+                      (
+                        ((matchingTrade.p - row.prevClose) / row.prevClose) *
+                        100
+                      ).toFixed(2)
+                    ),
+                  };
+
+                  axios
+                    .patch(`/api/updateStockPrice`, {
+                      ticker: matchingTrade.s,
+                      price: matchingTrade.p,
+                    })
+                    .catch((err) => console.log(err));
+
+                  return updatedRow;
+                }
+                return row;
+              });
+
+              return updatedRows;
+            });
+          }
+        } catch (error) {
+          console.error('Error parsing JSON data:', error);
+        }
+      }
+    });
+  }, [tableRows]);
 
   return (
     <Card className="h-full w-full text-white overflow-auto no-scrollbar bg-black">
@@ -89,7 +149,9 @@ export default function TableWithStripedRows() {
               ) => (
                 <tr
                   key={index}
-                  className={`text-center ${change > 0 ? 'text-green-500' : 'text-red-500'} cursor-pointer`}
+                  className={`text-center ${
+                    change > 0 ? 'text-green-500' : 'text-red-500'
+                  } cursor-pointer`}
                   onClick={() => router.push(`/stock/${symbol}`)}
                 >
                   <td className="p-2 border-cell">
@@ -117,82 +179,52 @@ export default function TableWithStripedRows() {
                     </Typography>
                   </td>
                   <td className="p-2 border-cell">
-                    <Typography
-                      variant="small"
-                      className="font-normal"
-                    >
+                    <Typography variant="small" className="font-normal">
                       {formatPrice(price)}
                     </Typography>
                   </td>
                   <td className="p-2 border-cell">
-                    <Typography
-                      variant="small"
-                      className="font-normal"
-                    >
+                    <Typography variant="small" className="font-normal">
                       {formatPrice(change)}
                     </Typography>
                   </td>
                   <td className="p-2 border-cell">
-                    <Typography
-                      variant="small"
-                      className="font-normal"
-                    >
-                      {changePercent}%
+                    <Typography variant="small" className="font-normal">
+                      {changePercent.toFixed(2)}%
                     </Typography>
                   </td>
                   <td className="p-2 border-cell">
-                    <Typography
-                      variant="small"
-                      className="font-normal"
-                    >
+                    <Typography variant="small" className="font-normal">
                       {formatPrice(prevClose)}
                     </Typography>
                   </td>
                   <td className="p-2 border-cell">
-                    <Typography
-                      variant="small"
-                      className="font-normal"
-                    >
+                    <Typography variant="small" className="font-normal">
                       {formatPrice(open)}
                     </Typography>
                   </td>
                   <td className="p-2 border-cell">
-                    <Typography
-                      variant="small"
-                      className="font-normal"
-                    >
+                    <Typography variant="small" className="font-normal">
                       {formatPrice(high)}
                     </Typography>
                   </td>
                   <td className="p-2 border-cell">
-                    <Typography
-                      variant="small"
-                      className="font-normal"
-                    >
+                    <Typography variant="small" className="font-normal">
                       {formatPrice(low)}
                     </Typography>
                   </td>
                   <td className="p-2 border-cell">
-                    <Typography
-                      variant="small"
-                      className="font-normal"
-                    >
+                    <Typography variant="small" className="font-normal">
                       {convertMarketCap(marketCap)}
                     </Typography>
                   </td>
                   <td className="p-2 border-cell">
-                    <Typography
-                      variant="small"
-                      className="font-normal"
-                    >
+                    <Typography variant="small" className="font-normal">
                       {formatPrice(high52)}
                     </Typography>
                   </td>
                   <td className="p-2 border-cell">
-                    <Typography
-                      variant="small"
-                      className="font-normal"
-                    >
+                    <Typography variant="small" className="font-normal">
                       {formatPrice(low52)}
                     </Typography>
                   </td>
