@@ -12,7 +12,7 @@ export const GET = async () => {
         headers: { 'Content-Type': 'application/json' },
       });
     }
-    const userId = currUser?.id;
+    const userId = currUser.id;
 
     const userStocks = await UserService.userStocksInWatchlist(userId);
 
