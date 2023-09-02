@@ -31,8 +31,8 @@ export default function Home({
   };
 
   // export default function HorizontalCard({ img, text1, text2, text3, onClick }: HorizontalCardProps) {
-    return (
-      <Card className="w-full max-w-[48rem] bg-dark-black">
+  return (
+    <Card className="w-full max-w-[48rem] bg-dark-black">
       <div className="flex flex-col md:flex-row">
         <CardHeader
           shadow={false}

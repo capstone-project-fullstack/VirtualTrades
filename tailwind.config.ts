@@ -17,6 +17,9 @@ export default withMT({
         'light-green': '#01BBB9',
         'dark-black': '#100517',
         'custom1': '#1e222d',
+        'custom2': '#131721',
+        'custom3': '#434651',
+        'custom4': '#2a2e39 ',
 
       },
     },

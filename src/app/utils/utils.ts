@@ -32,3 +32,42 @@ export const customSort = (
 
   setState([...array]);
 };
+
+export const parseTimestamp = (timestamp: string) => {
+  const dateObj = new Date(timestamp);
+
+  const month = (dateObj.getMonth() + 1).toString().padStart(2, '0');
+  const day = dateObj.getDate().toString().padStart(2, '0');
+  const year = dateObj.getFullYear().toString().slice(-2);
+
+  const hours = dateObj.getHours();
+  const ampm = hours >= 12 ? 'PM' : 'AM';
+  const formattedHours = (hours % 12 || 12).toString().padStart(2, '0');
+  const minutes = dateObj.getMinutes().toString().padStart(2, '0');
+
+  const formattedDate = `${month}/${day}/${year}`;
+  const formattedTime = `${formattedHours}:${minutes} ${ampm}`;
+
+  return {
+    date: formattedDate,
+    time: formattedTime,
+  };
+};
+
+export const convertMarketCap = (marketCap: number) => {
+  const multiplyByMillion = marketCap * 1_000_000;
+  if (multiplyByMillion > 100_0000_000) {
+    return `${(multiplyByMillion / 1_000_000_000).toFixed(2)}B`;
+  } else if (multiplyByMillion > 1000_000) {
+    return `${(multiplyByMillion / 1_000_000).toFixed(2)}M`;
+  } else {
+    return `${multiplyByMillion}`;
+  }
+};
+
+export const unixTimestampToISO8601 = (unixTimestamp: number) => {
+  const timestampInMilliseconds = unixTimestamp * 1000;
+  const date = new Date(timestampInMilliseconds);
+  const iso8601String = date.toISOString();
+  return iso8601String;
+};

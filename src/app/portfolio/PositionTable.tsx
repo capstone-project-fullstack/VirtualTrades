@@ -1,8 +1,6 @@
 'use client';
 
-import {
-  ChevronUpDownIcon,
-} from '@heroicons/react/24/outline';
+import { ChevronUpDownIcon } from '@heroicons/react/24/outline';
 import {
   Card,
   CardHeader,
@@ -12,7 +10,6 @@ import {
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { customSort } from '../utils/utils';
-import { useRouter } from 'next/navigation';
 import { useAppDispatch, useAppSelector } from '../redux/hooks';
 import { updateCurrentPortfolioValue } from '../redux/features/fundManagementSlice';
 import PositionTableHeader from './PortfolioTableHeader';
@@ -105,7 +102,7 @@ export default function PositionTable() {
         }
       }
     });
-  }, [tableRows, ]);
+  }, [tableRows]);
 
   const filterStock = tableRows.filter((row) => {
     return (
@@ -116,15 +113,15 @@ export default function PositionTable() {
 
   const tableHead = [
     { header: 'Symbol', sortKey: 'symbol' },
-    { header: 'Stock Price', sortKey: 'price' },
+    { header: 'Price', sortKey: 'price' },
     { header: 'Shares', sortKey: 'shares' },
-    { header: 'Average Price', sortKey: 'averagePrice' },
-    { header: 'Total Equity', sortKey: 'totalEquity' },
+    { header: 'AVG Price', sortKey: 'averagePrice' },
+    { header: 'Equity', sortKey: 'totalEquity' },
     { header: 'Gain', sortKey: 'gain' },
   ];
 
   return (
-    <Card className="w-full bg-dark-black border overflow-auto border-white rounded">
+    <Card className="w-full max-h-[600px] bg-dark-black border overflow-auto no-scrollbar border-custom3">
       <CardHeader
         floated={false}
         shadow={false}
@@ -135,7 +132,7 @@ export default function PositionTable() {
           setSearchStock={setSearchStock}
         />
       </CardHeader>
-      <CardBody className="overflow-auto px-0">
+      <CardBody className="overflow-auto no-scrollbar px-0">
         <table className="w-full min-w-max table-auto text-center">
           <thead>
             <tr>
@@ -143,12 +140,12 @@ export default function PositionTable() {
                 <th
                   align="center"
                   key={index}
-                  className="cursor-pointer border-y text-center p-2 transition-colors border-cell"
+                  className="cursor-pointer border-y text-center py-4 transition-colors border-cell max-w-[165px]"
                 >
                   <Typography
                     variant="h6"
                     color="white"
-                    className="flex items-center justify-center gap-2 font-normal leading-none opacity-70"
+                    className="flex items-center justify-center gap-2 font-normal leading-none"
                     onClick={() => {
                       if (sortOrder === null || sortOrder === 'desc') {
                         setSortOrder('asc');

@@ -1,7 +1,5 @@
-// "use client";
-
 import React from 'react';
-import NewsCard from '../components/cards/NewsCard';
+import NewsLists from './NewsLists';
 import HeaderText from '../components/HeaderText';
 import Loading from '../components/Loading';
 import { NewsData } from '../../../typings';
@@ -24,19 +22,7 @@ const NewsPage: React.FC = async () => {
   return (
     <div>
       <HeaderText text="News" />
-      <div className="f-center">
-        <div className="grid gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 ml-10">
-          {allNews.map((news: NewsData) => (
-            <NewsCard
-              key={news.id}
-              imgLink={news.image}
-              headline={news.headline}
-              summary={news.summary}
-              newsLink={news.url}
-            />
-          ))}
-        </div>
-      </div>
+      <NewsLists allNews={allNews} />
     </div>
   );
 };

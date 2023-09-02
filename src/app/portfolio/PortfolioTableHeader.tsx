@@ -1,6 +1,4 @@
-import {
-  MagnifyingGlassIcon,
-} from '@heroicons/react/24/outline';
+import { MagnifyingGlassIcon } from '@heroicons/react/24/outline';
 import { Input, Typography } from '@material-tailwind/react';
 
 interface PositionTableHeaderProps {
@@ -8,7 +6,10 @@ interface PositionTableHeaderProps {
   setSearchStock: (value: string) => void;
 }
 
-function PositionTableHeader({ searchStock, setSearchStock }: PositionTableHeaderProps) {
+function PositionTableHeader({
+  searchStock,
+  setSearchStock,
+}: PositionTableHeaderProps) {
   return (
     <div className=" flex items-center justify-between gap-8">
       <div>

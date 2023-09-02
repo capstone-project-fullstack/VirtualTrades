@@ -9,10 +9,12 @@ import { GradientButtonRounded } from './components/buttons/Button';
 import TradingViewWidget from './components/widgets/TopWidget';
 
 export default function Home() {
+  const router = useRouter();
+
   const handleRoute = (page: string) => {
     router.push(`/${page}`);
   };
-  const router = useRouter();
+
   return (
     <div>
       <TradingViewWidget />
@@ -53,9 +55,6 @@ export default function Home() {
       <section>
         <div className="bg-light-purple py-8">
           <div className="container max-w-5xl mx-auto m-8 mb-20">
-            {/* <h1 className="w-full my-2 text-center text-4xl text-white-600 font-bold leading-none mb-9">
-              Stock Market
-            </h1> */}
             <div className="w-full mb-4">
               <div className="h-1 mx-auto gradient w-64 opacity-25 my-0 py-0 rounded-t"></div>
             </div>
@@ -123,8 +122,8 @@ export default function Home() {
                 News articles are not just headlines, they are valuable learning
                 resources. We curate the latest news, including expert analyses
                 and market insights to keep you up to date with the
-                ever-changing landscape. Understand how these
-                factors influence stock prices.
+                ever-changing landscape. Understand how these factors influence
+                stock prices.
               </p>
             </div>
           </div>
@@ -134,14 +133,8 @@ export default function Home() {
       <Svg />
 
       <section className="bg-light-purple py-8">
-        {/* <div>
-          <h1 className="w-full my-2 text-center text-4xl text-white-600 font-bold leading-none">
-            Explore
-          </h1>
-        </div> */}
         <div className="container mx-auto flex flex-wrap pb-12 m-5">
-
-        <div className="w-full md:w-1/3 p-6 flex flex-col flex-grow flex-shrink ">
+          <div className="w-full md:w-1/3 p-6 flex flex-col flex-grow flex-shrink ">
             <div className="container mx-auto flex flex-wrap pt-4 pb-12 max-h-[500px]">
               <div className="w-full md:w-1/3 flex flex-col flex-grow flex-shrink ">
                 <div className="flex-1 bg-dark-black overflow-hidden shadow">
@@ -149,16 +142,14 @@ export default function Home() {
                     href="#"
                     className="flex flex-wrap no-underline hover:no-underline"
                   >
-                    {/* <p className="w-full text-gray-600 text-xs md:text-sm px-6">
-                      BUY AND SELL STOCK
-                    </p> */}
                     <div className="w-full font-bold text-xl text-white px-6 mt-7 text-center">
                       TRADING STOCK
                     </div>
                     <p className="text-white text-base px-6 mb-5 text-center">
-                      Explore the stock market on an interactive map and trade stocks in real-time. Visit our virtual stock
-                      analyses page, as well as our market page, to research a companies performance, and shop
-                      stock risk-free!
+                      Explore the stock market on an interactive map and trade
+                      stocks in real-time. Visit our virtual stock analyses
+                      page, as well as our market page, to research a companies
+                      performance, and shop stock risk-free!
                     </p>
                   </a>
                   <div>
@@ -175,7 +166,7 @@ export default function Home() {
                   <div className="f-center">
                     <GradientButtonRounded
                       text="Trade"
-                      onClick={() => handleRoute('landing')}
+                      onClick={() => handleRoute('market')}
                       className="bg-none bg-light-green"
                     />
                   </div>
@@ -225,8 +216,6 @@ export default function Home() {
             </div>
           </div>
 
-
-
           <div className="w-full md:w-1/3 p-6 flex flex-col flex-grow flex-shrink">
             <div className="container mx-auto flex flex-wrap pt-4 pb-12 max-h-[500px]">
               <div className="w-full md:w-1/3 flex flex-col flex-grow flex-shrink">
@@ -235,15 +224,14 @@ export default function Home() {
                     href="#"
                     className="flex flex-wrap no-underline hover:no-underline"
                   >
-    
                     <div className="w-full font-bold text-xl text-white px-6 mt-7 text-center">
                       MORE ABOUT US
                     </div>
                     <p className="text-white text-base px-6 mb-5 text-center">
-                      Delve into our mission, learn more about our team, and what our
-                      values are here at Virtual Trades. We are dedicated to
-                      armoring you with the right tools to confidently navigate
-                      this new world of investing!
+                      Delve into our mission, learn more about our team, and
+                      what our values are here at Virtual Trades. We are
+                      dedicated to armoring you with the right tools to
+                      confidently navigate this new world of investing!
                     </p>
                   </a>
                   <div>

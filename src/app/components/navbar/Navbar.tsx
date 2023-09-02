@@ -140,8 +140,8 @@ export default function Navbar() {
               {!open ? (
                 <Tooltip
                   content={item.name}
-                  placement="right-end"
-                  className="ml-2  bg-white text-black"
+                  placement="right"
+                  className="ml-2 bg-white text-black"
                 >
                   <div className="text-3xl block float-left">{item.icon}</div>
                 </Tooltip>
@@ -173,20 +173,42 @@ export default function Navbar() {
           </div>
         </SignedIn>
         <SignedOut>
-          <div className="text-gray-300 text-sm flex items-center gap-x-4 cursor-pointer p-2 hover:bg-light-white rounded-md focus:bg-light-white my-2">
-            <div>
-              <IoIosLogIn
-                className="text-2xl block float-left"
-                onClick={() => router.push('/sign-in')}
-              />
-              <div
-                className={`text-base font-medium flex-1 duration-200 flex items-center gap-x-4 pl-4 ${
-                  !open && 'hidden'
-                }`}
+          <div className="text-gray-300 text-sm flex items-center gap-x-4 cursor-pointer px-[5px] py-1 my-2 hover:bg-light-white rounded-md focus:bg-light-white">
+            {!open ? (
+              <Tooltip
+                content="Sign In"
+                placement="right"
+                className="ml-2 bg-white text-black"
               >
-                <SignInButton />
+                <div>
+                  <IoIosLogIn
+                    className="text-3xl block float-left"
+                    onClick={() => router.push('/sign-in')}
+                  />
+                  <div
+                    className={`text-base font-medium flex-1 duration-200 flex items-center gap-x-4 pl-4 ${
+                      !open && 'hidden'
+                    }`}
+                  >
+                    <SignInButton />
+                  </div>
+                </div>
+              </Tooltip>
+            ) : (
+              <div>
+                <IoIosLogIn
+                  className="text-2xl block float-left"
+                  onClick={() => router.push('/sign-in')}
+                />
+                <div
+                  className={`text-base font-medium flex-1 duration-200 flex items-center gap-x-4 pl-4 ${
+                    !open && 'hidden'
+                  }`}
+                >
+                  <SignInButton />
+                </div>
               </div>
-            </div>
+            )}
           </div>
         </SignedOut>
       </div>
