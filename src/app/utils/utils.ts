@@ -33,7 +33,7 @@ export const customSort = (
   setState([...array]);
 };
 
-export const parseTimestamp = (timestamp: Date) => {
+export const parseTimestamp = (timestamp: string) => {
   const dateObj = new Date(timestamp);
 
   const month = (dateObj.getMonth() + 1).toString().padStart(2, '0');
@@ -63,4 +63,11 @@ export const convertMarketCap = (marketCap: number) => {
   } else {
     return `${multiplyByMillion}`;
   }
+};
+
+export const unixTimestampToISO8601 = (unixTimestamp: number) => {
+  const timestampInMilliseconds = unixTimestamp * 1000;
+  const date = new Date(timestampInMilliseconds);
+  const iso8601String = date.toISOString();
+  return iso8601String;
 };
