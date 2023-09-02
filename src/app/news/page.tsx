@@ -1,7 +1,7 @@
 // "use client";
 
 import React from 'react';
-import NewsCard from '../components/cards/NewsCard';
+import NewsCard from './NewsCard';
 import HeaderText from '../components/HeaderText';
 import Loading from '../components/Loading';
 import { NewsData } from '../../../typings';
@@ -33,6 +33,7 @@ const NewsPage: React.FC = async () => {
               headline={news.headline}
               summary={news.summary}
               newsLink={news.url}
+              datetime={news.datetime}
             />
           ))}
         </div>

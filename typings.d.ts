@@ -5,6 +5,7 @@ export interface NewsCardProps {
   headline: string;
   summary: string;
   newsLink: string;
+  datetime: number;
 }
 
 export interface NewsData {
@@ -13,6 +14,7 @@ export interface NewsData {
   summary: string;
   url: string;
   image: string;
+  datetime: number;
 }
 
 export type materialColors =
