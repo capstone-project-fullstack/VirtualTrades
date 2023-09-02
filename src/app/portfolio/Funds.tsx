@@ -1,16 +1,9 @@
 'use client';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import FundsManagementForm from './FundsManagementForm';
 import { formatPrice } from '../utils/utils';
-import { useAppDispatch, useAppSelector } from '../redux/hooks';
+import { useAppSelector } from '../redux/hooks';
 
-// interface FundsProps {
-//   initialValues: {
-//     initial_amount: number;
-//     cash: number;
-//     current_portfolio_value: number;
-//   };
-// }
 export default function Funds() {
   const [open, setOpen] = useState(false);
   const funds = useAppSelector((state) => state.fundManagement.values);

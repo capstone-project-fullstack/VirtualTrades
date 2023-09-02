@@ -16,7 +16,7 @@ import {
   TabPanel,
 } from '@material-tailwind/react';
 import { addFunds, withdrawFunds } from '../redux/features/fundManagementSlice';
-import { useAppDispatch, useAppSelector } from '../redux/hooks';
+import { useAppDispatch } from '../redux/hooks';
 import axios from 'axios';
 
 interface FundsManagementForm {

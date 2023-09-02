@@ -4,6 +4,7 @@ import UserService from '../modals/user';
 import Funds from './Funds';
 import PositionTable from './PositionTable';
 import Overview from './Overview';
+import PortfolioDiversityChart from './PortfolioDiversityChart';
 import TradeHistory from './TradeHistory';
 
 export default async function Portfolio() {
@@ -27,7 +28,8 @@ export default async function Portfolio() {
           <Overview initialValues={initialValues} />
         </div>
         <div className="w-full xl:w-4/12 px-4">
-          <Funds />
+          <Funds/>
+          <PortfolioDiversityChart />
         </div>
       </div>
       <div className="flex flex-wrap mt-4">
