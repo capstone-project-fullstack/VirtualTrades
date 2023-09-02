@@ -63,4 +63,4 @@ export const convertMarketCap = (marketCap: number) => {
   } else {
     return `${multiplyByMillion}`;
   }
-}
+};

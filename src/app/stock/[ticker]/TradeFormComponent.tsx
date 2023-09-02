@@ -241,7 +241,7 @@ export default function TradeForm({
                     label="Number of Shares"
                     color="white"
                     type="number"
-                    containerProps={{ className: 'min-w-[72px]', }}
+                    containerProps={{ className: 'min-w-[72px]' }}
                     crossOrigin="anonymous"
                     name="sharesToBuy"
                     onChange={(e) => setBuyShares(Number(e.target.value))}

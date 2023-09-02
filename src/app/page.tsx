@@ -10,7 +10,7 @@ import TradingViewWidget from './components/widgets/TopWidget';
 
 export default function Home() {
   const router = useRouter();
-  
+
   const handleRoute = (page: string) => {
     router.push(`/${page}`);
   };
@@ -122,8 +122,8 @@ export default function Home() {
                 News articles are not just headlines, they are valuable learning
                 resources. We curate the latest news, including expert analyses
                 and market insights to keep you up to date with the
-                ever-changing landscape. Understand how these
-                factors influence stock prices.
+                ever-changing landscape. Understand how these factors influence
+                stock prices.
               </p>
             </div>
           </div>
@@ -134,8 +134,7 @@ export default function Home() {
 
       <section className="bg-light-purple py-8">
         <div className="container mx-auto flex flex-wrap pb-12 m-5">
-
-        <div className="w-full md:w-1/3 p-6 flex flex-col flex-grow flex-shrink ">
+          <div className="w-full md:w-1/3 p-6 flex flex-col flex-grow flex-shrink ">
             <div className="container mx-auto flex flex-wrap pt-4 pb-12 max-h-[500px]">
               <div className="w-full md:w-1/3 flex flex-col flex-grow flex-shrink ">
                 <div className="flex-1 bg-dark-black overflow-hidden shadow">
@@ -147,9 +146,10 @@ export default function Home() {
                       TRADING STOCK
                     </div>
                     <p className="text-white text-base px-6 mb-5 text-center">
-                      Explore the stock market on an interactive map and trade stocks in real-time. Visit our virtual stock
-                      analyses page, as well as our market page, to research a companies performance, and shop
-                      stock risk-free!
+                      Explore the stock market on an interactive map and trade
+                      stocks in real-time. Visit our virtual stock analyses
+                      page, as well as our market page, to research a companies
+                      performance, and shop stock risk-free!
                     </p>
                   </a>
                   <div>
@@ -216,8 +216,6 @@ export default function Home() {
             </div>
           </div>
 
-
-
           <div className="w-full md:w-1/3 p-6 flex flex-col flex-grow flex-shrink">
             <div className="container mx-auto flex flex-wrap pt-4 pb-12 max-h-[500px]">
               <div className="w-full md:w-1/3 flex flex-col flex-grow flex-shrink">
@@ -226,15 +224,14 @@ export default function Home() {
                     href="#"
                     className="flex flex-wrap no-underline hover:no-underline"
                   >
-    
                     <div className="w-full font-bold text-xl text-white px-6 mt-7 text-center">
                       MORE ABOUT US
                     </div>
                     <p className="text-white text-base px-6 mb-5 text-center">
-                      Delve into our mission, learn more about our team, and what our
-                      values are here at Virtual Trades. We are dedicated to
-                      armoring you with the right tools to confidently navigate
-                      this new world of investing!
+                      Delve into our mission, learn more about our team, and
+                      what our values are here at Virtual Trades. We are
+                      dedicated to armoring you with the right tools to
+                      confidently navigate this new world of investing!
                     </p>
                   </a>
                   <div>

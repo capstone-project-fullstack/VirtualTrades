@@ -41,70 +41,77 @@ export default function TradeHistory() {
           </tr>
         </thead>
         <tbody>
-          {tableRows.map(({ date, time, symbol, price, type, shares }, index) => {
-            return (
-              <tr key={index} className={`${type === 'BUY' ? 'bg-green-500' : 'bg-red-500'}`}>
-                <td align="center" className="p-2 border-cell">
-                  <div>
+          {tableRows.map(
+            ({ date, time, symbol, price, type, shares }, index) => {
+              return (
+                <tr
+                  key={index}
+                  className={`${
+                    type === 'BUY' ? 'bg-green-500' : 'bg-red-500'
+                  }`}
+                >
+                  <td align="center" className="p-2 border-cell">
+                    <div>
+                      <Typography
+                        variant="small"
+                        color="white"
+                        className="font-normal"
+                      >
+                        {time}
+                      </Typography>
+                      <Typography
+                        variant="small"
+                        color="white"
+                        className="font-normal"
+                      >
+                        {date}
+                      </Typography>
+                    </div>
+                  </td>
+                  <td align="center" className="p-2 border-cell">
                     <Typography
                       variant="small"
                       color="white"
                       className="font-normal"
                     >
-                      {time}
+                      {symbol}
                     </Typography>
+                  </td>
+                  <td align="center" className="p-2 border-cell">
                     <Typography
                       variant="small"
                       color="white"
                       className="font-normal"
                     >
-                      {date}
+                      {price}
                     </Typography>
-                  </div>
-                </td>
-                <td align="center" className="p-2 border-cell">
-                  <Typography
-                    variant="small"
-                    color="white"
-                    className="font-normal"
-                  >
-                    {symbol}
-                  </Typography>
-                </td>
-                <td align="center" className="p-2 border-cell">
-                  <Typography
-                    variant="small"
-                    color="white"
-                    className="font-normal"
-                  >
-                    {price}
-                  </Typography>
-                </td>
-                <td align="center" className="p-2 border-cell">
-                  <Typography
-                    as="a"
-                    href="#"
-                    variant="small"
-                    color="white"
-                    className="font-medium"
-                  >
-                    {shares}
-                  </Typography>
-                </td>
-                <td align="center" className="p-2 border-cell">
-                  <Typography
-                    as="a"
-                    href="#"
-                    variant="small"
-                    color="white"
-                    className="font-medium"
-                  >
-                    {type}
-                  </Typography>
-                </td>
-              </tr>
-            );
-          })}
+                  </td>
+                  <td align="center" className="p-2 border-cell">
+                    <Typography
+                      as="a"
+                      href="#"
+                      variant="small"
+                      color="white"
+                      className="font-medium"
+                    >
+                      {shares}
+                    </Typography>
+                  </td>
+                  <td align="center" className="p-2 border-cell">
+                    <Typography
+                      as="a"
+                      href="#"
+                      variant="small"
+                      color="white"
+                      className="font-medium"
+                    >
+                      {type}
+                    </Typography>
+                  </td>
+                </tr>
+              );
+            }
+          )}
         </tbody>
       </table>
     </Card>

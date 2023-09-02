@@ -14,10 +14,12 @@ export const GET = async () => {
     const userId = currUser?.id;
 
     const userPortfolioSnapshots = await prisma.portfolioValue.findMany({
-        where: { user_id: userId },
+      where: { user_id: userId },
     });
 
-    return new Response(JSON.stringify(userPortfolioSnapshots), { status: 200 });
+    return new Response(JSON.stringify(userPortfolioSnapshots), {
+      status: 200,
+    });
   } catch (error) {
     console.error('Error getting portfolio snapshot data:', error);
     return new Response(

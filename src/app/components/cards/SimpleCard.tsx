@@ -22,7 +22,7 @@ export default function Home({ text1 }: SimpleCard) {
 
   return (
     <Card className="mb-4 w-96 bg-white h-80">
-      <CardBody className='text-center mt-2'>
+      <CardBody className="text-center mt-2">
         <Typography variant="h5" color="blue-gray" className="mb-5">
           CURRATED NEWS FEED
         </Typography>

@@ -33,7 +33,6 @@ const NewsCard = ({ imgLink, headline, summary, newsLink }: NewsCardProps) => {
         <Button className="mt-2" onClick={() => window.open(newsLink)}>
           Read More
         </Button>
-        
       </CardFooter>
     </Card>
   );

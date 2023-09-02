@@ -38,7 +38,8 @@ export const fundManagement = createSlice({
           ...state.values,
           initial_amount: state.values.initial_amount + action.payload,
           cash: state.values.cash + action.payload,
-          current_portfolio_value: state.values.current_portfolio_value + action.payload,
+          current_portfolio_value:
+            state.values.current_portfolio_value + action.payload,
         },
       };
     },
@@ -50,7 +51,8 @@ export const fundManagement = createSlice({
           ...state.values,
           initial_amount: state.values.initial_amount - action.payload,
           cash: state.values.cash - action.payload,
-          current_portfolio_value: state.values.current_portfolio_value - action.payload,
+          current_portfolio_value:
+            state.values.current_portfolio_value - action.payload,
         },
       };
     },
@@ -63,9 +65,14 @@ export const fundManagement = createSlice({
           current_portfolio_value: action.payload,
         },
       };
-    }
+    },
   },
 });
 
-export const { setInitialValues, addFunds, withdrawFunds, updateCurrentPortfolioValue } = fundManagement.actions;
+export const {
+  setInitialValues,
+  addFunds,
+  withdrawFunds,
+  updateCurrentPortfolioValue,
+} = fundManagement.actions;
 export default fundManagement.reducer;

@@ -6,7 +6,7 @@ export const PATCH = async (req: NextRequest): Promise<Response> => {
     const reqBody = await req.json();
     const { ticker, price } = reqBody;
     await Stock.updateCurrentPrice(ticker, price);
-    return new Response('Stock Price updated', { status: 200 }); 
+    return new Response('Stock Price updated', { status: 200 });
   } catch (error) {
     console.error('Error updating stock price:', error);
     return new Response('Error updating stock price', { status: 501 });
