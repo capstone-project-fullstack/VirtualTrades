@@ -66,7 +66,7 @@ export default function Overview({ initialValues }: OverviewProps) {
       .catch((err) => console.log(err));
   }, []);
 
-  const options: any = {
+  const portfolioChartOptions: any = {
     maintainAspectRatio: false,
     responsive: true,
     title: {
@@ -137,7 +137,7 @@ export default function Overview({ initialValues }: OverviewProps) {
     },
   };
 
-  const data: any = {
+  const portfolioChartData: any = {
     labels: chartData.map((chartData) => chartData.timestamp),
     datasets: [
       {
@@ -186,7 +186,7 @@ export default function Overview({ initialValues }: OverviewProps) {
         <div className="p-4 flex-auto">
           {/* Chart */}
           <div className="relative h-[350px]">
-            <Line options={options} data={data} />
+            <Line options={portfolioChartOptions} data={portfolioChartData} />
           </div>
         </div>
       </div>

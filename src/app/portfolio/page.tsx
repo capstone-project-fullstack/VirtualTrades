@@ -4,6 +4,7 @@ import UserService from '../modals/user';
 import Funds from './Funds';
 import PositionTable from './PositionTable';
 import Overview from './Overview';
+import PortfolioDiversityChart from './PortfolioDiversityChart';
 
 export default async function Portfolio() {
   const currUser = await currentUser();
@@ -27,6 +28,7 @@ export default async function Portfolio() {
         </div>
         <div className="w-full xl:w-4/12 px-4">
           <Funds/>
+          <PortfolioDiversityChart />
         </div>
       </div>
       <div className="flex flex-wrap mt-4">
