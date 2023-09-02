@@ -21,7 +21,7 @@ const NewsCard = ({
   const parsedTime = parseTimestamp(unixTimestampToISO8601(datetime));
 
   return (
-    <Card className="my-6 mr-6 w-96 bg-dark-purple cursor-pointer" onClick={() => window.open(newsLink)}>
+    <Card className="my-6 w-96 bg-dark-purple cursor-pointer" onClick={() => window.open(newsLink)}>
       <CardHeader color="blue-gray" className="h-56">
         <Img
           src={imgLink}

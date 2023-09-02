@@ -33,7 +33,7 @@ const PaginationButtons: React.FC<PaginationButtonsProps> = ({
           <IconButton
             key={index}
             {...(active === index + 1
-              ? { variant: 'filled', color: 'white' }
+              ? { variant: 'filled', color: 'blue' }
               : { variant: 'text', color: 'white' })}
             onClick={() => onItemClick(index + 1)}
           >

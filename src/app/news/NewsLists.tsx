@@ -35,7 +35,7 @@ export default function NewsLists({ allNews }: NewsListsProps) {
   return (
     <div>
       <div className="f-center">
-        <div className="grid gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 ml-10">
+        <div className="grid gap-x-10 gap-y-5 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
           {subArrays[active - 1].map((news: NewsData) => (
             <NewsCard
               key={news.id}
@@ -48,7 +48,7 @@ export default function NewsLists({ allNews }: NewsListsProps) {
           ))}
         </div>
       </div>
-      <div className="f-center gap-4">
+      <div className="f-center gap-4 my-3">
         <PaginationButtons
           active={active}
           total={subArrays.length}
