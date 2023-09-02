@@ -33,7 +33,7 @@ const NewsCard = ({
       </CardHeader>
       <CardBody className="p-4 ">
         <Typography variant="body2" color="white" className="float-right">
-          {parsedTime.date + ' | ' + parsedTime.time}
+          {`${parsedTime.date} | ${parsedTime.time}`}
         </Typography>
         <br />
         <Typography variant="h5" color="white" className="my-2">
