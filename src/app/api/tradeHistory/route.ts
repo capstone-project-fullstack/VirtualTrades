@@ -38,7 +38,7 @@ export const GET = async () => {
     });
 
     const res: TradeHistory[] = data.map((row) => {
-      const { time, date } = parseTimestamp(row.timestamp);
+      const { time, date } = parseTimestamp(row.timestamp.toISOString());
       return {
         time,
         date,
