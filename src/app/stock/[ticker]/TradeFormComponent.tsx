@@ -202,7 +202,12 @@ export default function TradeForm({
       </CardHeader>
       <CardBody className="text-white">
         <Tabs value={type} className="overflow-visible">
-          <TabsHeader className="relative z-0 bg-custom1 ">
+          <TabsHeader
+            className="relative z-0 bg-custom1"
+            indicatorProps={{
+              className: `${type === 'buy' ? 'bg-custom5' : 'bg-custom6'}`,
+            }}
+          >
             <Tab
               value="buy"
               className={`${type === 'sell' ? 'text-white' : ''}`}

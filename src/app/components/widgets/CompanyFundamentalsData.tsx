@@ -17,8 +17,8 @@ const CompanyFundamentalData = ({ ticker }: CompanyFundamentalDataProps) => {
     script.innerHTML = JSON.stringify({
       colorTheme: 'dark',
       isTransparent: false,
-      displayMode: 'regular',
-      width: 480,
+      displayMode: 'adaptive',
+      width: '100%',
       height: 600,
       symbol: ticker,
       locale: 'en',

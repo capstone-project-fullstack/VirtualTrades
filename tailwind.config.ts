@@ -20,6 +20,8 @@ export default withMT({
         'custom2': '#131721',
         'custom3': '#434651',
         'custom4': '#2a2e39 ',
+        'custom5': '#03e9f4',
+        'custom6': '#f700f7',
 
       },
     },

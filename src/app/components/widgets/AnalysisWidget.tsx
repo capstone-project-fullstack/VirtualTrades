@@ -16,9 +16,9 @@ const AnalysisWidget = ({ ticker }: AnalysisWidgetProps) => {
     script.async = true;
     script.innerHTML = JSON.stringify({
       interval: '1M',
-      width: 425,
-      isTransparent: true,
-      height: 450,
+      width: '100%',
+      isTransparent: false,
+      height: 400,
       symbol: ticker,
       showIntervalTabs: true,
       locale: 'en',
@@ -34,7 +34,7 @@ const AnalysisWidget = ({ ticker }: AnalysisWidgetProps) => {
   }, [ticker]);
 
   return (
-    <div className="tradingview-widget-container">
+    <div className="tradingview-widget-container md:w-[500px] ">
       <div
         className="tradingview-widget-container__widget"
         ref={container}

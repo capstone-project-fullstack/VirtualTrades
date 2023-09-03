@@ -7,39 +7,49 @@ import {
   Tab,
   TabPanel,
 } from '@material-tailwind/react';
-
 import AnalysisWidget from '../widgets/AnalysisWidget';
 import CompanyNewsWidget from '../widgets/CompanyNewsWidget';
 import CompanyFundamentalData from '../widgets/CompanyFundamentalsData';
+import { useState } from 'react';
 
 export default function CompanyDataTabs({ ticker }: { ticker: string }) {
+  const [activeTab, setActiveTab] = useState('companyData');
+
   const data = [
     {
-      label: 'Stock Analysis',
-      value: 'analysis',
-      desc: <AnalysisWidget ticker={ticker} />,
-    },
-    {
-      label: 'Company Data',
+      label: 'Company Financials',
       value: 'companyData',
       desc: <CompanyFundamentalData ticker={ticker} />,
     },
     {
-      label: 'Company News',
+      label: 'Technical Analysis',
+      value: 'analysis',
+      desc: <AnalysisWidget ticker={ticker} />,
+    },
+    {
+      label: 'Timeline/ News',
       value: 'companyNews',
       desc: <CompanyNewsWidget ticker={ticker} />,
     },
   ];
 
   return (
-    <Tabs
-      className="flex flex-col w-[80%] mb-10 "
-      value="analysis"
-      align="center"
-    >
-      <TabsHeader className="w-full align-center justify-center mt-3 bg-custom1">
+    <Tabs className="flex flex-col w-full" value={activeTab} align="center">
+      <TabsHeader
+        className="w-full f-center mt-3 bg-custom2 opacity-100"
+        indicatorProps={{
+          className: 'bg-custom5',
+        }}
+      >
         {data.map(({ label, value }) => (
-          <Tab key={value} value={value}>
+          <Tab
+            key={value}
+            value={value}
+            className={`text-${
+              activeTab === value ? 'black' : 'white'
+            } bg-custom2`}
+            onClick={() => setActiveTab(value)}
+          >
             {label}
           </Tab>
         ))}

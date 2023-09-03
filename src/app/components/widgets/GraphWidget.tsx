@@ -52,6 +52,7 @@ const TradingViewWidget: React.FC<TradingViewWidgetProps> = ({ ticker }) => {
       ) {
         new window.TradingView.widget({
           autosize: true,
+          width: '100%',
           symbol: ticker,
           interval: 'D',
           timezone: 'Etc/UTC',
@@ -61,7 +62,7 @@ const TradingViewWidget: React.FC<TradingViewWidgetProps> = ({ ticker }) => {
           enable_publishing: false,
           backgroundColor: '#100517',
           hide_side_toolbar: false,
-          save_image: false,
+          save_image: true,
           container_id: 'tradingview_fc9a6',
         });
       }

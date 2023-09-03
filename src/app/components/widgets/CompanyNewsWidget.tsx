@@ -19,8 +19,8 @@ const CompanyNewsWidget = ({ ticker }: CompanyNewsWidgetProps) => {
       colorTheme: 'dark',
       isTransparent: false,
       displayMode: 'regular',
-      width: '480',
-      height: '600',
+      width: '100%',
+      height: 600,
       locale: 'en',
     });
 

@@ -19,7 +19,7 @@ const TradeForm = async ({ ticker }: { ticker: string }) => {
 
   if (!stock) {
     const createdStock = await Stock.createStockIfNotExist(ticker);
-    if (!createdStock) return <div>No Stock Found</div>;
+    if (!createdStock) return <div className='f-center'>No Stock Found or Can't Trade This Stock</div>;
     else stock = createdStock;
   }
 
