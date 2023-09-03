@@ -220,7 +220,7 @@ export default function TradeForm({
             </Tab>
           </TabsHeader>
           <TabsBody
-            className="!overflow-x-hidden !overflow-y-visible"
+            className="overflow-x-hidden overflow-y-visible"
             animate={{
               initial: {
                 x: type === 'buy' ? 400 : -400,
@@ -260,39 +260,42 @@ export default function TradeForm({
                   >
                     Details
                   </Typography>
-                  <div className="border-y border-black text-white">
+                  <div className="text-white">
                     Quantity: <span className="float-right">{buyShares}</span>
                   </div>
-                  <div className="border-b border-black text-white">
+                  <div className="text-white">
                     Shares Owned: <span className="float-right">{shares}</span>
                   </div>
-                  <div className="border-b border-black text-white">
+                  <div className="text-white">
                     Buying Power:{' '}
                     <span className="float-right">{formatPrice(cash)}</span>
                   </div>
-                  <div className="border-b border-black text-white">
+                  <div className="text-white">
                     Cost per Share:{' '}
                     <span className="float-right">
                       {formatPrice(latestPrice)}
                     </span>
                   </div>
-                  <div className="border-b border-black text-white">
+                  <div className="text-white">
                     Total:{' '}
                     <span className="float-right">
                       {formatPrice(latestPrice * buyShares)}
                     </span>
                   </div>
                 </div>
-                <Button
-                  type="submit"
-                  className="f-center w-50% text-white"
-                  size="lg"
-                  color="green"
-                  variant="gradient"
-                  disabled={loading}
-                >
-                  {loading ? <Spinner /> : 'Buy'}
-                </Button>
+                <div className="w-full f-center pb-10">
+                  <button
+                    type="submit"
+                    className="w-44 custom-btn"
+                    disabled={loading}
+                  >
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    {loading ? <Spinner /> : 'Buy'}
+                  </button>
+                </div>
               </form>
             </TabPanel>
             <TabPanel value="sell" className="p-0">
@@ -324,40 +327,41 @@ export default function TradeForm({
                   >
                     Details
                   </Typography>
-                  <div className="border-y border-black">
+                  <div>
                     Quantity: <span className="float-right">{sellShares}</span>
                   </div>
-                  <div className="border-b border-black text-white">
+                  <div className="text-white">
                     Shares Owned:{' '}
                     <span className="float-right text-white">{shares}</span>
                   </div>
-                  <div className="border-b border-black text-white">
+                  <div className="text-white">
                     Buying Power:{' '}
                     <span className="float-right">{formatPrice(cash)}</span>
                   </div>
-                  <div className="border-b border-black text-white">
+                  <div className="text-white">
                     Cost per Share:{' '}
                     <span className="float-right">{formatPrice(price)}</span>
                   </div>
-                  <div className="border-b border-black text-white">
+                  <div className="text-white">
                     Total:{' '}
                     <span className="float-right">
                       {formatPrice(latestPrice * sellShares)}
                     </span>
                   </div>
-                  {/* 
-                  <div className="my-4 flex items-center gap-4"></div> */}
                 </div>
-                <Button
-                  className="f-center"
-                  type="submit"
-                  size="lg"
-                  color="red"
-                  variant="gradient"
-                  disabled={shares <= 0 || loading}
-                >
-                  {loading ? <Spinner /> : 'Sell'}
-                </Button>
+                <div className="w-full f-center pb-10">
+                  <button
+                    type="submit"
+                    className="w-44 custom-btn2"
+                    disabled={shares <= 0 || loading}
+                  >
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    {loading ? <Spinner /> : 'Sell'}
+                  </button>
+                </div>
               </form>
             </TabPanel>
           </TabsBody>
