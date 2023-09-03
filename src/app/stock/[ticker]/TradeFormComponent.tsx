@@ -286,14 +286,20 @@ export default function TradeForm({
                 <div className="w-full f-center pb-10">
                   <button
                     type="submit"
-                    className="w-44 custom-btn"
+                    className="w-44 custom-btn min-h-[45px]"
                     disabled={loading}
                   >
                     <span></span>
                     <span></span>
                     <span></span>
                     <span></span>
-                    {loading ? <Spinner /> : 'Buy'}
+                    {loading ? (
+                      <div className="absolute inset-0 f-center">
+                        <Spinner />
+                      </div>
+                    ) : (
+                      'Buy'
+                    )}
                   </button>
                 </div>
               </form>
@@ -352,14 +358,20 @@ export default function TradeForm({
                 <div className="w-full f-center pb-10">
                   <button
                     type="submit"
-                    className="w-44 custom-btn2"
+                    className="w-44 custom-btn2 min-h-[45-px]"
                     disabled={shares <= 0 || loading}
                   >
                     <span></span>
                     <span></span>
                     <span></span>
                     <span></span>
-                    {loading ? <Spinner /> : 'Sell'}
+                    {loading ? (
+                      <div className="absolute inset-0 f-center">
+                        <Spinner />
+                      </div>
+                    ) : (
+                      'Sell'
+                    )}
                   </button>
                 </div>
               </form>
