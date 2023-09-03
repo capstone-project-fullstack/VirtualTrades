@@ -1,7 +1,7 @@
 import React from 'react';
 import NewsLists from './NewsLists';
 import HeaderText from '../components/HeaderText';
-import Loading from '../components/Loading';
+import Loading from '../components/loading/Loading';
 import { NewsData } from '../../../typings';
 import axios from 'axios';
 

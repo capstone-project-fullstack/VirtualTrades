@@ -358,7 +358,7 @@ export default function TradeForm({
                 <div className="w-full f-center pb-10">
                   <button
                     type="submit"
-                    className="w-44 custom-btn2 min-h-[45-px]"
+                    className="w-44 custom-btn2 min-h-[45px]"
                     disabled={shares <= 0 || loading}
                   >
                     <span></span>
