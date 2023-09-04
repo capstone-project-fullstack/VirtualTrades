@@ -10,11 +10,11 @@ import TopWidget from '../components/widgets/TopWidget';
 
 const Market = () => {
   return (
-    <div className="w-full">
+    <div className="w-full h-[100vh]">
       <TopWidget />
       <HeaderText text="Market" />
-      <div className="flex flex-col justify-center items-center gap-3">
-        <div className="m-10">
+      <div className="f-center h-full">
+        <div className="w-full md:w-[80%] h-full">
           <Heatmap />
         </div>
       </div>

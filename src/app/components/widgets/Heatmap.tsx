@@ -23,7 +23,7 @@ const Heatmap = () => {
       isDataSetEnabled: false,
       isZoomEnabled: true,
       hasSymbolTooltip: true,
-      width: 1000,
+      width: '100%',
       height: 500,
     });
 
@@ -36,9 +36,9 @@ const Heatmap = () => {
   }, []);
 
   return (
-    <div className="tradingview-widget-container h-full">
+    <div className="tradingview-widget-container">
       <div
-        className="tradingview-widget-container__widget f-center"
+        className="tradingview-widget-container__widget"
         ref={container}
       ></div>
     </div>
