@@ -9,7 +9,7 @@ export default withMT({
   theme: {
     extend: {
       colors: {
-        'dark-purple': '#081A51',
+        'dark-purple': '#081A51', 
         'light-white': 'rgba(255,255,255,0.18)',
         'dark-blue': '#16007A',
         'light-purple': '#35007A',
@@ -19,10 +19,9 @@ export default withMT({
         'custom1': '#1e222d',
         'custom2': '#131721',
         'custom3': '#434651',
-        'custom4': '#2a2e39 ',
+        'custom4': '#2a2e39',
         'custom5': '#03e9f4',
         'custom6': '#f700f7',
-
       },
     },
   },
