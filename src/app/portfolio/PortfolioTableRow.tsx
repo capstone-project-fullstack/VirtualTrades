@@ -17,7 +17,7 @@ function PositionTableRow({ row }: PositionTableRowProps) {
   } = row;
 
   return (
-    <tr className={`${gain > 0 ? 'text-green-500' : 'text-red-500'}`}>
+    <tr className={`${gain >= 0 ? 'text-green-500' : 'text-red-500'}`}>
       <td className="py-2 text-center border-cell max-w-[165px]">
         <Link href={`/stock/${symbol}`}>
           <div className="flex items-center gap-3 cursor-pointer">
