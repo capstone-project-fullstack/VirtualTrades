@@ -21,7 +21,7 @@ import { GradientButtonRounded } from '@/app/components/buttons/Button';
 
 import axios from 'axios';
 import { formatPrice } from '../../utils/utils';
-import { useEffect, useState } from 'react';
+import { FormEvent, FormEventHandler, useEffect, useState } from 'react';
 
 interface TradeFormProps {
   price: number;
@@ -96,10 +96,11 @@ export default function TradeForm({
     });
   }, [ticker]);
 
-  const buyStock = async (e: any) => {
+  const buyStock = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setLoading(true);
-    const sharesToBuy = Number(e.target.elements.sharesToBuy.value);
+    const formData = new FormData(e.currentTarget);
+    const sharesToBuy = Number(formData.get('sharesToBuy'));
+    setLoading(() => true);
 
     try {
       const res = await axios.post(`/api/buyStock`, {
@@ -153,9 +154,10 @@ export default function TradeForm({
     }
   };
 
-  async function sellStock(e: any) {
+  async function sellStock(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    const sharesToSell = Number(e.target.elements.sharesToSell.value);
+    const formData = new FormData(e.currentTarget);
+    const sharesToSell = Number(formData.get('sharesToSell'));
     setLoading(() => true);
     const res = await axios.post(`/api/sellStock`, {
       shares: sharesToSell,

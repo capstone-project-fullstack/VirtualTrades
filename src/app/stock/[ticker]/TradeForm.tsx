@@ -5,7 +5,7 @@ import TradeFormComponent from './TradeFormComponent';
 import UserService from '@/app/modals/user';
 import prisma from '../../../../lib/prisma';
 
-const TradeForm = async ({ ticker }: { ticker: string }) => {
+export default async function TradeForm({ ticker }: { ticker: string }) {
   const currUser = await currentUser();
   if (!currUser) return <div></div>;
   const userId = currUser.id;
@@ -19,7 +19,10 @@ const TradeForm = async ({ ticker }: { ticker: string }) => {
 
   if (!stock) {
     const createdStock = await Stock.createStockIfNotExist(ticker);
-    if (!createdStock) return <div className='f-center'>No Stock Found or Can't Trade This Stock</div>;
+    if (!createdStock)
+      return (
+        <div className="f-center">No Stock Found or Can't Trade This Stock</div>
+      );
     else stock = createdStock;
   }
 
@@ -39,6 +42,4 @@ const TradeForm = async ({ ticker }: { ticker: string }) => {
       />
     </div>
   );
-};
-
-export default TradeForm;
+}
