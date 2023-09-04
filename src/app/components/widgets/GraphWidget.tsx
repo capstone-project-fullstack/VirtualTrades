@@ -64,6 +64,7 @@ const TradingViewWidget: React.FC<TradingViewWidgetProps> = ({ ticker }) => {
           hide_side_toolbar: false,
           save_image: true,
           container_id: 'tradingview_fc9a6',
+          hide_volume: true,
         });
       }
     }
