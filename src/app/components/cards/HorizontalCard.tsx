@@ -61,7 +61,7 @@ export default function Home({
             <a href="#" className="inline-block">
               <div className="f-center">
                 <GradientButtonRounded
-                  text="Open Market"
+                  text="Stock Market"
                   onClick={() => handleRoute('market')}
                   className="bg-none bg-light-green"
                 />
