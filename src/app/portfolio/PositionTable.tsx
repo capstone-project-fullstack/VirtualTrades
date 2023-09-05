@@ -9,7 +9,7 @@ import {
 } from '@material-tailwind/react';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import { customSort } from '../utils/utils';
+import { customSortPositions } from '../utils/utils';
 import { useAppDispatch, useAppSelector } from '../redux/hooks';
 import { updateCurrentPortfolioValue } from '../redux/features/fundManagementSlice';
 import PositionTableHeader from './PortfolioTableHeader';
@@ -152,7 +152,7 @@ export default function PositionTable() {
                       } else {
                         setSortOrder('desc');
                       }
-                      customSort(
+                      customSortPositions(
                         head.sortKey,
                         tableRows,
                         setTableRows,
