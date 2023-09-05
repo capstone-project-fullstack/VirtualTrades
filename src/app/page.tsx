@@ -135,8 +135,8 @@ export default function Home() {
                                
 
       <section className="bg-light-purple py-6">
-        <div className="container mx-auto pb-6 w-full flex flex-wrap">
-          <div className="container flex flex-row m-8 justify-center">
+        <div className="container mx-auto pb-6 w-full grid grid-wrap">
+          <div className="container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 m-8 justify-center">
             <div className="flex flex-nowrap justify-center mr-20">
               <BlogCard
                 Img={
