@@ -7,6 +7,7 @@ import { useRouter } from 'next/navigation';
 import Svg from './components/images/Svg';
 import { GradientButtonRounded } from './components/buttons/Button';
 import TradingViewWidget from './components/widgets/TopWidget';
+import BlogCard from './components/cards/BlogCard';
 
 export default function Home() {
   const router = useRouter();
@@ -132,7 +133,7 @@ export default function Home() {
 
       <Svg />
 
-      <section className="bg-light-purple py-8">
+      {/* <section className="bg-light-purple py-8">
         <div className="container mx-auto flex flex-wrap pb-12 m-5">
           <div className="w-full md:w-1/3 p-6 flex flex-col flex-grow flex-shrink ">
             <div className="container mx-auto flex flex-wrap pt-4 pb-12 max-h-[500px]">
@@ -254,6 +255,27 @@ export default function Home() {
                   </div>
                 </div>
               </div>
+            </div>
+          </div>
+        </div>
+      </section> */}
+
+      <section className="bg-light-purple py-8">
+        <div className="container mx-auto pb-12 w-full flex flex-wrap">
+          <div className="container flex flex-row m-10 justify-center">
+            <div className="flex flex-nowrap justify-center m-5 mr-20">
+              <BlogCard 
+                Img="https://cdn-scripbox-wordpress.scripbox.com/wp-content/uploads/2021/03/stock-exchanges-in-india-vector.png"
+                titleCard="title1"
+                textCard="text1"
+              />
+            </div>
+            <div className="flex flex-nowrap justify-center m-5 ml-20">
+              <BlogCard
+                Img="https://cdn-scripbox-wordpress.scripbox.com/wp-content/uploads/2021/03/stock-exchanges-in-india-vector.png"
+                titleCard="title3"
+                textCard="text3"
+              />
             </div>
           </div>
         </div>
