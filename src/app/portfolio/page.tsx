@@ -27,9 +27,14 @@ export default async function Portfolio() {
         <div className="w-full xl:w-8/12 mb-12 xl:mb-0 px-4">
           <Overview initialValues={initialValues} />
         </div>
-        <div className="w-full xl:w-4/12 px-4">
-          <Funds/>
-          <PortfolioDiversityChart />
+        <div className="w-full xl:w-4/12 px-4 flex flex-col flex-grow">
+          <div className="m-0 sm:mr-auto float-left">
+            <Funds />
+          </div>
+
+          <div className="flex-2 p-0 sm:p-6 sm:f-center">
+            <PortfolioDiversityChart />
+          </div>
         </div>
       </div>
       <div className="flex flex-wrap mt-4">
