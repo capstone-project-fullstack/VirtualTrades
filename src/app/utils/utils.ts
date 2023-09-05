@@ -123,3 +123,15 @@ export const unixTimestampToISO8601 = (unixTimestamp: number) => {
   const iso8601String = date.toISOString();
   return iso8601String;
 };
+
+export const randomColorGenerator = () => {
+  const red = Math.floor(Math.random() * 256);
+  const green = Math.floor(Math.random() * 256);
+  const blue = Math.floor(Math.random() * 256);
+
+  const redHex = red.toString(16).padStart(2, '0');
+  const greenHex = green.toString(16).padStart(2, '0');
+  const blueHex = blue.toString(16).padStart(2, '0');
+  const colorCode = `#${redHex}${greenHex}${blueHex}`;
+  return colorCode;
+};
