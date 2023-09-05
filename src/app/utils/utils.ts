@@ -88,14 +88,14 @@ export const customSortWatchlists = (
 export const parseTimestamp = (timestamp: string) => {
   const dateObj = new Date(timestamp);
 
-  const month = (dateObj.getMonth() + 1).toString().padStart(2, '0');
-  const day = dateObj.getDate().toString().padStart(2, '0');
-  const year = dateObj.getFullYear().toString().slice(-2);
+  const month = (dateObj.getMonth() + 1).toString();
+  const day = dateObj.getDate().toString();
+  const year = dateObj.getFullYear().toString();
 
   const hours = dateObj.getHours();
   const ampm = hours >= 12 ? 'PM' : 'AM';
-  const formattedHours = (hours % 12 || 12).toString().padStart(2, '0');
-  const minutes = dateObj.getMinutes().toString().padStart(2, '0');
+  const formattedHours = (hours % 12 || 12).toString();
+  const minutes = dateObj.getMinutes().toString();
 
   const formattedDate = `${month}/${day}/${year}`;
   const formattedTime = `${formattedHours}:${minutes} ${ampm}`;
