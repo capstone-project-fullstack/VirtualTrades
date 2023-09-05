@@ -7,7 +7,6 @@ import { useRouter } from 'next/navigation';
 import Svg from './components/images/Svg';
 import { GradientButtonRounded } from './components/buttons/Button';
 import TradingViewWidget from './components/widgets/TopWidget';
-import BlogCard from './components/cards/BlogCard';
 import StockCardLandingPage from './components/cards/StockCardLandingPage';
 
 export default function Home() {
