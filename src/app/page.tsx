@@ -8,6 +8,7 @@ import Svg from './components/images/Svg';
 import { GradientButtonRounded } from './components/buttons/Button';
 import TradingViewWidget from './components/widgets/TopWidget';
 import BlogCard from './components/cards/BlogCard';
+import StockCardLandingPage from './components/cards/StockCardLandingPage';
 
 export default function Home() {
   const router = useRouter();
@@ -20,9 +21,9 @@ export default function Home() {
     <div>
       <TradingViewWidget />
       <div className="leading-normal tracking-normal text-white gradient">
-        <div className="pt-12">
-          <div className="container px-12 my-8 mb-14 f-center flex-wrap flex-col md:flex-row">
-            <div className="flex flex-col w-full md:w-1/2 justify-center items-start text-center md:text-left">
+        <div className="m-8 f-center">
+          <div className="container f-center flex-wrap flex-col lg:flex-row">
+            <div className="flex flex-col w-full lg:w-1/2 justify-center items-start text-center md:text-left">
               <h1 className="my-4 text-5xl font-bold leading-tight">
                 Welcome to{' '}
                 <span className="text-light-green">VirtualTrades</span>
@@ -38,9 +39,9 @@ export default function Home() {
                 market prices, every day!
               </p>
             </div>
-            <div className="w-full md:w-1/2 p-5 text-center">
+            <div className="w-full lg:w-1/2">
               <Img
-                className="w-full z-50 md:mx-7 rounded-md"
+                className="w-full lg:pl-4 z-50 rounded-md"
                 src="https://ucarecdn.com/6a9adf89-51b8-47f5-8bf5-81eff950be9a/"
                 alt="hero img"
                 width={50}
@@ -109,58 +110,53 @@ export default function Home() {
         </svg>
       </div>
 
-      <section className="m-20">
-        <div className="flex flex-wrap flex-col-reverse sm:flex-row ml-20">
-          <div className="w-full sm:w-1/2 p-9">
-            <SimpleCard text1="Stay informed on financial news, explore the latest updates on stocks, trends, and economic developments with our currated news page. " />
-          </div>
-          <div className="w-full sm:w-1/2 p-9 mt-9">
-            <div className="align-middle">
-              <h3 className="text-4xl text-white-600 font-bold leading-none mb-9">
-                Latest in Finance
-              </h3>
-              <p className="text-white-900 text-lg">
-                News articles are not just headlines, they are valuable learning
-                resources. We curate the latest news, including expert analyses
-                and market insights to keep you up to date with the
-                ever-changing landscape. Understand how these factors influence
-                stock prices.
-              </p>
+      <section className='mb-20 mt-24'>
+        <div className="flex flex-wrap flex-col-reverse  ">
+          <div className="f-center flex flex-col-reverse flex-grow md:flex-row gap-3 lg:mx-10">
+            <div className="flex-auto md:max-w-[50%]">
+              <SimpleCard text1="Stay informed on financial news, explore the latest updates on stocks, trends, and economic developments with our currated news page. " />
+            </div>
+            <div className="flex-auto lg:max-w-[50%] f-center">
+              <div className="max-w-sm">
+                <div>
+                  <h3 className="text-4xl text-white-600 font-bold leading-none">
+                    Latest in Finance
+                  </h3>
+                  <p className="text-white-900 text-lg">
+                    News articles are not just headlines, they are valuable
+                    learning resources. We curate the latest news, including
+                    expert analyses and market insights to keep you up to date
+                    with the ever-changing landscape. Understand how these
+                    factors influence stock prices.
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
       <Svg />
-                               
-
-      <section className="bg-light-purple py-6">
-        <div className="container mx-auto pb-6 w-full grid grid-wrap">
-          <div className="container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 m-8 justify-center">
-            <div className="flex flex-nowrap justify-center mr-20">
-              <BlogCard
-                Img={
-                  'https://cdn0.iconfinder.com/data/icons/investment-flat-outline-asset-allocation/512/Stock_market_portfolio-1024.png'
-                }
-                titleCard="Personal Portfolio"
-                textCard="Welcome to your personal portfolio page, where you can analyse your investments and plan your next move."
-                onClick={() => handleRoute('portfolio')}
-                textButton={'Portfolio'}
-              />
-            </div>
-
-            <div className="flex flex-nowrap justify-center ml-20">
-              <BlogCard
-                Img={
-                  'https://cdn-icons-png.flaticon.com/512/2920/2920271.png'
-                }
-                titleCard="Your Watchlists"
-                textCard="Your watchlists are a collection of stocks you want to keep an eye on. Come back and check them out anytime."
-                onClick={() => handleRoute('watchlists')}
-                textButton={'Watchlists'}
-              />
-            </div>
-          </div>
+      <section className="bg-light-purple py-8 mb-10 f-center">
+        <div className="container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 place-items-center gap-5">
+          <StockCardLandingPage
+            titleCard="TRADING STOCK"
+            imgUrl="https://cdn-scripbox-wordpress.scripbox.com/wp-content/uploads/2021/09/factors-affecting-us-stocks-market-vector.png"
+            textCard="Explore the stock market on an interactive map and trade stocks in real-time. Visit our virtual stock analyses page, as well as our market page, to research a company's performance and shop stock risk-free!"
+            onClick={() => handleRoute('market')}
+          />
+          <StockCardLandingPage
+            titleCard="YOUR PORTFOLIO"
+            imgUrl="https://cdn-scripbox-wordpress.scripbox.com/wp-content/uploads/2021/09/us-stock-market-timings-vector.png"
+            textCard="Your personalized portfolio offers an instant snapshot of your investments and stock progress. Track performance, stay updated with data analyses and make well-informed decisions, effortlessly."
+            onClick={() => handleRoute('portfolio')}
+          />
+          <StockCardLandingPage
+            titleCard="MORE ABOUT US"
+            imgUrl="https://cdn-scripbox-wordpress.scripbox.com/wp-content/uploads/2021/03/stock-exchanges-in-india-vector.png"
+            textCard="Delve into our mission, learn more about our team, and what our values are here at Virtual Trades. We are dedicated to armoring you with the right tools to confidently navigate this new world of investing!"
+            onClick={() => handleRoute('landing')}
+          />
         </div>
       </section>
 

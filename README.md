@@ -30,24 +30,26 @@ In today's rapidly changing financial landscape, investing in the stock market h
 **Tech Stack**
 
 Front End: React, TypeScript, Tailwind CSS, Redux, Material UI
+
 Back End: NextJS, Prisma, NextAuth, Postgresql, Clerk (authentication)
+
 Api: Finnhub
 
 <br>
 
-<img width="930" src="file:///Users/magdalenagero/Desktop/Screenshot%202023-08-09%20at%2011.47.53%20AM.png">
+<img width="700" alt="Screenshot 2023-09-04 at 8 51 37 PM" src="https://github.com/capstone-project-fullstack/VirtualTrades/assets/114107908/2dbf422d-b150-406c-8eec-db9ad1be665e">
 
 <br>
 
 **Data Sources**
 
-Stock market API
+Stock Market API, Trading View
 <br></br>
 
 **Team and Responsibilities**
 
-- Ethan Inniss: Backend Developer
-
 - Magdalena May Gero: Frontend Developer and Scrum Master
 
 - Nayankumar Prajapati: Full-Stack Developer and Product Owner
+
+- Ethan Inniss: Backend Developer

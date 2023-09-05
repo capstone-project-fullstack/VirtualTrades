@@ -1,7 +1,7 @@
 import React from 'react';
 
 const Svg = () => (
-  <div className="relative -mt-12 lg:-mt-24">
+  <div className="relative -mt-12 lg:-mt-17">
     <svg
       viewBox="0 0 1428 174"
       version="1.1"

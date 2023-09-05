@@ -21,23 +21,25 @@ export default function Home({ text1 }: SimpleCard) {
   };
 
   return (
-    <Card className="mb-4 w-96 bg-white h-80">
-      <CardBody className="text-center mt-2">
-        <Typography variant="h5" color="blue-gray" className="mb-5">
-          CURRATED NEWS FEED
-        </Typography>
-        <Typography variant="lead">{text1}</Typography>
-      </CardBody>
-      <CardFooter className="pt-0">
-        <div className="f-center mt-4">
-          <GradientButtonRounded
-            text="News Feed"
-            onClick={() => handleRoute('news')}
-            className="bg-none bg-light-green"
-          />
-        </div>
-      </CardFooter>
-    </Card>
+    <div className="f-center">
+      <Card className="w-96 bg-white h-80 static">
+        <CardBody className="text-center mt-2">
+          <Typography variant="h5" color="blue-gray" className="mb-5">
+            CURRATED NEWS FEED
+          </Typography>
+          <Typography variant="lead">{text1}</Typography>
+        </CardBody>
+        <CardFooter className="pt-0">
+          <div className="f-center mt-4">
+            <GradientButtonRounded
+              text="News Feed"
+              onClick={() => handleRoute('news')}
+              className="bg-none bg-light-green"
+            />
+          </div>
+        </CardFooter>
+      </Card>
+    </div>
   );
 }
 // }
