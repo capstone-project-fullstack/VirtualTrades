@@ -1,6 +1,6 @@
 import React from 'react';
 import HeaderText from '../components/HeaderText';
-import TableWithStripedRows from './TableWithStripedRows';
+import WatchlistsTable from './WatchlistsTable';
 
 export default function Watchlists() {
   return (
@@ -9,7 +9,7 @@ export default function Watchlists() {
         <HeaderText text="Watchlists" />
       </div>
       <div>
-        <TableWithStripedRows />
+        <WatchlistsTable />
       </div>
     </>
   );
