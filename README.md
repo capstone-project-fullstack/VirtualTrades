@@ -30,7 +30,9 @@ In today's rapidly changing financial landscape, investing in the stock market h
 **Tech Stack**
 
 Front End: React, TypeScript, Tailwind CSS, Redux, Material UI
+
 Back End: NextJS, Prisma, NextAuth, Postgresql, Clerk (authentication)
+
 Api: Finnhub
 
 <br>
