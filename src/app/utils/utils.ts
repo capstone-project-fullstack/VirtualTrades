@@ -4,7 +4,7 @@ export const formatPrice = (price: number) =>
     currency: 'USD',
   });
 
-export const customSort = (
+export const customSortPositions = (
   sortBy: string,
   array: any,
   setState: any,
@@ -27,9 +27,61 @@ export const customSort = (
       comparison = a.shares - b.shares;
     }
 
-    return isAscending ? comparison : -comparison; // Reverse the comparison if descending
+    return isAscending ? comparison : -comparison;
   });
 
+  setState([...array]);
+};
+
+export const customSortWatchlists = (
+  sortBy: string,
+  array: any,
+  setState: any,
+  sortOrder: string
+) => {
+  const isAscending = sortOrder === 'asc';
+  array.sort((a: any, b: any) => {
+    let comparison = 0;
+    switch (sortBy) {
+      case 'symbol':
+        comparison = a.symbol.localeCompare(b.symbol);
+        break;
+      case 'name':
+        comparison = a.name.localeCompare(b.name);
+        break;
+      case 'price':
+        comparison = a.current_price - b.current_price;
+        break;
+      case 'change':
+        comparison = a.change - b.change;
+        break;
+      case 'changePercent':
+        comparison = a.changePercent - b.changePercent;
+        break;
+      case 'prevClose':
+        comparison = a.prevClose - b.prevClose;
+        break;
+      case 'marketCap':
+        comparison = a.marketCap - b.marketCap;
+        break;
+      case 'open':
+        comparison = a.open - b.open;
+        break;
+      case 'low':
+        comparison = a.low - b.low;
+        break;
+      case 'high':
+        comparison = a.high - b.high;
+        break;
+      case 'low52':
+        comparison = a.low52 - b.low52;
+        break;
+      case 'high52':
+        comparison = a.high52 - b.high52;
+        break;
+    }
+    return isAscending ? comparison : -comparison;
+  });
   setState([...array]);
 };
 
