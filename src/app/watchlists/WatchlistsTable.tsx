@@ -130,7 +130,7 @@ export default function WatchlistsTable() {
                 <Typography
                   variant="h6"
                   color="white"
-                  className="font-normal text-center leading-none pl-4"
+                  className="font-normal text-center leading-none pl-5"
                   onClick={() => {
                     if (sortOrder === null || sortOrder === 'desc') {
                       setSortOrder('asc');
@@ -146,8 +146,8 @@ export default function WatchlistsTable() {
                   }}
                 >
                   {head.header}
-                  <div className="float-right">
-                    <ChevronUpDownIcon strokeWidth={2} className="h-4 w-4 " />
+                  <div className="float-right pr-1">
+                    <ChevronUpDownIcon strokeWidth={2} className="h-4 w-4" />
                   </div>
                 </Typography>
               </th>

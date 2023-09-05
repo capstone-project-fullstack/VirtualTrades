@@ -145,7 +145,7 @@ export default function PositionTable() {
                   <Typography
                     variant="h6"
                     color="white"
-                    className="flex items-center justify-center gap-2 font-normal leading-none"
+                    className="font-normal text-center leading-none pl-5"
                     onClick={() => {
                       if (sortOrder === null || sortOrder === 'desc') {
                         setSortOrder('asc');
@@ -161,7 +161,9 @@ export default function PositionTable() {
                     }}
                   >
                     {head.header}
-                    <ChevronUpDownIcon strokeWidth={2} className="h-4 w-4" />
+                    <div className="float-right pr-1">
+                      <ChevronUpDownIcon strokeWidth={2} className="h-4 w-4" />
+                    </div>
                   </Typography>
                 </th>
               ))}
