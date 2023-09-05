@@ -27,12 +27,12 @@ export default function TradeHistory() {
             {TABLE_HEAD.map((head) => (
               <th
                 key={head}
-                className="text-center p-2 transition-colors border-cell"
+                className="border-y text-center py-4 transition-colors border-cell max-w-[165px]"
               >
                 <Typography
-                  variant="small"
+                  variant="h6"
                   color="white"
-                  className="font-normal leading-none "
+                  className="flex items-center justify-center gap-2 font-normal leading-none"
                 >
                   {head}
                 </Typography>
@@ -47,10 +47,10 @@ export default function TradeHistory() {
                 <tr
                   key={index}
                   className={`${
-                    type === 'BUY' ? 'bg-green-500' : 'bg-red-500'
-                  }`}
+                    type === 'BUY' ? 'bg-green-600' : 'bg-red-600'
+                  } bg-opacity-80`}
                 >
-                  <td align="center" className="p-2 border-cell">
+                  <td align="center" className="p-2 border-cell ">
                     <div>
                       <Typography
                         variant="small"
