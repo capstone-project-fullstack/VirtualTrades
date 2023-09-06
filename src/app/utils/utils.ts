@@ -127,3 +127,7 @@ export const randomColorGenerator = () => {
   const colorCode = `#${redHex}${greenHex}${blueHex}`;
   return colorCode;
 };
+
+export const generateRandomNumber = (len: number) => {
+  return Math.floor(Math.random() * len);
+}
