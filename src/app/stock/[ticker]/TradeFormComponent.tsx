@@ -1,6 +1,9 @@
-/* eslint-disable no-unused-vars */
 'use client';
 
+import { API_KEYS } from '../../utils/config';
+import axios from 'axios';
+import { formatPrice, generateRandomNumber } from '../../utils/utils';
+import { FormEvent, FormEventHandler, useEffect, useState } from 'react';
 import { NotificationDialog } from '@/app/components/NotificationDialog';
 import {
   Card,
@@ -16,12 +19,6 @@ import {
   TabPanel,
   Spinner,
 } from '@material-tailwind/react';
-
-import { GradientButtonRounded } from '@/app/components/buttons/Button';
-
-import axios from 'axios';
-import { formatPrice } from '../../utils/utils';
-import { FormEvent, FormEventHandler, useEffect, useState } from 'react';
 
 interface TradeFormProps {
   price: number;
@@ -61,8 +58,9 @@ export default function TradeForm({
   }, [shares]);
 
   useEffect(() => {
+    const apiKey = API_KEYS[generateRandomNumber(API_KEYS.length)];
     const socket = new WebSocket(
-      `wss://ws.finnhub.io?token=cjarmapr01qji1gtsko0cjarmapr01qji1gtskog`
+      `wss://ws.finnhub.io?token=${apiKey}`
     );
 
     // Connection opened -> Subscribe
