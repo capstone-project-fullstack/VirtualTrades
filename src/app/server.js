@@ -1,4 +1,4 @@
-const updateStockPriceEveryHour = require('./src/app/background');
+const updateStockPriceEveryHour = require('./background');
 updateStockPriceEveryHour();
 
 
