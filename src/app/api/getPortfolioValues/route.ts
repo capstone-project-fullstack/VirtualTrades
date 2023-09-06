@@ -1,5 +1,6 @@
 import prisma from '../../../../lib/prisma';
 import { currentUser } from '@clerk/nextjs';
+import { parseTimestamp } from '@/app/utils/utils';
 
 export const GET = async () => {
   try {
@@ -17,7 +18,16 @@ export const GET = async () => {
       where: { user_id: userId },
     });
 
-    return new Response(JSON.stringify(userPortfolioSnapshots), {
+    const res = userPortfolioSnapshots.map((data) => {
+      return {
+        ...data,
+        time: parseTimestamp(data.timestamp.toISOString()).time,
+        date: parseTimestamp(data.timestamp.toISOString()).date,
+        value: Number(data.value),
+      }
+    })
+
+    return new Response(JSON.stringify(res), {
       status: 200,
     });
   } catch (error) {
