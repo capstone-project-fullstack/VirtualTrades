@@ -89,9 +89,8 @@ import moment from 'moment-timezone';
 
 export const parseTimestamp = (timestamp: string) => {
   const dateObj = moment(timestamp);
-
-  const formattedDate = dateObj.format('MM/DD/YYYY');
-  const formattedTime = dateObj.format('hh:mm A');
+  const formattedDate = dateObj.tz('America/New_York').format('MM/DD/YYYY');
+  const formattedTime = dateObj.tz('America/New_York').format('hh:mm A');
 
   return {
     date: formattedDate,
