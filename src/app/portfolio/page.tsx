@@ -23,25 +23,27 @@ export default async function Portfolio() {
   return (
     <div className="min-h-screen">
       <HeaderText text="Portfolio" />
-      <div className="flex flex-wrap">
-        <div className="w-full xl:w-8/12 mb-12 xl:mb-0 px-4">
+      <div className="flex flex-wrap m-2">
+        <div className="w-full xl:w-8/12 xl:mb-0 p-2">
           <Overview initialValues={initialValues} />
         </div>
-        <div className="w-full xl:w-4/12 px-4 flex flex-col flex-grow">
-          <div className="m-0 sm:mr-auto float-left">
-            <Funds />
-          </div>
+        <div className="w-full xl:w-4/12 p-2">
+          <div className="h-full flex flex-col flex-grow rounded-xl border border-custom3">
+            <div className="m-0 px-5 sm:mr-auto float-left">
+              <Funds />
+            </div>
 
-          <div className="flex-2 p-0 sm:p-6 sm:f-center">
-            <PortfolioDiversityChart />
+            <div className="flex-2 p-2 f-center">
+              <PortfolioDiversityChart />
+            </div>
           </div>
         </div>
       </div>
-      <div className="flex flex-wrap mt-4">
-        <div className="w-full xl:w-8/12 mb-12 xl:mb-0 px-4 bg-dark-black">
+      <div className="flex flex-wrap mx-2">
+        <div className="w-full xl:w-8/12 xl:mb-0  bg-dark-black px-2">
           <PositionTable />
         </div>
-        <div className="w-full xl:w-4/12 px-4">
+        <div className="w-full xl:w-4/12 px-2">
           <TradeHistory />
         </div>
       </div>

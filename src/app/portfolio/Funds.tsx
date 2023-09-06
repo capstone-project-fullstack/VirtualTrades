@@ -9,7 +9,7 @@ export default function Funds() {
   const funds = useAppSelector((state) => state.fundManagement.values);
 
   return (
-    <div className="h-28 flex justify-center  sm:justify-start sm:items-center">
+    <div className="h-28 flex justify-center sm:justify-start sm:items-center">
       <div>
         <div>Buying Power</div>
         <div className="w-fit flex flex-row gap-x-3">

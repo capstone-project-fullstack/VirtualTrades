@@ -49,14 +49,11 @@ const timeframes: Record<string, number> = {
   '1W': 7,
   '1M': 30,
   '1Y': 365,
-  'All Time': 0,
 };
 
 // Helper function to filter chart data based on timeframe
 function filterChartData(data: PortfolioChartData[], timeframe: string) {
-  if (timeframe === 'All Time') {
-    return data;
-  } else if (timeframe === '1M') {
+  if (timeframe === '1M') {
     // Aggregate data on a daily basis for 1 month
     const aggregatedData: PortfolioChartData[] = [];
     const dateMap: Record<string, PortfolioChartData> = {};
@@ -104,7 +101,6 @@ export default function Overview({ initialValues }: OverviewProps) {
   }, []);
 
   const filteredChartData = filterChartData(chartData, selectedTimeframe);
-  
 
   const portfolioChartData: any = {
     labels:
@@ -149,9 +145,37 @@ export default function Overview({ initialValues }: OverviewProps) {
 
   return (
     <>
-      <div className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded bg-blueGray-700">
+      <div className="relative flex flex-col min-w-0 break-words w-full shadow-lg rounded-xl border border-custom3">
         <div className="rounded-t mb-0 px-4 py-3 bg-transparent">
           <div className="flex flex-wrap items-center">
+            <div className="relative w-full max-w-full flex-grow flex-1">
+              <div className="w-fit">
+                <div className="text-white text-5xl font-semibold">
+                  {formatPrice(funds.current_portfolio_value)}
+                </div>
+                <div className="text-green-500 text-xl text-end">
+                  <span
+                    className={`pr-2 ${
+                      difference < 0 ? 'text-red-500' : 'text-green-500'
+                    }`}
+                  >
+                    {formatPrice(difference)}
+                  </span>
+                  <span
+                    className={`${
+                      actualPercentage >= 0 ? 'text-green-500' : 'text-red-500'
+                    }`}
+                  >
+                    {`(${actualPercentage.toFixed(2)}%)`}
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="sm:h-[350px] h-[180px]">
+            <Line data={portfolioChartData} options={chartOptions} />
+          </div>
+          <div className="f-center mt-2">
             <div className="space-x-4">
               {Object.keys(timeframes).map((timeframe) => (
                 <button
@@ -167,12 +191,6 @@ export default function Overview({ initialValues }: OverviewProps) {
                 </button>
               ))}
             </div>
-          </div>
-        </div>
-        <div className="p-4 flex-auto">
-          {/* Chart */}
-          <div className="relative h-[350px]">
-            <Line data={portfolioChartData} options={chartOptions} />
           </div>
         </div>
       </div>
