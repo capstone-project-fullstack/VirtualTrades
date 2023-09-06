@@ -121,17 +121,13 @@ export default function PositionTable() {
   ];
 
   return (
-    <Card className="w-full max-h-[600px] bg-dark-black border overflow-auto no-scrollbar border-custom3">
-      <CardHeader
-        floated={false}
-        shadow={false}
-        className="rounded bg-dark-black"
-      >
+    <div className="w-full max-h-[600px] bg-dark-black border overflow-auto no-scrollbar border-custom3 rounded-xl">
+      <div className="bg-dark-black min-h-[100px] sm:min-h-fit mt-5">
         <PositionTableHeader
           searchStock={searchStock}
           setSearchStock={setSearchStock}
         />
-      </CardHeader>
+      </div>
       <CardBody className="overflow-auto no-scrollbar px-0">
         <table className="w-full min-w-max table-auto text-center">
           <thead>
@@ -176,6 +172,6 @@ export default function PositionTable() {
           </tbody>
         </table>
       </CardBody>
-    </Card>
+    </div>
   );
 }

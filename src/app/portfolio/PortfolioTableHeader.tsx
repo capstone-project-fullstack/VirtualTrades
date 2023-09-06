@@ -11,9 +11,13 @@ function PositionTableHeader({
   setSearchStock,
 }: PositionTableHeaderProps) {
   return (
-    <div className=" flex items-center justify-between gap-8">
+    <div className="flex items-center justify-between flex-col sm:flex-row mx-10">
       <div>
-        <Typography variant="h5" color="white">
+        <Typography
+          variant="h5"
+          color="white"
+          className="text-center sm:text-left"
+        >
           Current Positions
         </Typography>
         <Typography color="white" className="mt-1 font-normal">
