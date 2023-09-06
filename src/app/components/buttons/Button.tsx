@@ -22,6 +22,7 @@ export const GradientButtonRounded = ({
       className={`${className} hover:bg-opacity-90`}
       color={color}
       onClick={onClick}
+      ripple={true}
     >
       {text}
     </Button>

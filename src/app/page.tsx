@@ -137,24 +137,27 @@ export default function Home() {
 
       <Svg />
       <section className="bg-light-purple py-8 mb-10 f-center">
-        <div className="container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 place-items-center gap-5">
+        <div className="container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 place-items-center gap-5 w-[90%]">
           <StockCardLandingPage
             titleCard="TRADING STOCK"
-            imgUrl="https://cdn-scripbox-wordpress.scripbox.com/wp-content/uploads/2021/09/factors-affecting-us-stocks-market-vector.png"
+            imgUrl="https://cdn0.iconfinder.com/data/icons/investment-flat-outline-asset-allocation/512/Dollar_cost_average-1024.png"
             textCard="Explore the stock market on an interactive map and trade stocks in real-time. Visit our virtual stock analyses page, as well as our market page, to research a company's performance and shop stock risk-free!"
             onClick={() => handleRoute('market')}
+            text="Marketplace"
           />
           <StockCardLandingPage
             titleCard="YOUR PORTFOLIO"
-            imgUrl="https://cdn-scripbox-wordpress.scripbox.com/wp-content/uploads/2021/09/us-stock-market-timings-vector.png"
-            textCard="Your personalized portfolio offers an instant snapshot of your investments and stock progress. Track performance, stay updated with data analyses and make well-informed decisions, effortlessly."
+            imgUrl="https://cdn0.iconfinder.com/data/icons/investment-flat-outline-asset-allocation/512/Stock_market_portfolio-1024.png"
+            textCard="Your personal portfolio offers an instant snapshot of your investments and stock progress. Track performance, stay updated with data analyses and make well-informed decisions, effortlessly."
             onClick={() => handleRoute('portfolio')}
+            text="Portfolio"
           />
           <StockCardLandingPage
             titleCard="MORE ABOUT US"
-            imgUrl="https://cdn-scripbox-wordpress.scripbox.com/wp-content/uploads/2021/03/stock-exchanges-in-india-vector.png"
+            imgUrl="https://cdn0.iconfinder.com/data/icons/investment-flat-outline-asset-allocation/512/Corporate_bond-1024.png"
             textCard="Delve into our mission, learn more about our team, and what our values are here at Virtual Trades. We are dedicated to armoring you with the right tools to confidently navigate this new world of investing!"
             onClick={() => handleRoute('landing')}
+            text="About Us"
           />
         </div>
       </section>
