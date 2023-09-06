@@ -95,7 +95,7 @@ export const parseTimestamp = (timestamp: string) => {
   const hours = dateObj.getHours();
   const ampm = hours >= 12 ? 'PM' : 'AM';
   const formattedHours = (hours % 12 || 12).toString();
-  const minutes = dateObj.getMinutes().toString();
+  const minutes = dateObj.getMinutes().toString().padStart(2, '0');
 
   const formattedDate = `${month}/${day}/${year}`;
   const formattedTime = `${formattedHours}:${minutes} ${ampm}`;
@@ -135,3 +135,4 @@ export const randomColorGenerator = () => {
   const colorCode = `#${redHex}${greenHex}${blueHex}`;
   return colorCode;
 };
+
