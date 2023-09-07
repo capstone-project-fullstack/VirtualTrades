@@ -10,7 +10,6 @@ interface BlogCardProps {
 
 export default function FooterWithLogo({
   // textButton,
-  onClick,
 }: BlogCardProps) {
 
   const router = useRouter();
