@@ -46,7 +46,7 @@ export default function StockCardLandingPage({
       </CardHeader>
       <CardBody>
         <Typography
-          variant="h6"
+          variant="h5"
           color="white"
           className="font-normal opacity-75"
         >
