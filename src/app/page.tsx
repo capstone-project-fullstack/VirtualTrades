@@ -33,9 +33,9 @@ export default function Home() {
                 journey.
               </p>
               <p className="leading-normal text-2xl mb-8">
-                Ready to dive in? Welcome to the world of trading stocks with no
-                financial risk. Here, you can buy and sell virtual stock at real
-                market prices, every day!
+                Ready to dive into the world of trading? Welcome to the world of
+                trading stocks with no financial risk. Here, you can buy and
+                sell virtual stock at real market prices, every day!
               </p>
             </div>
             <div className="w-full lg:w-1/2">
@@ -62,9 +62,9 @@ export default function Home() {
             <div className="flex flex-wrap justify-center">
               <HorizontalCard
                 img="https://www.nyse.com/publicdocs/images/NYSE_Trading_Floor_New_Branding.jpg"
-                text1="Sign up now to receive real-time overviews"
-                text2="Welcome to our Stock Market, where you can explore real-time trends and insights. An array of interactive graphs showcasing live stock data allows you to track the performance of various stocks and delve into comprehensive analyses."
-                text3="Examine trends and learn to invest with confidence!"
+                text1="Sign up to receive real-time market updates"
+                text2="Welcome to our Stock Market, where you can explore trends and insights as they change minute by minute. The multitude of interactive graphs showcasing live data allows you to track the performance of various stocks and delve into deep analyses on the market."
+                // text3="Examine trends and learn to invest with confidence!"
                 onClick={() => handleRoute('watchlists')}
               />
             </div>
@@ -109,7 +109,7 @@ export default function Home() {
         </svg>
       </div>
 
-      <section className='mb-20 mt-24'>
+      <section className="mb-20 mt-24">
         <div className="flex flex-wrap flex-col-reverse  ">
           <div className="f-center flex flex-col-reverse flex-grow md:flex-row gap-3 lg:mx-10">
             <div className="flex-auto md:max-w-[50%]">
@@ -141,28 +141,29 @@ export default function Home() {
           <StockCardLandingPage
             titleCard="TRADING STOCK"
             imgUrl="https://cdn0.iconfinder.com/data/icons/investment-flat-outline-asset-allocation/512/Dollar_cost_average-1024.png"
-            textCard="Explore the stock market on an interactive map and trade stocks in real-time. Visit our virtual stock analyses page, as well as our market page, to research a company's performance and shop stock risk-free!"
+            textCard="Explore the stock market in real-time. Visit our virtual stock market page with its analytical tables, charts and graphs help you research a company's performance!"
             onClick={() => handleRoute('market')}
-            text="Marketplace"
+            text="View Stock"
           />
           <StockCardLandingPage
             titleCard="YOUR PORTFOLIO"
             imgUrl="https://cdn0.iconfinder.com/data/icons/investment-flat-outline-asset-allocation/512/Stock_market_portfolio-1024.png"
-            textCard="Your personal portfolio offers an instant snapshot of your investments and stock progress. Track performance, stay updated with data analyses and make well-informed decisions, effortlessly."
+            textCard="Your personal portfolio offers an instant snapshot of your investments and your stock progress. Track performance and stay updated with data analyses, effortlessly."
             onClick={() => handleRoute('portfolio')}
             text="Portfolio"
           />
           <StockCardLandingPage
             titleCard="MORE ABOUT US"
             imgUrl="https://cdn0.iconfinder.com/data/icons/investment-flat-outline-asset-allocation/512/Corporate_bond-1024.png"
-            textCard="Delve into our mission, learn more about our team, and what our values are here at Virtual Trades. We are dedicated to armoring you with the right tools to confidently navigate this new world of investing!"
+            textCard="Delve into our mission, learn more about our team and what values we hold at Virtual Trades. We are excited to armor you with the right tools to navigate this new world!"
             onClick={() => handleRoute('landing')}
             text="About Us"
           />
         </div>
       </section>
 
-      <div className="relative -mt-12 lg:-mt-24">
+{/* <section className='mb-24'> */}
+      <div className="relative lg:-mt-24">
         <svg
           viewBox="0 0 1428 174"
           version="1.1"
@@ -174,12 +175,17 @@ export default function Home() {
               fill="#FFFFFF"
               fillRule="nonzero"
             >
-              <path
+              {/* <path
                 d="M0,0 C90.7283404,0.927527913 147.912752,27.187927 291.910178,59.9119003 C387.908462,81.7278826 543.605069,89.334785 759,82.7326078 C469.336065,156.254352 216.336065,153.6679 0,74.9732496"
                 opacity="0.100000001"
-              ></path>
+              ></path> */}
               <path
                 d="M100,104.708498 C277.413333,72.2345949 426.147877,52.5246657 546.203633,45.5787101 C666.259389,38.6327546 810.524845,41.7979068 979,55.0741668 C931.069965,56.122511 810.303266,74.8455141 616.699903,111.243176 C423.096539,147.640838 250.863238,145.462612 100,104.708498 Z"
+                opacity="0.100000001"
+              ></path>
+
+              <path
+                d="M0,0 C90.7283404,0.927527913 147.912752,27.187927 291.910178,59.9119003 C387.908462,81.7278826 543.605069,89.334785 759,82.7326078 C469.336065,156.254352 216.336065,153.6679 0,74.9732496"
                 opacity="0.100000001"
               ></path>
               <path
@@ -198,6 +204,11 @@ export default function Home() {
           </g>
         </svg>
       </div>
+      {/* </section> */}
+
+      {/* <section>
+        <Svg />
+      </section> */}
 
       <section className="container mx-auto text-center py-6 m-12">
         <h1 className="w-full my-2 text-5xl font-bold leading-tight text-center text-white mt-5 mb-5">
@@ -207,7 +218,7 @@ export default function Home() {
           <div className="h-1 mx-auto bg-white w-1/6 opacity-25 my-0 py-0 rounded-t mt-5 mb-5"></div>
         </div>
         <h3 className="my-4 text-3xl leading-tight mt-5 mb-5">
-          If you grow real skill, you can grow real money.
+          If you can grow real skill, you can grow real money.
         </h3>
 
         <div className="f-center mt-10 mb-5">
