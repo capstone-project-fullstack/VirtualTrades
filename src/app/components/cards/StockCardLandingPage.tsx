@@ -26,21 +26,18 @@ export default function StockCardLandingPage({
 }: StockCardLandingPageProps) {
   const router = useRouter();
 
-  // const handleRoute = (page: string) => {
-  //   router.push(`/${page}`);
-  // };
 
   return (
-    <Card className="w-86 bg-dark-black m-10 text-center">
+    <Card className="w-96 bg-dark-black m-10 text-center">
       <Typography color="white" variant="h4" className="text-center pt-6">
         {titleCard}
       </Typography>
       <CardHeader shadow={false} floated={false} className="h-60">
         <Img
-          className="h-full w-full rounded-lg object-fit"
+          className="h-full w-[80%] rounded-lg object-cover"
           src={imgUrl}
           alt="nature image"
-          width={100}
+          width={70}
           height={70}
         />
       </CardHeader>

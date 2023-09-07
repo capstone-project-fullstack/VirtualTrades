@@ -55,9 +55,6 @@ export default function Home({
             <Typography variant="h4" color="white" className="mb-2">
               {text2}
             </Typography>
-            {/* <Typography color="white" className="mb-8 font-normal">
-              {text3}
-            </Typography> */}
             <a href="#" className="inline-block">
               <div className="f-center mt-4">
                 <GradientButtonRounded
