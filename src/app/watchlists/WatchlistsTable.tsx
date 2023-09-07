@@ -31,6 +31,23 @@ const tableHead = [
   { header: 'Low52', sortKey: 'low52' },
 ];
 
+const getAllUserWatchlistsSymbols = async () => {
+  const data = await axios.get('/api/getWatchlists');
+  const array = await Promise.all(
+    data.data.map((stock: WatchlistData) => stock.symbol)
+  );
+  return array;
+};
+
+const apiKey = API_KEYS[generateRandomNumber(API_KEYS.length)];
+const socket = new WebSocket(`wss://ws.finnhub.io?token=${apiKey}`);
+socket.addEventListener('open', async () => {
+  const allSymbols = await getAllUserWatchlistsSymbols();
+  allSymbols.forEach((symbol) => {
+    socket.send(JSON.stringify({ type: 'subscribe', symbol }));
+  });
+});
+
 export default function WatchlistsTable() {
   const router = useRouter();
   const [tableRows, setTableRows] = useState<WatchlistData[]>([]);
@@ -48,15 +65,6 @@ export default function WatchlistsTable() {
   }, []);
 
   useEffect(() => {
-    const apiKey = API_KEYS[generateRandomNumber(API_KEYS.length)];
-    const socket = new WebSocket(`wss://ws.finnhub.io?token=${apiKey}`);
-    socket.addEventListener('open', () => {
-      tableRows.forEach((row) => {
-        socket.send(JSON.stringify({ type: 'subscribe', symbol: row.symbol }));
-      });
-    });
-
-    // Inside the message event listener:
     socket.addEventListener('message', (e) => {
       if (e.data) {
         try {
@@ -85,14 +93,6 @@ export default function WatchlistsTable() {
                       ).toFixed(2)
                     ),
                   };
-
-                  axios
-                    .patch(`/api/updateStockPrice`, {
-                      ticker: matchingTrade.s,
-                      price: matchingTrade.p,
-                    })
-                    .catch((err) => console.log(err));
-
                   return updatedRow;
                 }
                 return row;

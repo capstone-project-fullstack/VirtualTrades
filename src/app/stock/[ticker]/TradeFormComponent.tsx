@@ -77,12 +77,6 @@ export default function TradeForm({
               const lastTrade = trades[trades.length - 1];
               const lastPrice = Number(lastTrade.p.toFixed(2));
               setLatestPrice(lastPrice);
-              axios
-                .patch(`/api/updateStockPrice`, {
-                  ticker,
-                  price: lastPrice,
-                })
-                .catch((err) => console.log(err));
             }
           }
         } catch (error) {
