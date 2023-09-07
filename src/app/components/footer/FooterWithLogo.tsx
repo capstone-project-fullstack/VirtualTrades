@@ -3,15 +3,7 @@
 import { Typography } from '@material-tailwind/react';
 import { useRouter } from 'next/navigation';
 
-interface BlogCardProps {
-  // textButton: any;
-  onClick: () => void;
-}
-
-export default function FooterWithLogo({
-  // textButton,
-}: BlogCardProps) {
-
+export default function FooterWithLogo({}) {
   const router = useRouter();
 
   const handleRoute = (page: string) => {
@@ -51,8 +43,8 @@ export default function FooterWithLogo({
                 href="#"
                 color="blue-gray"
                 className="font-normal transition-colors hover:text-light-green focus:text-light-green text-white"
-                onClick={() => handleRoute('watchlists')}    
-                      >
+                onClick={() => handleRoute('watchlists')}
+              >
                 Watchlist
               </Typography>
             </li>
@@ -62,7 +54,8 @@ export default function FooterWithLogo({
                 href="#"
                 color="blue-gray"
                 className="font-normal transition-colors hover:text-light-green focus:text-light-green text-white"
-                onClick={() => handleRoute('news')}               >
+                onClick={() => handleRoute('news')}
+              >
                 News
               </Typography>
             </li>

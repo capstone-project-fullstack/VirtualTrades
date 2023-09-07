@@ -43,9 +43,7 @@ export default function RootLayout({
               <Providers>{children}</Providers>
             </main>
           </div>
-          <FooterWithLogo 
-          onClick={onClick}
-          />
+          <FooterWithLogo />
         </body>
       </html>
     </ClerkProvider>
