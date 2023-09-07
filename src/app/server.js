@@ -1,6 +1,5 @@
-const updateStockPriceEveryHour = require('./src/app/background');
+const updateStockPriceEveryHour = require('./background');
 updateStockPriceEveryHour();
-
 
 const { createServer } = require('http');
 const { parse } = require('url');

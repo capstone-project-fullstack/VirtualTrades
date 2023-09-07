@@ -22,15 +22,13 @@ export default function StockCardLandingPage({
   textCard,
   titleCard,
   onClick,
-  text
+  text,
 }: StockCardLandingPageProps) {
   const router = useRouter();
 
   // const handleRoute = (page: string) => {
   //   router.push(`/${page}`);
   // };
-
-
 
   return (
     <Card className="w-86 bg-dark-black m-10 text-center">

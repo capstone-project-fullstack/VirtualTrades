@@ -9,12 +9,13 @@ import {
 } from '@material-tailwind/react';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import { customSortPositions } from '../utils/utils';
+import { customSortPositions, generateRandomNumber } from '../utils/utils';
 import { useAppDispatch, useAppSelector } from '../redux/hooks';
 import { updateCurrentPortfolioValue } from '../redux/features/fundManagementSlice';
 import PositionTableHeader from './PortfolioTableHeader';
 import PositionTableRow from './PortfolioTableRow';
 import { PortfolioData } from '../../../typings';
+import { API_KEYS } from '../utils/config';
 
 export default function PositionTable() {
   const [tableRows, setTableRows] = useState<PortfolioData[]>([]);
@@ -35,9 +36,8 @@ export default function PositionTable() {
   }, []);
 
   useEffect(() => {
-    const socket = new WebSocket(
-      `wss://ws.finnhub.io?token=cjhua7pr01qonds7geo0cjhua7pr01qonds7geog`
-    );
+    const apiKey = API_KEYS[generateRandomNumber(API_KEYS.length)];
+    const socket = new WebSocket(`wss://ws.finnhub.io?token=${apiKey}`);
     socket.addEventListener('open', () => {
       tableRows.forEach((row) => {
         socket.send(
