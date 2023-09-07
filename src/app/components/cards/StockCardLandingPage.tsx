@@ -28,13 +28,13 @@ export default function StockCardLandingPage({
 
 
   return (
-    <Card className="w-96 bg-dark-black m-10 text-center">
+    <Card className="w-96 bg-dark-black m-10 text-center items-center justify-center">
       <Typography color="white" variant="h4" className="text-center pt-6">
         {titleCard}
       </Typography>
-      <CardHeader shadow={false} floated={false} className="h-60">
+      <CardHeader shadow={false} floated={false} className="h-60 flex flex-row items-center justify-center w-[80%]">
         <Img
-          className="h-full w-[80%] rounded-lg object-cover"
+          className="h-full w-[85%] rounded-lg object-cover"
           src={imgUrl}
           alt="nature image"
           width={70}
