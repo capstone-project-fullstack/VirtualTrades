@@ -4,15 +4,17 @@ import {
   CardBody,
   CardFooter,
   Typography,
-  Button,
 } from '@material-tailwind/react';
 import Img from 'next/image';
+import { GradientButtonRounded } from '../buttons/Button';
+import { useRouter } from 'next/navigation';
 
 interface StockCardLandingPageProps {
   imgUrl: string;
   textCard: string;
   titleCard: string;
   onClick: () => void;
+  text: string;
 }
 
 export default function StockCardLandingPage({
@@ -20,10 +22,17 @@ export default function StockCardLandingPage({
   textCard,
   titleCard,
   onClick,
+  text,
 }: StockCardLandingPageProps) {
+  const router = useRouter();
+
+  // const handleRoute = (page: string) => {
+  //   router.push(`/${page}`);
+  // };
+
   return (
-    <Card className="w-96 bg-custom5">
-      <Typography color="black" variant="h4" className="text-center pt-6">
+    <Card className="w-86 bg-dark-black m-10 text-center">
+      <Typography color="white" variant="h4" className="text-center pt-6">
         {titleCard}
       </Typography>
       <CardHeader shadow={false} floated={false} className="h-60">
@@ -32,27 +41,26 @@ export default function StockCardLandingPage({
           src={imgUrl}
           alt="nature image"
           width={100}
-          height={20}
+          height={70}
         />
       </CardHeader>
       <CardBody>
         <Typography
-          variant="h6"
-          color="black"
+          variant="h5"
+          color="white"
           className="font-normal opacity-75"
         >
           {textCard}
         </Typography>
       </CardBody>
       <CardFooter className="pt-0">
-        <Button
-          ripple={true}
-          fullWidth={true}
-          onClick={onClick}
-          className="bg-blue-gray-900/10 text-blue-gray-900 shadow-none hover:scale-105 hover:shadow-none focus:scale-105 focus:shadow-none active:scale-100 cursor-pointer"
-        >
-          Add to
-        </Button>
+        <div className="f-center">
+          <GradientButtonRounded
+            text={text}
+            onClick={onClick}
+            className="bg-none bg-light-green"
+          />
+        </div>
       </CardFooter>
     </Card>
   );

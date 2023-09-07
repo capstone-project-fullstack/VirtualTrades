@@ -6,28 +6,36 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Spinner } from '@material-tailwind/react';
 import { useRouter } from 'next/navigation';
-import { formatPrice, convertMarketCap } from '../utils/utils';
+import {
+  formatPrice,
+  convertMarketCap,
+  generateRandomNumber,
+} from '../utils/utils';
+import { customSortWatchlists } from '../utils/utils';
+import { ChevronUpDownIcon } from '@heroicons/react/24/outline';
+import { API_KEYS } from '../utils/config';
 
-const TABLE_HEAD = [
-  'Icon',
-  'Name',
-  'Symbol',
-  'Price',
-  'Change',
-  'Change %',
-  'Prev Close',
-  'Open',
-  'High',
-  'Low',
-  'Market Cap',
-  'High52',
-  'Low52',
+const tableHead = [
+  // { header: 'Icon', sortKey: null },
+  { header: 'Name', sortKey: 'name' },
+  { header: 'Symbol', sortKey: 'symbol' },
+  { header: 'Price', sortKey: 'price' },
+  { header: 'Change', sortKey: 'change' },
+  { header: 'Change %', sortKey: 'changePercent' },
+  { header: 'Prev Close', sortKey: 'prevClose' },
+  { header: 'Open', sortKey: 'open' },
+  { header: 'High', sortKey: 'high' },
+  { header: 'Low', sortKey: 'low' },
+  { header: 'Market Cap', sortKey: 'marketCap' },
+  { header: 'High52', sortKey: 'high52' },
+  { header: 'Low52', sortKey: 'low52' },
 ];
 
-export default function TableWithStripedRows() {
+export default function WatchlistsTable() {
   const router = useRouter();
   const [tableRows, setTableRows] = useState<WatchlistData[]>([]);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [sortOrder, setSortOrder] = useState<'asc' | 'desc' | ''>('');
 
   useEffect(() => {
     axios
@@ -40,9 +48,8 @@ export default function TableWithStripedRows() {
   }, []);
 
   useEffect(() => {
-    const socket = new WebSocket(
-      `wss://ws.finnhub.io?token=cjhubehr01qonds7gfn0cjhubehr01qonds7gfng`
-    );
+    const apiKey = API_KEYS[generateRandomNumber(API_KEYS.length)];
+    const socket = new WebSocket(`wss://ws.finnhub.io?token=${apiKey}`);
     socket.addEventListener('open', () => {
       tableRows.forEach((row) => {
         socket.send(JSON.stringify({ type: 'subscribe', symbol: row.symbol }));
@@ -102,21 +109,50 @@ export default function TableWithStripedRows() {
   }, [tableRows]);
 
   return (
-    <Card className="h-full w-full text-white overflow-auto no-scrollbar bg-black">
+    <Card className="h-full w-full text-white overflow-auto no-scrollbar bg-black px-3">
       <table className="w-full min-w-max text-center">
         <thead>
           <tr>
-            {TABLE_HEAD.map((head) => (
+            <th
+              align="center"
+              className="border-y text-center py-4 transition-colors border-cell"
+            >
+              <Typography
+                variant="h6"
+                color="white"
+                className="flex items-center justify-center gap-2 font-normal leading-none"
+              >
+                Icon
+              </Typography>
+            </th>
+            {tableHead.map((head, index) => (
               <th
-                key={head}
-                className="py-4 text-center bg-dark-gray-100 border-cell"
+                align="center"
+                key={index}
+                className="cursor-pointer border-y py-4 transition-colors border-cell max-w-[165px]"
               >
                 <Typography
-                  variant="small"
+                  variant="h6"
                   color="white"
-                  className="font-normal leading-none opacity-70"
+                  className="font-normal text-center leading-none pl-5"
+                  onClick={() => {
+                    if (sortOrder === null || sortOrder === 'desc') {
+                      setSortOrder('asc');
+                    } else {
+                      setSortOrder('desc');
+                    }
+                    customSortWatchlists(
+                      head.sortKey,
+                      tableRows,
+                      setTableRows,
+                      sortOrder
+                    );
+                  }}
                 >
-                  {head}
+                  {head.header}
+                  <div className="float-right pr-1">
+                    <ChevronUpDownIcon strokeWidth={2} className="h-4 w-4" />
+                  </div>
                 </Typography>
               </th>
             ))}

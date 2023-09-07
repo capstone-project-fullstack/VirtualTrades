@@ -9,12 +9,13 @@ import {
 } from '@material-tailwind/react';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import { customSort } from '../utils/utils';
+import { customSortPositions, generateRandomNumber } from '../utils/utils';
 import { useAppDispatch, useAppSelector } from '../redux/hooks';
 import { updateCurrentPortfolioValue } from '../redux/features/fundManagementSlice';
 import PositionTableHeader from './PortfolioTableHeader';
 import PositionTableRow from './PortfolioTableRow';
 import { PortfolioData } from '../../../typings';
+import { API_KEYS } from '../utils/config';
 
 export default function PositionTable() {
   const [tableRows, setTableRows] = useState<PortfolioData[]>([]);
@@ -35,9 +36,8 @@ export default function PositionTable() {
   }, []);
 
   useEffect(() => {
-    const socket = new WebSocket(
-      `wss://ws.finnhub.io?token=cjhua7pr01qonds7geo0cjhua7pr01qonds7geog`
-    );
+    const apiKey = API_KEYS[generateRandomNumber(API_KEYS.length)];
+    const socket = new WebSocket(`wss://ws.finnhub.io?token=${apiKey}`);
     socket.addEventListener('open', () => {
       tableRows.forEach((row) => {
         socket.send(
@@ -121,17 +121,13 @@ export default function PositionTable() {
   ];
 
   return (
-    <Card className="w-full max-h-[600px] bg-dark-black border overflow-auto no-scrollbar border-custom3">
-      <CardHeader
-        floated={false}
-        shadow={false}
-        className="rounded bg-dark-black"
-      >
+    <div className="w-full max-h-[600px] bg-dark-black border overflow-auto no-scrollbar border-custom3 rounded-xl">
+      <div className="bg-dark-black min-h-[100px] sm:min-h-fit mt-5">
         <PositionTableHeader
           searchStock={searchStock}
           setSearchStock={setSearchStock}
         />
-      </CardHeader>
+      </div>
       <CardBody className="overflow-auto no-scrollbar px-0">
         <table className="w-full min-w-max table-auto text-center">
           <thead>
@@ -145,14 +141,14 @@ export default function PositionTable() {
                   <Typography
                     variant="h6"
                     color="white"
-                    className="flex items-center justify-center gap-2 font-normal leading-none"
+                    className="font-normal text-center leading-none pl-5"
                     onClick={() => {
                       if (sortOrder === null || sortOrder === 'desc') {
                         setSortOrder('asc');
                       } else {
                         setSortOrder('desc');
                       }
-                      customSort(
+                      customSortPositions(
                         head.sortKey,
                         tableRows,
                         setTableRows,
@@ -161,7 +157,9 @@ export default function PositionTable() {
                     }}
                   >
                     {head.header}
-                    <ChevronUpDownIcon strokeWidth={2} className="h-4 w-4" />
+                    <div className="float-right pr-1">
+                      <ChevronUpDownIcon strokeWidth={2} className="h-4 w-4" />
+                    </div>
                   </Typography>
                 </th>
               ))}
@@ -174,6 +172,6 @@ export default function PositionTable() {
           </tbody>
         </table>
       </CardBody>
-    </Card>
+    </div>
   );
 }

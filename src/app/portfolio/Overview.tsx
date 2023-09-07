@@ -39,17 +39,51 @@ interface PortfolioChartData {
   id: number;
   userId: string;
   timestamp: string;
-  value: string;
+  value: number;
+  time: string;
+  date: string;
 }
 
-declare global {
-  interface Window {
-    myLine: Chart;
+const timeframes: Record<string, number> = {
+  '1D': 1,
+  '1W': 7,
+  '1M': 30,
+  '1Y': 365,
+};
+
+// Helper function to filter chart data based on timeframe
+function filterChartData(data: PortfolioChartData[], timeframe: string) {
+  if (timeframe === '1M') {
+    // Aggregate data on a daily basis for 1 month
+    const aggregatedData: PortfolioChartData[] = [];
+    const dateMap: Record<string, PortfolioChartData> = {};
+
+    data.forEach((entry) => {
+      const date = entry.date;
+      if (!dateMap[date]) {
+        dateMap[date] = { ...entry };
+      }
+    });
+
+    // Convert the dateMap into an array
+    for (const date in dateMap) {
+      if (dateMap.hasOwnProperty(date)) {
+        aggregatedData.push(dateMap[date]);
+      }
+    }
+
+    return aggregatedData;
+  } else {
+    const endDate = new Date();
+    const startDate = new Date();
+    startDate.setDate(endDate.getDate() - timeframes[timeframe]);
+    return data.filter((data) => new Date(data.date) >= startDate);
   }
 }
 
 export default function Overview({ initialValues }: OverviewProps) {
   const [chartData, setChartData] = useState<PortfolioChartData[]>([]);
+  const [selectedTimeframe, setSelectedTimeframe] = useState('1D');
   const dispatch = useAppDispatch();
   const funds = useAppSelector((state) => state.fundManagement.values);
 
@@ -66,87 +100,43 @@ export default function Overview({ initialValues }: OverviewProps) {
       .catch((err) => console.log(err));
   }, []);
 
-  const portfolioChartOptions: any = {
-    maintainAspectRatio: false,
-    responsive: true,
-    title: {
-      display: false,
-      text: 'Portfolio',
-      fontColor: 'white',
-    },
-    legend: {
-      labels: {
-        fontColor: 'white',
-      },
-      align: 'end',
-      position: 'bottom',
-    },
-    tooltips: {
-      mode: 'index',
-      intersect: false,
-    },
-    hover: {
-      mode: 'nearest',
-      intersect: true,
-    },
-    scales: {
-      xAxes: [
-        {
-          ticks: {
-            fontColor: 'rgba(255,255,255,.7)',
-          },
-          display: true,
-          scaleLabel: {
-            display: false,
-            labelString: 'Month',
-            fontColor: 'white',
-          },
-          gridLines: {
-            display: false,
-            borderDash: [2],
-            borderDashOffset: [2],
-            color: 'rgba(33, 37, 41, 0.3)',
-            zeroLineColor: 'rgba(0, 0, 0, 0)',
-            zeroLineBorderDash: [2],
-            zeroLineBorderDashOffset: [2],
-          },
-        },
-      ],
-      yAxes: [
-        {
-          ticks: {
-            fontColor: 'rgba(255,255,255,.7)',
-          },
-          display: true,
-          scaleLabel: {
-            display: false,
-            labelString: 'Value',
-            fontColor: 'white',
-          },
-          gridLines: {
-            borderDash: [3],
-            borderDashOffset: [3],
-            drawBorder: false,
-            color: 'rgba(255, 255, 255, 0.15)',
-            zeroLineColor: 'rgba(33, 37, 41, 0)',
-            zeroLineBorderDash: [2],
-            zeroLineBorderDashOffset: [2],
-          },
-        },
-      ],
-    },
-  };
+  const filteredChartData = filterChartData(chartData, selectedTimeframe);
 
   const portfolioChartData: any = {
-    labels: chartData.map((chartData) => chartData.timestamp),
+    labels:
+      selectedTimeframe !== '1M'
+        ? filteredChartData.map((data) => data.time)
+        : filteredChartData.map((data) => data.date),
     datasets: [
       {
-        label: new Date().getFullYear(),
-        data: chartData.map((chartData) => Number(chartData.value)),
+        label: '1D',
+        data: filteredChartData.map((data) => data.value),
         backgroundColor: '#4c51bf',
         borderColor: '#4c51bf',
+        tension: 0.4,
       },
     ],
+  };
+
+  const chartOptions: any = {
+    plugins: {
+      legend: {
+        display: false,
+      },
+      tooltip: {
+        callbacks: {
+          label: (context: any) => {
+            // Show the stock value and date as the tooltip label
+            const dataIndex = context.dataIndex;
+            const datasetIndex = context.datasetIndex;
+            const value =
+              portfolioChartData.datasets[datasetIndex].data[dataIndex];
+            const date = filteredChartData[dataIndex].date;
+            return `${value} on ${date}`;
+          },
+        },
+      },
+    },
   };
 
   const difference = funds.current_portfolio_value - funds.initial_amount;
@@ -155,7 +145,7 @@ export default function Overview({ initialValues }: OverviewProps) {
 
   return (
     <>
-      <div className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded bg-blueGray-700">
+      <div className="relative flex flex-col min-w-0 break-words w-full shadow-lg rounded-xl border border-custom3">
         <div className="rounded-t mb-0 px-4 py-3 bg-transparent">
           <div className="flex flex-wrap items-center">
             <div className="relative w-full max-w-full flex-grow flex-1">
@@ -182,11 +172,25 @@ export default function Overview({ initialValues }: OverviewProps) {
               </div>
             </div>
           </div>
-        </div>
-        <div className="p-4 flex-auto">
-          {/* Chart */}
-          <div className="relative h-[350px]">
-            <Line options={portfolioChartOptions} data={portfolioChartData} />
+          <div className="sm:h-[350px] h-[180px]">
+            <Line data={portfolioChartData} options={chartOptions} />
+          </div>
+          <div className="f-center mt-2">
+            <div className="space-x-4">
+              {Object.keys(timeframes).map((timeframe) => (
+                <button
+                  key={timeframe}
+                  className={`${
+                    selectedTimeframe === timeframe
+                      ? 'bg-blue-500 text-white'
+                      : 'text-blue-500'
+                  } px-4 py-2 rounded`}
+                  onClick={() => setSelectedTimeframe(timeframe)}
+                >
+                  {timeframe}
+                </button>
+              ))}
+            </div>
           </div>
         </div>
       </div>

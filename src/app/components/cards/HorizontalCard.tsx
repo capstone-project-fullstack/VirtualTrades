@@ -15,14 +15,14 @@ interface HorizontalCardProps {
   img: string;
   text1: string;
   text2: string;
-  text3: string;
+  // text3: string;
   onClick: () => void;
 }
 export default function Home({
   img,
   text1,
   text2,
-  text3,
+  // text3,
 }: HorizontalCardProps) {
   const router = useRouter(); // Move this line here
 
@@ -55,11 +55,11 @@ export default function Home({
             <Typography variant="h4" color="white" className="mb-2">
               {text2}
             </Typography>
-            <Typography color="white" className="mb-8 font-normal">
+            {/* <Typography color="white" className="mb-8 font-normal">
               {text3}
-            </Typography>
+            </Typography> */}
             <a href="#" className="inline-block">
-              <div className="f-center">
+              <div className="f-center mt-4">
                 <GradientButtonRounded
                   text="Stock Market"
                   onClick={() => handleRoute('market')}

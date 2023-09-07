@@ -1,5 +1,7 @@
 import prisma from '../../../lib/prisma';
 import axios from 'axios';
+import { API_KEYS } from '../utils/config';
+import { generateRandomNumber } from '../utils/utils';
 
 class Stock {
   static async findStockIfExist(symbol: string) {
@@ -23,9 +25,11 @@ class Stock {
   }
 
   static async getStockIcon(symbol: string) {
+    const apiKey = API_KEYS[generateRandomNumber(API_KEYS.length)];
+
     return axios
       .get(
-        `https://finnhub.io/api/v1/stock/profile2?symbol=${symbol}&token=${process.env.FINNHUB_API_KEY}`
+        `https://finnhub.io/api/v1/stock/profile2?symbol=${symbol}&token=${apiKey}`
       )
       .then((res) => res.data.logo)
       .catch((err) => console.log(err));
@@ -40,10 +44,9 @@ class Stock {
   }
 
   static async getCurrentPrice(symbol: string, data?: string) {
+    const apiKey = API_KEYS[generateRandomNumber(API_KEYS.length)];
     const res = await axios
-      .get(
-        `https://finnhub.io/api/v1/quote?symbol=${symbol}&token=${process.env.FINNHUB_API_KEY}`
-      )
+      .get(`https://finnhub.io/api/v1/quote?symbol=${symbol}&token=${apiKey}`)
       .then((res) => res.data)
       .catch((err) => console.log(err));
 
@@ -86,9 +89,10 @@ class Stock {
   }
 
   static async additionalCompanyData(symbol: string) {
+    const apiKey = API_KEYS[generateRandomNumber(API_KEYS.length)];
     const res = await axios
       .get(
-        `https://finnhub.io/api/v1/stock/metric?symbol=${symbol}&metric=all&token=${process.env.FINNHUB_API_KEY}`
+        `https://finnhub.io/api/v1/stock/metric?symbol=${symbol}&metric=all&token=${apiKey}`
       )
       .then((res) => res.data)
       .catch((err) => console.log(err));
@@ -102,8 +106,3 @@ class Stock {
 }
 
 export default Stock;
-
-// (async() => {
-//   const stock = await Stock.getStockIcon('AAPL');
-//   console.log(stock);
-// })();

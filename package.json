@@ -3,9 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "prisma generate && next build",
-    "start": "next start",
+    "dev": "node src/app/server.js",
+    "build": "npx prisma generate && next build",
+    "start": "NODE_ENV=production node src/app/server.js",
     "lint": "next lint"
   },
   "dependencies": {
@@ -24,6 +24,7 @@
     "eslint": "8.46.0",
     "eslint-config-next": "13.4.13",
     "eslint-config-prettier": "^9.0.0",
+    "moment-timezone": "^0.5.43",
     "next": "13.4.13",
     "postcss": "8.4.27",
     "react": "18.2.0",

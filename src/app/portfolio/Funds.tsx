@@ -9,13 +9,15 @@ export default function Funds() {
   const funds = useAppSelector((state) => state.fundManagement.values);
 
   return (
-    <div className="h-28">
-      <div>Buying Power</div>
-      <div className="w-fit flex flex-row gap-x-3">
-        <div className="text-white text-3xl font-semibold">
-          {formatPrice(funds?.cash || 0)}
+    <div className="h-28 flex justify-center sm:justify-start sm:items-center">
+      <div>
+        <div>Buying Power</div>
+        <div className="w-fit flex flex-row gap-x-3">
+          <div className="text-white text-3xl font-semibold">
+            {formatPrice(funds?.cash || 0)}
+          </div>
+          <FundsManagementForm open={open} setOpen={setOpen} />
         </div>
-        <FundsManagementForm open={open} setOpen={setOpen} />
       </div>
     </div>
   );
