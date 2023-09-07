@@ -2,8 +2,6 @@
 
 import { ChevronUpDownIcon } from '@heroicons/react/24/outline';
 import {
-  Card,
-  CardHeader,
   CardBody,
   Typography,
 } from '@material-tailwind/react';
@@ -16,6 +14,23 @@ import PositionTableHeader from './PortfolioTableHeader';
 import PositionTableRow from './PortfolioTableRow';
 import { PortfolioData } from '../../../typings';
 import { API_KEYS } from '../utils/config';
+
+const getAllUserPositionsSymbols = async () => {
+  const data = await axios.get('/api/positions');
+  const array = await Promise.all(
+    data.data.map((stock: any) => stock.Stock.symbol)
+  );
+  return array;
+};
+
+const apiKey = API_KEYS[generateRandomNumber(API_KEYS.length)];
+const socket = new WebSocket(`wss://ws.finnhub.io?token=${apiKey}`);
+socket.addEventListener('open', async () => {
+  const allSymbols = await getAllUserPositionsSymbols();
+  allSymbols.forEach((symbol) => {
+    socket.send(JSON.stringify({ type: 'subscribe', symbol }));
+  });
+});
 
 export default function PositionTable() {
   const [tableRows, setTableRows] = useState<PortfolioData[]>([]);
@@ -36,17 +51,6 @@ export default function PositionTable() {
   }, []);
 
   useEffect(() => {
-    const apiKey = API_KEYS[generateRandomNumber(API_KEYS.length)];
-    const socket = new WebSocket(`wss://ws.finnhub.io?token=${apiKey}`);
-    socket.addEventListener('open', () => {
-      tableRows.forEach((row) => {
-        socket.send(
-          JSON.stringify({ type: 'subscribe', symbol: row.Stock.symbol })
-        );
-      });
-    });
-
-    // Inside the message event listener:
     socket.addEventListener('message', (e) => {
       if (e.data) {
         try {
@@ -63,7 +67,6 @@ export default function PositionTable() {
                     ...row.Stock,
                     current_price: matchingTrade.p,
                   };
-
                   const updatedRow = {
                     ...row,
                     Stock: updatedStock,
@@ -72,28 +75,17 @@ export default function PositionTable() {
                       (updatedStock.current_price - row.average_price) *
                       row.shares,
                   };
-
-                  axios
-                    .patch(`/api/updateStockPrice`, {
-                      ticker: matchingTrade.s,
-                      price: matchingTrade.p,
-                    })
-                    .catch((err) => console.log(err));
-
                   return updatedRow;
                 }
                 return row;
               });
-
               // Calculate the new current_portfolio_value
               const newPortfolioValue = updatedRows.reduce(
                 (sum, r) => sum + Number(r.total_equity),
                 0
               );
-
               // Dispatch the action to update the current_portfolio_value
               dispatch(updateCurrentPortfolioValue(newPortfolioValue + cash));
-
               return updatedRows;
             });
           }
