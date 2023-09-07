@@ -109,7 +109,7 @@ export default function Home() {
         </svg>
       </div>
 
-      <section className='mb-20 mt-24'>
+      <section className="mb-20 mt-24">
         <div className="flex flex-wrap flex-col-reverse  ">
           <div className="f-center flex flex-col-reverse flex-grow md:flex-row gap-3 lg:mx-10">
             <div className="flex-auto md:max-w-[50%]">

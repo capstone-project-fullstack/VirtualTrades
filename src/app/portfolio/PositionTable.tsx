@@ -37,9 +37,7 @@ export default function PositionTable() {
 
   useEffect(() => {
     const apiKey = API_KEYS[generateRandomNumber(API_KEYS.length)];
-    const socket = new WebSocket(
-      `wss://ws.finnhub.io?token=${apiKey}`
-    );
+    const socket = new WebSocket(`wss://ws.finnhub.io?token=${apiKey}`);
     socket.addEventListener('open', () => {
       tableRows.forEach((row) => {
         socket.send(

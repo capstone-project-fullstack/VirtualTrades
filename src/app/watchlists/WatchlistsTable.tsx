@@ -6,7 +6,11 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Spinner } from '@material-tailwind/react';
 import { useRouter } from 'next/navigation';
-import { formatPrice, convertMarketCap, generateRandomNumber } from '../utils/utils';
+import {
+  formatPrice,
+  convertMarketCap,
+  generateRandomNumber,
+} from '../utils/utils';
 import { customSortWatchlists } from '../utils/utils';
 import { ChevronUpDownIcon } from '@heroicons/react/24/outline';
 import { API_KEYS } from '../utils/config';
@@ -45,9 +49,7 @@ export default function WatchlistsTable() {
 
   useEffect(() => {
     const apiKey = API_KEYS[generateRandomNumber(API_KEYS.length)];
-    const socket = new WebSocket(
-      `wss://ws.finnhub.io?token=${apiKey}`
-    );
+    const socket = new WebSocket(`wss://ws.finnhub.io?token=${apiKey}`);
     socket.addEventListener('open', () => {
       tableRows.forEach((row) => {
         socket.send(JSON.stringify({ type: 'subscribe', symbol: row.symbol }));

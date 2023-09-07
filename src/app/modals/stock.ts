@@ -46,9 +46,7 @@ class Stock {
   static async getCurrentPrice(symbol: string, data?: string) {
     const apiKey = API_KEYS[generateRandomNumber(API_KEYS.length)];
     const res = await axios
-      .get(
-        `https://finnhub.io/api/v1/quote?symbol=${symbol}&token=${apiKey}`
-      )
+      .get(`https://finnhub.io/api/v1/quote?symbol=${symbol}&token=${apiKey}`)
       .then((res) => res.data)
       .catch((err) => console.log(err));
 

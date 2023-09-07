@@ -130,4 +130,4 @@ export const randomColorGenerator = () => {
 
 export const generateRandomNumber = (len: number) => {
   return Math.floor(Math.random() * len);
-}
+};

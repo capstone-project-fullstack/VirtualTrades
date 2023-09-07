@@ -5,7 +5,7 @@
 //     CardFooter,
 //     Typography
 //   } from "@material-tailwind/react";
-   
+
 //   export default function BlogCard({ Img, textCard, titleCard }) {
 //     return (
 //       <Card className="max-w-[24rem] overflow-hidden">

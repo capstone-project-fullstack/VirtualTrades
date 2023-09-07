@@ -59,9 +59,7 @@ export default function TradeForm({
 
   useEffect(() => {
     const apiKey = API_KEYS[generateRandomNumber(API_KEYS.length)];
-    const socket = new WebSocket(
-      `wss://ws.finnhub.io?token=${apiKey}`
-    );
+    const socket = new WebSocket(`wss://ws.finnhub.io?token=${apiKey}`);
 
     // Connection opened -> Subscribe
     socket.addEventListener('open', () => {

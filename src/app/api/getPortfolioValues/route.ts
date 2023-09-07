@@ -24,8 +24,8 @@ export const GET = async () => {
         time: parseTimestamp(data.timestamp.toISOString()).time,
         date: parseTimestamp(data.timestamp.toISOString()).date,
         value: Number(data.value),
-      }
-    })
+      };
+    });
 
     return new Response(JSON.stringify(res), {
       status: 200,

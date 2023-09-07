@@ -21,7 +21,10 @@ const NewsCard = ({
   const parsedTime = parseTimestamp(unixTimestampToISO8601(datetime));
 
   return (
-    <Card className="my-6 w-96 bg-dark-purple cursor-pointer" onClick={() => window.open(newsLink)}>
+    <Card
+      className="my-6 w-96 bg-dark-purple cursor-pointer"
+      onClick={() => window.open(newsLink)}
+    >
       <CardHeader color="blue-gray" className="h-56">
         <Img
           src={imgLink}
@@ -37,9 +40,11 @@ const NewsCard = ({
         </Typography>
         <br />
         <Typography variant="h5" color="white" className="my-2">
-          {headline.startsWith(": ") ? headline.slice(2) : headline}
+          {headline.startsWith(': ') ? headline.slice(2) : headline}
         </Typography>
-        <Typography color="white" className="min-h-96">{summary}</Typography>
+        <Typography color="white" className="min-h-96">
+          {summary}
+        </Typography>
       </CardBody>
     </Card>
   );
