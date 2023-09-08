@@ -138,19 +138,26 @@ export default function Home() {
       <Svg />
       <section className="bg-light-purple py-8 mb-10 f-center">
         <div className="container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 place-items-center gap-5">
-          <StockCardLandingPage
+          {/* <StockCardLandingPage
             titleCard="TRADING STOCK"
-            imgUrl="https://cdn0.iconfinder.com/data/icons/investment-flat-outline-asset-allocation/512/Mutual_fund-1024.png"
+            imgUrl="https://cdn2.iconfinder.com/data/icons/finance-226/64/trading-partner-Handshake-stock-finance-1024.png"
             textCard="Explore the stock market in real-time. Visit our virtual stock market page with its analytical tables, charts and graphs help you research a company's performance!"
             onClick={() => handleRoute('market')}
             text="View Stock"
-          />
+          /> */}
           <StockCardLandingPage
             titleCard="YOUR PORTFOLIO"
             imgUrl="https://cdn3.iconfinder.com/data/icons/real-estate-line-color-property-evaluation/512/Budget-1024.png"
             textCard="Your personal portfolio offers an instant snapshot of your investments and your stock progress. Track performance and stay updated with data analyses, effortlessly."
             onClick={() => handleRoute('portfolio')}
             text="Portfolio"
+          />
+          <StockCardLandingPage
+            titleCard="TRADING STOCK"
+            imgUrl="https://cdn2.iconfinder.com/data/icons/finance-226/64/trading-partner-Handshake-stock-finance-1024.png"
+            textCard="Explore the stock market in real-time. Visit our virtual stock market page with its analytical tables, charts and graphs help you research a company's performance!"
+            onClick={() => handleRoute('market')}
+            text="View Stock"
           />
           <StockCardLandingPage
             titleCard="MORE ABOUT US"
@@ -162,7 +169,7 @@ export default function Home() {
         </div>
       </section>
 
-{/* <section className='mb-24'> */}
+      {/* <section className='mb-24'> */}
       <div className="relative lg:-mt-24">
         <svg
           viewBox="0 0 1428 174"
@@ -229,7 +236,6 @@ export default function Home() {
           />
         </div>
       </section>
-  
     </div>
   );
 }
