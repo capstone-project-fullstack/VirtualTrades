@@ -1,10 +1,7 @@
 'use client';
 
 import { ChevronUpDownIcon } from '@heroicons/react/24/outline';
-import {
-  CardBody,
-  Typography,
-} from '@material-tailwind/react';
+import { CardBody, Typography } from '@material-tailwind/react';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { customSortPositions, generateRandomNumber } from '../utils/utils';
@@ -74,6 +71,11 @@ export default function PositionTable() {
                     gain:
                       (updatedStock.current_price - row.average_price) *
                       row.shares,
+                    percentGain: (
+                      ((updatedStock.current_price - row.average_price) /
+                        row.average_price) *
+                      100
+                    ).toFixed(2),
                   };
                   return updatedRow;
                 }
@@ -110,6 +112,7 @@ export default function PositionTable() {
     { header: 'AVG Price', sortKey: 'averagePrice' },
     { header: 'Equity', sortKey: 'totalEquity' },
     { header: 'Gain', sortKey: 'gain' },
+    { header: 'Gain %', sortKey: 'gainPercent' },
   ];
 
   return (

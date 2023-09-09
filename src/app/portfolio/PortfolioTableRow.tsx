@@ -14,6 +14,7 @@ function PositionTableRow({ row }: PositionTableRowProps) {
     shares,
     average_price,
     total_equity,
+    percentGain,
   } = row;
 
   return (
@@ -64,6 +65,11 @@ function PositionTableRow({ row }: PositionTableRowProps) {
       <td align="center" className="py-2 border-cell">
         <Typography variant="small" className="font-normal">
           {formatPrice(Number(gain))}
+        </Typography>
+      </td>
+      <td align="center" className="py-2 border-cell">
+        <Typography variant="small" className="font-normal">
+          {percentGain}%
         </Typography>
       </td>
     </tr>
