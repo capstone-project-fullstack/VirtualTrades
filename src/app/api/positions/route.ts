@@ -43,8 +43,8 @@ export const GET = async () => {
       return {
         ...data,
         percentGain: (
-          ((Number(data.Stock.current_price) -
-            Number(data.average_price)) / Number(data.average_price)) *
+          ((Number(data.Stock.current_price) - Number(data.average_price)) /
+            Number(data.average_price)) *
           100
         ).toFixed(2),
       };

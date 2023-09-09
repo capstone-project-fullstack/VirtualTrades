@@ -64,7 +64,7 @@ export default function FundsManagementForm({
 
   return (
     <>
-      <Button className='bg-light-green' onClick={handleOpen}>
+      <Button className="bg-light-green" onClick={handleOpen}>
         Add Cash
       </Button>
       <Dialog

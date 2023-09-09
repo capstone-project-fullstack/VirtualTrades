@@ -40,7 +40,11 @@ export default function Home({ img }: HorizontalCardProps) {
         </CardHeader>
         <div className="md:w-3/5">
           <CardBody>
-            <Typography variant="h6" color="white" className="mb-4 uppercase text-3xl">
+            <Typography
+              variant="h6"
+              color="white"
+              className="mb-4 uppercase text-3xl"
+            >
               Sign up now to receive real-time overviews
             </Typography>
             <Typography variant="h4" color="white" className="mb-2 text-xl">
