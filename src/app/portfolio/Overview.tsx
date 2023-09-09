@@ -12,6 +12,10 @@ import {
   Legend,
 } from 'chart.js';
 import { Line } from 'react-chartjs-2';
+import axios from 'axios';
+import { formatPrice } from '../utils/utils';
+import { useAppDispatch, useAppSelector } from '../redux/hooks';
+import { setInitialValues } from '../redux/features/fundManagementSlice';
 
 ChartJS.register(
   CategoryScale,
@@ -22,10 +26,6 @@ ChartJS.register(
   Tooltip,
   Legend
 );
-import axios from 'axios';
-import { formatPrice } from '../utils/utils';
-import { useAppDispatch, useAppSelector } from '../redux/hooks';
-import { setInitialValues } from '../redux/features/fundManagementSlice';
 
 interface OverviewProps {
   initialValues: {
@@ -100,16 +100,56 @@ export default function Overview({ initialValues }: OverviewProps) {
       .catch((err) => console.log(err));
   }, []);
 
-  const filteredChartData = filterChartData(chartData, selectedTimeframe);
+  const parseDate = (dateString: string) => {
+    const [month, day, year] = dateString.split('/');
+    return new Date(`${year}-${month}-${day}`);
+  };
+
+  const today = new Date().toLocaleDateString();
+  const prevDay = chartData[chartData.length - 1]?.date;
+  const oneDayChartData = chartData.filter(
+    (data) => data.date === today || data.date === prevDay
+  );
+
+  const sortedChartData = chartData
+    .slice()
+    .sort((a, b) => Number(parseDate(a.date)) - Number(parseDate(b.date)));
+
+  const oneWeekAgo = new Date();
+  oneWeekAgo.setDate(oneWeekAgo.getDate() - 7);
+  const startDate = oneWeekAgo.toLocaleDateString();
+
+  const oneYearAgo = new Date();
+  oneYearAgo.setDate(oneYearAgo.getDate() - 365);
+  const endDate = oneYearAgo.toLocaleDateString();
+
+  const filteredChartData =
+    selectedTimeframe === '1D'
+      ? oneDayChartData
+      : selectedTimeframe === '1W'
+      ? sortedChartData.filter(
+          (data) =>
+            parseDate(data.date) >= parseDate(startDate) &&
+            data.time === '12:00 PM'
+        )
+      : selectedTimeframe === '1Y'
+      ? sortedChartData.filter(
+          (data) =>
+            parseDate(data.date) >= parseDate(endDate) &&
+            data.time === '12:00 PM'
+        )
+      : filterChartData(sortedChartData, selectedTimeframe);
 
   const portfolioChartData: any = {
     labels:
-      selectedTimeframe !== '1M'
+      selectedTimeframe === '1D'
         ? filteredChartData.map((data) => data.time)
+        : selectedTimeframe === '1W'
+        ? filteredChartData.map((data) => data.date) // Display dates for the weekly chart
         : filteredChartData.map((data) => data.date),
     datasets: [
       {
-        label: '1D',
+        label: selectedTimeframe,
         data: filteredChartData.map((data) => data.value),
         backgroundColor: '#4c51bf',
         borderColor: '#4c51bf',
