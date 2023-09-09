@@ -57,7 +57,7 @@ export default function Home({ img }: HorizontalCardProps) {
               Examine trends and learn to invest with confidence!
             </Typography>
             <a href="#" className="inline-block">
-              <div className="f-center">
+              <div className="f-center mt-4">
                 <GradientButtonRounded
                   text="Open Market"
                   onClick={() => handleRoute('market')}
