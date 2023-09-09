@@ -39,7 +39,18 @@ export const GET = async () => {
       },
     });
 
-    return new Response(JSON.stringify(portfolioData), { status: 200 });
+    const updateWithPercentGain = portfolioData.map((data) => {
+      return {
+        ...data,
+        percentGain: (
+          ((Number(data.Stock.current_price) -
+            Number(data.average_price)) / Number(data.average_price)) *
+          100
+        ).toFixed(2),
+      };
+    });
+
+    return new Response(JSON.stringify(updateWithPercentGain), { status: 200 });
   } catch (error) {
     console.error('Error getting portfolio data:', error);
     return new Response(
