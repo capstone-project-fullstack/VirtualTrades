@@ -280,7 +280,7 @@ export default function TradeForm({
                     </span>
                   </div>
                 </div>
-                <div className="w-full f-center pb-10">
+                <div className="w-full f-center pb-5">
                   <button
                     type="submit"
                     className="w-44 custom-btn min-h-[45px]"

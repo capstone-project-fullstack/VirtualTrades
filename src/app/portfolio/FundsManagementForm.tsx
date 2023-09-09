@@ -64,16 +64,16 @@ export default function FundsManagementForm({
 
   return (
     <>
-      <Button variant="gradient" color="blue" onClick={handleOpen}>
+      <Button className='bg-light-green' onClick={handleOpen}>
         Add Cash
       </Button>
       <Dialog
         size="xs"
         open={open}
         handler={handleOpen}
-        className="bg-transparent shadow-none"
+        className="bg-transparent"
       >
-        <Card className="mx-auto w-full max-w-[24rem]">
+        <Card className="mx-auto w-full max-w-[24rem] bg-dark-purple">
           <CardHeader
             variant="gradient"
             color="blue"
