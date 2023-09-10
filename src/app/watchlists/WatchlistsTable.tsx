@@ -16,7 +16,6 @@ import { ChevronUpDownIcon } from '@heroicons/react/24/outline';
 import { API_KEYS } from '../utils/config';
 
 const tableHead = [
-  // { header: 'Icon', sortKey: null },
   { header: 'Name', sortKey: 'name' },
   { header: 'Symbol', sortKey: 'symbol' },
   { header: 'Price', sortKey: 'price' },
@@ -109,167 +108,171 @@ export default function WatchlistsTable() {
   }, [tableRows]);
 
   return (
-    <Card className="h-full w-full text-white overflow-auto no-scrollbar bg-black px-3">
-      <table className="w-full min-w-max text-center">
-        <thead>
-          <tr>
-            <th
-              align="center"
-              className="border-y text-center py-4 transition-colors border-cell"
-            >
-              <Typography
-                variant="h6"
-                color="white"
-                className="flex items-center justify-center gap-2 font-normal leading-none"
-              >
-                Icon
-              </Typography>
-            </th>
-            {tableHead.map((head, index) => (
+    <div className="text-white overflow-auto no-scrollbar mx-3 border border-custom3 rounded-xl">
+      <div className="min-h-[63vh] w-full">
+        <table className="w-full text-center">
+          <thead>
+            <tr>
               <th
                 align="center"
-                key={index}
-                className="cursor-pointer border-y py-4 transition-colors border-cell max-w-[165px]"
+                className="border-y text-center py-4 transition-colors border-cell"
               >
                 <Typography
                   variant="h6"
                   color="white"
-                  className="font-normal text-center leading-none pl-5"
-                  onClick={() => {
-                    if (sortOrder === null || sortOrder === 'desc') {
-                      setSortOrder('asc');
-                    } else {
-                      setSortOrder('desc');
-                    }
-                    customSortWatchlists(
-                      head.sortKey,
-                      tableRows,
-                      setTableRows,
-                      sortOrder
-                    );
-                  }}
+                  className="flex items-center justify-center gap-2 font-normal leading-none"
                 >
-                  {head.header}
-                  <div className="float-right pr-1">
-                    <ChevronUpDownIcon strokeWidth={2} className="h-4 w-4" />
-                  </div>
+                  Icon
                 </Typography>
               </th>
-            ))}
-          </tr>
-        </thead>
-        <tbody>
-          {loading ? (
-            <div className="fixed top-1/2 left-1/2">
-              <Spinner />
-            </div>
-          ) : (
-            tableRows.map(
-              (
-                {
-                  icon,
-                  symbol,
-                  name,
-                  price,
-                  change,
-                  changePercent,
-                  prevClose,
-                  open,
-                  high,
-                  low,
-                  marketCap,
-                  high52,
-                  low52,
-                },
-                index
-              ) => (
-                <tr
+              {tableHead.map((head, index) => (
+                <th
+                  align="center"
                   key={index}
-                  className={`text-center ${
-                    change > 0 ? 'text-green-500' : 'text-red-500'
-                  } cursor-pointer`}
-                  onClick={() => router.push(`/stock/${symbol}`)}
+                  className="cursor-pointer border-y py-4 transition-colors border-cell max-w-[165px]"
                 >
-                  <td className="p-2 border-cell">
-                    <Avatar src={icon} alt={name} size="sm" />
-                  </td>
-                  <td
-                    align="left"
-                    className="py-2 pl-2 border-cell max-w-[100px]"
+                  <Typography
+                    variant="h6"
+                    color="white"
+                    className="font-normal text-center leading-none pl-5"
+                    onClick={() => {
+                      if (sortOrder === null || sortOrder === 'desc') {
+                        setSortOrder('asc');
+                      } else {
+                        setSortOrder('desc');
+                      }
+                      customSortWatchlists(
+                        head.sortKey,
+                        tableRows,
+                        setTableRows,
+                        sortOrder
+                      );
+                    }}
                   >
-                    <Typography
-                      variant="small"
-                      color="white"
-                      className="font-normal"
-                    >
-                      {name}
-                    </Typography>
-                  </td>
-                  <td className="p-2 border-cell">
-                    <Typography
-                      variant="small"
-                      color="white"
-                      className="font-normal"
-                    >
-                      {symbol}
-                    </Typography>
-                  </td>
-                  <td className="p-2 border-cell">
-                    <Typography variant="small" className="font-normal">
-                      {formatPrice(price)}
-                    </Typography>
-                  </td>
-                  <td className="p-2 border-cell">
-                    <Typography variant="small" className="font-normal">
-                      {formatPrice(change)}
-                    </Typography>
-                  </td>
-                  <td className="p-2 border-cell">
-                    <Typography variant="small" className="font-normal">
-                      {changePercent.toFixed(2)}%
-                    </Typography>
-                  </td>
-                  <td className="p-2 border-cell">
-                    <Typography variant="small" className="font-normal">
-                      {formatPrice(prevClose)}
-                    </Typography>
-                  </td>
-                  <td className="p-2 border-cell">
-                    <Typography variant="small" className="font-normal">
-                      {formatPrice(open)}
-                    </Typography>
-                  </td>
-                  <td className="p-2 border-cell">
-                    <Typography variant="small" className="font-normal">
-                      {formatPrice(high)}
-                    </Typography>
-                  </td>
-                  <td className="p-2 border-cell">
-                    <Typography variant="small" className="font-normal">
-                      {formatPrice(low)}
-                    </Typography>
-                  </td>
-                  <td className="p-2 border-cell">
-                    <Typography variant="small" className="font-normal">
-                      {convertMarketCap(marketCap)}
-                    </Typography>
-                  </td>
-                  <td className="p-2 border-cell">
-                    <Typography variant="small" className="font-normal">
-                      {formatPrice(high52)}
-                    </Typography>
-                  </td>
-                  <td className="p-2 border-cell">
-                    <Typography variant="small" className="font-normal">
-                      {formatPrice(low52)}
-                    </Typography>
-                  </td>
-                </tr>
-              )
-            )
+                    {head.header}
+                    <div className="float-right pr-1">
+                      <ChevronUpDownIcon strokeWidth={2} className="h-4 w-4" />
+                    </div>
+                  </Typography>
+                </th>
+              ))}
+            </tr>
+          </thead>
+          {!loading && !tableRows.length && (
+            <td colSpan={13} className="text-center pt-5">
+              Add some stocks to your watchlist to see them here
+            </td>
           )}
-        </tbody>
-      </table>
-    </Card>
+          <tbody>
+            {loading ? (
+              <div className="absolute top-1/2 left-1/2 ">
+                <Spinner />
+              </div>
+            ) : (
+              tableRows.map(
+                (
+                  {
+                    icon,
+                    symbol,
+                    name,
+                    price,
+                    change,
+                    changePercent,
+                    prevClose,
+                    open,
+                    high,
+                    low,
+                    marketCap,
+                    high52,
+                    low52,
+                  },
+                  index
+                ) => (
+                  <tr
+                    key={index}
+                    className={`text-center ${
+                      change > 0 ? 'text-green-500' : 'text-red-500'
+                    } cursor-pointer max-h-10`}
+                    onClick={() => router.push(`/stock/${symbol}`)}
+                  >
+                    <td className="p-2 border-cell">
+                      <Avatar src={icon} alt={name} size="sm" />
+                    </td>
+                    <td align="left" className="py-2 pl-2 border-cell">
+                      <Typography
+                        variant="small"
+                        color="white"
+                        className="font-normal"
+                      >
+                        {name}
+                      </Typography>
+                    </td>
+                    <td className="p-2 border-cell">
+                      <Typography
+                        variant="small"
+                        color="white"
+                        className="font-normal"
+                      >
+                        {symbol}
+                      </Typography>
+                    </td>
+                    <td className="p-2 border-cell">
+                      <Typography variant="small" className="font-normal">
+                        {formatPrice(price)}
+                      </Typography>
+                    </td>
+                    <td className="p-2 border-cell">
+                      <Typography variant="small" className="font-normal">
+                        {formatPrice(change)}
+                      </Typography>
+                    </td>
+                    <td className="p-2 border-cell">
+                      <Typography variant="small" className="font-normal">
+                        {changePercent.toFixed(2)}%
+                      </Typography>
+                    </td>
+                    <td className="p-2 border-cell">
+                      <Typography variant="small" className="font-normal">
+                        {formatPrice(prevClose)}
+                      </Typography>
+                    </td>
+                    <td className="p-2 border-cell">
+                      <Typography variant="small" className="font-normal">
+                        {formatPrice(open)}
+                      </Typography>
+                    </td>
+                    <td className="p-2 border-cell">
+                      <Typography variant="small" className="font-normal">
+                        {formatPrice(high)}
+                      </Typography>
+                    </td>
+                    <td className="p-2 border-cell">
+                      <Typography variant="small" className="font-normal">
+                        {formatPrice(low)}
+                      </Typography>
+                    </td>
+                    <td className="p-2 border-cell">
+                      <Typography variant="small" className="font-normal">
+                        {convertMarketCap(marketCap)}
+                      </Typography>
+                    </td>
+                    <td className="p-2 border-cell">
+                      <Typography variant="small" className="font-normal">
+                        {formatPrice(high52)}
+                      </Typography>
+                    </td>
+                    <td className="p-2 border-cell">
+                      <Typography variant="small" className="font-normal">
+                        {formatPrice(low52)}
+                      </Typography>
+                    </td>
+                  </tr>
+                )
+              )
+            )}
+          </tbody>
+        </table>
+      </div>
+    </div>
   );
 }
