@@ -59,7 +59,7 @@ export default function Home({ img }: HorizontalCardProps) {
             <a href="#" className="inline-block">
               <div className="f-center mt-4">
                 <GradientButtonRounded
-                  text="Open Market"
+                  text="Stock Market"
                   onClick={() => handleRoute('market')}
                   className="bg-none bg-light-green"
                 />

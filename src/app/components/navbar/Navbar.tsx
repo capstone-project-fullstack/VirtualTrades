@@ -40,17 +40,17 @@ export default function Navbar() {
   filteredStocks.splice(6);
 
   const items = [
-    { name: 'Home', href: '/', icon: <IoIosHome /> },
-    { name: 'Portfolio', href: '/portfolio', icon: <MdDashboard /> },
-    { name: 'News', href: '/news', icon: <BiNews /> },
     { name: 'Market', href: '/market', icon: <IoMdTrendingUp /> },
+    { name: 'Portfolio', href: '/portfolio', icon: <MdDashboard /> },
+    { name: 'Home', href: '/', icon: <IoIosHome /> },
+    { name: 'News', href: '/news', icon: <BiNews /> },
     { name: 'Watchlists', href: '/watchlists', icon: <BiBookmark /> },
   ];
 
   return (
     <div
       className={`z-10 h-screen p-3 pt-7 bg-dark-blue ${
-        open ? 'w-56' : 'w-16'
+        open ? 'w-60' : 'w-16'
       } fixed top-0 left-0 transition-all duration-300`}
     >
       <BsArrowLeftShort
@@ -71,9 +71,9 @@ export default function Navbar() {
             }`}
           />
           <Img
-            width={150}
+            width={170}
             height={100}
-            src="https://ucarecdn.com/59d6e657-1f99-407d-a719-531899f4823b/"
+            src="https://ucarecdn.com/11fd524a-65d5-4334-9bff-3bcf90279d3a/-/preview/500x500/-/quality/smart_retina/-/format/auto/"
             alt="logo"
             className={`cursor-pointer origin-left duration-300 h-[30px] mt-1 ${
               !open && 'scale-0'
@@ -130,7 +130,7 @@ export default function Navbar() {
           </div>
         )}
       </div>
-      <ul className="pt-1">
+      <ul className="pt-1 mt-3">
         {items.map((item, index) => (
           <li key={index} onClick={() => isOpen(false)}>
             <Link
