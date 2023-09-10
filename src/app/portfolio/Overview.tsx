@@ -140,10 +140,35 @@ export default function Overview({ initialValues }: OverviewProps) {
         )
       : filterChartData(sortedChartData, selectedTimeframe);
 
+  const sortBasedOnTime = (arr: PortfolioChartData[]) => {
+    const getTimeValue = (timeStr: string) => {
+      const match = timeStr.match(/(\d+):(\d+) ([APM]+)/);
+      if (!match) return 0;
+
+      let hours = parseInt(match[1]);
+      const minutes = parseInt(match[2]);
+      const period = match[3].toUpperCase();
+
+      if (period === 'PM' && hours !== 12) {
+        hours += 12;
+      } else if (period === 'AM' && hours === 12) {
+        hours = 0;
+      }
+
+      return hours * 60 + minutes;
+    };
+    arr.sort((a, b) => getTimeValue(a.time) - getTimeValue(b.time));
+    const filteredArray = arr.filter((item) => {
+      const timeValue = getTimeValue(item.time);
+      return timeValue >= 9 * 60 && timeValue <= 17 * 60;
+    });
+    return filteredArray;
+  };
+
   const portfolioChartData: any = {
     labels:
       selectedTimeframe === '1D'
-        ? filteredChartData.map((data) => data.time)
+        ? sortBasedOnTime(filteredChartData).map((data) => data.time)
         : selectedTimeframe === '1W'
         ? filteredChartData.map((data) => data.date) // Display dates for the weekly chart
         : filteredChartData.map((data) => data.date),
