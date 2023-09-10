@@ -8,7 +8,7 @@ export default function Watchlists() {
       <div>
         <HeaderText text="Watchlists" />
       </div>
-      <div>
+      <div className='h-full'>
         <WatchlistsTable />
       </div>
     </>
