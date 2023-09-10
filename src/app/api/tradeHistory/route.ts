@@ -4,15 +4,15 @@ import { parseTimestamp } from '@/app/utils/utils';
 import { TradeHistory } from '../../../../typings';
 
 export const GET = async () => {
+  const currUser = await currentUser();
+  if (!currUser) {
+    return new Response(JSON.stringify({ error: 'User not logged in' }), {
+      status: 401,
+      headers: { 'Content-Type': 'application/json' },
+    });
+  }
+  
   try {
-    const currUser = await currentUser();
-    if (!currUser) {
-      return new Response(JSON.stringify({ error: 'User not logged in' }), {
-        status: 401,
-        headers: { 'Content-Type': 'application/json' },
-      });
-    }
-
     const userId = currUser.id;
 
     const data = await prisma.trade.findMany({
