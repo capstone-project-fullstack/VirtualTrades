@@ -66,6 +66,7 @@ export interface PortfolioData {
   average_price: number;
   total_equity: number;
   gain: number;
+  percentGain: string;
   Stock: {
     symbol: string;
     name: string;

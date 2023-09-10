@@ -69,10 +69,10 @@
   color: white;
   border-radius: 5px;
   box-shadow:
-    0 0 3px #03e9f4,
-    0 0 15px #03e9f4,
-    0 0 30px #03e9f4,
-    0 0 60px #03e9f4;
+    0 0 1px #03e9f4,
+    0 0 10px #03e9f4,
+    0 0 20px #03e9f4,
+    0 0 40px #03e9f4;
 }
 
 .custom-btn span {
@@ -178,10 +178,10 @@
   color: white;
   border-radius: 5px;
   box-shadow:
-    0 0 3px #f700f7,
-    0 0 15px #f700f7,
-    0 0 30px #f700f7,
-    0 0 60px #f700f7;
+    0 0 1px #f700f7,
+    0 0 10px #f700f7,
+    0 0 20px #f700f7,
+    0 0 40px #f700f7;
 }
 
 .custom-btn2 span {
@@ -266,4 +266,17 @@
   100% {
     bottom: 100%;
   }
+}
+
+.cl-formFieldInputShowPasswordButton {
+  color: black;
+}
+
+.cl-socialButtonsIconButton,
+.cl-dividerLine {
+  border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.color {
+  background-color: #6129d1;
 }

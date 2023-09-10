@@ -13,17 +13,8 @@ import { useRouter } from 'next/navigation';
 
 interface HorizontalCardProps {
   img: string;
-  text1: string;
-  text2: string;
-  // text3: string;
-  onClick: () => void;
 }
-export default function Home({
-  img,
-  text1,
-  text2,
-  // text3,
-}: HorizontalCardProps) {
+export default function Home({ img }: HorizontalCardProps) {
   const router = useRouter(); // Move this line here
 
   const handleRoute = (page: string) => {
@@ -49,11 +40,21 @@ export default function Home({
         </CardHeader>
         <div className="md:w-3/5">
           <CardBody>
-            <Typography variant="h6" color="white" className="mb-4 uppercase">
-              {text1}
+            <Typography
+              variant="h6"
+              color="white"
+              className="mb-4 uppercase text-3xl"
+            >
+              Sign up now to receive real-time overviews
             </Typography>
-            <Typography variant="h4" color="white" className="mb-2">
-              {text2}
+            <Typography variant="h4" color="white" className="mb-2 text-xl">
+              Welcome to our Stock Market, where you can explore real-time
+              trends and insights. An array of interactive graphs showcasing
+              live stock data allows you to track the performance of various
+              stocks and delve into comprehensive analyses."
+            </Typography>
+            <Typography color="white" className="mb-8 font-normal">
+              Examine trends and learn to invest with confidence!
             </Typography>
             <a href="#" className="inline-block">
               <div className="f-center mt-4">
