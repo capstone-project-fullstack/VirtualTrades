@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useEffect, useRef } from 'react';
+import Tooltip from '../Tooltip';
 
 export default function EconomicCalendarWidget() {
   const container = useRef<HTMLDivElement | null>(null);
@@ -30,6 +31,9 @@ export default function EconomicCalendarWidget() {
 
   return (
     <div className="tradingview-widget-container">
+       <div className="relative top-[5px] left-[98%] z-50 h-0 w-0">
+        <Tooltip title="Economic Calendar" text="Economic calender for important dates. You can also add it to your Google Calendar" />
+      </div>
       <div
         className="tradingview-widget-container__widget"
         ref={container}

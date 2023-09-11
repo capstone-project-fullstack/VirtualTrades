@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useEffect, useRef } from 'react';
+import Tooltip from '../Tooltip';
 
 const Heatmap = () => {
   const container = useRef<HTMLDivElement | null>(null);
@@ -41,6 +42,9 @@ const Heatmap = () => {
         className="tradingview-widget-container__widget"
         ref={container}
       ></div>
+      <div className="relative -top-[42px] left-[5px] z-50 h-0">
+        <Tooltip title="Heatmap" text="See how S&P 500 stocks are performing" />
+      </div>
     </div>
   );
 };

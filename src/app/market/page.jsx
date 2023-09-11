@@ -7,6 +7,7 @@ import TopWidget from '../components/widgets/TopWidget';
 import ScreenerWidget from '../components/widgets/ScreenerWidget';
 import MarketOverviewWidget from '../components/widgets/MarketOverviewWidget';
 import EconomicCalendarWidget from '../components/widgets/EconomicCalendarWidget';
+import Tooltip from '../components/Tooltip';
 
 const Market = () => {
   return (
@@ -14,7 +15,7 @@ const Market = () => {
       <TopWidget />
       <HeaderText text="Stock Market" />
       <div className="f-center h-full">
-        <div className="w-full lg:w-[90%] h-full">
+        <div className="w-full lg:w-[98%] h-full">
           <div className="flex flex-col lg:flex-row gap-3 mx-3 mt-3 lg:m-0">
             <div className="flex-auto lg:max-w-[65%]">
               <Heatmap />
@@ -26,12 +27,12 @@ const Market = () => {
         </div>
       </div>
       <div className="f-center h-full">
-        <div className="mt-3 mx-3 w-full lg:w-[90%]">
+        <div className="mt-3 mx-3 w-full lg:w-[98%]">
           <ScreenerWidget />
         </div>
       </div>
       <div className="f-center h-full">
-        <div className="mt-3 mx-3 w-full lg:w-[90%]">
+        <div className="mt-3 mx-3 w-full lg:w-[98%]">
           <EconomicCalendarWidget />
         </div>
       </div>
