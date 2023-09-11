@@ -15,6 +15,7 @@ const nextConfig = {
       'netzelfinancial.com',
       'www.nyse.com',
       'cdn-scripbox-wordpress.scripbox.com',
+      'g.foolcdn.com',
     ],
     unoptimized: true,
   },
