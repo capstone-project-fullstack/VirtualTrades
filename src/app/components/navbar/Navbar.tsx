@@ -24,7 +24,6 @@ export default function Navbar() {
   const [suggestions, setSuggestions] = useState<any[]>([]);
   const router = useRouter();
   const { user } = useUser();
-  console.log(user);
 
   useEffect(() => {
     axios

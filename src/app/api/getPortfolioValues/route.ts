@@ -10,13 +10,18 @@ export const GET = async () => {
       headers: { 'Content-Type': 'application/json' },
     });
   }
-  
+
   try {
     const userId = currUser?.id;
 
     const userPortfolioSnapshots = await prisma.portfolioValue.findMany({
       where: { user_id: userId },
+      orderBy: {
+        timestamp: 'asc',
+      },
     });
+
+    console.log(userPortfolioSnapshots);
 
     const res = userPortfolioSnapshots.map((data) => {
       return {

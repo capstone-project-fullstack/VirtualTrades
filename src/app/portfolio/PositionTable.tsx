@@ -48,54 +48,54 @@ export default function PositionTable() {
   }, []);
 
   useEffect(() => {
-    socket.addEventListener('message', (e) => {
-      if (e.data) {
-        try {
-          const data = JSON.parse(e.data);
-          const trades = data.data;
-          if (trades && trades.length > 0) {
-            setTableRows((prevRows) => {
-              const updatedRows = prevRows.map((row) => {
-                const matchingTrade = trades.find(
-                  (trade: any) => trade.s === row.Stock.symbol
-                );
-                if (matchingTrade) {
-                  const updatedStock = {
-                    ...row.Stock,
-                    current_price: matchingTrade.p,
-                  };
-                  const updatedRow = {
-                    ...row,
-                    Stock: updatedStock,
-                    total_equity: updatedStock.current_price * row.shares,
-                    gain:
-                      (updatedStock.current_price - row.average_price) *
-                      row.shares,
-                    percentGain: (
-                      ((updatedStock.current_price - row.average_price) /
-                        row.average_price) *
-                      100
-                    ).toFixed(2),
-                  };
-                  return updatedRow;
-                }
-                return row;
-              });
-              // Calculate the new current_portfolio_value
-              const newPortfolioValue = updatedRows.reduce(
-                (sum, r) => sum + Number(r.total_equity),
-                0
-              );
-              // Dispatch the action to update the current_portfolio_value
-              dispatch(updateCurrentPortfolioValue(newPortfolioValue + cash));
-              return updatedRows;
-            });
-          }
-        } catch (error) {
-          console.error('Error parsing JSON data:', error);
-        }
-      }
-    });
+    // socket.addEventListener('message', (e) => {
+    //   if (e.data) {
+    //     try {
+    //       const data = JSON.parse(e.data);
+    //       const trades = data.data;
+    //       if (trades && trades.length > 0) {
+    //         setTableRows((prevRows) => {
+    //           const updatedRows = prevRows.map((row) => {
+    //             const matchingTrade = trades.find(
+    //               (trade: any) => trade.s === row.Stock.symbol
+    //             );
+    //             if (matchingTrade) {
+    //               const updatedStock = {
+    //                 ...row.Stock,
+    //                 current_price: matchingTrade.p,
+    //               };
+    //               const updatedRow = {
+    //                 ...row,
+    //                 Stock: updatedStock,
+    //                 total_equity: updatedStock.current_price * row.shares,
+    //                 gain:
+    //                   (updatedStock.current_price - row.average_price) *
+    //                   row.shares,
+    //                 percentGain: (
+    //                   ((updatedStock.current_price - row.average_price) /
+    //                     row.average_price) *
+    //                   100
+    //                 ).toFixed(2),
+    //               };
+    //               return updatedRow;
+    //             }
+    //             return row;
+    //           });
+    //           // Calculate the new current_portfolio_value
+    //           const newPortfolioValue = updatedRows.reduce(
+    //             (sum, r) => sum + Number(r.total_equity),
+    //             0
+    //           );
+    //           // Dispatch the action to update the current_portfolio_value
+    //           dispatch(updateCurrentPortfolioValue(newPortfolioValue + cash));
+    //           return updatedRows;
+    //         });
+    //       }
+    //     } catch (error) {
+    //       console.error('Error parsing JSON data:', error);
+    //     }
+    //   }
+    // });
   }, [tableRows]);
 
   const filterStock = tableRows.filter((row) => {
