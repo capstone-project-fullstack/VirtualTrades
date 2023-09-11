@@ -23,12 +23,12 @@ export default function Home({ img }: HorizontalCardProps) {
 
   // export default function HorizontalCard({ img, text1, text2, text3, onClick }: HorizontalCardProps) {
   return (
-    <Card className="w-full max-w-[48rem] bg-dark-black">
+    <Card className="w-full max-w-[48rem] bg-dark-purple mx-3">
       <div className="flex flex-col md:flex-row">
         <CardHeader
           shadow={false}
           floated={false}
-          className="w-full md:w-2/5 m-0 rounded-r-none"
+          className="w-full md:w-2/5 m-0 rounded"
         >
           <Img
             src={img}

@@ -28,7 +28,7 @@ export default function StockCardLandingPage({
 
 
   return (
-    <Card className="w-96 bg-dark-black m-10 text-center items-center justify-center">
+    <Card className="w-96 bg-dark-purple text-center items-center justify-center">
       <Typography color="white" variant="h4" className="text-center pt-6">
         {titleCard}
       </Typography>
