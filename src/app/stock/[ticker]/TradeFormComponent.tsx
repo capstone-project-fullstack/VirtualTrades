@@ -1,16 +1,13 @@
 'use client';
-
 import { API_KEYS } from '../../utils/config';
 import axios from 'axios';
 import { formatPrice, generateRandomNumber } from '../../utils/utils';
-import { FormEvent, FormEventHandler, useEffect, useState } from 'react';
+import { FormEvent, useEffect, useState } from 'react';
 import { NotificationDialog } from '@/app/components/NotificationDialog';
 import {
-  Card,
   CardHeader,
   CardBody,
   Input,
-  Button,
   Typography,
   Tabs,
   TabsHeader,
@@ -180,7 +177,7 @@ export default function TradeForm({
   }
 
   return (
-    <Card className="min-w-[50px] max-w-[400px] bg-dark-black border border-custom3 text-white min-h-[500px] mx-auto rounded-none">
+    <div className="w-full bg-dark-black border border-custom3 text-white h-auto mx-auto rounded-none">
       <NotificationDialog
         dialogContent={dialogContent}
         setDialogContent={setDialogContent}
@@ -193,7 +190,7 @@ export default function TradeForm({
         <Typography variant="h5">Trade Stock</Typography>
       </CardHeader>
       <CardBody className="text-white">
-        <Tabs value={type} className="overflow-visible">
+        <Tabs value={type} className="overflow-auto no-scrollbar">
           <TabsHeader
             className="relative z-0 bg-custom1"
             indicatorProps={{
@@ -217,7 +214,7 @@ export default function TradeForm({
             </Tab>
           </TabsHeader>
           <TabsBody
-            className="overflow-x-hidden overflow-y-visible"
+            className="overflow-x-hidden overflow-y-visible no-scrollbar"
             animate={{
               initial: {
                 x: type === 'buy' ? 400 : -400,
@@ -280,7 +277,7 @@ export default function TradeForm({
                     </span>
                   </div>
                 </div>
-                <div className="w-full f-center pb-5">
+                <div className="w-full f-center pb-10">
                   <button
                     type="submit"
                     className="w-44 custom-btn min-h-[45px]"
@@ -376,6 +373,6 @@ export default function TradeForm({
           </TabsBody>
         </Tabs>
       </CardBody>
-    </Card>
+    </div>
   );
 }

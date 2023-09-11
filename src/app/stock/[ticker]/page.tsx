@@ -19,28 +19,28 @@ export default function StockPage({ params, searchParams }: StockPageProps) {
   if (tvwidgetsymbol) ticker = tvwidgetsymbol.split(':')[1];
 
   return (
-    <div className="w-full px-3">
-      <div className="absolute top-3 right-3">
-        <WatchlistsButton ticker={ticker} />
-      </div>
-      <div className="w-full mt-3 ">
-        <StockHeader ticker={ticker} />
+    <div className="w-full">
+      <div className="mx-3">
+        <div className="absolute top-3 right-3">
+          <WatchlistsButton ticker={ticker} />
+        </div>
+        <div className="w-full mt-3 ">
+          <StockHeader ticker={ticker} />
+        </div>
       </div>
 
-      <div className="w-full">
-        <div className="flex flex-col lg:flex-row">
-          <div className="min-h-[600px] sm:min-h-[400px] sm:min-w-[500px] lg:flex-auto lg:max-w-[75%] mt-3 lg:mr-3 mx-auto">
-            <div className="w-full h-full">
-              <GraphWidget ticker={ticker} />
-            </div>
+      <div className="w-full lg:w-[98%] h-full mx-auto mt-3">
+        <div className="flex flex-col lg:flex-row gap-3 mx-3 lg:m-0">
+          <div className="flex-auto justify-center items-center lg:max-w-[75%] md:min-w-[70%]">
+            <GraphWidget ticker={ticker} />
           </div>
-          <div className="lg:min-w-[25%] mt-3">
+          <div className="lg:min-w-[25%] md:min-w-[30%] flex flex-col lg:justify-center">
             <TradeForm ticker={ticker} />
           </div>
         </div>
-        <div className="f-center">
-          <CompanyDataTabs ticker={ticker} />
-        </div>
+      </div>
+      <div className="f-center">
+        <CompanyDataTabs ticker={ticker} />
       </div>
     </div>
   );

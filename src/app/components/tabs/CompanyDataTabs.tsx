@@ -36,7 +36,7 @@ export default function CompanyDataTabs({ ticker }: { ticker: string }) {
   return (
     <Tabs className="flex flex-col w-full" value={activeTab} align="center">
       <TabsHeader
-        className="w-full f-center mt-3 bg-custom2 opacity-100"
+        className="w-full f-center px-3 mt-3 bg-custom2 opacity-100"
         indicatorProps={{
           className: 'bg-custom5',
         }}
