@@ -16,12 +16,15 @@ import {
 import { useRouter } from 'next/navigation';
 import axios from 'axios';
 import { Tooltip } from '@material-tailwind/react';
+import { useUser } from "@clerk/nextjs"
 
 export default function Navbar() {
   const [open, isOpen] = useState<boolean>(false);
   const [searchStock, setSearchStock] = useState<string>('');
   const [suggestions, setSuggestions] = useState<any[]>([]);
   const router = useRouter();
+  const { user } = useUser();
+  console.log(user);
 
   useEffect(() => {
     axios
@@ -40,16 +43,16 @@ export default function Navbar() {
   filteredStocks.splice(6);
 
   const items = [
-    { name: 'Market', href: '/market', icon: <IoMdTrendingUp /> },
+    { name: 'Home', href: '/', icon: <IoIosHome /> },
     { name: 'Portfolio', href: '/portfolio', icon: <MdDashboard /> },
     { name: 'Watchlists', href: '/watchlists', icon: <BiBookmark /> },
-    { name: 'Home', href: '/', icon: <IoIosHome /> },
+    { name: 'Market', href: '/market', icon: <IoMdTrendingUp /> },
     { name: 'News', href: '/news', icon: <BiNews /> },
   ];
 
   return (
     <div
-      className={`z-10 h-screen p-3 pt-7 bg-dark-blue ${
+      className={`z-[1000] h-screen p-3 pt-7 bg-dark-blue ${
         open ? 'w-60' : 'w-16'
       } fixed top-0 left-0 transition-all duration-300`}
     >
@@ -130,59 +133,78 @@ export default function Navbar() {
           </div>
         )}
       </div>
-      <ul className="pt-1 mt-3">
-        {items.map((item, index) => (
-          <li key={index} onClick={() => isOpen(false)}>
-            <Link
-              href={item.href}
-              className="text-gray-300 text-sm flex items-center gap-x-4 cursor-pointer px-[5px] py-1 my-2 hover:bg-light-white rounded-md focus:bg-light-white"
-            >
-              {!open ? (
-                <Tooltip
-                  content={item.name}
-                  placement="right"
-                  className="ml-2 bg-white text-black"
+      <div className='flex flex-col justify-between h-[80%]'>
+        <ul className={`${
+          !open ? 'px-auto' : 'px-2'
+        }`}>
+          {items.map((item, index) => (
+            <li key={index} onClick={() => isOpen(false)}>
+              <Link
+                href={item.href}
+                className="text-gray-300 text-sm flex items-center gap-x-4 cursor-pointer px-[5px] py-1 my-2 hover:bg-light-white rounded-md focus:bg-light-white"
+              >
+                {!open ? (
+                  <Tooltip
+                    content={item.name}
+                    placement="right"
+                    className="ml-2 bg-white text-black"
+                  >
+                    <div className="text-3xl block float-left">{item.icon}</div>
+                  </Tooltip>
+                ) : (
+                  <div className="text-2xl block float-left">{item.icon}</div>
+                )}
+                <div
+                  className={`text-base font-medium flex-1 duration-200 ${
+                    !open && 'hidden'
+                  }`}
                 >
-                  <div className="text-3xl block float-left">{item.icon}</div>
-                </Tooltip>
-              ) : (
-                <div className="text-2xl block float-left">{item.icon}</div>
-              )}
+                  {item.name}
+                </div>
+              </Link>
+            </li>
+          ))}
+        </ul>
+        <div>
+          <SignedIn>
+            <div className="flex items-center gap-x-4 cursor-pointer p-1 my-2">
+              <UserButton showName={open} afterSignOutUrl="/" />
               <div
                 className={`text-base font-medium flex-1 duration-200 ${
                   !open && 'hidden'
                 }`}
               >
-                {item.name}
+                {user?.firstName}
               </div>
-            </Link>
-          </li>
-        ))}
-      </ul>
-      <div>
-        <SignedIn>
-          <div className="flex items-center gap-x-4 cursor-pointer p-1 my-2">
-            <UserButton afterSignOutUrl="/" />
-            <div
-              className={`text-base font-medium flex-1 duration-200 ${
-                !open && 'hidden'
-              }`}
-            >
-              Profile
             </div>
-          </div>
-        </SignedIn>
-        <SignedOut>
-          <div className="text-gray-300 text-sm flex items-center gap-x-4 cursor-pointer px-[5px] py-1 my-2 hover:bg-light-white rounded-md focus:bg-light-white">
-            {!open ? (
-              <Tooltip
-                content="Sign In"
-                placement="right"
-                className="ml-2 bg-white text-black"
-              >
+          </SignedIn>
+          <SignedOut>
+            <div className="text-gray-300 text-sm flex items-center gap-x-4 cursor-pointer px-[5px] py-1 my-2 hover:bg-light-white rounded-md focus:bg-light-white">
+              {!open ? (
+                <Tooltip
+                  content="Sign In"
+                  placement="right"
+                  className="ml-2 bg-white text-black"
+                >
+                  <div>
+                    <IoIosLogIn
+                      className="text-3xl block float-left"
+                      onClick={() => router.push('/sign-in')}
+                    />
+                    <div
+                      className={`text-base font-medium flex-1 duration-200 flex items-center gap-x-4 pl-4 ${
+                        !open && 'hidden'
+                      }`}
+                    >
+                      
+                      <SignInButton />
+                    </div>
+                  </div>
+                </Tooltip>
+              ) : (
                 <div>
                   <IoIosLogIn
-                    className="text-3xl block float-left"
+                    className="text-2xl block float-left"
                     onClick={() => router.push('/sign-in')}
                   />
                   <div
@@ -193,24 +215,10 @@ export default function Navbar() {
                     <SignInButton />
                   </div>
                 </div>
-              </Tooltip>
-            ) : (
-              <div>
-                <IoIosLogIn
-                  className="text-2xl block float-left"
-                  onClick={() => router.push('/sign-in')}
-                />
-                <div
-                  className={`text-base font-medium flex-1 duration-200 flex items-center gap-x-4 pl-4 ${
-                    !open && 'hidden'
-                  }`}
-                >
-                  <SignInButton />
-                </div>
-              </div>
-            )}
-          </div>
-        </SignedOut>
+              )}
+            </div>
+          </SignedOut>
+        </div>
       </div>
     </div>
   );
