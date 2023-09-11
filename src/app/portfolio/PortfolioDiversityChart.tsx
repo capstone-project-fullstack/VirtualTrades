@@ -72,6 +72,9 @@ export default function PortfolioDiversityChart() {
   return (
     <>
       <div>
+        {!chartData.length && (
+          <div className="text-center">No data available</div>
+        )}
         <Doughnut data={data} options={chartOptions} />
       </div>
     </>

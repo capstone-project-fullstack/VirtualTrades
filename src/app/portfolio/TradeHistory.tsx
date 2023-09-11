@@ -1,6 +1,6 @@
 'use client';
 
-import { Card, Typography } from '@material-tailwind/react';
+import { Typography, Spinner } from '@material-tailwind/react';
 import { TradeHistory } from '../../../typings';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
@@ -9,18 +9,30 @@ const TABLE_HEAD = ['Time', 'Symbol', 'Price', 'Shares', 'Type'];
 
 export default function TradeHistory() {
   const [tableRows, setTableRows] = useState<TradeHistory[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
     axios
       .get('/api/tradeHistory')
       .then((res) => {
         setTableRows(res.data);
+        setLoading(false);
       })
       .catch((err) => console.log(err));
   }, []);
 
   return (
-    <Card className="w-full max-h-[600px] bg-dark-black border overflow-auto no-scrollbar border-custom3 ">
+    <div className="w-full bg-dark-black border overflow-auto no-scrollbar border-custom3 rounded-xl h-[500px]">
+      {loading && (
+        <div className="relative top-1/2 left-[48%] h-0 w-0">
+          <Spinner />
+        </div>
+      )}
+      <div className="bg-dark-black my-9">
+        <Typography variant="h5" color="white" className="text-center">
+          Trade History
+        </Typography>
+      </div>
       <table className="w-full min-w-max table-auto text-left ">
         <thead>
           <tr>
@@ -40,6 +52,11 @@ export default function TradeHistory() {
             ))}
           </tr>
         </thead>
+        {!loading && !tableRows.length && (
+          <td colSpan={5} className="text-center pt-5">
+            No trade history
+          </td>
+        )}
         <tbody>
           {tableRows.map(
             ({ date, time, symbol, price, type, shares }, index) => {
@@ -114,6 +131,6 @@ export default function TradeHistory() {
           )}
         </tbody>
       </table>
-    </Card>
+    </div>
   );
 }

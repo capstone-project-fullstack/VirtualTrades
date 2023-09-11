@@ -1,7 +1,7 @@
 'use client';
 
 import { ChevronUpDownIcon } from '@heroicons/react/24/outline';
-import { CardBody, Typography } from '@material-tailwind/react';
+import { CardBody, Typography, Spinner } from '@material-tailwind/react';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { customSortPositions, generateRandomNumber } from '../utils/utils';
@@ -33,6 +33,7 @@ export default function PositionTable() {
   const [tableRows, setTableRows] = useState<PortfolioData[]>([]);
   const [searchStock, setSearchStock] = useState<string>('');
   const [sortOrder, setSortOrder] = useState<'asc' | 'desc' | ''>('');
+  const [loading, setLoading] = useState<boolean>(true);
 
   const cash = useAppSelector((state) => state.fundManagement.values.cash);
 
@@ -43,6 +44,7 @@ export default function PositionTable() {
       .get('/api/positions')
       .then((res) => {
         setTableRows(res.data);
+        setLoading(false);
       })
       .catch((err) => console.log(err));
   }, []);
@@ -116,7 +118,12 @@ export default function PositionTable() {
   ];
 
   return (
-    <div className="w-full max-h-[600px] bg-dark-black border overflow-auto no-scrollbar border-custom3 rounded-xl">
+    <div className="w-full h-[500px] bg-dark-black border overflow-auto no-scrollbar border-custom3 rounded-xl">
+      {loading && (
+        <div className="relative top-1/2 left-[48%] h-0 w-0">
+          <Spinner />
+        </div>
+      )}
       <div className="bg-dark-black min-h-[100px] sm:min-h-fit mt-5">
         <PositionTableHeader
           searchStock={searchStock}
@@ -160,6 +167,11 @@ export default function PositionTable() {
               ))}
             </tr>
           </thead>
+          {!loading && !tableRows.length && (
+            <td colSpan={7} className="text-center pt-5">
+              No open positions
+            </td>
+          )}
           <tbody>
             {filterStock.map((row, index) => (
               <PositionTableRow key={index} row={row} />

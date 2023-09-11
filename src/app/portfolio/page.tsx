@@ -6,6 +6,7 @@ import PositionTable from './PositionTable';
 import Overview from './Overview';
 import PortfolioDiversityChart from './PortfolioDiversityChart';
 import TradeHistory from './TradeHistory';
+import Tooltip from '../components/Tooltip';
 
 export default async function Portfolio() {
   const currUser = await currentUser();
@@ -33,8 +34,19 @@ export default async function Portfolio() {
               <Funds />
             </div>
 
-            <div className="flex-2 p-2 f-center">
-              <PortfolioDiversityChart />
+            <div className="flex-2 p-2 flex-col">
+              <h1 className="text-xl font-bold text-center md:text-left mb-5 ml-3 flex gap-x-1">
+                Portfolio Diversity{' '}
+                <span className='mt-1'>
+                  <Tooltip
+                    title="Portfolio Diversity"
+                    text="% of total portfolio value"
+                  />
+                </span>
+              </h1>
+              <div className="f-center">
+                <PortfolioDiversityChart />
+              </div>
             </div>
           </div>
         </div>

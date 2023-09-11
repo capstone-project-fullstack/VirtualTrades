@@ -83,6 +83,7 @@ function filterChartData(data: PortfolioChartData[], timeframe: string) {
 
 export default function Overview({ initialValues }: OverviewProps) {
   const [chartData, setChartData] = useState<PortfolioChartData[]>([]);
+
   const [selectedTimeframe, setSelectedTimeframe] = useState('1D');
   const dispatch = useAppDispatch();
   const funds = useAppSelector((state) => state.fundManagement.values);
@@ -94,9 +95,7 @@ export default function Overview({ initialValues }: OverviewProps) {
   useEffect(() => {
     axios
       .get('/api/getPortfolioValues')
-      .then((res) => {
-        setChartData(res.data);
-      })
+      .then((res) => setChartData(res.data))
       .catch((err) => console.log(err));
   }, []);
 
@@ -105,15 +104,12 @@ export default function Overview({ initialValues }: OverviewProps) {
     return new Date(`${year}-${month}-${day}`);
   };
 
-  const today = new Date().toLocaleDateString();
-  const prevDay = chartData[chartData.length - 1]?.date;
-  const oneDayChartData = chartData.filter(
-    (data) => data.date === today || data.date === prevDay
-  );
+  const lastDay = chartData[chartData.length - 1]?.date;
+  const oneDayChartData = chartData.filter((data) => data.date === lastDay);
 
-  const sortedChartData = chartData
-    .slice()
-    .sort((a, b) => Number(parseDate(a.date)) - Number(parseDate(b.date)));
+  // const chartData = chartData
+  //   .slice()
+  //   .sort((a, b) => Number(parseDate(a.date)) - Number(parseDate(b.date)));
 
   const oneWeekAgo = new Date();
   oneWeekAgo.setDate(oneWeekAgo.getDate() - 7);
@@ -127,18 +123,18 @@ export default function Overview({ initialValues }: OverviewProps) {
     selectedTimeframe === '1D'
       ? oneDayChartData
       : selectedTimeframe === '1W'
-      ? sortedChartData.filter(
+      ? chartData.filter(
           (data) =>
             parseDate(data.date) >= parseDate(startDate) &&
             data.time === '12:00 PM'
         )
       : selectedTimeframe === '1Y'
-      ? sortedChartData.filter(
+      ? chartData.filter(
           (data) =>
             parseDate(data.date) >= parseDate(endDate) &&
             data.time === '12:00 PM'
         )
-      : filterChartData(sortedChartData, selectedTimeframe);
+      : filterChartData(chartData, selectedTimeframe);
 
   const sortBasedOnTime = (arr: PortfolioChartData[]) => {
     const getTimeValue = (timeStr: string) => {
