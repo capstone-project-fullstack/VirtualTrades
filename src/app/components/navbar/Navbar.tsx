@@ -146,7 +146,7 @@ export default function Navbar() {
                   <Tooltip
                     content={item.name}
                     placement="right"
-                    className="ml-2 bg-white text-black"
+                    className="ml-2 bg-white text-black z-[10000]"
                   >
                     <div className="text-3xl block float-left">{item.icon}</div>
                   </Tooltip>
