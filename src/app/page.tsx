@@ -104,10 +104,10 @@ export default function Home() {
       </div>
 
       <section className="mb-20 mt-24">
-        <div className="flex flex-wrap flex-col-reverse  ">
+        <div className="flex flex-wrap flex-col-reverse lg:flex-row gap-3">
           <div className="f-center flex flex-col-reverse flex-grow md:flex-row gap-3 lg:mx-10">
             <div className="flex-auto md:max-w-[50%]">
-              <SimpleCard text1="Stay informed on financial news, explore the latest updates on stocks, trends, and economic developments with our currated news page. " />
+              <SimpleCard text1="Stay informed on financial news, explore the latest updates on stocks, trends, and economic developments with our currated news page." />
             </div>
             <div className="flex-auto lg:max-w-[50%] f-center">
               <div className="max-w-sm">
@@ -115,7 +115,7 @@ export default function Home() {
                   <h3 className="text-4xl text-white-600 font-bold leading-none">
                     Latest in Finance
                   </h3>
-                  <p className="text-white-900 text-lg">
+                  <p className="text-white-900 text-lg mt-4 opacity-75">
                     News articles are not just headlines, they are valuable
                     learning resources. We curate the latest news, including
                     expert analyses and market insights to keep you up to date
@@ -131,24 +131,31 @@ export default function Home() {
 
       <Svg />
       <section className="bg-light-purple py-8 mb-10 f-center">
-        <div className="container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 place-items-center gap-5 w-[90%]">
-          <StockCardLandingPage
+        <div className="container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 place-items-center gap-5">
+          {/* <StockCardLandingPage
             titleCard="TRADING STOCK"
-            imgUrl="https://cdn0.iconfinder.com/data/icons/investment-flat-outline-asset-allocation/512/Dollar_cost_average-1024.png"
+            imgUrl="https://cdn2.iconfinder.com/data/icons/finance-226/64/trading-partner-Handshake-stock-finance-1024.png"
             textCard="Explore the stock market in real-time. Visit our virtual stock market page with its analytical tables, charts and graphs help you research a company's performance!"
             onClick={() => handleRoute('market')}
             text="View Stock"
-          />
+          /> */}
           <StockCardLandingPage
             titleCard="YOUR PORTFOLIO"
-            imgUrl="https://cdn0.iconfinder.com/data/icons/investment-flat-outline-asset-allocation/512/Stock_market_portfolio-1024.png"
+            imgUrl="https://cdn3.iconfinder.com/data/icons/real-estate-line-color-property-evaluation/512/Budget-1024.png"
             textCard="Your personal portfolio offers an instant snapshot of your investments and your stock progress. Track performance and stay updated with data analyses, effortlessly."
             onClick={() => handleRoute('portfolio')}
             text="Portfolio"
           />
           <StockCardLandingPage
+            titleCard="TRADING STOCK"
+            imgUrl="https://cdn2.iconfinder.com/data/icons/finance-226/64/trading-partner-Handshake-stock-finance-1024.png"
+            textCard="Explore the stock market in real-time. Visit our virtual stock market page with its analytical tables, charts and graphs help you research a company's performance!"
+            onClick={() => handleRoute('market')}
+            text="View Stock"
+          />
+          <StockCardLandingPage
             titleCard="MORE ABOUT US"
-            imgUrl="https://cdn0.iconfinder.com/data/icons/investment-flat-outline-asset-allocation/512/Corporate_bond-1024.png"
+            imgUrl="https://cdn3.iconfinder.com/data/icons/real-estate-line-color-property-evaluation/512/Property_consulting-1024.png"
             textCard="Delve into our mission, learn more about our team and what values we hold at Virtual Trades. We are excited to armor you with the right tools to navigate this new world!"
             onClick={() => handleRoute('landing')}
             text="About Us"
@@ -156,7 +163,7 @@ export default function Home() {
         </div>
       </section>
 
-{/* <section className='mb-24'> */}
+      {/* <section className='mb-24'> */}
       <div className="relative lg:-mt-24">
         <svg
           viewBox="0 0 1428 174"
