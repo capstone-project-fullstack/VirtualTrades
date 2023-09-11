@@ -40,9 +40,9 @@ export default function Navbar() {
   filteredStocks.splice(6);
 
   const items = [
+    { name: 'Home', href: '/', icon: <IoIosHome /> },
     { name: 'Market', href: '/market', icon: <IoMdTrendingUp /> },
     { name: 'Portfolio', href: '/portfolio', icon: <MdDashboard /> },
-    { name: 'Home', href: '/', icon: <IoIosHome /> },
     { name: 'News', href: '/news', icon: <BiNews /> },
     { name: 'Watchlists', href: '/watchlists', icon: <BiBookmark /> },
   ];
