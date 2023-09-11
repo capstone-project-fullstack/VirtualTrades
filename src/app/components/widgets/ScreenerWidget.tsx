@@ -1,6 +1,8 @@
 'use client';
 
 import React, { useEffect, useRef } from 'react';
+import Tooltip from '../Tooltip';
+
 
 export default function ScreenerWidget() {
   const container = useRef<HTMLDivElement | null>(null);
@@ -32,6 +34,9 @@ export default function ScreenerWidget() {
 
   return (
     <div className="tradingview-widget-container">
+       <div className="relative top-0 left-0 z-50 h-0 w-0">
+        <Tooltip title="Stock Screener" text="Filter stocks by filtering and sorting" />
+      </div>
       <div
         className="tradingview-widget-container__widget"
         ref={container}

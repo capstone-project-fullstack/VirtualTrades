@@ -51,8 +51,8 @@ const TradingViewWidget: React.FC<TradingViewWidgetProps> = ({ ticker }) => {
         'TradingView' in window
       ) {
         new window.TradingView.widget({
-          autosize: true,
           width: '100%',
+          height: 530,
           symbol: ticker,
           interval: 'D',
           timezone: 'Etc/UTC',
@@ -71,8 +71,8 @@ const TradingViewWidget: React.FC<TradingViewWidgetProps> = ({ ticker }) => {
   }, [ticker]);
 
   return (
-    <div className="tradingview-widget-container h-full w-full">
-      <div id="tradingview_fc9a6" className="h-full w-full"></div>
+    <div className="tradingview-widget-container">
+      <div id="tradingview_fc9a6"></div>
       <div className="tradingview-widget-copyright"></div>
     </div>
   );

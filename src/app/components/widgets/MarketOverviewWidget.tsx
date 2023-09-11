@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useEffect, useRef } from 'react';
+import Tooltip from '../Tooltip';
 
 export default function MarketOverviewWidget() {
   const container = useRef<HTMLDivElement | null>(null);
@@ -105,6 +106,9 @@ export default function MarketOverviewWidget() {
 
   return (
     <div className="tradingview-widget-container">
+      <div className="relative top-[5px] left-[95%] z-50 h-0 w-0">
+        <Tooltip title="Market Overview" text="See how the indexes are performing" />
+      </div>
       <div
         className="tradingview-widget-container__widget"
         ref={container}
