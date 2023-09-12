@@ -17,25 +17,25 @@ export default function Home() {
   return (
     <div>
       <TradingViewWidget />
-      <div className="leading-normal tracking-normal text-white gradient my-20">
+      <div className="leading-normal tracking-normal text-white gradient my-20 ml-3">
         <div className="m-8 f-center">
-          <div className="container f-center gap-x-5 flex-wrap flex-col lg:flex-row">
-            <div className="flex flex-col w-full lg:w-1/3 justify-center items-start">
+          <div className="container f-center gap-x-8 flex-wrap flex-col lg:flex-row mb-9">
+            <div className="flex flex-col w-full lg:w-1/3 justify-center items-start ml-10">
               <div className="my-2 text-5xl md:text-6xl text-center md:text-left font-bold leading-[1] w-full">
                 Welcome to <div className="text-light-green">VirtualTrades</div>
               </div>
-              <p className="leading-normal text-xl mt-2 mb-4">
+              <p className="leading-normal text-xl mt-3 mb-4">
                 Experience the thrill of stock trading in a risk-free
                 environment with VirtualTrades. Buy and sell stocks, build your
-                portfolio, and track your investments—all in real-time!
+                portfolio, and track your investments, all in real-time!
               </p>
               <p className="leading-normal text-xl mb-8">
-                Stay informed with the latest market news and analyze historical
-                data to make informed decisions. Start your virtual trading
+                Stay informed with the latest market news, analyze historical
+                data, and learn to make more informed decisions. Begin your virtual trading
                 journey today!
               </p>
             </div>
-            <div className="w-full lg:w-1/2">
+            <div className="w-full lg:w-1/2 ml-4">
               <Img
                 className="w-full lg:pl-4 z-50 rounded-md"
                 src="https://ucarecdn.com/6a9adf89-51b8-47f5-8bf5-81eff950be9a/"
@@ -51,31 +51,31 @@ export default function Home() {
       <Svg />
 
       <div className="bg-[#19052a]">
-        <div className="leading-normal tracking-normal text-white gradient pt-7 pb-20 ">
+        <div className="leading-normal tracking-normal text-white gradient pt-7 pb-20">
           <div className="m-8 f-center">
-            <div className="container f-center gap-x-5 flex-wrap flex-col lg:flex-row">
-              <div className="w-full lg:w-1/2">
+            <div className="container f-center gap-x-32 flex-wrap flex-col lg:flex-row">
+              <div className="w-full lg:w-1/3">
                 <Img
-                  className="w-full pb-4 lg:pr-16 z-50 rounded-md"
-                  src="https://g.foolcdn.com/editorial/images/511145/crash-gettyimages-482858718.jpg"
+                  className="w-full lg:pr-16 z-50 rounded-md my-2"
+                  src="https://ucarecdn.com/200f04c5-3e86-4136-84e4-b3fa599ccbfb/-/preview/500x500/-/quality/smart_retina/-/format/auto/"
                   alt="hero img"
                   width={20}
                   height={20}
                 />
               </div>
               <div className="flex flex-col w-full lg:w-1/3 justify-center items-start">
-                <div className="my-2 text-3xl md:text-4xl text-center md:text-left font-bold leading-[1] w-full">
-                  Experience Virtual Stock Trading
+                <div className="my-3 text-4xl md:text-3xl text-center md:text-left font-bold leading-[1] w-full mt-8">
+                  Virtual Stock Trading
                 </div>
-                <p className="leading-normal text-xl mt-2 mb-4">
+                <p className="leading-normal text-xl mt-2 mb-8">
                   Dive into the exciting world of stock trading with
                   VirtualTrades. Simulate real-time stock transactions, analyze
                   market data, and refine your investment strategies.
                 </p>
-                <p className="leading-normal text-xl mb-8">
+                <p className="leading-normal text-xl mb-6">
                   Whether you're a beginner or an experienced investor,
                   VirtualTrades offers a risk-free environment to practice and
-                  enhance your trading skills
+                  enhance your trading skills.
                 </p>
               </div>
             </div>
@@ -120,7 +120,7 @@ export default function Home() {
         </svg>
       </div>
 
-      <section className="bg-dark-black mt-14 pb-28 f-center">
+      <section className="bg-dark-black mt-14 pb-40 f-center p-10 m-4">
         <div className="container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 place-items-center gap-5">
           <StockCardLandingPage
             titleCard="YOUR PORTFOLIO"
@@ -137,21 +137,21 @@ export default function Home() {
             text="View Stock"
           />
           <StockCardLandingPage
-            titleCard="News"
-            imgUrl="https://cdn3.iconfinder.com/data/icons/real-estate-line-color-property-evaluation/512/Property_consulting-1024.png"
+            titleCard="NEWS"
+            imgUrl="https://ucarecdn.com/9a462dc0-f639-4735-a1b2-458568990f17/-/preview/500x500/-/quality/smart_retina/-/format/auto/"
             textCard="Stay informed on latest financial news, explore the latest updates on stocks, trends, and economic developments with our currated news page.
 
             "
             onClick={() => handleRoute('news')}
-            text="News"
+            text="Market News"
           />
         </div>
       </section>
 
       <Svg />
       <div className="bg-[#19052a]">
-        <section className="container mx-auto text-center py-6 p-12">
-          <h1 className="w-full my-2 text-5xl font-bold leading-tight text-center text-white mt-5 mb-5">
+        <section className="container mx-auto text-center py-8">
+          <h1 className="w-full my-2 text-5xl font-bold leading-tight text-center text-white mt-5">
             VirtualTrades
           </h1>
           <div className="w-full mb-4">
