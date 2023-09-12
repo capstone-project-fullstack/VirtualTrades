@@ -134,29 +134,47 @@ export default function Home() {
 
       <section className="bg-dark-black mt-14 pb-40 f-center p-10 m-4">
         <div className="container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 place-items-center gap-5">
-          <StockCardLandingPage
-            titleCard="YOUR PORTFOLIO"
-            imgUrl="https://cdn3.iconfinder.com/data/icons/real-estate-line-color-property-evaluation/512/Budget-1024.png"
-            textCard="Your personal portfolio offers an instant snapshot of your investments and your stock progress. Track performance and stay updated with data analyses, effortlessly."
-            onClick={() => handleRoute('portfolio')}
-            text="Portfolio"
-          />
-          <StockCardLandingPage
-            titleCard="TRADING STOCK"
-            imgUrl="https://cdn2.iconfinder.com/data/icons/finance-226/64/trading-partner-Handshake-stock-finance-1024.png"
-            textCard="Explore the stock market in real-time. Visit our virtual stock market page with its analytical tables, charts and graphs help you research a company's performance!"
-            onClick={() => handleRoute('market')}
-            text="View Stock"
-          />
-          <StockCardLandingPage
-            titleCard="NEWS"
-            imgUrl="https://ucarecdn.com/9a462dc0-f639-4735-a1b2-458568990f17/-/preview/500x500/-/quality/smart_retina/-/format/auto/"
-            textCard="Stay informed on latest financial news, explore the latest updates on stocks, trends, and economic developments with our currated news page.
+          <div
+            data-aos="flip-left"
+            data-aos-easing="ease-out-cubic"
+            data-aos-duration="2000"
+          >
+            <StockCardLandingPage
+              titleCard="YOUR PORTFOLIO"
+              imgUrl="https://cdn3.iconfinder.com/data/icons/real-estate-line-color-property-evaluation/512/Budget-1024.png"
+              textCard="Your personal portfolio offers an instant snapshot of your investments and your stock progress. Track performance and stay updated with data analyses, effortlessly."
+              onClick={() => handleRoute('portfolio')}
+              text="Portfolio"
+            />
+          </div>
+          <div
+            data-aos="flip-left"
+            data-aos-easing="ease-out-cubic"
+            data-aos-duration="2000"
+          >
+            <StockCardLandingPage
+              titleCard="TRADING STOCK"
+              imgUrl="https://cdn2.iconfinder.com/data/icons/finance-226/64/trading-partner-Handshake-stock-finance-1024.png"
+              textCard="Explore the stock market in real-time. Visit our virtual stock market page with its analytical tables, charts and graphs help you research a company's performance!"
+              onClick={() => handleRoute('market')}
+              text="View Stock"
+            />
+          </div>
+          <div
+            data-aos="flip-left"
+            data-aos-easing="ease-out-cubic"
+            data-aos-duration="2000"
+          >
+            <StockCardLandingPage
+              titleCard="NEWS"
+              imgUrl="https://ucarecdn.com/9a462dc0-f639-4735-a1b2-458568990f17/-/preview/500x500/-/quality/smart_retina/-/format/auto/"
+              textCard="Stay informed on latest financial news, explore the latest updates on stocks, trends, and economic developments with our currated news page.
 
             "
-            onClick={() => handleRoute('news')}
-            text="Market News"
-          />
+              onClick={() => handleRoute('news')}
+              text="Market News"
+            />
+          </div>
         </div>
       </section>
 
