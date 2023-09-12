@@ -63,7 +63,12 @@ interface BlogCardProps {
   onClick: () => void;
 }
 
-export default function BlogCard({ Img, textCard, titleCard, textButton }: BlogCardProps) {
+export default function BlogCard({
+  Img,
+  textCard,
+  titleCard,
+  textButton,
+}: BlogCardProps) {
   const router = useRouter();
 
   const handleRoute = (page: string) => {
@@ -95,7 +100,7 @@ export default function BlogCard({ Img, textCard, titleCard, textButton }: BlogC
           {textCard}
         </Typography>
       </CardBody>
-      <div className='f-center mb-7'>
+      <div className="f-center mb-7">
         <GradientButtonRounded
           text={textButton}
           onClick={() => handleRoute('portfolio')}

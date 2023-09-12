@@ -16,7 +16,7 @@ import {
 import { useRouter } from 'next/navigation';
 import axios from 'axios';
 import { Tooltip } from '@material-tailwind/react';
-import { useUser } from "@clerk/nextjs"
+import { useUser } from '@clerk/nextjs';
 
 export default function Navbar() {
   const [open, isOpen] = useState<boolean>(false);
@@ -132,10 +132,8 @@ export default function Navbar() {
           </div>
         )}
       </div>
-      <div className='flex flex-col justify-between h-[80%]'>
-        <ul className={`${
-          !open ? 'px-auto' : 'px-2'
-        }`}>
+      <div className="flex flex-col justify-between h-[85%]">
+        <ul className={`${!open ? 'px-auto' : 'px-2'}`}>
           {items.map((item, index) => (
             <li key={index} onClick={() => isOpen(false)}>
               <Link
@@ -195,7 +193,6 @@ export default function Navbar() {
                         !open && 'hidden'
                       }`}
                     >
-                      
                       <SignInButton />
                     </div>
                   </div>

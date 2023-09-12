@@ -37,7 +37,7 @@ export default async function Portfolio() {
             <div className="flex-2 p-2 flex-col">
               <h1 className="text-xl font-bold text-center md:text-left mb-5 ml-3 flex gap-x-1">
                 Portfolio Diversity{' '}
-                <span className='mt-1'>
+                <span className="mt-1">
                   <Tooltip
                     title="Portfolio Diversity"
                     text="% of total portfolio value"
@@ -55,7 +55,7 @@ export default async function Portfolio() {
         <div className="w-full xl:w-8/12 xl:mb-0  bg-dark-black px-2">
           <PositionTable />
         </div>
-        <div className="w-full xl:w-4/12 px-2">
+        <div className="w-full xl:w-4/12 px-2 pt-5 md:pt-0">
           <TradeHistory />
         </div>
       </div>

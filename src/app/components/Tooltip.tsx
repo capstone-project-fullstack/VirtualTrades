@@ -13,7 +13,7 @@ export default function TooltipWithHelperIcon({
 }) {
   return (
     <Tooltip
-    className={`bg-white rounded ${className} z-[10000]`}
+      className={`bg-white rounded ${className} z-[10000]`}
       content={
         <div className="w-fit">
           <Typography color="black" className="font-bold">

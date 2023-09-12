@@ -107,7 +107,10 @@ export default function MarketOverviewWidget() {
   return (
     <div className="tradingview-widget-container">
       <div className="relative top-[5px] left-[95%] z-50 h-0 w-0">
-        <Tooltip title="Market Overview" text="See how the indexes are performing" />
+        <Tooltip
+          title="Market Overview"
+          text="See how the indexes are performing"
+        />
       </div>
       <div
         className="tradingview-widget-container__widget"

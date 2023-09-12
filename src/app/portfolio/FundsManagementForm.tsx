@@ -31,9 +31,13 @@ export default function FundsManagementForm({
   const handleOpen = () => setOpen((cur) => !cur);
   const [type, setType] = useState('add');
 
-  const buyingPower = useAppSelector((state) => state.fundManagement.values.cash);
-  const initialDepositedAmount = useAppSelector((state) => state.fundManagement.values.initial_amount);
-  console.log(buyingPower)
+  const buyingPower = useAppSelector(
+    (state) => state.fundManagement.values.cash
+  );
+  const initialDepositedAmount = useAppSelector(
+    (state) => state.fundManagement.values.initial_amount
+  );
+  console.log(buyingPower);
   const dispatch = useAppDispatch();
 
   const addFundsHandler = (e: React.FormEvent<HTMLFormElement>) => {
@@ -88,13 +92,26 @@ export default function FundsManagementForm({
           </CardHeader>
           <CardBody>
             <Tabs value={type} className="overflow-visible">
-              <TabsHeader className="relative z-0 bg-custom1" indicatorProps={{
-              className: `${type === 'add' ? 'bg-custom5' : 'bg-custom6'}`,
-            }}>
-                <Tab value="add"  className={`${type === 'withdraw' ? 'text-white' : 'text-black'}`} onClick={() => setType('add')}>
+              <TabsHeader
+                className="relative z-0 bg-custom1"
+                indicatorProps={{
+                  className: `${type === 'add' ? 'bg-custom5' : 'bg-custom6'}`,
+                }}
+              >
+                <Tab
+                  value="add"
+                  className={`${
+                    type === 'withdraw' ? 'text-white' : 'text-black'
+                  }`}
+                  onClick={() => setType('add')}
+                >
                   Add
                 </Tab>
-                <Tab value="withdraw"  className={`${type === 'add' ? 'text-white' : 'text-black'}`} onClick={() => setType('withdraw')}>
+                <Tab
+                  value="withdraw"
+                  className={`${type === 'add' ? 'text-white' : 'text-black'}`}
+                  onClick={() => setType('withdraw')}
+                >
                   Withdraw
                 </Tab>
               </TabsHeader>
@@ -131,7 +148,11 @@ export default function FundsManagementForm({
                       />
                     </div>
 
-                    <Button type="submit" className="f-center bg-none bg-[#03e9f4]" size="lg">
+                    <Button
+                      type="submit"
+                      className="f-center bg-none bg-[#03e9f4]"
+                      size="lg"
+                    >
                       {' '}
                       Add
                     </Button>
@@ -156,7 +177,11 @@ export default function FundsManagementForm({
                       />
                     </div>
 
-                    <Button className="f-center bg-none bg-[#f700f7]" type="submit" size="lg">
+                    <Button
+                      className="f-center bg-none bg-[#f700f7]"
+                      type="submit"
+                      size="lg"
+                    >
                       Withdraw
                     </Button>
                   </form>

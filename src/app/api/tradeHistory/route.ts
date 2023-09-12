@@ -11,7 +11,7 @@ export const GET = async () => {
       headers: { 'Content-Type': 'application/json' },
     });
   }
-  
+
   try {
     const userId = currUser.id;
 

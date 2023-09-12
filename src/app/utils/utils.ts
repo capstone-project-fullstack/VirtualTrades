@@ -25,6 +25,8 @@ export const customSortPositions = (
       comparison = a.total_equity - b.total_equity;
     } else if (sortBy === 'shares') {
       comparison = a.shares - b.shares;
+    } else if (sortBy === 'gainPercent') {
+      comparison = a.percentGain - b.percentGain;
     }
 
     return isAscending ? comparison : -comparison;

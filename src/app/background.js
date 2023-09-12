@@ -1,10 +1,14 @@
-const { PrismaClient } = require('@prisma/client');
-const { default: axios } = require('axios');
+// const { PrismaClient } = require('@prisma/client');
+// const { default: axios } = require('axios');
 
-const globalForPrisma = global;
+// const globalForPrisma = global;
 
-const prisma = (globalForPrisma.prisma = new PrismaClient());
+// const prisma = (globalForPrisma.prisma = new PrismaClient());
+
+const prisma = require("./prisma");
+
 module.exports = function updateStockPriceEveryHour() {
+  console.log('hi')
   setInterval(async () => {
     const stocks = await prisma.stock.findMany({
       select: {
