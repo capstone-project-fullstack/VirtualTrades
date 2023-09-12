@@ -1,11 +1,13 @@
 'use client';
-import React from 'react';
+import React, { useEffect } from 'react';
 import Img from 'next/image';
 import { useRouter } from 'next/navigation';
 import Svg from './components/images/Svg';
 import { GradientButtonRounded } from './components/buttons/Button';
 import TradingViewWidget from './components/widgets/TopWidget';
 import StockCardLandingPage from './components/cards/StockCardLandingPage';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 export default function Home() {
   const router = useRouter();
@@ -14,10 +16,17 @@ export default function Home() {
     router.push(`/${page}`);
   };
 
+  useEffect(() => {
+    AOS.init();
+  }, []);
+
   return (
     <div>
       <TradingViewWidget />
-      <div className="leading-normal tracking-normal text-white gradient my-20">
+      <div
+        className="leading-normal tracking-normal text-white gradient my-20"
+        data-aos="zoom-in"
+      >
         <div className="m-8 f-center">
           <div className="container f-center gap-x-5 flex-wrap flex-col lg:flex-row">
             <div className="flex flex-col w-full lg:w-1/3 justify-center items-start">
@@ -51,10 +60,13 @@ export default function Home() {
       <Svg />
 
       <div className="bg-[#19052a]">
-        <div className="leading-normal tracking-normal text-white gradient pt-7 pb-20 ">
+        <div
+          className="leading-normal tracking-normal text-white gradient pt-7 pb-20"
+          data-aos="zoom-in"
+        >
           <div className="m-8 f-center">
             <div className="container f-center gap-x-5 flex-wrap flex-col lg:flex-row">
-              <div className="w-full lg:w-1/2">
+              <div className="w-full lg:w-1/2 hello">
                 <Img
                   className="w-full pb-4 lg:pr-16 z-50 rounded-md"
                   src="https://g.foolcdn.com/editorial/images/511145/crash-gettyimages-482858718.jpg"
@@ -120,31 +132,50 @@ export default function Home() {
         </svg>
       </div>
 
-      <section className="bg-dark-black mt-14 pb-28 f-center">
+      <section
+        className="bg-dark-black mt-14 pb-28 f-center"
+        data-aos="fade-up"
+      >
         <div className="container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 place-items-center gap-5">
-          <StockCardLandingPage
-            titleCard="YOUR PORTFOLIO"
-            imgUrl="https://cdn3.iconfinder.com/data/icons/real-estate-line-color-property-evaluation/512/Budget-1024.png"
-            textCard="Your personal portfolio offers an instant snapshot of your investments and your stock progress. Track performance and stay updated with data analyses, effortlessly."
-            onClick={() => handleRoute('portfolio')}
-            text="Portfolio"
-          />
-          <StockCardLandingPage
-            titleCard="TRADING STOCK"
-            imgUrl="https://cdn2.iconfinder.com/data/icons/finance-226/64/trading-partner-Handshake-stock-finance-1024.png"
-            textCard="Explore the stock market in real-time. Visit our virtual stock market page with its analytical tables, charts and graphs help you research a company's performance!"
-            onClick={() => handleRoute('market')}
-            text="View Stock"
-          />
-          <StockCardLandingPage
-            titleCard="News"
-            imgUrl="https://cdn3.iconfinder.com/data/icons/real-estate-line-color-property-evaluation/512/Property_consulting-1024.png"
-            textCard="Stay informed on latest financial news, explore the latest updates on stocks, trends, and economic developments with our currated news page.
-
-            "
-            onClick={() => handleRoute('news')}
-            text="News"
-          />
+          <div
+            data-aos="flip-left"
+            data-aos-easing="ease-out-cubic"
+            data-aos-duration="2000"
+          >
+            <StockCardLandingPage
+              titleCard="YOUR PORTFOLIO"
+              imgUrl="https://cdn3.iconfinder.com/data/icons/real-estate-line-color-property-evaluation/512/Budget-1024.png"
+              textCard="Your personal portfolio offers an instant snapshot of your investments and your stock progress. Track performance and stay updated with data analyses, effortlessly."
+              onClick={() => handleRoute('portfolio')}
+              text="Portfolio"
+            />
+          </div>
+          <div
+            data-aos="flip-left"
+            data-aos-easing="ease-out-cubic"
+            data-aos-duration="2000"
+          >
+            <StockCardLandingPage
+              titleCard="TRADING STOCK"
+              imgUrl="https://cdn2.iconfinder.com/data/icons/finance-226/64/trading-partner-Handshake-stock-finance-1024.png"
+              textCard="Explore the stock market in real-time. Visit our virtual stock market page with its analytical tables, charts and graphs help you research a company's performance!"
+              onClick={() => handleRoute('market')}
+              text="View Stock"
+            />
+          </div>
+          <div
+            data-aos="flip-left"
+            data-aos-easing="ease-out-cubic"
+            data-aos-duration="2000"
+          >
+            <StockCardLandingPage
+              titleCard="News"
+              imgUrl="https://cdn3.iconfinder.com/data/icons/real-estate-line-color-property-evaluation/512/Property_consulting-1024.png"
+              textCard="Stay informed on latest financial news, explore the latest updates on stocks, trends, and economic developments with our currated news page."
+              onClick={() => handleRoute('news')}
+              text="News"
+            />
+          </div>
         </div>
       </section>
 
