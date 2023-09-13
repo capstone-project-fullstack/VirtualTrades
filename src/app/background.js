@@ -1,11 +1,9 @@
-// const { PrismaClient } = require('@prisma/client');
-// const { default: axios } = require('axios');
+const { PrismaClient } = require('@prisma/client');
+const { default: axios } = require('axios');
 
-// const globalForPrisma = global;
-
-// const prisma = (globalForPrisma.prisma = new PrismaClient());
-
-const prisma = require("./prisma");
+const globalForPrisma = global;
+const prisma = globalForPrisma.prisma || new PrismaClient();
+if (process.env.NODE_ENV !== 'production') globalForPrisma.prisma = prisma;
 
 module.exports = function updateStockPriceEveryHour() {
   console.log('hi')
@@ -37,6 +35,7 @@ module.exports = function updateStockPriceEveryHour() {
             current_price: resData.price,
           },
         });
+        console.log(stocks);
         return resData;
       })
     );

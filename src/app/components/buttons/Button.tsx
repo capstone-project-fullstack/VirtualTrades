@@ -1,11 +1,10 @@
 'use client';
 
 import { Button } from '@material-tailwind/react';
-import { materialColors } from '../../../../typings';
 
 interface GradientButtonRoundedProps {
   text: string;
-  color?: materialColors;
+  color?: string;
   onClick: () => void;
   className?: string;
 }
@@ -20,6 +19,7 @@ export const GradientButtonRounded = ({
     <Button
       variant="gradient"
       className={`${className} hover:bg-opacity-90`}
+      // @ts-ignore
       color={color}
       onClick={onClick}
       ripple={true}

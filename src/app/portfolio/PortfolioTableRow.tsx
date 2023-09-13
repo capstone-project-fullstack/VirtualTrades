@@ -3,6 +3,7 @@ import { formatPrice } from '../utils/utils';
 import { PortfolioData } from '../../../typings';
 import Link from 'next/link';
 
+
 interface PositionTableRowProps {
   row: PortfolioData;
 }
@@ -16,6 +17,7 @@ function PositionTableRow({ row }: PositionTableRowProps) {
     total_equity,
     percentGain,
   } = row;
+
 
   return (
     <tr className={`${gain >= 0 ? 'text-green-500' : 'text-red-500'}`}>

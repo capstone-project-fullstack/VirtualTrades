@@ -16,6 +16,8 @@ import axios from 'axios';
 import { formatPrice } from '../utils/utils';
 import { useAppDispatch, useAppSelector } from '../redux/hooks';
 import { setInitialValues } from '../redux/features/fundManagementSlice';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 ChartJS.register(
   CategoryScale,
@@ -90,6 +92,7 @@ export default function Overview({ initialValues }: OverviewProps) {
 
   useEffect(() => {
     dispatch(setInitialValues(initialValues));
+    AOS.init();
   }, []);
 
   useEffect(() => {
@@ -106,10 +109,6 @@ export default function Overview({ initialValues }: OverviewProps) {
 
   const lastDay = chartData[chartData.length - 1]?.date;
   const oneDayChartData = chartData.filter((data) => data.date === lastDay);
-
-  // const chartData = chartData
-  //   .slice()
-  //   .sort((a, b) => Number(parseDate(a.date)) - Number(parseDate(b.date)));
 
   const oneWeekAgo = new Date();
   oneWeekAgo.setDate(oneWeekAgo.getDate() - 7);
@@ -206,7 +205,10 @@ export default function Overview({ initialValues }: OverviewProps) {
 
   return (
     <>
-      <div className="relative flex flex-col min-w-0 break-words w-full shadow-lg rounded-xl border border-custom3">
+      <div
+        data-aos="zoom-in"
+        className="relative flex flex-col min-w-0 break-words w-full shadow-lg rounded-xl border border-custom3"
+      >
         <div className="rounded-t mb-0 px-4 py-3 bg-transparent">
           <div className="flex flex-wrap items-center">
             <div className="relative w-full max-w-full flex-grow flex-1">

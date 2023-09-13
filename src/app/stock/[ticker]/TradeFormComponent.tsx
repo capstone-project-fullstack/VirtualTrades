@@ -46,6 +46,7 @@ export default function TradeForm({
     title: '',
     subTitle: '',
     message: '',
+    color: '',
   });
 
   useEffect(() => {
@@ -95,7 +96,6 @@ export default function TradeForm({
         stockId,
         userId,
       });
-      console.log(res);
 
       if (res.status === 200) {
         setCash(cash - sharesToBuy * latestPrice);
@@ -104,6 +104,7 @@ export default function TradeForm({
         setDialogContent({
           open: true,
           title: 'Success',
+          color: 'green',
           subTitle: 'Stock bought successfully',
           message: `You bought ${sharesToBuy} shares of ${ticker} for ${formatPrice(
             sharesToBuy * latestPrice
@@ -113,6 +114,7 @@ export default function TradeForm({
         setDialogContent({
           open: true,
           title: 'Error',
+          color: 'red',
           subTitle: 'Stock Purchase failed',
           message: 'Error buying stock',
         });
@@ -125,6 +127,7 @@ export default function TradeForm({
         setDialogContent({
           open: true,
           title: 'Error',
+          color: 'red',
           subTitle: 'Stock Purchase failed',
           message: 'Insufficient funds to buy the stock',
         });
@@ -132,6 +135,7 @@ export default function TradeForm({
         setDialogContent({
           open: true,
           title: 'Error',
+          color: 'red',
           subTitle: 'Stock Purchase failed',
           message: 'An unexpected error occurred',
         });
@@ -159,6 +163,7 @@ export default function TradeForm({
       setDialogContent({
         open: true,
         title: 'Success',
+        color: 'green',
         subTitle: 'Stock sold successfully',
         message: `You sold ${sharesToSell} shares of ${ticker} for ${formatPrice(
           sharesToSell * latestPrice
@@ -169,6 +174,7 @@ export default function TradeForm({
       setDialogContent({
         open: true,
         title: 'Error',
+        color: 'red',
         subTitle: 'Stock sold failed',
         message: 'Error selling stock',
       });

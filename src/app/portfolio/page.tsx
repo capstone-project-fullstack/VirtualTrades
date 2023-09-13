@@ -15,6 +15,7 @@ export default async function Portfolio() {
   let user = await UserService.findUser(userId);
   if (!user) user = await UserService.createUser(userId);
 
+
   const initialValues = {
     initial_amount: user?.initial_amount || 0,
     cash: user?.cash || 0,
