@@ -17,7 +17,7 @@ export default function Home() {
   };
 
   // useEffect(() => {
-    AOS.init();
+  AOS.init();
   // }, []);
 
   return (
@@ -66,7 +66,7 @@ export default function Home() {
         >
           <div className="m-8 f-center">
             <div className="container f-center gap-x-5 flex-wrap flex-col lg:flex-row">
-              <div className="w-full lg:w-1/2 hello">
+              <div className="w-full lg:w-1/3">
                 <Img
                   className="w-full lg:pr-16 z-50 rounded-md my-2"
                   src="https://ucarecdn.com/200f04c5-3e86-4136-84e4-b3fa599ccbfb/-/preview/500x500/-/quality/smart_retina/-/format/auto/"
