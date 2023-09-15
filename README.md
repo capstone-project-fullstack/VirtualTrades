@@ -48,8 +48,8 @@ Stock Market API, Trading View
 
 **Team and Responsibilities**
 
-- Magdalena May Gero: Frontend Developer and Scrum Master
-
 - Nayankumar Prajapati: Full-Stack Developer and Product Owner
 
+- Magdalena May Gero: Frontend Developer, Project Manager and Scrum Master
+  
 - Ethan Inniss: Backend Developer
