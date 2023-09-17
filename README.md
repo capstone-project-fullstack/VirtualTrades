@@ -1,3 +1,5 @@
+Deployed Website: https://virtual-trades.vercel.app/
+
 **Mission Statement**
 
 At Virtual Trades, our mission is to empower aspiring investors to learn, practice, and excel in the world of stock trading by providing a user-friendly and risk-free platform with virtual money.
