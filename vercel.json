@@ -1,0 +1,8 @@
+{
+  "crons": [
+    {
+      "path": "/src/app/background",
+      "schedule": "0 9-16 * * 1-5"
+    }
+  ]
+}
