@@ -21,7 +21,6 @@ export const GET = async () => {
       },
     });
 
-    console.log(userPortfolioSnapshots);
 
     const res = userPortfolioSnapshots.map((data) => {
       return {

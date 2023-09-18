@@ -16,9 +16,9 @@ export default function Home() {
     router.push(`/${page}`);
   };
 
-  // useEffect(() => {
-  AOS.init();
-  // }, []);
+  useEffect(() => {
+    AOS.init();
+  }, []);
 
   return (
     <div>

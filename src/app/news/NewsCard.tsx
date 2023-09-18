@@ -35,6 +35,7 @@ const NewsCard = ({
         />
       </CardHeader>
       <CardBody className="p-4 ">
+        {/* @ts-ignore */}
         <Typography variant="body2" color="white" className="float-right">
           {`${parsedTime.date} | ${parsedTime.time}`}
         </Typography>

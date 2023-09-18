@@ -37,7 +37,6 @@ export default function FundsManagementForm({
   const initialDepositedAmount = useAppSelector(
     (state) => state.fundManagement.values.initial_amount
   );
-  console.log(buyingPower);
   const dispatch = useAppDispatch();
 
   const addFundsHandler = (e: React.FormEvent<HTMLFormElement>) => {

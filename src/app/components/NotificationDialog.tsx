@@ -35,6 +35,7 @@ export function NotificationDialog({
         </Typography>
       </DialogHeader>
       <DialogBody divider className="grid place-items-center gap-4">
+        {/* @ts-ignore */}
         <Typography color={dialogContent.color} variant="h4">
           {dialogContent.subTitle}
         </Typography>
