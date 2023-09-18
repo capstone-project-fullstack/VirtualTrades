@@ -1,7 +1,7 @@
 {
   "crons": [
     {
-      "path": "/src/app/background",
+      "path": "/api/cron",
       "schedule": "0 9-16 * * 1-5"
     }
   ]
