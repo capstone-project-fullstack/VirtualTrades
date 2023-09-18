@@ -3,9 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "node src/app/server.js",
-    "build": "npx prisma generate && next build",
-    "start": "NODE_ENV=production node src/app/server.js",
+    "dev": "next dev",
+    "build": "prisma generate && next build",
+    "start": "next start",
     "lint": "next lint"
   },
   "dependencies": {
