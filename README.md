@@ -1,3 +1,5 @@
+Deployed Website: https://virtual-trades.vercel.app/
+
 **Mission Statement**
 
 At Virtual Trades, our mission is to empower aspiring investors to learn, practice, and excel in the world of stock trading by providing a user-friendly and risk-free platform with virtual money.
@@ -48,8 +50,8 @@ Stock Market API, Trading View
 
 **Team and Responsibilities**
 
-- Magdalena May Gero: Frontend Developer and Scrum Master
-
 - Nayankumar Prajapati: Full-Stack Developer and Product Owner
 
+- Magdalena May Gero: Frontend Developer, Project Manager and Scrum Master
+  
 - Ethan Inniss: Backend Developer
