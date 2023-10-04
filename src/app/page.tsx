@@ -24,12 +24,12 @@ export default function Home() {
     <div>
       <TradingViewWidget />
       <div
-        className="leading-normal tracking-normal text-white gradient my-20"
+        className="leading-normal tracking-normal text-white gradient mb-20 lg:mt-20"
         data-aos="zoom-in"
       >
         <div className="m-8 f-center">
-          <div className="container f-center gap-x-8 flex-wrap flex-col lg:flex-row mb-9">
-            <div className="flex flex-col w-full lg:w-1/3 justify-center items-start ml-10">
+          <div className="container f-center mx-8 flex-wrap flex-col lg:flex-row mb-9">
+            <div className="flex flex-col w-full lg:w-1/3 justify-center items-start">
               <div className="my-2 text-5xl md:text-6xl text-center md:text-left font-bold leading-[1] w-full">
                 Welcome to <div className="text-light-green">VirtualTrades</div>
               </div>
@@ -44,7 +44,7 @@ export default function Home() {
                 virtual trading journey today!
               </p>
             </div>
-            <div className="w-full lg:w-1/2 ml-4">
+            <div className="w-full lg:w-1/2 ml-0 lg:ml-20">
               <Img
                 className="w-full lg:pl-4 z-50 rounded-md"
                 src="https://ucarecdn.com/6a9adf89-51b8-47f5-8bf5-81eff950be9a/"
@@ -66,7 +66,7 @@ export default function Home() {
         >
           <div className="m-8 f-center">
             <div className="container f-center gap-x-5 flex-wrap flex-col lg:flex-row">
-              <div className="w-full lg:w-1/3">
+              <div className="w-2/3 md:w-1/3">
                 <Img
                   className="w-full lg:pr-16 z-50 rounded-md my-2"
                   src="https://ucarecdn.com/200f04c5-3e86-4136-84e4-b3fa599ccbfb/-/preview/500x500/-/quality/smart_retina/-/format/auto/"
