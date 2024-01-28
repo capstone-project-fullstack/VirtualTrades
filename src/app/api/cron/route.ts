@@ -16,6 +16,7 @@ export const GET = async () => {
         )
         .then((res) => res.data)
         .catch((err) => console.log(err));
+      console.log('res', res);
       const resData = {
         symbol: stock.symbol,
         price: Number(res.c.toFixed(2)),
