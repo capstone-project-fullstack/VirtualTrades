@@ -12,7 +12,7 @@ export const GET = async () => {
     stocks.map(async (stock) => {
       const res = await axios
         .get(
-          `https://finnhub.io/api/v1/quote?symbol=${stock.symbol}&token=${process.env.FINNHUB_API_KEY5}`
+          `https://finnhub.io/api/v1/quote?symbol=${stock.symbol}&token=${process.env.FINNHUB_API_KEY2}`
         )
         .then((res) => res.data)
         .catch((err) => console.log(err));
