@@ -100,7 +100,7 @@ export default function TradeHistory() {
                       color="white"
                       className="font-normal"
                     >
-                      {price}
+                      {Number(price).toFixed(2)}
                     </Typography>
                   </td>
                   <td align="center" className="p-2 border-cell">
