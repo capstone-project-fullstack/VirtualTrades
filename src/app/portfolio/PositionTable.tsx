@@ -11,8 +11,6 @@ import PositionTableHeader from './PortfolioTableHeader';
 import PositionTableRow from './PortfolioTableRow';
 import { PortfolioData } from '../../../typings';
 import { API_KEYS } from '../utils/config';
-import AOS from 'aos';
-import 'aos/dist/aos.css';
 
 const getAllUserPositionsSymbols = async () => {
   const data = await axios.get('/api/positions');
@@ -40,8 +38,6 @@ export default function PositionTable() {
   const cash = useAppSelector((state) => state.fundManagement.values.cash);
 
   const dispatch = useAppDispatch();
-
-  AOS.init();
 
   useEffect(() => {
     axios
@@ -122,10 +118,7 @@ export default function PositionTable() {
   ];
 
   return (
-    <div
-      data-aos="zoom-in"
-      className="w-full h-[500px] bg-dark-black border overflow-auto no-scrollbar border-custom3 rounded-xl"
-    >
+    <div className="w-full h-[500px] bg-dark-black border overflow-auto no-scrollbar border-custom3 rounded-xl">
       {loading && (
         <div className="relative top-1/2 left-[48%] h-0 w-0">
           <Spinner />
