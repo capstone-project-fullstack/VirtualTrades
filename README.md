@@ -44,6 +44,7 @@ Api: Finnhub
 
 <br>
 
+
 **Data Sources**
 
 Stock Market API, Trading View
