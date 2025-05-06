@@ -8,6 +8,10 @@ At Virtual Trades, our mission is to empower aspiring investors to learn, practi
 
 In today's rapidly changing financial landscape, investing in the stock market has become increasingly popular. However, many individuals hesitate to dive into trading due to the fear of financial loss and lack of experience. To address this challenge, we propose the development of a comprehensive stock trading platform that offers users a safe and educational environment to practice trading without real financial risks.
 
+**Slide Presentation**
+
+https://docs.google.com/presentation/d/14jIKbk32GE9TIwH4iDhqkTOan0HLgsqSc8QdTUM_hp0/edit?usp=sharing
+
 **Features & User Stories**
 
 - A user can sign up and sign in to their accounts
@@ -21,9 +25,6 @@ In today's rapidly changing financial landscape, investing in the stock market h
 - A user can all their open positions
 - A user can see their overall portfolio size
 - A user can get more information about a stock/company by clicking on a ticker such as the current price, change in percentage, historical graph, daily volume, 52-week high & low, etc.
-
-**Features & User Stories**
-
 - A user can get a history of their trades
 - A user can get how much they profited/lost from a particular stock
 - A user can create and join competitions among other users. Whoever makes the most return after a certain amount of time wins that competition
