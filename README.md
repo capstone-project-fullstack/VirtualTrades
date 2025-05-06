@@ -10,7 +10,7 @@ In today's rapidly changing financial landscape, investing in the stock market h
 
 **Slide Presentation**
 
-https://docs.google.com/presentation/d/14jIKbk32GE9TIwH4iDhqkTOan0HLgsqSc8QdTUM_hp0/edit?usp=sharing
+https://rb.gy/44pxe9
 
 **Features & User Stories**
 
