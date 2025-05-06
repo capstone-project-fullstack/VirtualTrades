@@ -1,19 +1,16 @@
-Deployed Website: https://virtual-trades.vercel.app/
+**Deployed Website**
+https://virtual-trades.vercel.app/
 
 **Mission Statement**
-
 At Virtual Trades, our mission is to empower aspiring investors to learn, practice, and excel in the world of stock trading by providing a user-friendly and risk-free platform with virtual money.
 
 **Problem Statement**
-
 In today's rapidly changing financial landscape, investing in the stock market has become increasingly popular. However, many individuals hesitate to dive into trading due to the fear of financial loss and lack of experience. To address this challenge, we propose the development of a comprehensive stock trading platform that offers users a safe and educational environment to practice trading without real financial risks.
 
 **Slide Presentation**
-
 https://rb.gy/44pxe9
 
 **Features & User Stories**
-
 - A user can sign up and sign in to their accounts
 - A user can search for a stock
 - A user can filter the stocks
@@ -31,11 +28,8 @@ https://rb.gy/44pxe9
 - A user can get the news of a stock that are their watchlist
 
 **Tech Stack**
-
 Front End: React, TypeScript, Tailwind CSS, Redux, Material UI
-
 Back End: NextJS, Prisma, NextAuth, Postgresql, Clerk (authentication)
-
 Api: Finnhub
 
 <br>
@@ -45,12 +39,10 @@ Api: Finnhub
 <br>
 
 **Data Sources**
-
 Stock Market API, Trading View
 <br></br>
 
 **Team and Responsibilities**
-
 - Nayankumar Prajapati: Full-Stack Developer and Product Owner
 
 - Magdalena May Gero: Frontend Developer, Project Manager and Scrum Master
