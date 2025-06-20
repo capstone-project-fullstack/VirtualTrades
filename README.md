@@ -1,44 +1,71 @@
-**Deployed Website**
-https://virtual-trades.vercel.app/
+---
 
-**Slide Presentation**
-https://docs.google.com/presentation/d/14jIKbk32GE9TIwH4iDhqkTOan0HLgsqSc8QdTUM_hp0/present
+## Mission Statement
 
+At **Virtual Trades**, our mission is to empower aspiring investors to learn, practice, and excel in the world of stock trading by providing a user-friendly and risk-free platform with virtual money.
 
-**Mission Statement**
+---
 
-At Virtual Trades, our mission is to empower aspiring investors to learn, practice, and excel in the world of stock trading by providing a user-friendly and risk-free platform with virtual money.
+## Problem Statement
 
+In today’s rapidly changing financial landscape, many people are interested in the stock market but hesitate to participate due to fear of financial loss and lack of experience. Virtual Trades offers a secure, educational environment where users can practice trading without real financial risk.
 
-**Problem Statement**
+---
 
-In today's rapidly changing financial landscape, investing in the stock market has become increasingly popular. However, many individuals hesitate to dive into trading due to the fear of financial loss and lack of experience. To address this challenge, we propose the development of a comprehensive stock trading platform that offers users a safe and educational environment to practice trading without real financial risks.
+## Features
 
+### Authentication
+- Secure sign-up and log-in via Clerk
 
-**Features & User Stories**
-- A user can sign up and sign in to their accounts
-- A user can search for a stock
-- A user can filter the stocks
-- A user can view stocks
-- A user can set up initial amount
-- A user can watchlist a stock
-- A user can open a position in a company
-- A user can close an existing position in a company
-- A user can all their open positions
-- A user can see their overall portfolio size
-- A user can get more information about a stock/company by clicking on a ticker such as the current price, change in percentage, historical graph, daily volume, 52-week high & low, etc.
-- A user can get a history of their trades
-- A user can get how much they profited/lost from a particular stock
-- A user can create and join competitions among other users. Whoever makes the most return after a certain amount of time wins that competition
-- A user can get the news of a stock that are their watchlist
+### Stock Exploration
+- Search for stocks by name or ticker
+- Filter stocks using various criteria
+- View detailed market data
 
-**Tech Stack**
+### Portfolio Management
+- Set up an initial virtual trading balance
+- Watchlist your favorite stocks
+- Open and close positions
+- Track open positions and portfolio value
 
-Front End: React, TypeScript, Tailwind CSS, Redux, Material UI
+### Stock Insights
+- Real-time data including:
+  - Price, percent change
+  - Historical graphs
+  - Volume, 52-week highs/lows, and more
 
-Back End: NextJS, Prisma, NextAuth, Postgresql, Clerk (authentication)
+### Trade History
+- View past trades and associated gains/losses
 
-Api: Finnhub
+### Competitions
+- Create or join competitions
+- Compete based on returns over a timeframe
+
+### Market News
+- Stay updated on news related to watchlisted stocks
+
+---
+
+## Tech Stack
+
+### Frontend
+- React
+- TypeScript
+- Tailwind CSS
+- Redux
+- Material UI
+
+### Backend
+- Next.js
+- Prisma
+- NextAuth
+- PostgreSQL
+- Clerk (authentication)
+
+### API
+- [Finnhub](https://finnhub.io)
+
+---
 
 <br>
 
@@ -46,16 +73,16 @@ Api: Finnhub
 
 <br>
 
+## Data Sources
+- Finnhub API
+- Trading View
 
-**Data Sources**
+---
 
-Stock Market API, Trading View
-<br></br>
+## Team and Responsibilities
 
-**Team and Responsibilities**
+- **Nayankumar Prajapati** – Full-Stack Developer, Product Owner  
+- **Magdalena May Gero** – Frontend Developer, Project Manager, Scrum Master  
+- **Ethan Inniss** – Backend Developer
 
-- Nayankumar Prajapati: Full-Stack Developer and Product Owner
-
-- Magdalena May Gero: Frontend Developer, Project Manager and Scrum Master
-  
-- Ethan Inniss: Backend Developer
+---
