@@ -10,8 +10,7 @@ At Virtual Trades, our mission is to empower aspiring investors to learn, practi
 In today's rapidly changing financial landscape, investing in the stock market has become increasingly popular. However, many individuals hesitate to dive into trading due to the fear of financial loss and lack of experience. To address this challenge, we propose the development of a comprehensive stock trading platform that offers users a safe and educational environment to practice trading without real financial risks.
 
 **Slide Presentation**
-
-https://rb.gy/44pxe9
+https://chatgpt.com/g/g-p-67faa9d7abf48191a545b39c5048fe8a-mag/c/6812b032-cee8-800a-b498-778998b04dd4#:~:text=com/presentation/d/-,14jIKbk32GE9TIwH4iDhqkTOan0HLgsqSc8QdTUM_hp0,-/present
 
 **Features & User Stories**
 - A user can sign up and sign in to their accounts
