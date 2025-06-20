@@ -1,16 +1,19 @@
 **Deployed Website**
 https://virtual-trades.vercel.app/
 
+**Slide Presentation**
+https://docs.google.com/presentation/d/14jIKbk32GE9TIwH4iDhqkTOan0HLgsqSc8QdTUM_hp0/present
+
+
 **Mission Statement**
 
 At Virtual Trades, our mission is to empower aspiring investors to learn, practice, and excel in the world of stock trading by providing a user-friendly and risk-free platform with virtual money.
+
 
 **Problem Statement**
 
 In today's rapidly changing financial landscape, investing in the stock market has become increasingly popular. However, many individuals hesitate to dive into trading due to the fear of financial loss and lack of experience. To address this challenge, we propose the development of a comprehensive stock trading platform that offers users a safe and educational environment to practice trading without real financial risks.
 
-**Slide Presentation**
-https://docs.google.com/presentation/d/14jIKbk32GE9TIwH4iDhqkTOan0HLgsqSc8QdTUM_hp0/present
 
 **Features & User Stories**
 - A user can sign up and sign in to their accounts
